@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const user = await tables.user.read(req.params.id);
+    const user = await tables.User.read(req.params.id);
     if (user == null) {
       res.sendStatus(404);
     } else {
@@ -28,7 +28,7 @@ const add = async (req, res, next) => {
 
   try {
     // Insert the item into the database
-    const insertId = await tables.user.create(user);
+    const insertId = await tables.User.create(user);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
