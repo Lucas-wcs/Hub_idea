@@ -9,6 +9,8 @@ const router = express.Router();
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
+const commentControllers = require("./controllers/commentControllers");
+const voteControllers = require("./controllers/voteControllers");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -25,5 +27,16 @@ router.post("/users", userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
 /* ************************************************************************* */
+router.get("/comments", commentControllers.browse);
+router.get("/comments/:id", commentControllers.read);
+router.post("/comments", commentControllers.add);
+router.put("/comments/:id", commentControllers.edit);
+router.delete("/comments/:id", commentControllers.destroy);
+
+router.get("/votes", voteControllers.browse);
+router.get("/votes/:id", voteControllers.read);
+router.post("/votes", voteControllers.add);
+router.put("/votes", voteControllers.edit);
+router.delete("/votes", voteControllers.destroy);
 
 module.exports = router;

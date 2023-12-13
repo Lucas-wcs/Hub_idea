@@ -5,7 +5,7 @@ class UserNotificationManager extends AbstractManager {
     super({ table: "Notificiation" });
   }
 
-  async create({ notificationId, userId }) {
+  async create({ notification_id: notificationId, user_id: userId }) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (notification_id, user_id) VALUES (?, ?)`,
       [notificationId, userId]
@@ -13,18 +13,18 @@ class UserNotificationManager extends AbstractManager {
     return result;
   }
 
-  async read(id) {
+  async read({ notification_id: notificationId, user_id: userId }) {
     const [result] = await this.database.query(
-      `SELECT * FROM ${this.table} AS un JOIN User AS u ON u.id=un.user_id JOIN Notification AS n ON n.id=un.notification_id WHERE user_id=?`,
-      [id]
+      `SELECT * FROM ${this.table} AS un JOIN User AS u ON u.id=un.user_id JOIN Notification AS n ON n.id=un.notification_id WHERE user_id=? AND notification_id=? `,
+      [notificationId, userId]
     );
     return result;
   }
 
-  async delete(id) {
+  async delete({ notification_id: notificationId, user_id: userId }) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} WHERE user_id=?`,
-      [id]
+      `DELETE FROM ${this.table} AS un JOIN User AS u ON u.id=un.user_id JOIN Notification AS n ON n.id=un.notification_id WHERE user_id=? AND notification_id=?`,
+      [notificationId, userId]
     );
     return result;
   }
