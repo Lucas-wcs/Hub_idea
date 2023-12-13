@@ -9,10 +9,10 @@ class UserManager extends AbstractManager {
     firstname,
     lastname,
     email,
-    imageProfil,
+    image_profil: imageProfil,
     password,
-    isAdministrator,
-    isModerator,
+    is_administrator: isAdministrator,
+    is_moderator: isModerator,
   }) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (firstname, lastname, email, image_profil, password, is_administrator, is_moderator) VALUES (?, ?, ?, ?, ?, ?, ?)`,
