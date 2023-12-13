@@ -23,17 +23,32 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  // Extract the item data from the request body
   const user = req.body;
 
   try {
-    // Insert the item into the database
     const insertId = await tables.User.create(user);
 
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
   } catch (err) {
-    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const edit = async (req, res, next) => {
+  const user = req.body;
+  try {
+    await tables.User.update(req.params.id, user);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const destroy = async (req, res, next) => {
+  try {
+    await tables.User.delete(req.params.id);
+    res.sendStatus(204);
+  } catch (err) {
     next(err);
   }
 };
@@ -41,7 +56,7 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   add,
-  // destroy,
+  destroy,
 };
