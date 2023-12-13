@@ -1,8 +1,8 @@
 -- SQLBook: Code
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `User`;
 
-DROP TABLE IF EXISTS `status_idea`;
+DROP TABLE IF EXISTS `Status_idea`;
 
 DROP TABLE IF EXISTS `Idea`;
 
@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS `Impacted_user`;
 DROP TABLE IF EXISTS `Comment`;
 
 CREATE TABLE
-    `user` (
+    `User` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
@@ -26,11 +26,24 @@ CREATE TABLE
         `password` VARCHAR(50) NOT NULL,
         `is_administrator` BOOLEAN NOT NULL,
         `is_moderator` BOOLEAN NOT NULL,
-        `updated_at` DATETIME
+        `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
+    INSERT INTO User (firstname, lastname, email, image_profil, password, is_administrator, is_moderator, updated_at)
+VALUES
+('John', 'Doe', 'john@example.com', 'john.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Alice', 'Smith', 'alice@example.com', 'alice.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Robert', 'Johnson', 'robert@example.com', 'robert.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Emily', 'Brown', 'emily@example.com', 'emily.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Michael', 'Wilson', 'michael@example.com', 'michael.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Sophia', 'Martinez', 'sophia@example.com', 'sophia.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('William', 'Anderson', 'william@example.com', 'william.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Olivia', 'Garcia', 'olivia@example.com', 'olivia.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('James', 'Lopez', 'james@example.com', 'james.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
+('Emma', 'Hernandez', 'emma@example.com', 'emma.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP);
+
 CREATE TABLE
-    `status_idea` (
+    `Status_idea` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
         `status_name` VARCHAR(30) DEFAULT "draft"
     );
@@ -41,7 +54,7 @@ CREATE TABLE
         `title` VARCHAR(50) NOT NULL,
         `idea_description` VARCHAR (1000) NOT NULL,
         `idea_image` VARCHAR(50),
-        `idea_date_creation` TIMESTAMP NOT NULL,
+        `idea_date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `date_limite` DATETIME NOT NULL,
         `is_validation_administrator` BOOLEAN,
         `status_id` INT,
@@ -54,7 +67,7 @@ CREATE TABLE
 CREATE TABLE
     `Notification` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
-        `date` DATETIME NOT NULL,
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `content` VARCHAR(500) NOT NULL
     );
 
@@ -89,7 +102,7 @@ CREATE TABLE
 CREATE TABLE
     `Comment` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
-        `date_creation` DATETIME NOT NULL,
+        `date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `user_id` INT,
         `idea_id` INT,
         `description` VARCHAR(500) NOT NULL,
