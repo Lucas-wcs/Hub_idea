@@ -35,9 +35,29 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const user = req.body;
+  const {
+    firstname,
+    lastname,
+    email,
+    image_profil: imageProfil,
+    password,
+    is_administrator: isAdministrator,
+    is_moderator: isModerator,
+  } = req.body;
+
+  const updatedUser = {
+    id: req.params.id,
+    firstname,
+    lastname,
+    email,
+    imageProfil,
+    password,
+    isAdministrator,
+    is_moderator: isModerator,
+  };
+
   try {
-    await tables.User.update(req.params.id, user);
+    await tables.User.update(updatedUser);
     res.sendStatus(204);
   } catch (err) {
     next(err);
