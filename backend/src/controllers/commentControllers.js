@@ -2,8 +2,8 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const users = await tables.User.readAll();
-    res.json(users);
+    const comments = await tables.Comment.readAll();
+    res.json(comments);
   } catch (err) {
     next(err);
   }
@@ -11,11 +11,11 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const user = await tables.User.read(req.params.id);
-    if (user == null) {
+    const comment = await tables.Comment.read(req.params.id);
+    if (comment == null) {
       res.sendStatus(404);
     } else {
-      res.json(user);
+      res.json(comment);
     }
   } catch (err) {
     next(err);
@@ -23,10 +23,10 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const user = req.body;
+  const comment = req.body;
 
   try {
-    const insertId = await tables.User.create(user);
+    const insertId = await tables.Comment.create(comment);
 
     res.status(201).json({ insertId });
   } catch (err) {
@@ -35,29 +35,15 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const {
-    firstname,
-    lastname,
-    email,
-    image_profil: imageProfil,
-    password,
-    is_administrator: isAdministrator,
-    is_moderator: isModerator,
-  } = req.body;
+  const { description } = req.body;
 
-  const updatedUser = {
+  const updatedComment = {
     id: req.params.id,
-    firstname,
-    lastname,
-    email,
-    image_profil: imageProfil,
-    password,
-    is_administrator: isAdministrator,
-    is_moderator: isModerator,
+    description,
   };
 
   try {
-    await tables.User.update(updatedUser);
+    await tables.Comment.update(updatedComment);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -66,7 +52,7 @@ const edit = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.User.delete(req.params.id);
+    await tables.Comment.delete(req.params.id);
     res.sendStatus(204);
   } catch (err) {
     next(err);

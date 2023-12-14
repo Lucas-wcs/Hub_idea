@@ -64,6 +64,10 @@ CREATE TABLE
         CONSTRAINT `fk_idea_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE
     );
 
+    INSERT INTO Idea (
+        title, idea_description, idea_image, date_limite, is_validation_administrator
+    ) VALUES ("idée titre", "idée description", "idée image",CURRENT_TIMESTAMP, 0);
+
 CREATE TABLE
     `Notification` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -89,6 +93,7 @@ CREATE TABLE
         CONSTRAINT `fk_vote_idea_id` FOREIGN KEY (`idea_id`) REFERENCES `Idea` (`id`) ON DELETE CASCADE,
         PRIMARY KEY (`user_id`, `idea_id`)
     );
+    INSERT INTO Vote (user_id, idea_id, is_vote) VALUES (3, 1,0);
 
 CREATE TABLE
     `Impacted_user` (
@@ -109,3 +114,8 @@ CREATE TABLE
         CONSTRAINT `fk_comment_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
         CONSTRAINT `fk_comment_idea_id` FOREIGN KEY (`idea_id`) REFERENCES `idea` (`id`) ON DELETE CASCADE
     );
+
+    INSERT INTO Comment (
+        user_id, idea_id, description
+    ) 
+    VALUES (3, 1, "bonjour je suis là");
