@@ -29,18 +29,108 @@ CREATE TABLE
         `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
-    INSERT INTO User (firstname, lastname, email, image_profil, password, is_administrator, is_moderator, updated_at)
-VALUES
-('John', 'Doe', 'john@example.com', 'john.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Alice', 'Smith', 'alice@example.com', 'alice.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Robert', 'Johnson', 'robert@example.com', 'robert.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Emily', 'Brown', 'emily@example.com', 'emily.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Michael', 'Wilson', 'michael@example.com', 'michael.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Sophia', 'Martinez', 'sophia@example.com', 'sophia.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('William', 'Anderson', 'william@example.com', 'william.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Olivia', 'Garcia', 'olivia@example.com', 'olivia.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('James', 'Lopez', 'james@example.com', 'james.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP),
-('Emma', 'Hernandez', 'emma@example.com', 'emma.jpg', 'hashed_password', 0, 0, CURRENT_TIMESTAMP);
+INSERT INTO
+    User (
+        firstname,
+        lastname,
+        email,
+        image_profil,
+        password,
+        is_administrator,
+        is_moderator,
+        updated_at
+    )
+VALUES (
+        'John',
+        'Doe',
+        'john@example.com',
+        'john.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Alice',
+        'Smith',
+        'alice@example.com',
+        'alice.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Robert',
+        'Johnson',
+        'robert@example.com',
+        'robert.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Emily',
+        'Brown',
+        'emily@example.com',
+        'emily.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Michael',
+        'Wilson',
+        'michael@example.com',
+        'michael.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Sophia',
+        'Martinez',
+        'sophia@example.com',
+        'sophia.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'William',
+        'Anderson',
+        'william@example.com',
+        'william.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Olivia',
+        'Garcia',
+        'olivia@example.com',
+        'olivia.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'James',
+        'Lopez',
+        'james@example.com',
+        'james.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Emma',
+        'Hernandez',
+        'emma@example.com',
+        'emma.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    );
 
 CREATE TABLE
     `Status_idea` (
@@ -63,13 +153,21 @@ CREATE TABLE
         CONSTRAINT `fk_idea_status_id` FOREIGN KEY (`status_id`) REFERENCES `Status_idea` (`id`),
         CONSTRAINT `fk_idea_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE
     );
-    
+
+    INSERT INTO Idea (
+        title, idea_description, idea_image, date_limite, is_validation_administrator
+    ) VALUES ("idée titre", "idée description", "idée image",CURRENT_TIMESTAMP, 0);
+
 CREATE TABLE
     `Notification` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
         `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `content` VARCHAR(500) NOT NULL
     );
+
+INSERT INTO
+    Notification (content)
+VALUES ('Contenu de la notification');
 
 CREATE TABLE
     `User_notification` (
@@ -80,6 +178,10 @@ CREATE TABLE
         CONSTRAINT `fk_user_notification_notification_id` FOREIGN KEY (`notification_id`) REFERENCES `Notification` (`id`)
     );
 
+INSERT INTO
+    User_notification (user_id, notification_id)
+VALUES (1, 1);
+
 CREATE TABLE
     `Vote` (
         `user_id` INT,
@@ -89,7 +191,8 @@ CREATE TABLE
         CONSTRAINT `fk_vote_idea_id` FOREIGN KEY (`idea_id`) REFERENCES `Idea` (`id`) ON DELETE CASCADE,
         PRIMARY KEY (`user_id`, `idea_id`)
     );
-    INSERT INTO Vote (user_id, idea_id, is_vote) VALUES (3, 1,0);
+
+INSERT INTO Vote (user_id, idea_id, is_vote) VALUES (3, 1, 0);
 
 CREATE TABLE
     `Impacted_user` (
@@ -100,7 +203,7 @@ CREATE TABLE
         PRIMARY KEY (`user_id`, `idea_id`)
     );
 
-    INSERT INTO Impacted_user (user_id, idea_id) VALUES (2,1);
+INSERT INTO Impacted_user (user_id, idea_id) VALUES (2, 1);
 
 CREATE TABLE
     `Comment` (
@@ -113,7 +216,6 @@ CREATE TABLE
         CONSTRAINT `fk_comment_idea_id` FOREIGN KEY (`idea_id`) REFERENCES `idea` (`id`) ON DELETE CASCADE
     );
 
-    INSERT INTO Comment (
-        user_id, idea_id, description
-    ) 
-    VALUES (3, 1, "bonjour je suis là");
+INSERT INTO
+    Comment (user_id, idea_id, description)
+VALUES (3, 1, "bonjour je suis là");

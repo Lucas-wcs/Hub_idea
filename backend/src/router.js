@@ -11,6 +11,8 @@ const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const commentControllers = require("./controllers/commentControllers");
 const voteControllers = require("./controllers/voteControllers");
+const userNotificationControllers = require("./controllers/userNotificationControllers");
+const notificationControllers = require("./controllers/notificationControllers");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -38,5 +40,15 @@ router.get("/votes/:id", voteControllers.read);
 router.post("/votes", voteControllers.add);
 router.put("/votes", voteControllers.edit);
 router.delete("/votes", voteControllers.destroy);
+// Routes userNotification controller
+router.get("/userNotifications/:id", userNotificationControllers.read);
+router.get("/userNotifications", userNotificationControllers.browse);
+router.post("/userNotifications", userNotificationControllers.add);
+router.delete("/userNotifications", userNotificationControllers.destroy);
+// Routes notification controller
+router.get("/notifications", notificationControllers.browse);
+router.get("/notifications/:id", notificationControllers.read);
+router.post("/notifications", notificationControllers.add);
+router.delete("/notifications/:id", notificationControllers.destroy);
 
 module.exports = router;

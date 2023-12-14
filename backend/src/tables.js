@@ -7,12 +7,16 @@ const CommentManager = require("./models/CommentManager");
 const ItemManager = require("./models/ItemManager");
 const UserManager = require("./models/UserManager");
 const VoteManager = require("./models/VoteManager");
+const UserNotificationManager = require("./models/UserNotificationManager");
+const NotificationManager = require("./models/NotificationManager");
 
 const managers = [
   ItemManager,
   UserManager,
   CommentManager,
   VoteManager,
+  UserNotificationManager,
+  NotificationManager,
   // Add other managers here
 ];
 

@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class UserNotificationManager extends AbstractManager {
   constructor() {
-    super({ table: "Notificiation" });
+    super({ table: "User_notification" });
   }
 
   async create({ notification_id: notificationId, user_id: userId }) {
