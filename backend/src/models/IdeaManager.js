@@ -7,16 +7,17 @@ class IdeaManager extends AbstractManager {
 
   async create({
     title,
-    ideaDescription,
-    ideaImage,
-    dateLimit,
-    isValidationAdministrator,
-    statusId,
-    ideaFinalComment,
-    userId,
+    idea_description: ideaDescription,
+    idea_image: ideaImage,
+    date_limit: dateLimit,
+    is_validation_administrator: isValidationAdministrator,
+    status_id: statusId,
+    idea_final_comment: ideaFinalComment,
+    user_id: userId,
   }) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} ( title,
+      `INSERT INTO ${this.table} ( 
+        title,
         idea_description,
         idea_image,
         date_limit,
@@ -48,8 +49,8 @@ class IdeaManager extends AbstractManager {
 
   async update({
     title,
-    ideaDescription,
-    ideaImage,
+    idea_description: ideaDescription,
+    idea_image: ideaImage,
     dateLimit,
     isValidationAdministrator,
     statusId,
