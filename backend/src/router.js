@@ -26,13 +26,13 @@ router.get("/users/:id", userControllers.read);
 router.post("/users", userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
-/* ************************************************************************* */
+// Routes comment controller
 router.get("/comments", commentControllers.browse);
 router.get("/comments/:id", commentControllers.read);
 router.post("/comments", commentControllers.add);
 router.put("/comments/:id", commentControllers.edit);
 router.delete("/comments/:id", commentControllers.destroy);
-
+// Routes vote controller
 router.get("/votes", voteControllers.browse);
 router.get("/votes/:id", voteControllers.read);
 router.post("/votes", voteControllers.add);
