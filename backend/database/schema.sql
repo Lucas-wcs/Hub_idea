@@ -138,6 +138,8 @@ CREATE TABLE
         `status_name` VARCHAR(30) DEFAULT "draft"
     );
 
+    INSERT INTO Status_idea (status_name) VALUES ("en brouillon"), ("envoyée pour soumission"), ("acceptée pour être votée");
+
 CREATE TABLE
     `Idea` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -155,7 +157,7 @@ CREATE TABLE
     );
 
     INSERT INTO Idea (
-        title, idea_description, idea_image, date_limite, is_validation_administrator
+        title, idea_description, idea_image, date_limit, is_validation_administrator
     ) VALUES ("idée titre", "idée description", "idée image",CURRENT_TIMESTAMP, 0);
 
 CREATE TABLE
@@ -163,11 +165,11 @@ CREATE TABLE
         `id` INT PRIMARY KEY AUTO_INCREMENT,
         `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `content` VARCHAR(500) NOT NULL
-    );
+    );  
 
 INSERT INTO
     Notification (content)
-VALUES ('Contenu de la notification');
+VALUES ('Contenu de la notification'), ('ton idée a été acceptée');
 
 CREATE TABLE
     `User_notification` (
@@ -192,7 +194,7 @@ CREATE TABLE
         PRIMARY KEY (`user_id`, `idea_id`)
     );
 
-INSERT INTO Vote (user_id, idea_id, is_vote) VALUES (3, 1, 0);
+INSERT INTO Vote (user_id, idea_id, is_vote) VALUES (3, 1, 0), (4, 1, 1);
 
 CREATE TABLE
     `Impacted_user` (
@@ -203,7 +205,7 @@ CREATE TABLE
         PRIMARY KEY (`user_id`, `idea_id`)
     );
 
-INSERT INTO Impacted_user (user_id, idea_id) VALUES (2, 1);
+INSERT INTO Impacted_user (user_id, idea_id) VALUES (2, 1), (3, 1);
 
 CREATE TABLE
     `Comment` (
@@ -218,4 +220,4 @@ CREATE TABLE
 
 INSERT INTO
     Comment (user_id, idea_id, description)
-VALUES (3, 1, "bonjour je suis là");
+VALUES (3, 1, "On a quasiment la même chose avec la télé de l'entrée"), (4, 1, "Je ne pense pas que ce soit utile");

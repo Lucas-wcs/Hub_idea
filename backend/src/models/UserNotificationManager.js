@@ -23,8 +23,8 @@ class UserNotificationManager extends AbstractManager {
 
   async delete({ notification_id: notificationId, user_id: userId }) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} AS un JOIN User AS u ON u.id=un.user_id JOIN Notification AS n ON n.id=un.notification_id WHERE user_id=? AND notification_id=?`,
-      [notificationId, userId]
+      `DELETE FROM ${this.table} WHERE user_id=? AND notification_id=?`,
+      [userId, notificationId]
     );
     return result;
   }

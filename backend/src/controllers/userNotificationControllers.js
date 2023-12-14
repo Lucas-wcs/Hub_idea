@@ -9,18 +9,18 @@ const browse = async (req, res, next) => {
   }
 };
 
-const read = async (req, res, next) => {
-  try {
-    const user = await tables.User_notification.read(req.params.id);
-    if (user == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(user);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
+// const read = async (req, res, next) => {
+//   try {
+//     const user = await tables.User_notification.read(req.params.id);
+//     if (user == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.json(user);
+//     }
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 const add = async (req, res, next) => {
   const user = req.body;
@@ -34,11 +34,9 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
-  const { notification_id: notificationId, user_id: usersId } = req.body;
-
   try {
-    await tables.User_notification.delete({ notificationId, usersId });
-    res.sendStatus(200);
+    await tables.User_notification.delete(req.body);
+    res.sendStatus(204);
   } catch (err) {
     next(err);
   }
@@ -46,7 +44,7 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   browse,
-  read,
+  // read,
   add,
   destroy,
 };

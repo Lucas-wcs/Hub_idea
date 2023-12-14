@@ -51,11 +51,11 @@ class IdeaManager extends AbstractManager {
     title,
     idea_description: ideaDescription,
     idea_image: ideaImage,
-    dateLimit,
-    isValidationAdministrator,
-    statusId,
-    ideaFinalComment,
-    userId,
+    date_limit: dateLimit,
+    is_validation_administrator: isValidationAdministrator,
+    status_id: statusId,
+    idea_final_comment: ideaFinalComment,
+    user_id: userId,
     id,
   }) {
     const [result] = await this.database.query(

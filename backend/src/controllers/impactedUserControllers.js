@@ -9,18 +9,18 @@ const browse = async (req, res, next) => {
   }
 };
 
-const read = async (req, res, next) => {
-  try {
-    const impactedUser = await tables.Impacted_user.read(req.params.id);
-    if (impactedUser == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(impactedUser);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
+// const read = async (req, res, next) => {
+//   try {
+//     const impactedUser = await tables.Impacted_user.read(req.params.id);
+//     if (impactedUser == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.json(impactedUser);
+//     }
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 const add = async (req, res, next) => {
   const impactedUser = req.body;
@@ -45,7 +45,7 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   browse,
-  read,
+  // read,
   add,
   destroy,
 };
