@@ -55,7 +55,7 @@ CREATE TABLE
         `idea_description` VARCHAR (1000) NOT NULL,
         `idea_image` VARCHAR(50),
         `idea_date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        `date_limite` DATETIME NOT NULL,
+        `date_limit` DATETIME,
         `is_validation_administrator` BOOLEAN,
         `status_id` INT,
         `idea_final_comment` VARCHAR(500),
@@ -63,11 +63,7 @@ CREATE TABLE
         CONSTRAINT `fk_idea_status_id` FOREIGN KEY (`status_id`) REFERENCES `Status_idea` (`id`),
         CONSTRAINT `fk_idea_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE
     );
-
-    INSERT INTO Idea (
-        title, idea_description, idea_image, date_limite, is_validation_administrator
-    ) VALUES ("idée titre", "idée description", "idée image",CURRENT_TIMESTAMP, 0);
-
+    
 CREATE TABLE
     `Notification` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
