@@ -104,6 +104,8 @@ CREATE TABLE
         PRIMARY KEY (`user_id`, `idea_id`)
     );
 
+    INSERT INTO Impacted_user (user_id, idea_id) VALUES (2,1);
+
 CREATE TABLE
     `Comment` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,

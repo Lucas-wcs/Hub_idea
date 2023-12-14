@@ -23,7 +23,7 @@ class ImpactedUserManager extends AbstractManager {
 
   async delete({ user_id: userId, idea_id: ideaId }) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} AS iu JOIN User AS u ON u.id=iu.user_id JOIN Idea AS i ON i.id=iu.idea_id WHERE user_id=? AND idea_id= ?`,
+      `DELETE FROM ${this.table} WHERE user_id=? AND idea_id= ?`,
       [userId, ideaId]
     );
     return result;
