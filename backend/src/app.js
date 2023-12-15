@@ -3,6 +3,7 @@
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 
 // Configure it
 
@@ -142,5 +143,9 @@ app.use(logErrors);
 */
 
 /* ************************************************************************* */
+
+const errorManager = require("./services/errorManager");
+
+app.use(errorManager);
 
 module.exports = app;
