@@ -13,18 +13,26 @@ class UserNotificationManager extends AbstractManager {
     return result;
   }
 
-  async read({ notification_id: notificationId, user_id: userId }) {
+  async readByUserId(userId) {
     const [result] = await this.database.query(
-      `SELECT * FROM ${this.table} AS un JOIN User AS u ON u.id=un.user_id JOIN Notification AS n ON n.id=un.notification_id WHERE user_id=? AND notification_id=? `,
-      [notificationId, userId]
+      `SELECT * FROM ${this.table} WHERE user_id=?`,
+      [userId]
+    );
+    return result;
+  }
+
+  async readByNotificationId(notificationId) {
+    const [result] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE notification_id=?`,
+      [notificationId]
     );
     return result;
   }
 
   async delete({ notification_id: notificationId, user_id: userId }) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} AS un JOIN User AS u ON u.id=un.user_id JOIN Notification AS n ON n.id=un.notification_id WHERE user_id=? AND notification_id=?`,
-      [notificationId, userId]
+      `DELETE FROM ${this.table} WHERE user_id=? AND notification_id=?`,
+      [userId, notificationId]
     );
     return result;
   }

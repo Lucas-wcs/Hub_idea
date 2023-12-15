@@ -9,7 +9,20 @@ const browse = async (req, res, next) => {
   }
 };
 
-const read = async (req, res, next) => {
+const readByUserId = async (req, res, next) => {
+  try {
+    const vote = await tables.Vote.read(req.params.id);
+    if (vote == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(vote);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readByIdeaId = async (req, res, next) => {
   try {
     const vote = await tables.Vote.read(req.params.id);
     if (vote == null) {
@@ -62,7 +75,8 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   browse,
-  read,
+  readByUserId,
+  readByIdeaId,
   edit,
   add,
   destroy,
