@@ -5,10 +5,24 @@
 // Import the manager modules responsible for handling data operations on the tables
 const ItemManager = require("./models/ItemManager");
 const UserManager = require("./models/UserManager");
+const StatusIdeaManager = require("./models/StatusIdeaManager");
+const IdeaManager = require("./models/IdeaManager");
+const NotificationManager = require("./models/NotificationManager");
+const UserNotificationManager = require("./models/UserNotificationManager");
+const VoteManager = require("./models/VoteManager");
+const ImpacteduserManager = require("./models/ImpactedUserManager");
+const CommentManager = require("./models/CommentManager");
 
 const managers = [
   ItemManager,
   UserManager,
+  StatusIdeaManager,
+  IdeaManager,
+  NotificationManager,
+  UserNotificationManager,
+  VoteManager,
+  ImpacteduserManager,
+  CommentManager,
   // Add other managers here
 ];
 
