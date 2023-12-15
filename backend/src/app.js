@@ -144,4 +144,8 @@ app.use(logErrors);
 
 /* ************************************************************************* */
 
+const errorManager = require("./services/errorManager");
+
+app.use(errorManager);
+
 module.exports = app;
