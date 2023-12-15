@@ -9,18 +9,31 @@ const browse = async (req, res, next) => {
   }
 };
 
-// const read = async (req, res, next) => {
-//   try {
-//     const user = await tables.User_notification.read(req.params.id);
-//     if (user == null) {
-//       res.sendStatus(404);
-//     } else {
-//       res.json(user);
-//     }
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+const readByUserId = async (req, res, next) => {
+  try {
+    const user = await tables.User_notification.read(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readByNotificationId = async (req, res, next) => {
+  try {
+    const user = await tables.User_notification.read(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
 const add = async (req, res, next) => {
   const user = req.body;
@@ -44,7 +57,8 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   browse,
-  // read,
+  readByUserId,
+  readByNotificationId,
   add,
   destroy,
 };

@@ -13,10 +13,18 @@ class UserManager extends AbstractManager {
     return result;
   }
 
-  async read(id) {
+  async readByUserId(userId) {
     const [result] = await this.database.query(
-      `SELECT * FROM ${this.table} AS v JOIN User AS u ON u.id=v.user_id JOIN Idea AS i ON i.id=v.idea_id WHERE user_id=?`,
-      [id]
+      `SELECT * FROM ${this.table} WHERE user_id=?`,
+      [userId]
+    );
+    return result;
+  }
+
+  async readByIdeaId(ideaId) {
+    const [result] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE idea_id=?`,
+      [ideaId]
     );
     return result;
   }

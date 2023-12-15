@@ -46,15 +46,27 @@ router.post("/notifications", notificationControllers.add);
 router.delete("/notifications/:id", notificationControllers.destroy);
 // Routes userNotification controllers
 router.get("/user-notifications", userNotificationControllers.browse);
+router.get(
+  "/user-notifications/users/:id",
+  userNotificationControllers.readByUserId
+);
+router.get(
+  "/user-notifications/notifications/:id",
+  userNotificationControllers.readByNotificationId
+);
 router.post("/user-notifications", userNotificationControllers.add);
 router.delete("/user-notifications", userNotificationControllers.destroy);
 // Routes vote controllers
 router.get("/votes", voteControllers.browse);
+router.get("/votes/users/:id", voteControllers.readByUserId);
+router.get("/votes/ideas/:id", voteControllers.readByIdeaId);
 router.post("/votes", voteControllers.add);
 router.put("/votes", voteControllers.edit);
 router.delete("/votes", voteControllers.destroy);
 // Routes impacted user controllers
 router.get("/impacted-users", impactedUserControllers.browse);
+router.get("/impacted-users/users/:id", impactedUserControllers.readByUserId);
+router.get("/impacted-users/ideas/:id", impactedUserControllers.readByIdeaId);
 router.post("/impacted-users", impactedUserControllers.add);
 router.delete("/impacted-users", impactedUserControllers.destroy);
 // Routes comment controllers
