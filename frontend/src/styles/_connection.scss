@@ -125,6 +125,21 @@ button:active .button_top {
   margin: 0 10px;
 }
 
+.logo-hub-idea {
+  display: flex;
+  border: 1px solid red;
+}
+
+.logo-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 106.5px;
+  width: auto;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 @media (max-width: 500px) {
   .presentation-hub {
     flex-direction: column;
@@ -132,5 +147,32 @@ button:active .button_top {
 
   .arrow {
     display: none;
+  }
+  .container-form {
+    display: flex;
+  }
+
+  .logo-image {
+    height: 70px;
+    width: auto;
+  }
+
+  .container-input {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 860px) {
+  .container-form {
+    display: flex;
+  }
+
+  .logo-image {
+    height: 70px;
+    width: auto;
+  }
+
+  .container-input {
+    margin-top: 60px;
   }
 }
