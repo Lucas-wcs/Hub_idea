@@ -1,9 +1,9 @@
 .container-form {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: calc(var(--spacing) * 3);
 }
 .container-input {
   display: flex;
@@ -46,8 +46,8 @@
 }
 
 .images-connection {
-  height: 200px;
-  width: 200px;
+  height: 180px;
+  width: 180px;
 }
 
 .text-connection {
@@ -128,16 +128,6 @@ button:active .button_top {
 
 .logo-hub-idea {
   display: flex;
-}
-
-.logo-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 106.5px;
-  width: auto;
-  margin-top: 10px;
-  margin-left: 10px;
 }
 
 @media (max-width: 500px) {

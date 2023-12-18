@@ -2,11 +2,6 @@ function Connection() {
   return (
     <div>
       <div className="container-form">
-        <img
-          className="logo-image"
-          src="/images/logo.png"
-          alt="logo Hub-Hidea"
-        />
         <div className="container-input">
           <h1 className="title-connection">Bienvenue</h1>
           <input
