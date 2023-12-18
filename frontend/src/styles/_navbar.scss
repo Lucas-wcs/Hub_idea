@@ -1,0 +1,53 @@
+.navbar-container {
+  padding: 2vw 3vw 2vw 3vw;
+  background-color: #fffbf6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-container {
+    height: 10vh;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 3vw;
+
+    .image-container {
+      height: 6vh;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-container {
+    .logo-container {
+      height: 6vh;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 4vw;
+
+      .image-container {
+        height: 4vh;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+}

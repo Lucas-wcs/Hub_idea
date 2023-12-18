@@ -5,13 +5,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import App
 import App from "./App";
 // imports pages
-import Connection from "./pages/Connection";
-import Home from "./pages/Home";
-import Rules from "./pages/Rules";
-import Profile from "./pages/Profile";
-import Idea from "./pages/Idea";
+// import Connection from "./pages/Connection";
+// import Home from "./pages/Home";
+// import Rules from "./pages/Rules";
+// import Profile from "./pages/Profile";
+// import Idea from "./pages/Idea";
 
-// Router
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+]);
+/* Router
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +47,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+]); */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
