@@ -6,6 +6,9 @@
   padding: 0;
 }
 
+body {
+  background-color: var(--senary-color);
+}
 :root {
   // font-family
 
@@ -18,6 +21,7 @@
   --tertiary-color: #ffe569; //yellow
   --quaternary-color: #8f1146; //red
   --quinary-color: #d5d7d4; //grey
+  --senary-color: #fffbf6; //dark blue
 
   //color-dark mode
   --primary-color-dark: #5c7b42;
