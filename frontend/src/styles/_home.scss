@@ -13,33 +13,65 @@
     font-family: var(--title-font);
   }
 
+  h1 {
+    padding-bottom: calc(var(--spacing) * 1.6);
+  }
+
   .title-button-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: calc(var(--spacing) * 6);
 
     .button-container {
       display: flex;
-      gap: calc(var(--spacing) * 2);
+      padding: calc(var(--spacing) * 1.8) 0;
+      gap: calc(var(--spacing) * 3.8);
 
-      button:hover {
+      .create-idea-button {
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease;
+        box-shadow: 0px 1px 0px 0px #fff6af;
+        background: linear-gradient(
+          to bottom,
+          var(--primary-color) 5%,
+          var(--primary-color)
+        );
+        display: inline-block;
+        text-shadow: 0px 1px 0px var(--primary-color);
+        border-radius: 10px;
+        background-color: var(--primary-color);
+        padding: calc(var(--spacing) * 1.8) calc(var(--spacing) * 3);
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .create-idea-button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(
+          to bottom,
+          var(--primary-color) 5%,
+          var(--primary-color) 100%
+        );
+        background-color: var(--tertiary-color);
         cursor: pointer;
       }
       .serch-button {
+        border: none;
+        cursor: pointer;
         background-color: var(--quinary-color);
-        padding: calc(var(--spacing) * 0.8) calc(var(--spacing) * 1.4);
+        padding: calc(var(--spacing) * 0.4) calc(var(--spacing) * 1.4);
         border-radius: 10px;
 
         img {
           height: 40px;
         }
       }
-      .create-idea-button {
-        background-color: var(--primary-color);
-        padding: calc(var(--spacing) * 1.8) calc(var(--spacing) * 1.8);
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 10px;
-      }
     }
+  }
+  .idea-cards {
+    display: grid;
   }
 }

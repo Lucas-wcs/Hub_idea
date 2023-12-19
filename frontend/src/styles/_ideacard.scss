@@ -1,0 +1,103 @@
+.idea-card-container {
+  background-color: #f5f5da;
+  border-radius: 5px;
+  width: 400px;
+  height: 340px;
+
+  .status-image-container {
+    position: relative;
+
+    .card-image-container {
+      width: 400px;
+
+      img {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+        max-height: 200px;
+        object-fit: cover;
+      }
+    }
+    .status-container {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      font-size: 16px;
+      padding: calc(var(--spacing) * 0.4) calc(var(--spacing) * 0.6);
+      background-color: #fffbf6;
+      margin: 10px;
+      border-radius: 10px;
+      top: 0;
+    }
+  }
+  .text-container {
+    padding: calc(var(--spacing) * 1.2) calc(var(--spacing) * 2);
+    .idea-title {
+      font-family: var(--title-font);
+      font-size: 22px;
+    }
+    .progress-percentage-container {
+      display: flex;
+      gap: var(--spacing);
+      //text-align: center;
+      margin: calc(var(--spacing) * 1.6) 0 calc(var(--spacing) * 2) 0;
+
+      p {
+        font-family: var(--title-font);
+      }
+
+      progress {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      progress::-webkit-progress-bar {
+        background-color: #d5d7d4;
+        border-radius: 10px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #8f1146;
+        border-radius: 10px 0 0 10px;
+      }
+    }
+
+    .name-button-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease;
+        box-shadow: 0px 1px 0px 0px #fff6af;
+        background: linear-gradient(
+          to bottom,
+          var(--primary-color) 5%,
+          var(--primary-color)
+        );
+        border: 1px solid var(--tertiary-color);
+        display: inline-block;
+        text-shadow: 0px 1px 0px var(--primary-color);
+        text-decoration: none;
+        background-color: var(--primary-color);
+        padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2.2);
+        border-radius: calc(var(--search-border-radius) * 0.5);
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(
+          to bottom,
+          var(--primary-color) 5%,
+          var(--primary-color) 100%
+        );
+        background-color: var(--tertiary-color);
+        cursor: pointer;
+      }
+    }
+  }
+}

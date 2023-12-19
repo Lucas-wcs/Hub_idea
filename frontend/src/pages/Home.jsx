@@ -6,7 +6,7 @@ function Home() {
     <div className="home-container">
       <div className="title-button-container">
         <div>
-          <h1>Bienvenue Hugo👋</h1>
+          <h1>Bienvenue Hugo 👋</h1>
           <h2>Nouvelles idées de WILD CODE SCHOOL</h2>
         </div>
         <div className="button-container">
@@ -18,9 +18,7 @@ function Home() {
           </button>
         </div>
       </div>
-      <div>
-        <IdeaCard />
-      </div>
+      <IdeaCard />
     </div>
   );
 }
