@@ -31,6 +31,10 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: "/idea",
+        element: <Idea />,
+      },
+      {
         path: "/rules",
         element: <Rules />,
       },

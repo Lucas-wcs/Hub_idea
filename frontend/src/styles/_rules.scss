@@ -1,0 +1,91 @@
+.rules {
+  max-width: 100vw;
+  background-color: #fffbf6;
+
+  .rules-top {
+    width: 100%;
+    height: 15vh;
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // container logo Hub_idea:
+    .rules-img-container {
+      height: 90%;
+      width: 25%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    // container button/logo to go back to login:
+    .rules-img-container2 {
+      height: 55%;
+      width: 20%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+    }
+  }
+
+  // container for logo and title of sections:
+  .title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2%;
+
+    .title-img-container {
+      width: 5%;
+      height: 90%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .rules-content {
+    padding-top: 2%;
+    padding-bottom: 4%;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+  }
+
+  h5 {
+    font-family: var(--title-font);
+    color: var(--quaternary-color);
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  h6 {
+    color: var(--primary-color);
+    font-family: var(--title-font);
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding-left: 6%;
+    padding-top: 1%;
+  }
+
+  p {
+    font-family: var(--text-font);
+    font-size: 1rem;
+    padding-left: 8%;
+    padding-top: 0.2%;
+  }
+}
