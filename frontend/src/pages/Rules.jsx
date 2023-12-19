@@ -1,12 +1,25 @@
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../components/ThemeContext";
+
 function Rules() {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className="rules">
       <div className="rules-top">
-        <div className="rules-img-container">
-          <img src="/images/logo.png" alt="logo_hubidea" />
-        </div>
         <div className="rules-img-container2">
-          <img src="/images/retour.png" alt="logo_retour" />
+          <Link to="/">
+            <img
+              className="clickable-image"
+              src={
+                theme === "dark"
+                  ? "/images/icons/retour_dark.png"
+                  : "/images/icons/retour.png"
+              }
+              alt="logo_retour"
+            />
+          </Link>
         </div>
       </div>
       <div className="rules-content">

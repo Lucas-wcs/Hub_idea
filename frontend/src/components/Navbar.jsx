@@ -1,6 +1,12 @@
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 
 function Navbar() {
+  const { theme } = useContext(ThemeContext);
+
+  const { toggleTheme } = useContext(ThemeContext);
+
   const location = useLocation();
 
   return (
@@ -10,12 +16,29 @@ function Navbar() {
       </div>
       {location.pathname !== "/" && (
         <div className="nav-right">
+          <input
+            onClick={toggleTheme}
+            type="checkbox"
+            className="theme-checkbox"
+          />
+
           <div className="image-container">
-            <img src="../../public/images/icons/avatar_icon.png" alt="avator" />
+            <img
+              src={
+                theme === "dark"
+                  ? "/images/icons/avatar_icon_dark.png"
+                  : "/images/icons/avatar_icon.png"
+              }
+              alt="notification"
+            />
           </div>
           <div className="image-container">
             <img
-              src="../../public/images/icons/notification_icon.png"
+              src={
+                theme === "dark"
+                  ? "/images/icons/notification_icon_light.png"
+                  : "/images/icons/notification_icon.png"
+              }
               alt="notification"
             />
           </div>
