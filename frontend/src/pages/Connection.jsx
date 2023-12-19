@@ -1,6 +1,12 @@
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ThemeContext } from "../components/ThemeContext";
+
 function Connection() {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="connexion-container">
+    <div className="connection">
       <div className="container-form">
         <div className="container-input">
           <h1 className="title-connection">Bienvenue</h1>
@@ -24,34 +30,52 @@ function Connection() {
         <div className="image-container">
           <img
             className="images-connection"
-            src="/images/hand.gif"
+            src="/images/idea.png"
             alt="idea-thinking"
           />
           <p className="text-connection">Etape 1 : Créer une idée</p>
         </div>
-        <img className="arrow" src="/images/right-arrow.png" alt="arrow" />
+        <img
+          className="arrow"
+          src={
+            theme === "dark"
+              ? "/images/icons/right-arrow_dark.png"
+              : "/images/icons/right-arrow.png"
+          }
+          alt="arrow"
+        />
         <div className="image-container">
           <img
             className="images-connection"
-            src="/images/voting.gif"
+            src="/images/vote.png"
             alt="idea-voting"
           />
           <p className="text-connection">Etape 2 : Votez</p>
         </div>
-        <img className="arrow" src="/images/right-arrow.png" alt="arrow" />
+        <img
+          className="arrow"
+          src={
+            theme === "dark"
+              ? "/images/icons/right-arrow_dark.png"
+              : "/images/icons/right-arrow.png"
+          }
+          alt="arrow"
+        />
         <div className="image-container">
           <img
             className="images-connection"
-            src="/images/vote.gif"
+            src="/images/hand.png"
             alt="idea-vote"
           />
           <p className="text-connection">Etape 3 : Décision finale</p>
         </div>
       </div>
       <div className="container-button-rules">
-        <button type="button">
-          <span className="button_top"> Voir le réglement</span>
-        </button>
+        <Link to="/rules">
+          <button type="button">
+            <span className="button_top"> Voir le réglement</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

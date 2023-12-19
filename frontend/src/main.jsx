@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Rules from "./pages/Rules";
 import Profile from "./pages/Profile";
 import Idea from "./pages/Idea";
+import HomeAdministrator from "./pages/HomeAdministrator";
 
 const router = createBrowserRouter([
   {
@@ -23,12 +24,6 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
-        children: [
-          {
-            path: "Idea",
-            element: <Idea />,
-          },
-        ],
       },
       {
         path: "/idea",
@@ -41,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "profile", // rajouter :id
         element: <Profile />,
+      },
+      {
+        path: "/administrator",
+        element: <HomeAdministrator />,
       },
     ],
   },
