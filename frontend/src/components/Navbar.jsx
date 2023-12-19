@@ -14,6 +14,7 @@ function Navbar() {
       <div className="logo-container">
         <img src="images/logo.png" alt="logo" />
       </div>
+
       {location.pathname !== "/" && (
         <div className="nav-right">
           <input
