@@ -56,30 +56,11 @@ body.dark-theme {
   --button-border: var(--button-border-dark);
 }
 
-.theme-button {
-  color: var(--button-color);
-  background-color: var(--button-background);
-  border: 2px solid var(--button-border);
-  padding: 5px 5px;
-  font-size: 1em;
-  border-radius: 10px;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-  margin-left: 90%;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.theme-button:hover {
-  opacity: 0.8;
-}
-
 body.light-theme {
   --button-color: var(--button-color-light);
   --button-background: var(--button-background-light);
   --button-border: var(--button-border-light);
+  --text-color: var(--black-color);
 }
 
 :root {
@@ -90,13 +71,13 @@ body.light-theme {
   --title-font: "Readex Pro", sans-serif;
 
   //color-light mode
-  --text-color: #5c7b42;
   --primary-color: #9ebd84; //green
   --secondary-color: #d4e8e8; //blue
   --tertiary-color: #ffe569; //yellow
   --quaternary-color: #8f1146; //red
   --quinary-color: #d5d7d4; //grey
   --senary-color: #fffbf6; //dark blue
+  --black-color: #020202;
   --button-color-light: #000; // noir pour le thème clair
   --button-background-light: #fff; // blanc pour le thème clair
   --button-border-light: #000; // noir pour le thème clair
