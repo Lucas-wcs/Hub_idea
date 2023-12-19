@@ -19,16 +19,22 @@ function Profile() {
             </div>
           </div>
           <div className="form-field">
-            {/* voir si on doit créer un input caché */}
-            <label htmlFor="firstname">Prénom</label>
-            <input type="text" placeholder="Prénom" name="firstname" />
-            {/* mettre value */}
-            <label htmlFor="lastname">Nom</label>
-            <input type="text" placeholder="Nom" name="lastname" />
-            <label htmlFor="email">Adresse mail</label>
-            <input type="email" placeholder="Email" name="email" />
+            <div className="names">
+              {" "}
+              {/* voir si on doit créer un input caché */}
+              <label htmlFor="firstname">Prénom</label>
+              <input type="text" placeholder="Prénom" name="firstname" />
+              {/* mettre value */}
+              <label htmlFor="lastname">Nom</label>
+              <input type="text" placeholder="Nom" name="lastname" />
+              <label htmlFor="email">Adresse mail</label>
+              <input type="email" placeholder="Email" name="email" />
+            </div>
+
             <div className="passwords">
-              <label htmlFor="password">Changer de mot de passe</label>
+              <label className="label-password" htmlFor="password">
+                Changer de mot de passe
+              </label>
               <input
                 type="password"
                 placeholder="Mot de passe actuel"
@@ -45,10 +51,9 @@ function Profile() {
                 name="check password"
               />
             </div>
-          </div>
-
-          <div className="submit-button">
-            <button type="submit">Sauvegarder</button>
+            <div className="submit-button">
+              <button type="submit">Sauvegarder</button>
+            </div>
           </div>
         </div>
       </div>
