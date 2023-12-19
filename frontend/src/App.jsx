@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./components/ThemeContext";
+import Footer from "./components/Footer";
 
 function App() {
   const location = useLocation();
@@ -9,6 +10,7 @@ function App() {
       <ThemeProvider>
         {location.pathname !== "/" && <Navbar />}
         <Outlet />
+        <Footer />
       </ThemeProvider>
     </div>
   );

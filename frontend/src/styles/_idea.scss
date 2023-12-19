@@ -142,9 +142,21 @@
 
   p {
     font-family: var(--text-font);
+    color: var(--text-color);
     font-size: 0.9rem;
   }
 
+  .button-vote {
+    background-color: var(--button-background);
+    border: 1px solid var(--button-border);
+    color: var(--button-color);
+    font-family: var(--text-font);
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 2%;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   .idea-comments-container {
     display: flex;
     flex-direction: column;

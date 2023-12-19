@@ -14,14 +14,10 @@ function Navbar() {
       <div className="logo-container">
         <img src="../../public/images/logo.png" alt="logo" />
       </div>
+      <input onClick={toggleTheme} type="checkbox" className="theme-checkbox" />
+
       {location.pathname !== "/" && (
         <div className="nav-right">
-          <input
-            onClick={toggleTheme}
-            type="checkbox"
-            className="theme-checkbox"
-          />
-
           <div className="image-container">
             <img
               src={

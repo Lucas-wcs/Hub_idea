@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 20px;
 }
 
 .container-form {
@@ -19,7 +19,6 @@
   align-items: center;
   width: auto;
   height: auto;
-  margin-top: 10px;
   padding: 10%;
   border-radius: 15px;
   background-color: var(--primary-color);
@@ -29,7 +28,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
   height: 20%;
   font-family: var(--title-font);
 }
@@ -49,12 +47,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
 }
 
 .images-connection {
-  height: 130px;
-  width: 130px;
+  height: 100px;
+  width: 100px;
 }
 
 .text-connection {
@@ -67,15 +64,11 @@
   height: 1px;
   background: var(--primary-color);
   width: 50%;
-  margin: auto;
+  margin: 20px;
 }
 
 .container-button-rules {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 1%;
-  margin-bottom: 1%;
 }
 
 button {
