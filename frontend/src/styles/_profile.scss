@@ -31,7 +31,7 @@
       button {
         background-color: var(--secondary-color);
         font-family: var(--text-font);
-        font-size: var(--spacing);
+        font-size: 12px;
         border-radius: 5px;
         padding: 5px 16px;
         margin-left: 20px;
@@ -60,7 +60,7 @@
           margin-left: 5px;
           background-color: var(--quinary-color);
           border: none;
-          width: 40vw;
+          width: 30vw;
 
           &::placeholder {
             font-family: var(--text-font);
@@ -85,7 +85,7 @@
           margin-left: 3px;
           background-color: var(--quinary-color);
           border: none;
-          width: 40vw;
+          width: 30vw;
 
           &::placeholder {
             font-family: var(--text-font);
@@ -97,7 +97,7 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 1.25em;
-        width: 40vw;
+        width: 30vw;
 
         button {
           padding: 5px 8px;
@@ -131,6 +131,7 @@
 
       button {
         padding: 3px 10px;
+        font-size: 10px;
       }
     }
     .form-field {
@@ -189,10 +190,10 @@
       .names {
         label {
           font-size: 12px;
-          width: 50vw;
+          width: 40vw;
         }
         input {
-          width: 50vw;
+          width: 40vw;
         }
       }
       .passwords {
@@ -201,10 +202,10 @@
         .label-password {
           text-align: left;
           font-size: 12px;
-          width: 50vw;
+          width: 40vw;
         }
         input {
-          width: 50vw;
+          width: 40vw;
         }
       }
       .submit-button {
