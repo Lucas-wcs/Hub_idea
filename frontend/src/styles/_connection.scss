@@ -1,5 +1,12 @@
+.connection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .container-form {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +19,7 @@
   align-items: center;
   width: auto;
   height: auto;
-  padding: 3%;
+  padding: 10%;
   margin-bottom: 10px;
   border-radius: 15px;
   background-color: var(--primary-color);
@@ -46,8 +53,8 @@
 }
 
 .images-connection {
-  height: 200px;
-  width: 200px;
+  height: 130px;
+  width: 130px;
 }
 
 .text-connection {
@@ -97,6 +104,7 @@ button {
 
 button:hover .button_top {
   transform: translateY(-0.33em);
+  cursor: pointer;
 }
 
 button:active .button_top {
@@ -127,14 +135,13 @@ button:active .button_top {
 
 .logo-hub-idea {
   display: flex;
-  border: 1px solid red;
 }
 
 .logo-image {
   position: absolute;
   top: 0;
   left: 0;
-  height: 106.5px;
+  height: 80px;
   width: auto;
   margin-top: 10px;
   margin-left: 10px;
