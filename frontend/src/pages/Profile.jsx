@@ -8,7 +8,7 @@ function Profile() {
       <div className="profile-page">
         <div className="home-button">
           <Link to="/home">
-            <img src="images/retour-home.png" alt="bouton retour" />
+            <img src="images/return-home.png" alt="bouton retour" />
           </Link>
         </div>
         <div className="profile-form">
