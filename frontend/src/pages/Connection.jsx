@@ -1,21 +1,13 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../components/ThemeContext";
 
 function Connection() {
-  const { toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className="connection">
-      <button className="theme-button" type="button" onClick={toggleTheme}>
-        Dark/Light
-      </button>
       <div className="container-form">
-        <img
-          className="logo-image"
-          src="/images/logo.png"
-          alt="logo Hub-Hidea"
-        />
-
         <div className="container-input">
           <h1 className="title-connection">Bienvenue</h1>
           <input
@@ -43,7 +35,15 @@ function Connection() {
           />
           <p className="text-connection">Etape 1 : Créer une idée</p>
         </div>
-        <img className="arrow" src="/images/right-arrow.png" alt="arrow" />
+        <img
+          className="arrow"
+          src={
+            theme === "dark"
+              ? "/images/icons/right-arrow_dark.png"
+              : "/images/icons/right-arrow.png"
+          }
+          alt="arrow"
+        />
         <div className="image-container">
           <img
             className="images-connection"
@@ -52,7 +52,15 @@ function Connection() {
           />
           <p className="text-connection">Etape 2 : Votez</p>
         </div>
-        <img className="arrow" src="/images/right-arrow.png" alt="arrow" />
+        <img
+          className="arrow"
+          src={
+            theme === "dark"
+              ? "/images/icons/right-arrow_dark.png"
+              : "/images/icons/right-arrow.png"
+          }
+          alt="arrow"
+        />
         <div className="image-container">
           <img
             className="images-connection"
@@ -63,9 +71,11 @@ function Connection() {
         </div>
       </div>
       <div className="container-button-rules">
-        <button type="button">
-          <span className="button_top"> Voir le réglement</span>
-        </button>
+        <Link to="/rules">
+          <button type="button">
+            <span className="button_top"> Voir le réglement</span>
+          </button>
+        </Link>
       </div>
     </div>
   );
