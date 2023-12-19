@@ -14,7 +14,6 @@ function Navbar() {
       <div className="logo-container">
         <img src="images/logo.png" alt="logo" />
       </div>
-      <input onClick={toggleTheme} type="checkbox" className="theme-checkbox" />
 
       {location.pathname !== "/" && (
         <div className="nav-right">
