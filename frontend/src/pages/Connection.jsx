@@ -1,6 +1,6 @@
 function Connection() {
   return (
-    <div>
+    <div className="connexion-container">
       <div className="container-form">
         <div className="container-input">
           <h1 className="title-connection">Bienvenue</h1>

@@ -28,11 +28,11 @@ const router = createBrowserRouter([
             path: "profile/:id",
             element: <Profile />,
           },
-          {
-            path: "Idea",
-            element: <Idea />,
-          },
         ],
+      },
+      {
+        path: "/idea",
+        element: <Idea />,
       },
       {
         path: "/rules",
