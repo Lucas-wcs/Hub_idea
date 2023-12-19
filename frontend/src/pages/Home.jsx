@@ -18,7 +18,13 @@ function Home() {
           </button>
         </div>
       </div>
-      <IdeaCard />
+      <div className="idea-cards-container">
+        <IdeaCard />
+        <IdeaCard />
+        <IdeaCard />
+        <IdeaCard />
+        <IdeaCard />
+      </div>
     </div>
   );
 }

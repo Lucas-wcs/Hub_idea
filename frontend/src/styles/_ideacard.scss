@@ -1,14 +1,16 @@
 .idea-card-container {
   background-color: #f5f5da;
   border-radius: 5px;
-  width: 400px;
-  height: 340px;
+  width: 31%;
+  margin-top: 1.5vh;
+  margin-bottom: 3%;
+  padding-bottom: 2%;
 
   .status-image-container {
     position: relative;
 
     .card-image-container {
-      width: 400px;
+      width: 100%;
 
       img {
         width: 100%;
@@ -99,5 +101,23 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1000px) {
+  .idea-card-container {
+    background-color: #f5f5da;
+    border-radius: 5px;
+    width: 47%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 700px) {
+  .idea-card-container {
+    background-color: #f5f5da;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 7%;
   }
 }
