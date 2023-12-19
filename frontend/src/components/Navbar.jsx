@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <div className="logo-container">
-        <img src="../../public/images/logo.png" alt="logo" />
+        <img src="images/logo.png" alt="logo" />
       </div>
       {location.pathname !== "/" && (
         <div className="nav-right">
