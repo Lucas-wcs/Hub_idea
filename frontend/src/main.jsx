@@ -24,12 +24,6 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
-        children: [
-          {
-            path: "profile/:id",
-            element: <Profile />,
-          },
-        ],
       },
       {
         path: "/idea",
@@ -38,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/rules",
         element: <Rules />,
+      },
+      {
+        path: "/profile", // rajouter :id
+        element: <Profile />,
       },
       {
         path: "/administrator",
