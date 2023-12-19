@@ -130,41 +130,41 @@
   .logo-hub-idea {
     display: flex;
   }
-}
 
-@media (max-width: 500px) {
-  .presentation-hub {
-    flex-direction: column;
+  @media (max-width: 500px) {
+    .presentation-hub {
+      flex-direction: column;
+    }
+
+    .arrow {
+      display: none;
+    }
+    .container-form {
+      display: flex;
+    }
+
+    .logo-image {
+      height: 70px;
+      width: auto;
+    }
+
+    .container-input {
+      margin-top: 60px;
+    }
   }
 
-  .arrow {
-    display: none;
-  }
-  .container-form {
-    display: flex;
-  }
+  @media (max-width: 860px) {
+    .container-form {
+      display: flex;
+    }
 
-  .logo-image {
-    height: 70px;
-    width: auto;
-  }
+    .logo-image {
+      height: 70px;
+      width: auto;
+    }
 
-  .container-input {
-    margin-top: 60px;
-  }
-}
-
-@media (max-width: 860px) {
-  .container-form {
-    display: flex;
-  }
-
-  .logo-image {
-    height: 70px;
-    width: auto;
-  }
-
-  .container-input {
-    margin-top: 60px;
+    .container-input {
+      margin-top: 60px;
+    }
   }
 }
