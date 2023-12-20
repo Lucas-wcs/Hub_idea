@@ -1,5 +1,5 @@
 .idea-card-container {
-  background-color: #f5f5da;
+  background-color: var(--cardidea-color);
   border-radius: 5px;
   width: 31%;
   margin-top: 1.5vh;
@@ -25,10 +25,13 @@
       align-items: center;
       font-size: 16px;
       padding: calc(var(--spacing) * 0.4) calc(var(--spacing) * 0.6);
-      background-color: #fffbf6;
+      background-color: var(--cardidea-color);
       margin: 10px;
       border-radius: 10px;
       top: 0;
+    }
+    p {
+      color: var(--text-color);
     }
   }
   .text-container {
@@ -106,7 +109,7 @@
 
 @media (min-width: 700px) and (max-width: 1000px) {
   .idea-card-container {
-    background-color: #f5f5da;
+    background-color: var(--cardidea-color);
     border-radius: 5px;
     width: 47%;
     margin-bottom: 5%;
@@ -115,7 +118,7 @@
 
 @media (max-width: 700px) {
   .idea-card-container {
-    background-color: #f5f5da;
+    background-color: var(--cardidea-color);
     border-radius: 5px;
     width: 100%;
     margin-bottom: 7%;
