@@ -8,7 +8,7 @@ import "./styles/index.scss";
 import Connection from "./pages/Connection";
 import Home from "./pages/Home";
 import Rules from "./pages/Rules";
-import Profile from "./pages/Profile";
+import Profile, { userLoader } from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator from "./pages/HomeAdministrator";
 import ModaleFinaleDecision from "./components/ModalFinalDecision";
@@ -35,8 +35,9 @@ const router = createBrowserRouter([
         element: <Rules />,
       },
       {
-        path: "/profile", // rajouter :id
+        path: "/profile", // rajouter :id et voir pour sécurité?
         element: <Profile />,
+        loader: userLoader,
       },
       {
         path: "/administrator",
