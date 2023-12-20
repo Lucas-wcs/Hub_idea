@@ -93,6 +93,7 @@
   border-radius: 99em;
   position: relative;
   cursor: pointer;
+  user-select: none;
   font-size: var(--toggle-size);
 }
 

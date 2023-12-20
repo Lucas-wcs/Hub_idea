@@ -40,3 +40,12 @@
   opacity: 0.8;
   transform: scale(1);
 }
+
+@media screen and (max-width: 768px) {
+  .container-footer {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+  }
+}
