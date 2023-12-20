@@ -1,6 +1,9 @@
-import React from "react";
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 
 function IdeaCard() {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className="idea-card-container">
       <div className="status-image-container">
@@ -9,7 +12,15 @@ function IdeaCard() {
         </div>
         <div className="status-container">
           <p>Fin dans 3 jours</p>
-          <img src="/images/icons/timer_icon.png" alt="timer" />
+          <img
+            className="clickable-image"
+            src={
+              theme === "dark"
+                ? "/images/icons/timer_icon_light.png"
+                : "/images/icons/timer_icon.png"
+            }
+            alt="logo_retour"
+          />
         </div>
       </div>
       <div className="text-container">
