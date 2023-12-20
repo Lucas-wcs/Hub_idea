@@ -11,6 +11,7 @@ import Rules from "./pages/Rules";
 import Profile from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator from "./pages/HomeAdministrator";
+import ModalCreateIdea from "./components/ModalCreateIdea";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
       {
         path: "/administrator",
         element: <HomeAdministrator />,
+      },
+      {
+        // test
+        path: "/modalcreateidea",
+        element: <ModalCreateIdea />,
       },
     ],
   },
