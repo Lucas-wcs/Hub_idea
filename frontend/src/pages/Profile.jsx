@@ -1,8 +1,8 @@
 // voir pour la navbar
 import { Link } from "react-router-dom";
+// import { useState } from "react";
 
 function Profile() {
-  // mettre les useState et handlers
   return (
     <div>
       <div className="profile-page">
@@ -16,6 +16,7 @@ function Profile() {
             <img src="images/hugo.png" alt="my thumbnail" />
             <div>
               <button type="button">Télécharger photo</button>
+              {/* ajouter fonction et voir si pointer change */}
             </div>
           </div>
           <div className="form-field">
