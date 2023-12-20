@@ -1,10 +1,16 @@
 // voir pour la navbar
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import axios from "axios";
+import { ThemeContext } from "../components/ThemeContext";
+
 // import { useEffect, useState } from "react";
 // useFetcher, useLoaderData
 function Profile() {
   // const users = useLoaderData();
+
+  const { theme } = useContext(ThemeContext);
+
   // mettre les useState et handlers
   // console.log(users);
 
@@ -14,7 +20,15 @@ function Profile() {
         <div className="home-button">
           <Link to="/home">
             {/* voir créer emplacement pour fetcher image de l'utilisateur */}
-            <img src="images/return-home.png" alt="bouton retour" />
+            <img
+              className="clickable-image"
+              src={
+                theme === "dark"
+                  ? "/images/icons/retour_dark.png"
+                  : "/images/icons/retour.png"
+              }
+              alt="logo_retour"
+            />{" "}
           </Link>
         </div>
         <div className="profile-form">
