@@ -8,9 +8,10 @@
     height: 2vh;
     align-items: center;
     margin-left: 20px;
+    margin-top: 20px;
 
-    img {
-      width: 2vw;
+    .clickable-image {
+      width: 4vw;
     }
   }
   .profile-form {
@@ -117,8 +118,8 @@
 
 @media (max-width: 500px) {
   .profile-page .home-button {
-    img {
-      width: 4vw;
+    .clickable-image {
+      width: 6vw;
     }
   }
 
@@ -183,7 +184,7 @@
     .thumbnail {
       justify-content: center;
       gap: 10px;
-      img {
+      .clickable-image {
         width: 30%;
       }
     }
