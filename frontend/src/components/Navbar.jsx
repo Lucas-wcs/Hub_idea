@@ -15,14 +15,15 @@ function Navbar() {
         <img src="images/logo.png" alt="logo" />
       </div>
 
-      {location.pathname !== "/" && (
-        <div className="nav-right">
-          <input
-            onClick={toggleTheme}
-            type="checkbox"
-            className="theme-checkbox"
-          />
-          {location.pathname !== "/profile" && (
+      <div className="nav-right">
+        <input
+          onClick={toggleTheme}
+          type="checkbox"
+          className="theme-checkbox"
+        />
+        {location.pathname !== "/profile" &&
+          location.pathname !== "/rules" &&
+          location.pathname !== "/" && (
             <NavLink to="/profile">
               <div className="image-container">
                 <img
@@ -36,7 +37,7 @@ function Navbar() {
               </div>
             </NavLink>
           )}
-
+        {location.pathname !== "/rules" && location.pathname !== "/" && (
           <div className="image-container">
             <img
               src={
@@ -47,8 +48,8 @@ function Navbar() {
               alt="notification"
             />
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

@@ -1,14 +1,26 @@
 // voir pour la navbar
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../components/ThemeContext";
 
 function Profile() {
+  const { theme } = useContext(ThemeContext);
+
   // mettre les useState et handlers
   return (
     <div>
       <div className="profile-page">
         <div className="home-button">
           <Link to="/home">
-            <img src="images/return-home.png" alt="bouton retour" />
+            <img
+              className="clickable-image"
+              src={
+                theme === "dark"
+                  ? "/images/icons/retour_dark.png"
+                  : "/images/icons/retour.png"
+              }
+              alt="logo_retour"
+            />{" "}
           </Link>
         </div>
         <div className="profile-form">

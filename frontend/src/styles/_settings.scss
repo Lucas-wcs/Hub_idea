@@ -26,14 +26,6 @@ body.dark-theme {
   --cardidea-color: var(--cardidea-color-dark);
 }
 
-body.light-theme {
-  --background-color: var(--senary-color);
-  --button-color: var(--button-color-light);
-  --button-background: var(--button-background-light);
-  --button-border: var(--button-border-light);
-  --text-color: var(--black-color);
-}
-
 :root {
   // font-family
   --light: #d8dbe0;
@@ -47,7 +39,7 @@ body.light-theme {
   --tertiary-color: #ffe569; //yellow
   --quaternary-color: #8f1146; //red
   --quinary-color: #d5d7d4; //grey
-  --senary-color: #fffbf6; //dark blue
+  --senary-color: #fffbf6;
   --senary2-color: #f5f5da;
   --black-color: #020202;
   --button-color-light: #000; // noir pour le thème clair
@@ -64,4 +56,6 @@ body.light-theme {
   --button-border-dark: #fff; // noir pour le thème sombre
   --cardidea-color-dark: #172b2b;
   //spacing
+  --spacing: 0.5rem; //8 px
+  --spacing-x2: calc(var(--spacing) * 2);
 }
