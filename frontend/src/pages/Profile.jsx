@@ -1,13 +1,19 @@
 // voir pour la navbar
 import { Link } from "react-router-dom";
-
+import axios from "axios";
+// import { useEffect, useState } from "react";
+// useFetcher, useLoaderData
 function Profile() {
+  // const users = useLoaderData();
   // mettre les useState et handlers
+  // console.log(users);
+
   return (
     <div>
       <div className="profile-page">
         <div className="home-button">
           <Link to="/home">
+            {/* voir créer emplacement pour fetcher image de l'utilisateur */}
             <img src="images/return-home.png" alt="bouton retour" />
           </Link>
         </div>
@@ -60,5 +66,16 @@ function Profile() {
     </div>
   );
 }
+
+export const userLoader = async () => {
+  try {
+    const users = await axios.get("http://localhost:3310/api/users");
+    // console.log(users);
+    return users.data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
 
 export default Profile;

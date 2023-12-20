@@ -63,5 +63,8 @@ body.light-theme {
   --button-background-dark: #000; // noir pour le thème sombre
   --button-border-dark: #fff; // noir pour le thème sombre
   --cardidea-color-dark: #172b2b;
+
   //spacing
+  --spacing: 0.5rem; //8 px
+  --spacing-x2: calc(var(--spacing) * 2);
 }
