@@ -24,8 +24,8 @@ CREATE TABLE
         `email` TEXT NOT NULL,
         `image_profil` VARCHAR(50),
         `password` VARCHAR(50) NOT NULL,
-        `is_administrator` BOOLEAN NOT NULL DEFAULT 0,
-        `is_moderator` BOOLEAN NOT NULL DEFAULT 0,
+        `is_administrator` BOOLEAN NOT NULL,
+        `is_moderator` BOOLEAN NOT NULL,
         `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 

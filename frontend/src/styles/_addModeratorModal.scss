@@ -1,0 +1,176 @@
+.addModeratorModal {
+  width: 40vw;
+  height: 60vh;
+  border: 2px solid var(--quinary-color);
+  border-radius: 5px;
+  background-color: var(--senary-color);
+
+  .modal-cross-container {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding-top: 1.5%;
+  }
+
+  .cross-img-container {
+    height: 100%;
+    width: 10%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  }
+
+  .modal-main-container {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3%;
+  }
+
+  .table-container {
+    width: 100%;
+    height: 70%;
+    padding-left: 2%;
+    padding-right: 2%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+    width: 90%;
+    height: 100%;
+  }
+
+  th {
+    height: 20%;
+    font-family: var(--title-font);
+    font-weight: 300;
+    font-size: 1.2rem;
+    padding-bottom: 3%;
+  }
+
+  tr,
+  td {
+    width: calc(100% / 3);
+    border-top: 1px solid var(--quinary-color);
+    padding: 2%;
+  }
+
+  td {
+    text-align: center;
+    font-family: var(--text-font);
+  }
+
+  .td-one {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .img-container {
+    width: calc(100% / 4);
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .button-container {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+  }
+
+  button {
+    width: 30%;
+    height: 100%;
+    background-color: var(--primary-color);
+    font-family: var(--title-font);
+    font-weight: 300;
+    cursor: pointer;
+  }
+
+  h4 {
+    margin-top: -3%;
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--primary-color);
+  }
+}
+
+// responsive :
+
+@media screen and (max-width: 1100px) {
+  .addModeratorModal {
+    height: 40vh;
+
+    .modal-cross-container {
+      padding-right: 3%;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .addModeratorModal {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .addModeratorModal {
+    width: 70vw;
+
+    th {
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+    }
+
+    td {
+      font-size: 0.8rem;
+    }
+
+    button {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .addModeratorModal {
+    width: 70vw;
+
+    th {
+      font-size: 0.9rem;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+    }
+
+    td {
+      font-size: 0.8rem;
+    }
+
+    button {
+      font-size: 0.8rem;
+    }
+  }
+}
