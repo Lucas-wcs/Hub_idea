@@ -28,7 +28,7 @@ function Connection() {
         password,
       });
 
-      if (res.data.success) {
+      if (res.status === 200) {
         setUser(res.data.user);
         navigate("/home");
       } else {
