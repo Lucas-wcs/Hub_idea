@@ -1,14 +1,34 @@
 // voir pour la navbar
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import axios from "axios";
+import { ThemeContext } from "../components/ThemeContext";
 
+// import { useEffect, useState } from "react";
+// useFetcher, useLoaderData
 function Profile() {
+  // const users = useLoaderData();
+
+  const { theme } = useContext(ThemeContext);
+
   // mettre les useState et handlers
+  // console.log(users);
+
   return (
     <div>
       <div className="profile-page">
         <div className="home-button">
           <Link to="/home">
-            <img src="images/retour-home.png" alt="bouton retour" />
+            {/* voir créer emplacement pour fetcher image de l'utilisateur */}
+            <img
+              className="clickable-image"
+              src={
+                theme === "dark"
+                  ? "/images/icons/retour_dark.png"
+                  : "/images/icons/retour.png"
+              }
+              alt="logo_retour"
+            />{" "}
           </Link>
         </div>
         <div className="profile-form">
@@ -60,5 +80,16 @@ function Profile() {
     </div>
   );
 }
+
+export const userLoader = async () => {
+  try {
+    const users = await axios.get("http://localhost:3310/api/users");
+    // console.log(users);
+    return users.data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
 
 export default Profile;

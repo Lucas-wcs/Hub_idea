@@ -51,7 +51,7 @@ function Idea() {
               </div>
             </div>
             <div className="idea-vote-container">
-              <button type="submit">
+              <button className="button-vote" type="submit">
                 <div className="vote-logo-container">
                   <img
                     src="/images/icons_pouces_bas.png"
@@ -60,7 +60,7 @@ function Idea() {
                 </div>
                 <p>Je suis contre</p>
               </button>
-              <button type="submit">
+              <button className="button-vote" type="submit">
                 <div className="vote-logo-container">
                   <img
                     src="/images/icons_pouce_haut.png"
