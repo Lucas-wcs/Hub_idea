@@ -68,6 +68,60 @@
     justify-content: center;
     gap: 20px;
   }
+
+  // Modal to add member :
+  .addMember-modal {
+    position: absolute;
+    top: 25vh;
+    left: -1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    width: 100%;
+  }
+
+  // Modal to add moderator :
+  .addModerator-modal {
+    position: absolute;
+    top: 25vh;
+    left: -1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    width: 100%;
+  }
+}
+
+// background for add member modal:
+.container-flou-admin {
+  position: relative;
+  z-index: 1;
+  filter: blur(2px);
+}
+
+// responsive:
+@media screen and (max-width: 1100px) {
+  .homeAdministrator {
+    .addMember-modal {
+      margin-top: 30vh;
+    }
+    .addModerator-modal {
+      margin-top: 30vh;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .homeAdministrator {
+    .addMember-modal {
+      margin-top: 30vh;
+    }
+    .addModerator-modal {
+      margin-top: 30vh;
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -82,6 +136,14 @@
 
     .homeAdmin-logo-container {
       width: 7%;
+    }
+
+    .addMember-modal {
+      bottom: -100vh;
+    }
+
+    .addModerator-modal {
+      margin-bottom: 35vh;
     }
   }
 }
@@ -98,6 +160,14 @@
 
     .homeAdmin-logo-container {
       width: 8%;
+    }
+
+    .addMember-modal {
+      bottom: -130vh;
+    }
+
+    .addModerator-modal {
+      margin-top: 30vh;
     }
   }
 }

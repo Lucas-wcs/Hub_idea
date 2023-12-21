@@ -1,7 +1,26 @@
+import { useState } from "react";
+import AddMemberModal from "../components/AddMemberModal";
+import AddModeratorModal from "../components/AddModeratorModal";
+
 function HomeAdministrator() {
+  const [isOpenMemberModal, setIsOpenMemberModal] = useState(false);
+  const [isOpenModeratorModal, setIsOpenModeratorModal] = useState(false);
+
+  const handleOpenModalAddMember = () => {
+    setIsOpenMemberModal((current) => !current);
+  };
+
+  const handleOpenModalAddModerator = () => {
+    setIsOpenModeratorModal((current) => !current);
+  };
+
   return (
     <div className="homeAdministrator">
-      <div className="homeAdmin-container">
+      <div
+        className={`homeAdmin-container ${
+          isOpenMemberModal && "container-flou-admin"
+        } ${isOpenModeratorModal && "container-flou-admin"}`}
+      >
         <div className="homeAdmin-title">
           <div className="homeAdmin-logo-container">
             <img src="/images/icons_idea.png" alt="idea_logo" />
@@ -18,13 +37,21 @@ function HomeAdministrator() {
         </div>
       </div>
 
-      <div className="homeAdmin-container">
+      <div
+        className={`homeAdmin-container ${
+          isOpenMemberModal && "container-flou-admin"
+        } ${isOpenModeratorModal && "container-flou-admin"}`}
+      >
         <div className="homeAdmin-title">
           <div className="homeAdmin-logo-container">
             <img src="/images/icons_admin.png" alt="admin_logo" />
           </div>
           <h4>Membres modérateurs</h4>
-          <div className="homeAdmin-logo-container button-add">
+          <div
+            className="homeAdmin-logo-container button-add"
+            onClick={handleOpenModalAddModerator}
+            role="presentation"
+          >
             <img src="/images/icons_add.png" alt="add_logo" />
           </div>
         </div>
@@ -38,13 +65,21 @@ function HomeAdministrator() {
         </div>
       </div>
 
-      <div className="homeAdmin-container">
+      <div
+        className={`homeAdmin-container ${
+          isOpenMemberModal && "container-flou-admin"
+        } ${isOpenModeratorModal && "container-flou-admin"}`}
+      >
         <div className="homeAdmin-title">
           <div className="homeAdmin-logo-container">
             <img src="/images/icons_members.png" alt="members_logo" />
           </div>
           <h4>Membres du groupe</h4>
-          <div className="homeAdmin-logo-container button-add">
+          <div
+            className="homeAdmin-logo-container button-add"
+            onClick={handleOpenModalAddMember}
+            role="presentation"
+          >
             <img src="/images/icons_add.png" alt="add_logo" />
           </div>
         </div>
@@ -63,6 +98,18 @@ function HomeAdministrator() {
           <p>Pierre Courège</p>
         </div>
       </div>
+      {isOpenModeratorModal && (
+        <div className="addModerator-modal">
+          <AddModeratorModal
+            handleOpenModalAddModerator={handleOpenModalAddModerator}
+          />
+        </div>
+      )}
+      {isOpenMemberModal && (
+        <div className="addMember-modal">
+          <AddMemberModal handleOpenModalAddMember={handleOpenModalAddMember} />
+        </div>
+      )}
     </div>
   );
 }
