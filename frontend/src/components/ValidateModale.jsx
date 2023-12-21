@@ -86,6 +86,6 @@ ValidateModale.propTypes = {
   setTypeModal: PropTypes.func.isRequired,
 };
 
-// importation modale dans pages       <ValidateModale type="modale1" setTypeModal={() => console.log("")} />
+// importation modale dans pages <ValidateModale type="modale1" setTypeModal={() => console.log("")} />
 
 export default ValidateModale;
