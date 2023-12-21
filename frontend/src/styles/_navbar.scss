@@ -95,6 +95,7 @@
   cursor: pointer;
   user-select: none;
   font-size: var(--toggle-size);
+  border: 1px solid rgb(125, 120, 120);
 }
 
 .theme-checkbox::before {
