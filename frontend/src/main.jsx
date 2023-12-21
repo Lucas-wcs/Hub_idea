@@ -11,6 +11,8 @@ import Rules from "./pages/Rules";
 import Profile, { userLoader } from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator from "./pages/HomeAdministrator";
+// import CreateIdeaModal from "./components/CreateIdeaModal";
+// import DecisionModal from "./components/DecisionModal";
 
 const router = createBrowserRouter([
   {
@@ -53,3 +55,15 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+/* adding following root for test modal
+{
+  path: "/modalcreateidea",
+  element: <CreateIdeaModal />,
+},
+{
+  path: "/decisionmodal",
+  element: <DecisionModal />,
+},
+
+*/
