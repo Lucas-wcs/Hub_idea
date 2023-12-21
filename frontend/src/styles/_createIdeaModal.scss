@@ -173,10 +173,12 @@
         }
         .button-green {
           background-color: var(--primary-color);
+          cursor: pointer;
         }
 
         .button-blue {
           background-color: var(--secondary-color);
+          cursor: pointer;
         }
       }
     }

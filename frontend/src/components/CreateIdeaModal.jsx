@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
 
-function CreateIdeaModal({ handleOpenModalIdea }) {
+function CreateIdeaModal({
+  handleOpenModalIdea,
+  handleClickDraft,
+  handleClickPublish,
+}) {
   return (
     <div className="modal-idea-container">
       <div className="create-idea-container">
@@ -57,48 +61,64 @@ function CreateIdeaModal({ handleOpenModalIdea }) {
               <div className="form-impacted-person-container">
                 {/* Personne impactées */}
                 <table>
-                  <tr>
-                    <td aria-label="image-checkbox">&nbsp;</td>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                  </tr>
-                  <tr>
-                    <td aria-label="image-checkbox" className="checkbox-avatar">
-                      <input type="checkbox" id="user" name="user" />
-                      <img src="images/hugo.png" alt="" />
-                    </td>
-                    <td>Hugo</td>
-                    <td>lastname</td>
-                    <td>hugo@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td aria-label="image-checkbox" className="checkbox-avatar">
-                      <input type="checkbox" id="user" name="user" />
-                      <img src="images/hugo.png" alt="" />
-                    </td>
-                    <td>Hugo</td>
-                    <td>lastname</td>
-                    <td>hugo@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td aria-label="image-checkbox" className="checkbox-avatar">
-                      <input type="checkbox" id="user" name="user" />
-                      <img src="images/hugo.png" alt="" />
-                    </td>
-                    <td>Hugo</td>
-                    <td>lastname</td>
-                    <td>hugo@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td aria-label="image-checkbox" className="checkbox-avatar">
-                      <input type="checkbox" id="user" name="user" />
-                      <img src="images/hugo.png" alt="" />
-                    </td>
-                    <td>Hugo</td>
-                    <td>lastname</td>
-                    <td>hugo@gmail.com</td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th aria-label="image-checkbox">&nbsp;</th>
+                      <th>Prénom</th>
+                      <th>Nom</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        aria-label="image-checkbox"
+                        className="checkbox-avatar"
+                      >
+                        <input type="checkbox" id="user" name="user" />
+                        <img src="images/hugo.png" alt="" />
+                      </td>
+                      <td>Hugo</td>
+                      <td>lastname</td>
+                      <td>hugo@gmail.com</td>
+                    </tr>
+                    <tr>
+                      <td
+                        aria-label="image-checkbox"
+                        className="checkbox-avatar"
+                      >
+                        <input type="checkbox" id="user" name="user" />
+                        <img src="images/hugo.png" alt="" />
+                      </td>
+                      <td>Hugo</td>
+                      <td>lastname</td>
+                      <td>hugo@gmail.com</td>
+                    </tr>
+                    <tr>
+                      <td
+                        aria-label="image-checkbox"
+                        className="checkbox-avatar"
+                      >
+                        <input type="checkbox" id="user" name="user" />
+                        <img src="images/hugo.png" alt="" />
+                      </td>
+                      <td>Hugo</td>
+                      <td>lastname</td>
+                      <td>hugo@gmail.com</td>
+                    </tr>
+                    <tr>
+                      <td
+                        aria-label="image-checkbox"
+                        className="checkbox-avatar"
+                      >
+                        <input type="checkbox" id="user" name="user" />
+                        <img src="images/hugo.png" alt="" />
+                      </td>
+                      <td>Hugo</td>
+                      <td>lastname</td>
+                      <td>hugo@gmail.com</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
               <div className="form-description-container">
@@ -116,8 +136,14 @@ function CreateIdeaModal({ handleOpenModalIdea }) {
                   className="button-blue"
                   type="submit"
                   value="Brouillon"
+                  onClick={handleClickDraft}
                 />
-                <input className="button-green" type="submit" value="Publier" />
+                <input
+                  className="button-green"
+                  type="submit"
+                  value="Publier"
+                  onClick={handleClickPublish}
+                />
               </div>
             </form>
           </div>
@@ -129,6 +155,8 @@ function CreateIdeaModal({ handleOpenModalIdea }) {
 
 CreateIdeaModal.propTypes = {
   handleOpenModalIdea: PropTypes.func.isRequired,
+  handleClickDraft: PropTypes.func.isRequired,
+  handleClickPublish: PropTypes.func.isRequired,
 };
 
 export default CreateIdeaModal;

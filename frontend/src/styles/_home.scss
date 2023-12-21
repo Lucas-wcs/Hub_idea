@@ -1,5 +1,16 @@
+//for fixing background with modal
 .home-container-fixed {
   position: fixed;
+}
+
+//hiding modal
+.hide-confirm-modal {
+  display: none;
+}
+
+//hiding modal
+.hide-submit-modal {
+  display: none;
 }
 
 .home-container {
@@ -8,6 +19,7 @@
   padding-left: 7vw;
   padding-right: 7vw;
 
+  //hiding modal
   .hide-idea-modal {
     display: none;
   }

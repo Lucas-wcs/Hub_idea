@@ -1,14 +1,33 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ThemeContext } from "./ThemeContext";
 
-function ValidateModale({ type, setTypeModal }) {
+function ValidateModale({
+  type,
+  setTypeModal,
+  handleClickSubmitButton,
+  handleClickIdeaCancelButton,
+}) {
+  const navigate = useNavigate();
+
+  const handleButton = (event) => {
+    if (type === "modale1" && event.target.value === "button1") {
+      handleClickSubmitButton();
+    } else if (type === "modale2" && event.target.value === "button1") {
+      navigate("/home");
+      handleClickSubmitButton();
+    } else if (type === "modale1" && event.target.value === "button2") {
+      handleClickIdeaCancelButton();
+    }
+  };
+
   const modals = {
     modale1: {
-      title: "Comfirmer la publication",
+      title: "Comfirmer la soumission",
       text: "Cette action est irréversible. En cas de modification, merci de contacter l'adminsitrateur",
       logo: "/images/icons/validation.png",
-      textButton: "Publier",
+      textButton: "Soumettre",
       textButton2: "Annuler",
     },
     modale2: {
@@ -63,7 +82,12 @@ function ValidateModale({ type, setTypeModal }) {
           <p>{modalToDisplay.text}</p>
         </div>
         <div className="modal-footer">
-          <button className="button1" type="button">
+          <button
+            className="button1"
+            type="button"
+            value="button1"
+            onClick={handleButton}
+          >
             {modalToDisplay.textButton}
           </button>
         </div>
@@ -71,7 +95,8 @@ function ValidateModale({ type, setTypeModal }) {
           <button
             className="button2"
             type="button"
-            onClick={() => setTypeModal("")}
+            onClick={handleButton}
+            value="button2"
           >
             {modalToDisplay.textButton2}
           </button>
@@ -84,6 +109,8 @@ function ValidateModale({ type, setTypeModal }) {
 ValidateModale.propTypes = {
   type: PropTypes.string.isRequired,
   setTypeModal: PropTypes.func.isRequired,
+  handleClickSubmitButton: PropTypes.func.isRequired,
+  handleClickIdeaCancelButton: PropTypes.func.isRequired,
 };
 
 // importation modale dans pages <ValidateModale type="modale1" setTypeModal={() => console.log("")} />
