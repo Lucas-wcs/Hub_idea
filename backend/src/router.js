@@ -30,6 +30,8 @@ router.get("/users/:id", userControllers.read);
 router.post("/users", userControllers.add);
 router.put("/users/:id", userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
+router.put("/users/moderator/:id", userControllers.addModerator);
+router.put("/users/remove-moderator/:id", userControllers.deleteModerator);
 // Routes status-idea controllers
 router.get("/status-idea", statusIdeaControllers.browse);
 router.get("/status-idea/:id", statusIdeaControllers.read);

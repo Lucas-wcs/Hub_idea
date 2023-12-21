@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Rules from "./pages/Rules";
 import Profile, { userLoader } from "./pages/Profile";
 import Idea from "./pages/Idea";
-import HomeAdministrator from "./pages/HomeAdministrator";
+import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/administrator",
         element: <HomeAdministrator />,
+        loader,
       },
     ],
   },
