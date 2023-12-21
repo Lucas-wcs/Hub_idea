@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <Rules />,
       },
       {
-        path: "/profile", // rajouter :id et voir pour sécurité?
+        path: "/profile/:id",
         element: <Profile />,
         loader: userLoader,
       },
