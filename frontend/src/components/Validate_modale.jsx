@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { ThemeContext } from "./ThemeContext";
 
 function ValidateModale({ type, setTypeModal }) {
   const modals = {
@@ -30,6 +31,8 @@ function ValidateModale({ type, setTypeModal }) {
     },
   };
 
+  const { theme } = useContext(ThemeContext);
+
   const modalToDisplay = modals[type];
 
   // function clavier poour touche entrée
@@ -46,7 +49,7 @@ function ValidateModale({ type, setTypeModal }) {
   return (
     <div className="modal" onKeyDown={handleKeyDown} tabIndex={0} role="button">
       <div
-        className="modal-content"
+        className={`modal-content ${theme === "dark" ? "dark" : "light"}`}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
         tabIndex={0}

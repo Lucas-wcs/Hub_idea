@@ -16,7 +16,7 @@ body {
 }
 
 body.dark-theme {
-  background-color: black;
+  background-color: var(--dark);
   --primary-color: var(--primary-color-dark);
   --secondary-color: var(--secondary-color-dark);
   --text-color: var(--text-color-dark);
@@ -41,7 +41,7 @@ body.dark-theme {
   --quinary-color: #d5d7d4; //grey
   --senary-color: #fffbf6;
   --senary2-color: #f5f5da;
-  --black-color: #020202;
+  --black-color: #172b2b;
   --button-color-light: #000; // noir pour le thème clair
   --button-background-light: #fff; // blanc pour le thème clair
   --button-border-light: #000; // noir pour le thème clair

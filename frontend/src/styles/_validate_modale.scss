@@ -18,6 +18,13 @@
     border-radius: 4px;
     width: 80%;
     max-width: 500px;
+    &.dark {
+      background-color: var(--dark);
+
+      p {
+        color: white;
+      }
+    }
   }
 
   img {
