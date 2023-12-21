@@ -23,10 +23,13 @@ function Connection() {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
-      const res = await axios.post("http://localhost:3310/api/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND}/api/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       if (res.status === 200) {
         setUser(res.data.user);
