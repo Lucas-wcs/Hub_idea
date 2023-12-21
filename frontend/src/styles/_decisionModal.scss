@@ -1,0 +1,225 @@
+.decision-modal-container {
+  width: 50vw;
+  margin: 0 auto;
+  background-color: beige;
+
+  p {
+    font-family: var(--text-font);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--title-font);
+    text-align: center;
+  }
+
+  .icon-close-container {
+    padding: 2vh;
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      width: 30px;
+    }
+  }
+
+  .image-form-container {
+    padding-top: 3vh;
+    display: flex;
+    width: 50vw;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+
+    .coverimage-container {
+      width: 30vw;
+
+      img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+      }
+    }
+
+    h2 {
+      text-align: left;
+    }
+    .progress-percentage-container {
+      display: flex;
+      width: 30vw;
+      padding-top: 5px;
+
+      progress {
+        margin-right: 5px;
+        border-radius: 10px;
+        width: 90%;
+        border-radius: 10px;
+        background-color: #8f1146;
+      }
+
+      progress::-webkit-progress-bar {
+        background-color: #d5d7d4;
+        border-radius: 10px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #8f1146;
+        border-radius: 10px 0 0 10px;
+      }
+
+      progress::-moz-progress-bar {
+        background-color: #8f1146;
+        border-radius: 10px 0 0 10px;
+      }
+    }
+    .form-entire-container {
+      padding-top: calc(var(--spacing) * 1.4);
+      width: 30vw;
+
+      textarea {
+        width: 100%;
+      }
+      textarea:focus {
+        border: 2px solid red;
+        outline: 0;
+      }
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1vw;
+      padding: calc(var(--spacing) * 1.4) 0;
+
+      input {
+        font-size: 1rem;
+        padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+        border-radius: 5px;
+        border: none;
+      }
+      .button-green {
+        background-color: var(--primary-color);
+      }
+
+      .button-blue {
+        background-color: var(--secondary-color);
+      }
+    }
+  }
+}
+
+// responsive tablet
+@media (max-width: 900px) and (min-width: 600px) {
+  .decision-modal-container {
+    width: 50vw;
+    margin: 0 auto;
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+//responsive mobile
+@media (max-width: 600px) {
+  .decision-modal-container {
+    width: 80vw;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 0.8rem;
+    }
+
+    p {
+      font-size: 0.6rem;
+    }
+    .image-form-container {
+      padding-top: 3vh;
+      display: flex;
+      width: 80vw;
+      flex-direction: column;
+      //justify-content: center;
+      align-items: center;
+
+      .coverimage-container {
+        width: 60vw;
+
+        img {
+          width: 100%;
+          max-height: 200px;
+          object-fit: cover;
+        }
+      }
+
+      h2 {
+        text-align: left;
+      }
+      .progress-percentage-container {
+        display: flex;
+        width: 60vw;
+        padding-top: 5px;
+
+        progress {
+          margin-right: 5px;
+          border-radius: 10px;
+          width: 90%;
+          border-radius: 10px;
+          background-color: #8f1146;
+        }
+
+        progress::-webkit-progress-bar {
+          background-color: #d5d7d4;
+          border-radius: 10px;
+        }
+        progress::-webkit-progress-value {
+          background-color: #8f1146;
+          border-radius: 10px 0 0 10px;
+        }
+
+        progress::-moz-progress-bar {
+          background-color: #8f1146;
+          border-radius: 10px 0 0 10px;
+        }
+      }
+      .form-entire-container {
+        padding-top: calc(var(--spacing) * 1.4);
+        width: 60vw;
+
+        textarea {
+          width: 100%;
+        }
+        textarea:focus {
+          border: 2px solid red;
+          outline: 0;
+        }
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1vw;
+        padding: calc(var(--spacing) * 1.4) 0;
+
+        input {
+          font-size: 0.8rem;
+          padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+          border-radius: 5px;
+          border: none;
+        }
+        .button-green {
+          background-color: var(--primary-color);
+        }
+
+        .button-blue {
+          background-color: var(--secondary-color);
+        }
+      }
+    }
+  }
+}
