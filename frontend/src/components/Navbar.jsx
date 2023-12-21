@@ -1,20 +1,27 @@
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
+import { UserContext } from "./UserContext";
 
 function Navbar() {
   const { theme } = useContext(ThemeContext);
-
+  const { setUser } = useContext(UserContext);
   const { toggleTheme } = useContext(ThemeContext);
 
+  const navigate = useNavigate();
+
   const location = useLocation();
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <div className="navbar-container">
       <div className="logo-container">
         <img src="images/logo.png" alt="logo" />
       </div>
-
       <div className="nav-right">
         <input
           onClick={toggleTheme}
@@ -48,6 +55,23 @@ function Navbar() {
               alt="notification"
             />
           </div>
+        )}
+        {location.pathname !== "/rules" && location.pathname !== "/" && (
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="button-logout"
+          >
+            <img
+              className="logout"
+              src={
+                theme === "dark"
+                  ? "images/icons/logout_dark.png"
+                  : "images/icons/logout.png"
+              }
+              alt="profile"
+            />
+          </button>
         )}
       </div>
     </div>

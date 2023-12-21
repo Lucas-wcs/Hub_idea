@@ -16,6 +16,7 @@ const userNotificationControllers = require("./controllers/userNotificationContr
 const voteControllers = require("./controllers/voteControllers"); // test ok
 const impactedUserControllers = require("./controllers/impactedUserControllers"); // test ok
 const commentControllers = require("./controllers/commentControllers"); // test ok
+const authControllers = require("./controllers/authControllers");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -77,5 +78,9 @@ router.get("/comments/:id", commentControllers.read);
 router.post("/comments", commentControllers.add);
 router.put("/comments/:id", commentControllers.edit);
 router.delete("/comments/:id", commentControllers.destroy);
+
+// Routes authentification
+router.post("/login", authControllers.login);
+router.post("/signin", authControllers.signin);
 
 module.exports = router;

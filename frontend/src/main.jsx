@@ -11,6 +11,7 @@ import Rules from "./pages/Rules";
 import Profile, { userLoader } from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +24,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/idea",
-        element: <Idea />,
+        element: (
+          <ProtectedRoute>
+            <Idea />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/rules",
@@ -35,12 +44,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile", // rajouter :id et voir pour sécurité?
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
         loader: userLoader,
       },
       {
         path: "/administrator",
-        element: <HomeAdministrator />,
+        element: (
+          <ProtectedRoute>
+            <HomeAdministrator />
+          </ProtectedRoute>
+        ),
         loader,
       },
     ],
@@ -54,3 +71,15 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+/* adding following root for test modal
+{
+  path: "/modalcreateidea",
+  element: <CreateIdeaModal />,
+},
+{
+  path: "/decisionmodal",
+  element: <DecisionModal />,
+},
+
+*/
