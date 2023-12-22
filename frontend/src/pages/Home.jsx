@@ -7,7 +7,7 @@ import ValidateModale from "../components/ValidateModale";
 import { UserContext } from "../context/UserContext";
 
 function Home() {
-  const ideas = useLoaderData();
+  const { ideas, statuses } = useLoaderData();
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -114,21 +114,42 @@ function Home() {
       </div>
       <div className="idea-cards-container">
         {ideas.map((idea) => {
-          return <IdeaCard title={idea.title} statusId={idea.status_id} />;
+          return (
+            <IdeaCard
+              title={idea.title}
+              statusId={statuses[idea.status_id - 1].status_name}
+            />
+          );
         })}
       </div>
     </div>
   );
 }
 
-export const loaderIdeas = async () => {
-  try {
-    const res = await axios.get("http://localhost:3310/api/ideas");
-    return res.data;
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+export const loaderHome = async () => {
+  const loadStatus = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/status-idea`
+      );
+      return res.data;
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  };
+  const loadIdeas = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`);
+      return res.data;
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  };
+
+  const [ideas, statuses] = await Promise.all([loadIdeas(), loadStatus()]);
+  return { ideas, statuses };
 };
 
 export default Home;
