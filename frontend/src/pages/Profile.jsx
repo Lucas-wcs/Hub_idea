@@ -17,7 +17,7 @@ function Profile() {
       const userById = await axios.get(
         `${import.meta.env.VITE_BACKEND}/api/users/${id}`
       );
-      setThisUser(userById.data[0]);
+      setThisUser(userById.data);
     } catch (e) {
       console.error(e);
     }

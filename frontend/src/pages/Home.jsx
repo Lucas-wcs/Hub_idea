@@ -68,7 +68,7 @@ function Home() {
       {/* div for modal until here */}
       <div className="title-button-container">
         <div>
-          <h1>Bienvenue {user[0].firstname} 👋</h1>
+          <h1>Bienvenue {user.firstname} 👋</h1>
           <h2>Nouvelles idées de WILD CODE SCHOOL</h2>
         </div>
         <div className="button-container">
