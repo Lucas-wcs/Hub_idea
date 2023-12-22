@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import IdeaCard from "../components/IdeaCard";
 import CreateIdeaModal from "../components/CreateIdeaModal";
 import ValidateModale from "../components/ValidateModale";
-import { UserContext } from "../components/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function Home() {
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ function Home() {
       {/* div for modal until here */}
       <div className="title-button-container">
         <div>
-          <h1>Bienvenue {user[0].firstname} 👋</h1>
+          <h1>Bienvenue {user.firstname} 👋</h1>
           <h2>Nouvelles idées de WILD CODE SCHOOL</h2>
         </div>
         <div className="button-container">

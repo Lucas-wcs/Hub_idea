@@ -2,7 +2,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { ThemeContext } from "../components/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Profile() {
   // const users = useLoaderData();
@@ -17,7 +17,7 @@ function Profile() {
       const userById = await axios.get(
         `${import.meta.env.VITE_BACKEND}/api/users/${id}`
       );
-      setThisUser(userById.data[0]);
+      setThisUser(userById.data);
     } catch (e) {
       console.error(e);
     }

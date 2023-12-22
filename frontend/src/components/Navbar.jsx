@@ -1,11 +1,11 @@
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
-import { UserContext } from "./UserContext";
+import { ThemeContext } from "../context/ThemeContext";
+import { UserContext } from "../context/UserContext";
 
 function Navbar() {
   const { theme } = useContext(ThemeContext);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { toggleTheme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ function Navbar() {
         {location.pathname !== "/profile" &&
           location.pathname !== "/rules" &&
           location.pathname !== "/" && (
-            <NavLink to="/profile">
+            <NavLink to={`/profile/${user.id}`}>
               <div className="image-container">
                 <img
                   src={
@@ -66,8 +66,8 @@ function Navbar() {
               className="logout"
               src={
                 theme === "dark"
-                  ? "images/icons/logout_dark.png"
-                  : "images/icons/logout.png"
+                  ? "/images/icons/logout_dark.png"
+                  : "/images/icons/logout.png"
               }
               alt="profile"
             />

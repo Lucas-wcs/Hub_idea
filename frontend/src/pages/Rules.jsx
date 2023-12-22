@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "../components/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Rules() {
   const { theme } = useContext(ThemeContext);
