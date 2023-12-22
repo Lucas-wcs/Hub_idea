@@ -73,7 +73,11 @@ function Home() {
         </div>
         <div className="button-container">
           <button type="button" className="serch-button">
-            <img src="images/icons/search_icon.png" alt="search-button" />
+            <img
+              title="rechercher"
+              src="images/icons/search_icon.png"
+              alt="search-button"
+            />
           </button>
           <button
             type="button"

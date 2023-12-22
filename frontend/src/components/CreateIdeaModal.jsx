@@ -1,13 +1,21 @@
 import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 
 function CreateIdeaModal({
   handleOpenModalIdea,
   handleClickDraft,
   handleClickPublish,
 }) {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className="modal-idea-container">
-      <div className="create-idea-container">
+      <div
+        className={`create-idea-container ${
+          theme === "dark" ? "dark" : "light"
+        }`}
+      >
         <div
           className="icon-close-container"
           onClick={handleOpenModalIdea}
@@ -26,7 +34,7 @@ function CreateIdeaModal({
                   type="text"
                   name="title"
                   id="title"
-                  className="input-border"
+                  className={`input-border ${theme === "dark" && "dark"}`}
                 />
               </div>
               <div className="form-date-container">
@@ -36,7 +44,7 @@ function CreateIdeaModal({
                   type="date"
                   name="date"
                   id="date"
-                  className="input-border"
+                  className={`input-border ${theme === "dark" && "dark"}`}
                 />
               </div>
 
@@ -48,8 +56,9 @@ function CreateIdeaModal({
                 </label>
 
                 <div className="image-input-container">
-                  <img src="images/default-image.png" alt="default" />
+                  <img src="/images/default-image.png" alt="default" />
                   <input
+                    className={`button-picture ${theme === "dark" && "dark"}`}
                     type="file"
                     id="idea-image"
                     name="idea-image"
@@ -60,7 +69,7 @@ function CreateIdeaModal({
               <label htmlFor="user">Personne impactées</label>
               <div className="form-impacted-person-container">
                 {/* Personne impactées */}
-                <table>
+                <table className={`table ${theme === "dark" && "dark"}`}>
                   <thead>
                     <tr>
                       <th aria-label="image-checkbox">&nbsp;</th>
@@ -127,7 +136,7 @@ function CreateIdeaModal({
                 <textarea
                   id="description"
                   name="description"
-                  className="input-border"
+                  className={`input-border ${theme === "dark" && "dark"}`}
                 />
               </div>
               <div className="buttons-container">

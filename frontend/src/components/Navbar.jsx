@@ -23,17 +23,21 @@ function Navbar() {
         <img src="/images/logo.png" alt="logo" />
       </div>
       <div className="nav-right">
-        <input
-          onClick={toggleTheme}
-          type="checkbox"
-          className="theme-checkbox"
-        />
+        <div className="image-container">
+          <input
+            title="Thème clair/sombre"
+            onClick={toggleTheme}
+            type="checkbox"
+            className="theme-checkbox"
+          />
+        </div>
         {location.pathname !== "/profile" &&
           location.pathname !== "/rules" &&
           location.pathname !== "/" && (
             <NavLink to="/profile">
               <div className="image-container">
                 <img
+                  title="Profil"
                   src={
                     theme === "dark"
                       ? "/images/icons/avatar_icon_dark.png"
@@ -47,6 +51,7 @@ function Navbar() {
         {location.pathname !== "/rules" && location.pathname !== "/" && (
           <div className="image-container">
             <img
+              title="Notifications"
               src={
                 theme === "dark"
                   ? "/images/icons/notification_icon_light.png"
@@ -62,15 +67,18 @@ function Navbar() {
             onClick={handleLogout}
             className="button-logout"
           >
-            <img
-              className="logout"
-              src={
-                theme === "dark"
-                  ? "images/icons/logout_dark.png"
-                  : "images/icons/logout.png"
-              }
-              alt="profile"
-            />
+            <div className="image-container">
+              <img
+                title="Déconnexion"
+                className="logout"
+                src={
+                  theme === "dark"
+                    ? "/images/icons/logout_dark.png"
+                    : "/images/icons/logout.png"
+                }
+                alt="profile"
+              />
+            </div>
           </button>
         )}
       </div>
