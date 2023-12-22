@@ -1,9 +1,9 @@
 import React, { useContext, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ThemeContext } from "../components/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 import Navbar from "../components/Navbar";
-import { UserContext } from "../components/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function Connection() {
   const { setUser } = useContext(UserContext);

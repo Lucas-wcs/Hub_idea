@@ -1,199 +1,245 @@
-.create-idea-container {
-  width: 70vw;
-  margin: 0 auto;
-  background-color: beige;
-  label,
-  input,
-  table {
-    font-family: var(--text-font);
-    font-size: 0.8rem;
-  }
-  .icon-close-container {
-    padding: 2vh;
-    display: flex;
-    justify-content: flex-end;
+.modal-idea-container {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  // color: var(--senary-color);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  overflow: scroll;
 
-    img {
-      width: 30px;
+  .create-idea-container {
+    width: 70vw;
+    height: 130%;
+    margin: 50px 100px 50px 100px;
+    background-color: var(--senary-color);
+
+    &.dark {
+      background-color: var(--dark);
+
+      p {
+        color: white;
+      }
     }
-  }
-
-  .input-border {
-    border-radius: 5px;
-    border: 2px solid var(--quinary-color);
-  }
-
-  h1 {
-    font-family: var(--title-font);
-    text-align: center;
-  }
-
-  .form-entire-container {
-    display: flex;
-    justify-content: center;
-  }
-
-  .form-container {
-    display: flex;
 
     label,
-    input {
+    input,
+    table {
       font-family: var(--text-font);
+      font-size: 0.8rem;
     }
 
-    div {
-      margin-bottom: 3vh;
+    input:focus,
+    textarea:focus {
+      border: 2px solid var(--secondary-color);
+      outline: 0;
     }
 
-    .form-title-container {
-      display: flex;
-      flex-direction: column;
-
-      input {
-        height: 4vh;
-        width: 45vw;
-      }
-    }
-
-    .form-date-container {
-      label {
-        padding-right: 3vw;
-      }
-      input {
-        width: 20vw;
-      }
-    }
-
-    .form-image-container {
-      img {
-        width: 16vw;
-      }
-      .image-input-container {
-        padding-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-      }
-
-      input[type="file"]::file-selector-button {
-        font-family: var(--text-font);
-        margin-left: 1vw;
-        margin-right: 2vw;
-        border: none;
-        background: var(--secondary-color);
-        padding: 10px 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        //transition: background .2s ease-in-out;
-      }
-
-      input[type="file"]::file-selector-button:hover {
-        background: #bae3e3;
-      }
-    }
-    .form-impacted-person-container {
-      overflow: scroll;
-      height: 30vh;
-      table {
-        width: 100%;
-        background-color: white;
-        border-collapse: collapse;
-        border: 2px solid var(--quinary-color);
-        border-radius: 5px;
-        text-align: left;
-      }
-      td {
-        padding: 1vh;
-        border-top: solid 1px var(--quinary-color);
-      }
-
-      .checkbox-avatar {
-        display: flex;
-        justify-content: space-around;
-        gap: 0.1vw;
-
-        input {
-          transform: scale(1.6);
-          margin: 0.4vw;
-          accent-color: #bae3e3;
-        }
-      }
-
-      img {
-        height: 4vh;
-      }
-    }
-
-    .form-description-container {
-      display: flex;
-      flex-direction: column;
-
-      textarea {
-        width: 100%;
-        height: 15vh;
-      }
-    }
-
-    .buttons-container {
+    .icon-close-container {
+      padding: 2vh;
       display: flex;
       justify-content: flex-end;
-      gap: 1vw;
 
-      input {
-        font-size: 1rem;
-        padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
-        border-radius: 5px;
-        border: none;
-      }
-      .button-green {
-        background-color: var(--primary-color);
-      }
-
-      .button-blue {
-        background-color: var(--secondary-color);
+      img {
+        width: 30px;
       }
     }
-  }
-}
 
-// responsive:
-@media (max-width: 1024px) and (min-width: 769px) {
-  .create-idea-container {
-    width: 80vw;
-    margin: 0 auto;
+    .icon-close-container:hover {
+      cursor: pointer;
+    }
+
+    .input-border {
+      border-radius: 5px;
+      border: 2px solid var(--quinary-color);
+
+      &.dark {
+        background-color: #36383c;
+      }
+    }
+
+    h1 {
+      font-family: var(--title-font);
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .form-entire-container {
+      display: flex;
+      justify-content: center;
+    }
 
     .form-container {
+      display: flex;
+
+      label,
+      input {
+        font-family: var(--text-font);
+        color: var(--text-color);
+      }
+
+      div {
+        margin-bottom: 3vh;
+      }
+
       .form-title-container {
         display: flex;
         flex-direction: column;
 
         input {
-          height: 3vh;
-          width: 60vw;
+          height: 4vh;
+          width: 45vw;
         }
       }
+
       .form-date-container {
         label {
           padding-right: 3vw;
         }
         input {
-          width: 40vw;
+          width: 20vw;
         }
       }
+
       .form-image-container {
         img {
-          width: 50vw;
-          padding-bottom: 3vh;
+          width: 16vw;
         }
         .image-input-container {
           padding-top: 10px;
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+        }
+
+        input[type="file"]::file-selector-button {
+          font-family: var(--text-font);
+          margin-left: 1vw;
+          margin-right: 2vw;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 10px;
+          cursor: pointer;
+          background: #bae3e3;
         }
       }
       .form-impacted-person-container {
         overflow: scroll;
-        height: 20vh;
+        height: 30vh;
+        table {
+          width: 100%;
+          background-color: white;
+          border-collapse: collapse;
+          border: 2px solid var(--quinary-color);
+          border-radius: 5px;
+          text-align: left;
+        }
+        td {
+          padding: 1vh;
+          border-top: solid 1px var(--quinary-color);
+        }
+
+        .checkbox-avatar {
+          display: flex;
+          justify-content: space-around;
+          gap: 0.1vw;
+
+          input {
+            transform: scale(1.6);
+            margin: 0.4vw;
+            accent-color: #bae3e3;
+          }
+        }
+
+        table {
+          background-color: rgb(253, 253, 253);
+          &.dark {
+            background-color: #36383c;
+          }
+        }
+        img {
+          height: 4vh;
+        }
+      }
+
+      .form-description-container {
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+          width: 100%;
+          height: 15vh;
+        }
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1vw;
+
+        input {
+          font-size: 1rem;
+          padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+          border-radius: 5px;
+          border: none;
+        }
+        .button-green {
+          background-color: var(--primary-color);
+          cursor: pointer;
+        }
+
+        .button-blue {
+          background-color: var(--secondary-color);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  // responsive:
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .create-idea-container {
+      width: 70vw;
+      height: 150%;
+      margin: 100px 100px 200px 100px;
+
+      .form-container {
+        .form-title-container {
+          display: flex;
+          flex-direction: column;
+
+          input {
+            height: 3vh;
+            width: 60vw;
+          }
+        }
+        .form-date-container {
+          label {
+            padding-right: 3vw;
+          }
+          input {
+            width: 40vw;
+          }
+        }
+        .form-image-container {
+          img {
+            width: 50vw;
+            padding-bottom: 3vh;
+          }
+          .image-input-container {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+          }
+        }
+        .form-impacted-person-container {
+          overflow: scroll;
+          height: 20vh;
+        }
       }
     }
   }
@@ -201,72 +247,76 @@
 
 // responsive:
 @media (max-width: 768px) {
-  .create-idea-container {
-    width: 100vw;
-    margin: 0 auto;
+  .modal-idea-container {
+    width: 100%;
+    .create-idea-container {
+      width: 100vw;
+      height: 140%;
+      margin: 0;
 
-    .form-container {
-      .form-title-container {
-        display: flex;
-        flex-direction: column;
-
-        input {
-          height: 3vh;
-          width: 80vw;
-        }
-      }
-      .form-date-container {
-        label {
-          padding-right: 3vw;
-        }
-        input {
-          width: 50vw;
-        }
-      }
-      .form-image-container {
-        img {
-          width: 60vw;
-          padding-bottom: 3vh;
-        }
-        .image-input-container {
-          padding-top: 10px;
+      .form-container {
+        .form-title-container {
           display: flex;
           flex-direction: column;
-        }
-      }
-      .form-impacted-person-container {
-        overflow: scroll;
-        height: 20vh;
-        table {
-          width: 80vw;
-          background-color: white;
-          border-collapse: collapse;
-          border: 2px solid var(--quinary-color);
-          border-radius: 5px;
-          text-align: left;
-        }
-        img {
-          height: 3vh;
-        }
-        .checkbox-avatar {
-          display: flex;
-          justify-content: space-around;
-          gap: 1.5vw;
 
           input {
-            transform: scale(1.2);
-            margin: 0.4vw;
-            accent-color: #bae3e3;
+            height: 3vh;
+            width: 80vw;
           }
         }
-      }
-      .form-description-container {
-        display: flex;
-        flex-direction: column;
+        .form-date-container {
+          label {
+            padding-right: 3vw;
+          }
+          input {
+            width: 50vw;
+          }
+        }
+        .form-image-container {
+          img {
+            width: 60vw;
+            padding-bottom: 3vh;
+          }
+          .image-input-container {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+          }
+        }
+        .form-impacted-person-container {
+          overflow: scroll;
+          height: 20vh;
+          table {
+            width: 80vw;
+            background-color: white;
+            border-collapse: collapse;
+            border: 2px solid var(--quinary-color);
+            border-radius: 5px;
+            text-align: left;
+          }
+          img {
+            height: 3vh;
+          }
+          .checkbox-avatar {
+            display: flex;
+            justify-content: space-around;
+            gap: 1.5vw;
 
-        textarea {
-          width: 80vw;
-          height: 15vh;
+            input {
+              transform: scale(1.2);
+              margin: 0.4vw;
+              accent-color: #bae3e3;
+            }
+          }
+        }
+        .form-description-container {
+          display: flex;
+          flex-direction: column;
+
+          textarea {
+            width: 80vw;
+            height: 15vh;
+          }
         }
       }
     }
