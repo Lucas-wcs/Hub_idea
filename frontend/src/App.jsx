@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./components/ThemeContext";
 import Footer from "./components/Footer";
+import { UserProvider } from "./components/UserContext";
 
 function App() {
   const location = useLocation();
@@ -11,10 +12,15 @@ function App() {
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <ThemeProvider>
-        {location.pathname !== "/" && <Navbar />}
-        <Outlet />
-        <div className="footer-principale-container" style={{ flexGrow: 1 }} />
-        <Footer />
+        <UserProvider>
+          {location.pathname !== "/" && <Navbar />}
+          <Outlet />
+          <div
+            className="footer-principale-container"
+            style={{ flexGrow: 1 }}
+          />
+          <Footer />
+        </UserProvider>
       </ThemeProvider>
     </div>
   );

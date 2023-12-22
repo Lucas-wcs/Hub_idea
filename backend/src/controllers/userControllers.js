@@ -73,10 +73,30 @@ const destroy = async (req, res, next) => {
   }
 };
 
+const addModerator = async (req, res, next) => {
+  try {
+    await tables.User.addModerator(req.params.id);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const deleteModerator = async (req, res, next) => {
+  try {
+    await tables.User.deleteModerator(req.params.id);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  addModerator,
+  deleteModerator,
 };

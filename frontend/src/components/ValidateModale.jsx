@@ -44,9 +44,15 @@ function ValidateModale({
     },
     modale4: {
       title: "",
-      text: "",
-      logo: "",
-      textButton: "",
+      text: "Décision envoyée !",
+      logo: "/images/icons/confetti.png",
+      textButton: "Accueil",
+    },
+    modale5: {
+      title: "",
+      text: "Décision envoyée !",
+      logo: "/images/icons/confetti.png",
+      textButton: "Accueil",
     },
   };
 
