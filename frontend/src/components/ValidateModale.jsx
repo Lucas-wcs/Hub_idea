@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function ValidateModale({
   type,

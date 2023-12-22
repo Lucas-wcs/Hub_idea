@@ -8,7 +8,7 @@ import "./styles/index.scss";
 import Connection from "./pages/Connection";
 import Home, { loaderIdeas } from "./pages/Home";
 import Rules from "./pages/Rules";
-import Profile, { userLoader } from "./pages/Profile";
+import Profile from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -44,20 +44,19 @@ const router = createBrowserRouter([
         element: <Rules />,
       },
       {
-        path: "/profile/:id", // rajouter :id et voir pour sécurité?
+        path: "/profile/:id",
         element: (
           <ProtectedRoute>
             <Profile />
           </ProtectedRoute>
         ),
-        loader: userLoader,
       },
       {
         path: "/administrator",
         element: (
-          <ProtectedRoute>
-            <HomeAdministrator />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <HomeAdministrator />
+          // </ProtectedRoute>
         ),
         loader,
       },

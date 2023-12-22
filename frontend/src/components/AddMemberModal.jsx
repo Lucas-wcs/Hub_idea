@@ -72,7 +72,7 @@ function AddMemberModal({ handleOpenModalAddMember }) {
             </div>
           </div>
           <div className="button-container">
-            <button type="submit">Envoyer l'invitation</button>
+            <button type="submit">Confirmer les informations</button>
           </div>
         </form>
       </div>
