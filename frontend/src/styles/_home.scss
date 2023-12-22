@@ -23,10 +23,8 @@
 
     .button-container {
       display: flex;
-      justify-content: space-between;
-      width: 25%;
       padding: calc(var(--spacing) * 2) 0;
-      // gap: calc(var(--spacing) * 3.8);
+      gap: calc(var(--spacing) * 3.8);
 
       .create-idea-button {
         transition:
@@ -99,7 +97,7 @@
       .button-container {
         width: 100%;
         .create-idea-button {
-          width: 60%;
+          width: 80%;
           border-radius: 10px;
           background-color: var(--primary-color);
           padding: 2.5% 7%;

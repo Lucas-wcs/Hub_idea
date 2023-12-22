@@ -15,7 +15,11 @@ function HomeAdministrator() {
   };
 
   return (
-    <div className="homeAdministrator">
+    <div
+      className="homeAdministrator"
+      onClick={(e) => e.stopPropagation()}
+      role="presentation"
+    >
       <div
         className={`homeAdmin-container ${
           isOpenMemberModal && "container-flou-admin"
