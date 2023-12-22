@@ -39,11 +39,7 @@ function HomeAdministrator() {
   };
 
   return (
-    <div
-      className="homeAdministrator"
-      onClick={(e) => e.stopPropagation()}
-      role="presentation"
-    >
+    <div className="homeAdministrator">
       <div
         className={`homeAdmin-container ${
           isOpenMemberModal && "container-flou-admin"
@@ -92,7 +88,7 @@ function HomeAdministrator() {
               return (
                 <p key={moderator.id}>
                   {moderator.firstname} {moderator.lastname}
-                  <div className="icon-container">
+                  <div className="logo-delete-container">
                     <img
                       src="/images/icons_delete.png"
                       alt="cross_logo"
@@ -129,7 +125,7 @@ function HomeAdministrator() {
             return (
               <p key={user.id}>
                 {user.firstname} {user.lastname}
-                <div className="icon-container">
+                <div className="logo-delete-container">
                   <img
                     src="/images/icons_delete.png"
                     alt="del_logo"
