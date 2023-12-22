@@ -46,12 +46,13 @@ function AddModeratorModal({ handleOpenModalAddModerator, users }) {
                 return (
                   <tr key={nonMonderator.id}>
                     <td className="td-one">
-                      <button
-                        type="button"
+                      <div
+                        className="add-logo-container"
                         onClick={() => handleAddModerator(nonMonderator.id)}
+                        role="presentation"
                       >
-                        Add
-                      </button>
+                        <img src="/images/icons_addm.png" alt="add_logo" />
+                      </div>
                       <div className="img-container">
                         <img src="/images/hugo.png" alt="pic" />
                       </div>
@@ -62,9 +63,6 @@ function AddModeratorModal({ handleOpenModalAddModerator, users }) {
                 );
               })}
           </table>
-        </div>
-        <div className="button-container">
-          <button type="submit">Valider</button>
         </div>
       </div>
     </div>

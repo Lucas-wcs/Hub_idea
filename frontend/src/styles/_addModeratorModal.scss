@@ -27,18 +27,26 @@
   }
 
   .modal-main-container {
-    height: 80%;
+    height: 90%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 3%;
+    padding-bottom: 2%;
+  }
+
+  h4 {
+    margin-top: -3%;
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--primary-color);
   }
 
   .table-container {
     width: 100%;
-    height: 70%;
+    height: 85%;
     padding-left: 2%;
     padding-right: 2%;
     overflow-y: scroll;
@@ -73,8 +81,10 @@
 
   .td-one {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
   }
 
   .img-container {
@@ -82,34 +92,17 @@
     height: 100%;
   }
 
-  img {
-    width: 100%;
+  .add-logo-container {
+    width: calc(100% / 5);
     height: 100%;
-    object-fit: contain;
-  }
-
-  .button-container {
-    width: 100%;
-    height: 10%;
     display: flex;
     justify-content: center;
   }
 
-  button {
-    width: 30%;
+  img {
+    width: 100%;
     height: 100%;
-    background-color: var(--primary-color);
-    font-family: var(--title-font);
-    font-weight: 300;
-    cursor: pointer;
-  }
-
-  h4 {
-    margin-top: -3%;
-    font-family: var(--title-font);
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--primary-color);
+    object-fit: contain;
   }
 }
 

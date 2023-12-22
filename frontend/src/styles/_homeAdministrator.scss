@@ -1,42 +1,25 @@
 .homeAdministrator {
   max-width: 100vw;
+  height: 85vh;
   padding-left: 5vw;
   padding-right: 5vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2vh;
-
-  h4 {
-    font-family: var(--title-font);
-    color: var(--quaternary-color);
-    font-size: 1.5rem;
-    font-weight: 300;
-  }
-
-  p {
-    font-family: var(--text-font);
-    background-color: rgba(212, 232, 232, 0.3);
-    border: 2.5px solid rgba(212, 232, 232, 0.3);
-    border-radius: 25px;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+  overflow-x: hidden;
 
   .homeAdmin-container {
     width: 100%;
-    min-height: 20vh;
+    height: calc(100% / 3.5);
     padding-bottom: 2.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
   }
 
   .homeAdmin-title {
     width: 100%;
-    height: 10vh;
+    height: 25%;
     padding-bottom: 1%;
     display: flex;
     align-items: center;
@@ -45,13 +28,19 @@
 
   .homeAdmin-logo-container {
     width: 4%;
-    height: 75%;
+    height: 120%;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
+  }
+  h4 {
+    font-family: var(--title-font);
+    color: var(--quaternary-color);
+    font-size: 1.5rem;
+    font-weight: 300;
   }
 
   .button-add {
@@ -64,23 +53,33 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 5%;
     gap: 20px;
+    overflow: visible;
   }
 
-  .icon-container {
+  p {
+    font-family: var(--text-font);
+    background-color: rgba(212, 232, 232, 0.3);
+    border: 2.5px solid rgba(212, 232, 232, 0.3);
+    border-radius: 3px;
+    padding: 0.5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .logo-delete-container {
     width: 0%;
     margin-top: -3vh;
+    cursor: pointer;
+
     .img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-  }
-
-  .special {
-    padding-left: 5%;
-    justify-content: flex-start;
   }
 
   // Modal to add member :
@@ -129,6 +128,11 @@
 
 @media screen and (max-width: 1000px) {
   .homeAdministrator {
+    min-height: 100vh;
+
+    .homeAdmin-content-container {
+      justify-content: center;
+    }
     .addMember-modal {
       margin-top: 30vh;
     }
@@ -140,6 +144,7 @@
 
 @media screen and (max-width: 800px) {
   .homeAdministrator {
+    min-height: 130vh;
     h4 {
       font-size: 1.3rem;
     }
