@@ -3,6 +3,10 @@
   display: none;
 }
 .idea-card-container {
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+  box-shadow: 8px 8px 10px 0 rgba(213, 215, 212, 0.6);
   background-color: var(--cardidea-color);
   border-radius: 5px;
   width: 31%;
@@ -133,6 +137,9 @@
       }
     }
   }
+}
+.idea-card-container:hover {
+  transform: scale(1.01);
 }
 
 @media (min-width: 700px) and (max-width: 1000px) {
