@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { ThemeProvider } from "./components/ThemeContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Footer from "./components/Footer";
-import { UserProvider } from "./components/UserContext";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   const location = useLocation();
