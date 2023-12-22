@@ -1,40 +1,27 @@
-import Counter from "./components/Counter";
-import logo from "./assets/logo.svg";
-
-import "./App.css";
+import { Outlet, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { ThemeProvider } from "./context/ThemeContext";
+import Footer from "./components/Footer";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
+  const location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React !</p>
-
-        <Counter />
-
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div
+      className="principal-container"
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
+      <ThemeProvider>
+        <UserProvider>
+          {location.pathname !== "/" && <Navbar />}
+          <Outlet />
+          <div
+            className="footer-principale-container"
+            style={{ flexGrow: 1 }}
+          />
+          <Footer />
+        </UserProvider>
+      </ThemeProvider>
     </div>
   );
 }

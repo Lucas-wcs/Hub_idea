@@ -1,0 +1,226 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+
+  .home-button {
+    display: flex;
+    padding: 10px;
+    height: 2vh;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 20px;
+
+    .clickable-image {
+      width: 4vw;
+    }
+  }
+  .profile-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+
+    .thumbnail {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+
+      img {
+        width: 8vw;
+      }
+
+      button {
+        background-color: var(--secondary-color);
+        font-family: var(--text-font);
+        font-size: 12px;
+        border-radius: 5px;
+        padding: 5px 16px;
+        margin-left: 20px;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .profile-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      .profile-form-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .label-profile {
+          font-family: var(--text-font);
+          padding: var(--spacing);
+        }
+        .profile-input {
+          padding: var(--spacing);
+          margin-left: 5px;
+          background-color: var(--quinary-color);
+          border: none;
+          width: 30vw;
+
+          &::placeholder {
+            font-family: var(--text-font);
+            font-size: 12px;
+          }
+        }
+      }
+      .profile-form-password {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        .label-profile-pass {
+          font-family: var(--text-font);
+          margin-left: 2px;
+          margin-top: 1.25em;
+          padding: 0;
+        }
+        .profile-input-pass {
+          padding: var(--spacing);
+          margin-left: 3px;
+          background-color: var(--quinary-color);
+          border: none;
+          width: 30vw;
+
+          &::placeholder {
+            font-family: var(--text-font);
+            font-size: 12px;
+          }
+        }
+      }
+      .submit-button {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1.25em;
+        width: 30vw;
+
+        button {
+          padding: 5px 8px;
+          border-radius: 5px;
+          border: none;
+          background-color: var(--primary-color);
+          font-family: var(--text-font);
+          font-size: 12px;
+          margin-bottom: 20px;
+          margin-top: 15px;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-page .home-button {
+    .clickable-image {
+      width: 6vw;
+    }
+  }
+
+  .profile-page .profile-form-container {
+    .thumbnail {
+      justify-content: center;
+      gap: 10px;
+      img {
+        width: 20%;
+      }
+
+      button {
+        padding: 3px 10px;
+        font-size: 10px;
+      }
+    }
+
+    .profile-form {
+      .profile-form-item {
+        .label-profile {
+          font-size: 12px;
+          width: 65vw;
+        }
+        .profile-input {
+          width: 65vw;
+          padding: 5px;
+
+          &::placeholder {
+            font-size: 10px;
+          }
+        }
+      }
+      .profile-form-password {
+        .label-profile-pass {
+          text-align: left;
+          font-size: 12px;
+          width: 65vw;
+        }
+
+        .profile-input-pass {
+          padding: 5px;
+          width: 65vw;
+        }
+
+        &::placeholder {
+          font-size: 10px;
+        }
+      }
+      .submit-button {
+        width: 65vw;
+
+        button {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .profile-page .profile-form-container {
+    .thumbnail {
+      justify-content: center;
+      gap: 10px;
+      .clickable-image {
+        width: 30%;
+      }
+    }
+    .form-field {
+      .names {
+        .label-profile {
+          font-size: 12px;
+          width: 40vw;
+        }
+        .profile-input {
+          width: 40vw;
+        }
+      }
+      .profile-form-password {
+        align-items: center;
+
+        .label-profile-pass {
+          text-align: left;
+          font-size: 12px;
+          width: 40vw;
+        }
+        .profile-input-pass {
+          width: 40vw;
+        }
+      }
+      .submit-button {
+        width: 50vw;
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Kanit:wght@500&family=Monofett&family=Poppins:wght@300&family=Signika+Negative:wght@300&display=swap"); //medium 500
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: var(--senary-color);
+  color: var(--primary-color-dark);
+  color: var(--text-color);
+  --cardidea-color: var(--cardidea-color-light);
+}
+
+body.dark-theme {
+  background-color: var(--dark);
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --text-color: var(--text-color-dark);
+  --button-color: var(--button-color-dark);
+  --button-background: var(--button-background-dark);
+  --button-border: var(--button-border-dark);
+  --cardidea-color: var(--cardidea-color-dark);
+}
+
+:root {
+  // font-family
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --text-font: "Poppins", sans-serif;
+  --title-font: "Readex Pro", sans-serif;
+
+  //color-light mode
+  --primary-color: #9ebd84; //green
+  --secondary-color: #d4e8e8; //blue
+  --tertiary-color: #ffe569; //yellow
+  --quaternary-color: #8f1146; //red
+  --quinary-color: #d5d7d4; //grey
+  --senary-color: #fffbf6;
+  --senary2-color: #f5f5da;
+  --black-color: #172b2b;
+  --button-color-light: #000; // noir pour le thème clair
+  --button-background-light: #fff; // blanc pour le thème clair
+  --button-border-light: #000; // noir pour le thème clair
+  --cardidea-color-light: #f5f5da;
+
+  //color-dark mode
+  --primary-color-dark: #5c7b42;
+  --secondary-color-dark: #172b2b;
+  --text-color-dark: #fff;
+  --button-color-dark: #fff; // blanc pour le thème sombre
+  --button-background-dark: #000; // noir pour le thème sombre
+  --button-border-dark: #fff; // noir pour le thème sombre
+  --cardidea-color-dark: #172b2b;
+
+  //spacing
+  --spacing: 0.5rem; //8 px
+  --spacing-x2: calc(var(--spacing) * 2);
+}

@@ -23,9 +23,9 @@ CREATE TABLE
         `lastname` VARCHAR(255) NOT NULL,
         `email` TEXT NOT NULL,
         `image_profil` VARCHAR(50),
-        `password` VARCHAR(50) NOT NULL,
-        `is_administrator` BOOLEAN NOT NULL,
-        `is_moderator` BOOLEAN NOT NULL,
+        `password` VARCHAR(50) NOT NULL DEFAULT 'welcometohubidea',
+        `is_administrator` BOOLEAN NOT NULL DEFAULT 0,
+        `is_moderator` BOOLEAN NOT NULL DEFAULT 0,
         `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
@@ -47,7 +47,7 @@ VALUES (
         'john.jpg',
         'hashed_password',
         0,
-        0,
+        1,
         CURRENT_TIMESTAMP
     ), (
         'Alice',
@@ -56,7 +56,7 @@ VALUES (
         'alice.jpg',
         'hashed_password',
         0,
-        0,
+        1,
         CURRENT_TIMESTAMP
     ), (
         'Robert',
@@ -149,7 +149,7 @@ CREATE TABLE
         `idea_date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `date_limit` DATETIME,
         `is_validation_administrator` BOOLEAN,
-        `status_id` INT,
+        `status_id` INT DEFAULT 1,
         `idea_final_comment` VARCHAR(500),
         `user_id` INT,
         CONSTRAINT `fk_idea_status_id` FOREIGN KEY (`status_id`) REFERENCES `Status_idea` (`id`),

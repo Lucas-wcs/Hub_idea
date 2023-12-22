@@ -1,0 +1,192 @@
+.homeAdministrator {
+  max-width: 100vw;
+  height: 85vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+
+  .homeAdmin-container {
+    width: 100%;
+    height: calc(100% / 3.5);
+    padding-bottom: 2.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+  }
+
+  .homeAdmin-title {
+    width: 100%;
+    height: 25%;
+    padding-bottom: 1%;
+    display: flex;
+    align-items: center;
+    gap: 2%;
+  }
+
+  .homeAdmin-logo-container {
+    width: 4%;
+    height: 120%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  h4 {
+    font-family: var(--title-font);
+    color: var(--quaternary-color);
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .button-add {
+    cursor: pointer;
+  }
+
+  .homeAdmin-content-container {
+    width: 100%;
+    padding-left: 1%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 5%;
+    gap: 20px;
+    overflow: visible;
+  }
+
+  p {
+    font-family: var(--text-font);
+    background-color: rgba(212, 232, 232, 0.3);
+    border: 2.5px solid rgba(212, 232, 232, 0.3);
+    border-radius: 3px;
+    padding: 0.5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .logo-delete-container {
+    width: 0%;
+    margin-top: -3vh;
+    cursor: pointer;
+
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  // Modal to add member :
+  .addMember-modal {
+    position: absolute;
+    top: 25vh;
+    left: -1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    width: 100%;
+  }
+
+  // Modal to add moderator :
+  .addModerator-modal {
+    position: absolute;
+    top: 25vh;
+    left: -1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    width: 100%;
+  }
+}
+
+// background for add member modal:
+.container-flou-admin {
+  position: relative;
+  z-index: 1;
+  filter: blur(2px);
+}
+
+// responsive:
+@media screen and (max-width: 1100px) {
+  .homeAdministrator {
+    .addMember-modal {
+      margin-top: 30vh;
+    }
+    .addModerator-modal {
+      margin-top: 30vh;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .homeAdministrator {
+    min-height: 100vh;
+
+    .homeAdmin-content-container {
+      justify-content: center;
+    }
+    .addMember-modal {
+      margin-top: 30vh;
+    }
+    .addModerator-modal {
+      margin-top: 30vh;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .homeAdministrator {
+    min-height: 130vh;
+    h4 {
+      font-size: 1.3rem;
+    }
+    p {
+      width: 65%;
+      font-size: 0.9rem;
+    }
+
+    .homeAdmin-logo-container {
+      width: 7%;
+    }
+
+    .addMember-modal {
+      bottom: -100vh;
+    }
+
+    .addModerator-modal {
+      margin-bottom: 35vh;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .homeAdministrator {
+    h4 {
+      font-size: 1.2rem;
+    }
+    p {
+      width: 80%;
+      font-size: 0.9rem;
+    }
+
+    .homeAdmin-logo-container {
+      width: 8%;
+    }
+
+    .addMember-modal {
+      bottom: -130vh;
+    }
+
+    .addModerator-modal {
+      margin-top: 30vh;
+    }
+  }
+}
