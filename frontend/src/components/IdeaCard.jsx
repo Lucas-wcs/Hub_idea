@@ -2,7 +2,7 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 import { ThemeContext } from "../context/ThemeContext";
 
-function IdeaCard({ title }) {
+function IdeaCard({ title, statusId }) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -12,7 +12,7 @@ function IdeaCard({ title }) {
           <img src="/images/repas_noel.webp" alt="idea" />
         </div>
         <div className="status-container">
-          <p>Fin dans 3 jours</p>
+          <p>{statusId}</p>
           <img
             className="clickable-image"
             src={
@@ -41,6 +41,7 @@ function IdeaCard({ title }) {
 
 IdeaCard.propTypes = {
   title: PropTypes.string.isRequired,
+  statusId: PropTypes.string.isRequired,
 };
 
 export default IdeaCard;

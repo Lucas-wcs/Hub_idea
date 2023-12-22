@@ -6,15 +6,23 @@ import { ThemeContext } from "../context/ThemeContext";
 function ValidateModale({
   type,
   setTypeModal,
-  handleClickSubmitButton,
+  handleClickSubmitButton = null,
   handleClickIdeaCancelButton,
 }) {
   const navigate = useNavigate();
 
   const handleButton = (event) => {
-    if (type === "modale1" && event.target.value === "button1") {
+    if (
+      type === "modale1" &&
+      event.target.value === "button1" &&
+      handleClickSubmitButton
+    ) {
       handleClickSubmitButton();
-    } else if (type === "modale2" && event.target.value === "button1") {
+    } else if (
+      type === "modale2" &&
+      event.target.value === "button1" &&
+      handleClickSubmitButton
+    ) {
       navigate("/home");
       handleClickSubmitButton();
     } else if (type === "modale1" && event.target.value === "button2") {
@@ -115,8 +123,12 @@ function ValidateModale({
 ValidateModale.propTypes = {
   type: PropTypes.string.isRequired,
   setTypeModal: PropTypes.func.isRequired,
-  handleClickSubmitButton: PropTypes.func.isRequired,
+  handleClickSubmitButton: PropTypes.func,
   handleClickIdeaCancelButton: PropTypes.func.isRequired,
+};
+
+ValidateModale.defaultProps = {
+  handleClickSubmitButton: null,
 };
 
 // importation modale dans pages <ValidateModale type="modale1" setTypeModal={() => console.log("")} />
