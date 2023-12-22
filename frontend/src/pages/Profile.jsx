@@ -2,7 +2,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { ThemeContext } from "../components/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Profile() {
   // const users = useLoaderData();

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import IdeaCard from "../components/IdeaCard";
 import CreateIdeaModal from "../components/CreateIdeaModal";
 import ValidateModale from "../components/ValidateModale";
-import { UserContext } from "../components/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function Home() {
   const navigate = useNavigate();
