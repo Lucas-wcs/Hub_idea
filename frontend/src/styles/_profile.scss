@@ -14,7 +14,7 @@
       width: 4vw;
     }
   }
-  .profile-form {
+  .profile-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,26 +38,30 @@
         padding: 5px 16px;
         margin-left: 20px;
         border: none;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
       }
     }
 
-    .form-field {
+    .profile-form {
       display: flex;
       flex-direction: column;
       align-items: center;
       flex-wrap: wrap;
       justify-content: center;
-
-      .names {
+      .profile-form-item {
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
 
-        label {
-          font-size: var(--spacing-x2);
+        .label-profile {
           font-family: var(--text-font);
           padding: var(--spacing);
         }
-        input {
+        .profile-input {
           padding: var(--spacing);
           margin-left: 5px;
           background-color: var(--quinary-color);
@@ -70,19 +74,18 @@
           }
         }
       }
-
-      .passwords {
+      .profile-form-password {
         display: flex;
         flex-direction: column;
         gap: 1em;
 
-        .label-password {
-          font-size: var(--spacing-x2);
+        .label-profile-pass {
           font-family: var(--text-font);
+          margin-left: 2px;
           margin-top: 1.25em;
           padding: 0;
         }
-        input {
+        .profile-input-pass {
           padding: var(--spacing);
           margin-left: 3px;
           background-color: var(--quinary-color);
@@ -110,6 +113,11 @@
           font-size: 12px;
           margin-bottom: 20px;
           margin-top: 15px;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+          }
         }
       }
     }
@@ -123,7 +131,7 @@
     }
   }
 
-  .profile-page .profile-form {
+  .profile-page .profile-form-container {
     .thumbnail {
       justify-content: center;
       gap: 10px;
@@ -136,13 +144,14 @@
         font-size: 10px;
       }
     }
-    .form-field {
-      .names {
-        label {
+
+    .profile-form {
+      .profile-form-item {
+        .label-profile {
           font-size: 12px;
           width: 65vw;
         }
-        input {
+        .profile-input {
           width: 65vw;
           padding: 5px;
 
@@ -151,21 +160,20 @@
           }
         }
       }
-      .passwords {
-        align-items: center;
-
-        .label-password {
+      .profile-form-password {
+        .label-profile-pass {
           text-align: left;
           font-size: 12px;
           width: 65vw;
         }
-        input {
-          width: 65vw;
-          padding: 5px;
 
-          &::placeholder {
-            font-size: 10px;
-          }
+        .profile-input-pass {
+          padding: 5px;
+          width: 65vw;
+        }
+
+        &::placeholder {
+          font-size: 10px;
         }
       }
       .submit-button {
@@ -180,7 +188,7 @@
 }
 
 @media (min-width: 1024px) and (max-width: 1200px) {
-  .profile-page .profile-form {
+  .profile-page .profile-form-container {
     .thumbnail {
       justify-content: center;
       gap: 10px;
@@ -190,23 +198,23 @@
     }
     .form-field {
       .names {
-        label {
+        .label-profile {
           font-size: 12px;
           width: 40vw;
         }
-        input {
+        .profile-input {
           width: 40vw;
         }
       }
-      .passwords {
+      .profile-form-password {
         align-items: center;
 
-        .label-password {
+        .label-profile-pass {
           text-align: left;
           font-size: 12px;
           width: 40vw;
         }
-        input {
+        .profile-input-pass {
           width: 40vw;
         }
       }

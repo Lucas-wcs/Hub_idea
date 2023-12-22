@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <Rules />,
       },
       {
-        path: "/profile", // rajouter :id et voir pour sécurité?
+        path: "/profile/:id", // rajouter :id et voir pour sécurité?
         element: (
           <ProtectedRoute>
             <Profile />
