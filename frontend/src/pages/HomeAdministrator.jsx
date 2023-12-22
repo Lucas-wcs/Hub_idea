@@ -22,7 +22,7 @@ function HomeAdministrator() {
 
   const handleDeleteModerator = (id) => {
     axios
-      .put(`http://localhost:3310/api/users/remove-moderator/${id}`)
+      .put(`${import.meta.env.VITE_BACKEND}/api/users/remove-moderator/${id}`)
       .then(() => {
         revalidator.revalidate();
       })
@@ -31,7 +31,7 @@ function HomeAdministrator() {
 
   const handleDeleteMember = (id) => {
     axios
-      .delete(`http://localhost:3310/api/users/${id}`)
+      .delete(`${import.meta.env.VITE_BACKEND}/api/users/${id}`)
       .then(() => {
         revalidator.revalidate();
       })
@@ -39,11 +39,7 @@ function HomeAdministrator() {
   };
 
   return (
-    <div
-      className="homeAdministrator"
-      onClick={(e) => e.stopPropagation()}
-      role="presentation"
-    >
+    <div className="homeAdministrator">
       <div
         className={`homeAdmin-container ${
           isOpenMemberModal && "container-flou-admin"
@@ -92,7 +88,7 @@ function HomeAdministrator() {
               return (
                 <p key={moderator.id}>
                   {moderator.firstname} {moderator.lastname}
-                  <div className="icon-container">
+                  <div className="logo-delete-container">
                     <img
                       src="/images/icons_delete.png"
                       alt="cross_logo"
@@ -129,7 +125,7 @@ function HomeAdministrator() {
             return (
               <p key={user.id}>
                 {user.firstname} {user.lastname}
-                <div className="icon-container">
+                <div className="logo-delete-container">
                   <img
                     src="/images/icons_delete.png"
                     alt="del_logo"

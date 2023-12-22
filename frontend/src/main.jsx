@@ -53,9 +53,9 @@ const router = createBrowserRouter([
       {
         path: "/administrator",
         element: (
-          <ProtectedRoute>
-            <HomeAdministrator />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <HomeAdministrator />
+          // </ProtectedRoute>
         ),
         loader,
       },

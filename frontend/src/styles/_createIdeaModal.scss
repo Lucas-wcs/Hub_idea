@@ -17,6 +17,15 @@
     height: 130%;
     margin: 50px 100px 50px 100px;
     background-color: var(--senary-color);
+
+    &.dark {
+      background-color: var(--dark);
+
+      p {
+        color: white;
+      }
+    }
+
     label,
     input,
     table {
@@ -47,11 +56,16 @@
     .input-border {
       border-radius: 5px;
       border: 2px solid var(--quinary-color);
+
+      &.dark {
+        background-color: #36383c;
+      }
     }
 
     h1 {
       font-family: var(--title-font);
       text-align: center;
+      color: var(--text-color);
     }
 
     .form-entire-container {
@@ -65,6 +79,7 @@
       label,
       input {
         font-family: var(--text-font);
+        color: var(--text-color);
       }
 
       div {
@@ -106,14 +121,9 @@
           margin-left: 1vw;
           margin-right: 2vw;
           border: none;
-          background: var(--secondary-color);
           padding: 10px 20px;
           border-radius: 10px;
           cursor: pointer;
-          //transition: background .2s ease-in-out;
-        }
-
-        input[type="file"]::file-selector-button:hover {
           background: #bae3e3;
         }
       }
@@ -145,6 +155,12 @@
           }
         }
 
+        table {
+          background-color: rgb(253, 253, 253);
+          &.dark {
+            background-color: #36383c;
+          }
+        }
         img {
           height: 4vh;
         }
