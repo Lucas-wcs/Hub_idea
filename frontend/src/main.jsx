@@ -8,7 +8,7 @@ import "./styles/index.scss";
 import Connection from "./pages/Connection";
 import Home from "./pages/Home";
 import Rules from "./pages/Rules";
-import Profile, { userLoader } from "./pages/Profile";
+import Profile from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -49,7 +49,6 @@ const router = createBrowserRouter([
             <Profile />
           </ProtectedRoute>
         ),
-        loader: userLoader,
       },
       {
         path: "/administrator",
