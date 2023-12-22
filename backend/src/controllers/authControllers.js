@@ -7,6 +7,7 @@ const login = async (req, res, next) => {
     const user = await tables.User.getByMail(email);
 
     if (user[0] && user[0].password === password) {
+      delete user[0].password;
       res.status(200).send(user[0]);
     } else {
       res.status(400).send("Incorrecte mail ou mot de passe");

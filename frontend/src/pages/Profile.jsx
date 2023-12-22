@@ -1,48 +1,31 @@
 // voir pour la navbar
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import axios from "axios";
 import { ThemeContext } from "../context/ThemeContext";
+import { UserContext } from "../context/UserContext";
 
 function Profile() {
   // const users = useLoaderData();
   const navigate = useNavigate();
-  const { id } = useParams();
+
   const { theme } = useContext(ThemeContext);
-
-  const [thisUser, setThisUser] = useState(undefined);
-
-  const userLoaderById = async () => {
-    try {
-      const userById = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/users/${id}`
-      );
-      setThisUser(userById.data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    if (thisUser !== "") {
-      userLoaderById();
-    }
-  }, [id]);
+  const { user } = useContext(UserContext);
 
   const handlePut = async (e) => {
     e.preventDefault();
-    const imageProfil = thisUser.image_profil;
+    const imageProfil = user.image_profil;
     const firstname = e.target.firstname.value;
     const lastname = e.target.lastname.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const isAdmin = thisUser.is_administrator;
-    const isModerator = thisUser.is_moderator;
+    const isAdmin = user.is_administrator;
+    const isModerator = user.is_moderator;
 
     try {
       // eslint-disable-next-line no-unused-vars
       const res = await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/users/${id}`,
+        `${import.meta.env.VITE_BACKEND}/api/users/${user.id}`,
         {
           imageProfil,
           firstname,
@@ -83,7 +66,7 @@ function Profile() {
               <button type="button">Télécharger photo</button>
             </div>
           </div>
-          {thisUser && (
+          {user && (
             <form className="profile-form" onSubmit={handlePut}>
               <div className="profile-form-item">
                 <label className="label-profile" htmlFor="firstname">
@@ -94,7 +77,7 @@ function Profile() {
                   type="text"
                   placeholder="Prénom"
                   name="firstname"
-                  defaultValue={thisUser.firstname}
+                  defaultValue={user.firstname}
                 />
               </div>
               <div className="profile-form-item">
@@ -106,7 +89,7 @@ function Profile() {
                   type="text"
                   placeholder="Nom"
                   name="lastname"
-                  defaultValue={thisUser.lastname}
+                  defaultValue={user.lastname}
                 />
               </div>
               <div className="profile-form-item">
@@ -118,7 +101,7 @@ function Profile() {
                   type="email"
                   placeholder="Email"
                   name="email"
-                  defaultValue={thisUser.email}
+                  defaultValue={user.email}
                 />
               </div>
 
@@ -157,16 +140,5 @@ function Profile() {
     </div>
   );
 }
-
-export const userLoader = async () => {
-  try {
-    const users = await axios.get(`${import.meta.env.VITE_BACKEND}/api/users`);
-
-    return users.data;
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
-};
 
 export default Profile;
