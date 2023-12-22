@@ -22,7 +22,7 @@ function HomeAdministrator() {
 
   const handleDeleteModerator = (id) => {
     axios
-      .put(`http://localhost:3310/api/users/remove-moderator/${id}`)
+      .put(`${import.meta.env.VITE_BACKEND}/api/users/remove-moderator/${id}`)
       .then(() => {
         revalidator.revalidate();
       })
@@ -31,7 +31,7 @@ function HomeAdministrator() {
 
   const handleDeleteMember = (id) => {
     axios
-      .delete(`http://localhost:3310/api/users/${id}`)
+      .delete(`${import.meta.env.VITE_BACKEND}/api/users/${id}`)
       .then(() => {
         revalidator.revalidate();
       })

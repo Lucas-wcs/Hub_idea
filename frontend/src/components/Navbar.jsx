@@ -31,7 +31,8 @@ function Navbar() {
             className="theme-checkbox"
           />
         </div>
-        {location.pathname !== "/profile" &&
+        {user &&
+          location.pathname !== "/profile" &&
           location.pathname !== "/rules" &&
           location.pathname !== "/" && (
             <NavLink to={`/profile/${user.id}`}>
