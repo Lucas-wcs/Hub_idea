@@ -1,10 +1,14 @@
+//for fixing background with modal
+.hide-decision-modal {
+  display: none;
+}
 .idea-card-container {
   background-color: var(--cardidea-color);
   border-radius: 5px;
   width: 31%;
   margin-top: 1.5vh;
   margin-bottom: 3%;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
 
   .status-image-container {
     position: relative;
@@ -36,9 +40,14 @@
   }
   .text-container {
     padding: calc(var(--spacing) * 1.2) calc(var(--spacing) * 2);
+
     .idea-title {
       font-family: var(--title-font);
-      font-size: 22px;
+      font-size: 1.2rem;
+      max-width: 95%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     .progress-percentage-container {
       display: flex;
@@ -75,37 +84,51 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
+
+      p {
+        width: 60%;
+        font-size: 1rem;
+      }
+
+      .is-not-moderator {
+        display: none;
+      }
+
+      .is-moderator {
+        width: 20%;
+        font-size: 0.8rem;
+      }
 
       button {
+        margin-top: 0;
+        font-size: 1rem;
+        height: 7vh;
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease;
-        background: linear-gradient(
-          to bottom,
-          var(--primary-color) 5%,
-          var(--primary-color)
-        );
         border: 1px solid var(--tertiary-color);
         display: inline-block;
         text-shadow: 0px 1px 0px var(--primary-color);
         text-decoration: none;
-        background-color: var(--primary-color);
-        padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2.2);
+        padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 0.6);
         border-radius: calc(var(--search-border-radius) * 0.5);
-        font-size: 18px;
         border: none;
         border-radius: 10px;
         cursor: pointer;
       }
+      .button-green {
+        background-color: var(--primary-color);
+        width: 40%;
+      }
+
+      .button-blue {
+        background-color: var(--secondary-color);
+        width: 40%;
+      }
 
       button:hover {
         transform: scale(1.05);
-        background: linear-gradient(
-          to bottom,
-          var(--primary-color) 5%,
-          var(--primary-color) 100%
-        );
-        background-color: var(--tertiary-color);
         cursor: pointer;
       }
     }
