@@ -6,7 +6,7 @@ import App from "./App";
 import "./styles/index.scss";
 
 import Connection from "./pages/Connection";
-import Home, { loaderIdeas } from "./pages/Home";
+import Home, { loaderHome } from "./pages/Home";
 import Rules from "./pages/Rules";
 import Profile from "./pages/Profile";
 import Idea from "./pages/Idea";
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             <Home />
           </ProtectedRoute>
         ),
-        loader: loaderIdeas,
+        loader: loaderHome,
       },
       {
         path: "/idea",
