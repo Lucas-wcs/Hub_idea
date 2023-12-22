@@ -1,16 +1,46 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
+import axios from "axios";
 import IdeaCard from "../components/IdeaCard";
 import CreateIdeaModal from "../components/CreateIdeaModal";
 import ValidateModale from "../components/ValidateModale";
 import { UserContext } from "../components/UserContext";
 
 function Home() {
+  const ideas = useLoaderData();
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const { user } = useContext(UserContext);
+
+  // creating(post) new idea
+  const handleSubmitIdea = async (e) => {
+    e.preventDefault();
+    setIsOpenIdeaModal(false);
+    setIsOpenConfirmModal((current) => !current);
+    const title = e.target.title.value;
+    const limitDate = e.target.date.value;
+    const ideaImage = "https://picsum.photos/300/600";
+    // const ideaimage = e.target.ideaimage.value;
+    const description = e.target.description.value;
+
+    try {
+      await axios.post(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
+        title,
+        date_limit: limitDate,
+        idea_image: ideaImage,
+        idea_description: description,
+      });
+      e.target.title.value = "";
+      e.target.date.value = "";
+      e.target.description.value = "";
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // modal for creating idea
   const handleOpenModalIdea = () => {
     setIsOpenIdeaModal((current) => !current);
   };
@@ -19,12 +49,6 @@ function Home() {
     event.preventDefault();
     navigate("/home");
     handleOpenModalIdea();
-  };
-
-  const handleClickPublish = (event) => {
-    event.preventDefault();
-    setIsOpenIdeaModal(false);
-    setIsOpenConfirmModal((current) => !current);
   };
 
   const handleClickSubmitButton = () => {
@@ -46,7 +70,7 @@ function Home() {
         <CreateIdeaModal
           handleOpenModalIdea={handleOpenModalIdea}
           handleClickDraft={handleClickDraft}
-          handleClickPublish={handleClickPublish}
+          handleSubmitIdea={handleSubmitIdea}
         />
       </div>
       <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>
@@ -85,14 +109,22 @@ function Home() {
         </div>
       </div>
       <div className="idea-cards-container">
-        <IdeaCard />
-        <IdeaCard />
-        <IdeaCard />
-        <IdeaCard />
-        <IdeaCard />
+        {ideas.map((idea) => {
+          return <IdeaCard title={idea.title} statusId={idea.status_id} />;
+        })}
       </div>
     </div>
   );
 }
+
+export const loaderIdeas = async () => {
+  try {
+    const res = await axios.get("http://localhost:3310/api/ideas");
+    return res.data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
 
 export default Home;

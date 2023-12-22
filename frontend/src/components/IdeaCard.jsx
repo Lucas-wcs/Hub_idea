@@ -1,7 +1,8 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import { ThemeContext } from "./ThemeContext";
 
-function IdeaCard() {
+function IdeaCard({ title }) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -24,7 +25,7 @@ function IdeaCard() {
         </div>
       </div>
       <div className="text-container">
-        <p className="idea-title">Réaliser un repas de Noel</p>
+        <p className="idea-title">{title}</p>
         <div className="progress-percentage-container">
           <progress id="file" value="65" max="100" />
           <p>65%</p>
@@ -37,5 +38,9 @@ function IdeaCard() {
     </div>
   );
 }
+
+IdeaCard.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default IdeaCard;

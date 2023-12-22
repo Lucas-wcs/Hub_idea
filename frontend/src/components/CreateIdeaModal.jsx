@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 function CreateIdeaModal({
   handleOpenModalIdea,
   handleClickDraft,
-  handleClickPublish,
+  handleSubmitIdea,
 }) {
   return (
     <div className="modal-idea-container">
@@ -18,7 +18,7 @@ function CreateIdeaModal({
         <h1>Votre idée</h1>
         <div className="form-entire-container">
           <div className="form-container">
-            <form action="">
+            <form onSubmit={handleSubmitIdea}>
               <div className="form-title-container">
                 {/* titre */}
                 <label htmlFor="title">Titre</label>
@@ -51,8 +51,8 @@ function CreateIdeaModal({
                   <img src="images/default-image.png" alt="default" />
                   <input
                     type="file"
-                    id="idea-image"
-                    name="idea-image"
+                    id="ideaimage"
+                    name="ideaimage"
                     accept="image/png, image/jpeg"
                   />
                 </div>
@@ -142,7 +142,7 @@ function CreateIdeaModal({
                   className="button-green"
                   type="submit"
                   value="Publier"
-                  onClick={handleClickPublish}
+                  // onClick={handleClickPublish}
                 />
               </div>
             </form>
@@ -156,7 +156,7 @@ function CreateIdeaModal({
 CreateIdeaModal.propTypes = {
   handleOpenModalIdea: PropTypes.func.isRequired,
   handleClickDraft: PropTypes.func.isRequired,
-  handleClickPublish: PropTypes.func.isRequired,
+  handleSubmitIdea: PropTypes.func.isRequired,
 };
 
 export default CreateIdeaModal;
