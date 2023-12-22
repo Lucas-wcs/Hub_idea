@@ -79,7 +79,7 @@
         width: 100%;
       }
       textarea:focus {
-        border: 2px solid red;
+        border: 2px solid var(--secondary-color);
         outline: 0;
       }
     }
