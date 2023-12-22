@@ -1,12 +1,16 @@
 import PropTypes from "prop-types";
 
-function DecisionModal({ handleClickDecision }) {
+function DecisionModal({
+  handleClickDecisionModal,
+  handleClickDecisionValidate,
+  handleClickDecisionRefuse,
+}) {
   return (
     <div className="decision-modal-container">
       <div className="decision-container">
         <div
           className="icon-close-container"
-          onClick={handleClickDecision}
+          onClick={handleClickDecisionModal}
           role="presentation"
         >
           <img src="images/icon_cross.png" alt="cross" />
@@ -35,13 +39,13 @@ function DecisionModal({ handleClickDecision }) {
                   className="button-blue"
                   type="submit"
                   value="Refus de l’idée"
-                  onClick={handleClickDecision}
+                  onClick={handleClickDecisionRefuse}
                 />
                 <input
                   className="button-green"
                   type="submit"
                   value="Approuver l’idée"
-                  onClick={handleClickDecision}
+                  onClick={handleClickDecisionValidate}
                 />
               </div>
             </form>
@@ -53,7 +57,9 @@ function DecisionModal({ handleClickDecision }) {
 }
 
 DecisionModal.propTypes = {
-  handleClickDecision: PropTypes.func.isRequired,
+  handleClickDecisionModal: PropTypes.func.isRequired,
+  handleClickDecisionValidate: PropTypes.func.isRequired,
+  handleClickDecisionRefuse: PropTypes.func.isRequired,
 };
 
 export default DecisionModal;

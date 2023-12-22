@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import DecisionModal from "./DecisionModal";
+import ValidateModale from "./ValidateModale";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
@@ -12,18 +13,52 @@ function IdeaCard({
 }) {
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
+  const [isOpenDecisionConfirmModal, setIsOpenDecisionConfirmModal] =
+    useState(false);
 
-  const handleClickDecision = (e) => {
+  const handleClickDecisionModal = () => {
+    setIsOpenDecisionModal((current) => !current);
+  };
+
+  const handleDecisionConfirmModal = () => {
+    setIsOpenDecisionConfirmModal((current) => !current);
+  };
+
+  const handleClickDecisionValidate = (e) => {
     e.preventDefault();
     setIsOpenDecisionModal((current) => !current);
+    handleDecisionConfirmModal();
+  };
+
+  const handleClickDecisionRefuse = (e) => {
+    e.preventDefault();
+    setIsOpenDecisionModal((current) => !current);
+    handleDecisionConfirmModal();
   };
 
   return (
     <div className="idea-card-container">
       {/* div for modal */}
       <div className={`${isOpenDecisionModal ? "" : "hide-decision-modal"}`}>
-        <DecisionModal handleClickDecision={handleClickDecision} />
+        <DecisionModal
+          handleClickDecisionValidate={handleClickDecisionValidate}
+          handleClickDecisionRefuse={handleClickDecisionRefuse}
+          handleClickDecisionModal={handleClickDecisionModal}
+        />
       </div>
+      <div
+        className={`${
+          isOpenDecisionConfirmModal ? "" : "hide-decision-confirm-modal"
+        }`}
+      >
+        <ValidateModale
+          type="modale4"
+          setTypeModal={() => console.info("")}
+          handleDecisionConfirmModal={handleDecisionConfirmModal}
+        />
+      </div>
+      {/* div for modal until here */}
+
       <div className="status-image-container">
         <div className="card-image-container">
           <img src="/images/repas_noel.webp" alt="idea" />
@@ -56,7 +91,7 @@ function IdeaCard({
               user.is_moderator ? "" : "is-not-moderator"
             }`}
             type="button"
-            onClick={handleClickDecision}
+            onClick={handleClickDecisionModal}
           >
             Modérateur
           </button>

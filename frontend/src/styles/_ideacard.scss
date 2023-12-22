@@ -2,6 +2,10 @@
 .hide-decision-modal {
   display: none;
 }
+.hide-decision-confirm-modal {
+  display: none;
+}
+
 .idea-card-container {
   transition:
     transform 0.5s ease,
@@ -138,8 +142,10 @@
     }
   }
 }
+
 .idea-card-container:hover {
-  transform: scale(1.01);
+  cursor: pointer;
+  // transform: scale(1.01);
 }
 
 @media (min-width: 700px) and (max-width: 1000px) {
