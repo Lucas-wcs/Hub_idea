@@ -2,7 +2,7 @@ import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
-
+// administrator link
 function Navbar() {
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
@@ -31,7 +31,9 @@ function Navbar() {
             className="theme-checkbox"
           />
         </div>
-        {location.pathname !== "/profile" &&
+
+        {user &&
+          location.pathname !== "/profile" &&
           location.pathname !== "/rules" &&
           location.pathname !== "/" && (
             <NavLink to={`/profile/${user.id}`}>
