@@ -1,6 +1,38 @@
+import axios from "axios";
 import PropTypes from "prop-types";
+import { useRevalidator } from "react-router-dom";
 
 function AddMemberModal({ handleOpenModalAddMember }) {
+  const revalidator = useRevalidator();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const firstname = e.target.firstname.value;
+    const lastname = e.target.lastname.value;
+    const email = e.target.email.value;
+    const administrator = e.target.administrator.checked;
+    const moderator = e.target.moderator.checked;
+
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const res = await axios.post("http://localhost:3310/api/users", {
+        firstname,
+        lastname,
+        email,
+        is_administrator: administrator,
+        is_moderator: moderator,
+      });
+      revalidator.revalidate();
+      e.target.firstname.value = "";
+      e.target.lastname.value = "";
+      e.target.email.value = "";
+      e.target.administrator.checked = false;
+      e.target.moderator.checked = false;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="addMemberModal">
       <div className="modal-cross-container">
@@ -14,15 +46,15 @@ function AddMemberModal({ handleOpenModalAddMember }) {
       </div>
       <div className="modal-main-container">
         <h4>Ajouter un membre</h4>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-top">
             <div className="inputs">
-              <label htmlFor="name">Nom :</label>
-              <input type="text" name="nom" className="input-top" />
+              <label htmlFor="firstname">Nom :</label>
+              <input type="text" name="firstname" className="input-top" />
             </div>
             <div className="inputs">
-              <label htmlFor="prenom">Prénom :</label>
-              <input type="text" name="prenom" className="input-top" />
+              <label htmlFor="lastname">Prénom :</label>
+              <input type="text" name="lastname" className="input-top" />
             </div>
             <div className="inputs">
               <label htmlFor="email">Email :</label>
@@ -31,18 +63,18 @@ function AddMemberModal({ handleOpenModalAddMember }) {
           </div>
           <div className="form-bottom">
             <div>
-              <input type="checkbox" name="administrateur" />
-              <label htmlFor="administrateur">Administrateur</label>
+              <input type="checkbox" name="administrator" />
+              <label htmlFor="administrator">Administrateur</label>
             </div>
             <div>
-              <input type="checkbox" name="modérateur" />
-              <label htmlFor="modérateur">Modérateur</label>
+              <input type="checkbox" name="moderator" />
+              <label htmlFor="modérator">Modérateur</label>
             </div>
           </div>
+          <div className="button-container">
+            <button type="submit">Envoyer l'invitation</button>
+          </div>
         </form>
-        <div className="button-container">
-          <button type="submit">Envoyer l'invitation</button>
-        </div>
       </div>
     </div>
   );

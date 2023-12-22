@@ -23,9 +23,9 @@ CREATE TABLE
         `lastname` VARCHAR(255) NOT NULL,
         `email` TEXT NOT NULL,
         `image_profil` VARCHAR(50),
-        `password` VARCHAR(50) NOT NULL,
-        `is_administrator` BOOLEAN NOT NULL,
-        `is_moderator` BOOLEAN NOT NULL,
+        `password` VARCHAR(50) NOT NULL DEFAULT 'welcometohubidea',
+        `is_administrator` BOOLEAN NOT NULL DEFAULT 0,
+        `is_moderator` BOOLEAN NOT NULL DEFAULT 0,
         `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
@@ -47,7 +47,7 @@ VALUES (
         'john.jpg',
         'hashed_password',
         0,
-        0,
+        1,
         CURRENT_TIMESTAMP
     ), (
         'Alice',
@@ -56,7 +56,7 @@ VALUES (
         'alice.jpg',
         'hashed_password',
         0,
-        0,
+        1,
         CURRENT_TIMESTAMP
     ), (
         'Robert',
