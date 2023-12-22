@@ -13,23 +13,33 @@
 
   .nav-right {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 4vw;
 
-    .image-container {
-      height: 5vh;
+    img {
+      height: 30px;
+      cursor: pointer;
+    }
 
-      img {
-        height: 30px;
+    .image-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logout {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3px;
+      &:hover {
+        transform: scale(1.1);
+        transition: all 0.1s ease-in-out;
       }
     }
   }
 }
-
 .logout {
   cursor: pointer;
-  height: 30px;
-  width: 30px;
 }
 
 .theme-button {
@@ -50,6 +60,8 @@
 }
 .button-logout {
   background: none;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -71,6 +83,10 @@
 
         img {
           height: 100%;
+        }
+        .logout {
+          display: flex;
+          align-items: center;
         }
       }
     }
