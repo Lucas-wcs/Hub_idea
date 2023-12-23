@@ -12,6 +12,7 @@ function Home() {
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
+  const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const { user } = useContext(UserContext);
 
   // creating(post) new idea
@@ -22,6 +23,7 @@ function Home() {
     const title = e.target.title.value;
     const limitDate = e.target.date.value;
     const ideaImage = "https://picsum.photos/300/600";
+    const statusId = 1;
     // const ideaimage = e.target.ideaimage.value;
     const description = e.target.description.value;
 
@@ -31,6 +33,7 @@ function Home() {
         date_limit: limitDate,
         idea_image: ideaImage,
         idea_description: description,
+        status_id: statusId,
       });
       e.target.title.value = "";
       e.target.date.value = "";
@@ -54,6 +57,8 @@ function Home() {
   const handleClickSubmitButton = () => {
     setIsOpenConfirmModal(false);
     setIsOpenSubmitModal((current) => !current);
+
+    // ここでputでstatusidを変更しなければならない
   };
 
   const handleClickIdeaCancelButton = () => {
@@ -63,21 +68,23 @@ function Home() {
 
   return (
     <div
-      className={`home-container ${isOpenIdeaModal && "home-container-fixed"}`}
+      className={`home-container ${
+        isOpenIdeaModal || (isOpenDecisionModal && "home-container-fixed")
+      }`}
     >
       {/* div for modal */}
       <div className={`${isOpenIdeaModal ? "" : "hide-idea-modal"}`}>
         <CreateIdeaModal
           handleOpenModalIdea={handleOpenModalIdea}
           handleClickDraft={handleClickDraft}
-          handleSubmitIdea={handleSubmitIdea}
+          handleSubmitIdea={handleSubmitIdea} // when you click submit
         />
       </div>
       <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>
         <ValidateModale
           type="modale1"
           setTypeModal={() => console.info("")}
-          handleClickSubmitButton={handleClickSubmitButton}
+          // handleClickSubmitButton={handleClickSubmitButton}
           handleClickIdeaCancelButton={handleClickIdeaCancelButton}
         />
       </div>
@@ -118,6 +125,9 @@ function Home() {
             <IdeaCard
               title={idea.title}
               statusId={statuses[idea.status_id - 1].status_name}
+              key={idea.title}
+              isOpenDecisionModal={isOpenDecisionModal}
+              setIsOpenDecisionModal={setIsOpenDecisionModal}
             />
           );
         })}
