@@ -5,21 +5,17 @@ import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
 function Profile() {
-  // const users = useLoaderData();
   // const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
-  const [setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [checkNewPassword, setCheckNewPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
-  const [isEyeOpen, setIsEyeOpen] = useState(false);
+  // const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isEyeOpenNew, setIsEyeOpenNew] = useState(false);
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
-  // const [checkPassword, setCheckPassword] = useState(false);
 
   const handlePut = async (e) => {
     e.preventDefault();
@@ -51,7 +47,7 @@ function Profile() {
   const handleShowPassword = (passwordType) => {
     if (passwordType === "current") {
       setShowPassword(!showPassword);
-      setIsEyeOpen((current) => !current);
+      // setIsEyeOpen((current) => !current);
     } else if (passwordType === "new") {
       setShowNewPassword(!showNewPassword);
       setIsEyeOpenNew((current) => !current);
@@ -60,16 +56,6 @@ function Profile() {
       setIsEyeOpenConfirm((current) => !current);
     }
   };
-
-  //   const handleCheckPassword = (e) => {
-  //     const newPassword = e.target.password.value;
-  //     const newPasswordConfirmed = e.target.confirmPassword.value;
-  //     if (newPassword === newPasswordConfirmed) {
-  //       setCheckPassword(true);
-  //     } else {
-  //       setCheckPassword(false);
-  // console.log("erreur")    }
-  //   };
 
   return (
     <div>
@@ -140,15 +126,14 @@ function Profile() {
                 <div className="container-profile-input">
                   <input
                     className="profile-input-pass"
-                    type={showPassword ? "text" : "password"}
-                    defaultValue="Mot de passe actuel"
+                    type="password" // type={showPassword ? "text" : "password"}
+                    placeholder="Mot de passe actuel"
                     name="password"
-                    onChange={(e) => setPassword(e.target.value)}
                   />
-                  <button
+                  {/* <button
                     className="toggle-button"
                     type="button"
-                    onClick={() => handleShowPassword("current")}
+                    // onClick={() => handleShowPassword("current")}
                   >
                     {isEyeOpen ? (
                       <img
@@ -163,18 +148,15 @@ function Profile() {
                         alt="oeil fermé"
                       />
                     )}
-                  </button>
+                  </button> */}
                 </div>
                 <div className="container-profile-input">
                   <input
                     className="profile-input-pass"
                     type={showNewPassword ? "text" : "password"}
                     placeholder="Nouveau mot de passe"
-                    name="password"
-                    value={newPassword}
+                    // name="password"
                     minLength={6}
-                    required
-                    onChange={(e) => setNewPassword(e.target.value)}
                   />
                   <button
                     className="toggle-button"
@@ -197,17 +179,12 @@ function Profile() {
                   </button>
                 </div>
                 <div className="container-profile-input">
-                  {" "}
                   <input
                     className="profile-input-pass"
                     type={showConfirmPassword ? "text" : "password"}
-                    value={confirmPassword}
                     placeholder="Confirmation du nouveau mot de passe"
-                    name="confirmPassword"
+                    // name="password"
                     minLength={6}
-                    required
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    // onChange={handleCheckPassword}
                   />
                   <button
                     className="toggle-button"
