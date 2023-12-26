@@ -137,67 +137,98 @@ function Profile() {
                 <label className="label-profile-pass" htmlFor="password">
                   Changer de mot de passe
                 </label>
-                <input
-                  className="profile-input-pass"
-                  type={showPassword ? "text" : "password"}
-                  defaultValue="Mot de passe actuel"
-                  name="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button
-                  className="toggle-button"
-                  type="button"
-                  onClick={() => handleShowPassword("current")}
-                >
-                  {isEyeOpen ? (
-                    <img src="/images/oeil-ouvert.png" alt="oeil ouvert" />
-                  ) : (
-                    <img src="/images/oeil-fermé.png" alt="oeil fermé" />
-                  )}
-                </button>
-                <input
-                  className="profile-input-pass"
-                  type={showNewPassword ? "text" : "password"}
-                  placeholder="Nouveau mot de passe"
-                  name="password"
-                  value={newPassword}
-                  minLength={6}
-                  required
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-                <button
-                  className="toggle-button"
-                  type="button"
-                  onClick={() => handleShowPassword("new")}
-                >
-                  {isEyeOpenNew ? (
-                    <img src="/images/oeil-ouvert.png" alt="oeil ouvert" />
-                  ) : (
-                    <img src="/images/oeil-fermé.png" alt="oeil fermé" />
-                  )}
-                </button>
-                <input
-                  className="profile-input-pass"
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  placeholder="Confirmation du nouveau mot de passe"
-                  name="confirmPassword"
-                  minLength={6}
-                  required
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  // onChange={handleCheckPassword}
-                />
-                <button
-                  className="toggle-button"
-                  type="button"
-                  onClick={() => handleShowPassword("confirm")}
-                >
-                  {isEyeOpenConfirm ? (
-                    <img src="/images/oeil-ouvert.png" alt="oeil ouvert" />
-                  ) : (
-                    <img src="/images/oeil-fermé.png" alt="oeil fermé" />
-                  )}
-                </button>
+                <div className="container-profile-input">
+                  <input
+                    className="profile-input-pass"
+                    type={showPassword ? "text" : "password"}
+                    defaultValue="Mot de passe actuel"
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <button
+                    className="toggle-button"
+                    type="button"
+                    onClick={() => handleShowPassword("current")}
+                  >
+                    {isEyeOpen ? (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-ouvert.png"
+                        alt="oeil ouvert"
+                      />
+                    ) : (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-fermé.png"
+                        alt="oeil fermé"
+                      />
+                    )}
+                  </button>
+                </div>
+                <div className="container-profile-input">
+                  <input
+                    className="profile-input-pass"
+                    type={showNewPassword ? "text" : "password"}
+                    placeholder="Nouveau mot de passe"
+                    name="password"
+                    value={newPassword}
+                    minLength={6}
+                    required
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  <button
+                    className="toggle-button"
+                    type="button"
+                    onClick={() => handleShowPassword("new")}
+                  >
+                    {isEyeOpenNew ? (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-ouvert.png"
+                        alt="oeil ouvert"
+                      />
+                    ) : (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-fermé.png"
+                        alt="oeil fermé"
+                      />
+                    )}
+                  </button>
+                </div>
+                <div className="container-profile-input">
+                  {" "}
+                  <input
+                    className="profile-input-pass"
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    placeholder="Confirmation du nouveau mot de passe"
+                    name="confirmPassword"
+                    minLength={6}
+                    required
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    // onChange={handleCheckPassword}
+                  />
+                  <button
+                    className="toggle-button"
+                    type="button"
+                    onClick={() => handleShowPassword("confirm")}
+                  >
+                    {isEyeOpenConfirm ? (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-ouvert.png"
+                        alt="oeil ouvert"
+                      />
+                    ) : (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-fermé.png"
+                        alt="oeil fermé"
+                      />
+                    )}
+                  </button>
+                </div>
               </div>
               <div className="submit-button">
                 <button type="submit">Sauvegarder</button>
