@@ -45,7 +45,9 @@
         }
       }
     }
-
+    .hide-modification-modal {
+      display: none;
+    }
     .profile-form {
       display: flex;
       flex-direction: column;

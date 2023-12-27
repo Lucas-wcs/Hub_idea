@@ -1,27 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import axios from "axios";
+import ValidateModale from "../components/ValidateModale";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
 function Profile() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
   const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isEyeOpenNew, setIsEyeOpenNew] = useState(false);
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
+  const [isOpenModificationModal, setIsOpenModificationModal] = useState(false);
 
   const handlePut = async (e) => {
     e.preventDefault();
-
+    const handleConfirmationModification = () => {
+      e.preventDefault();
+      setIsOpenModificationModal(true);
+    };
     const userToUpdate = {
       id: user.id,
       image_profil: user?.image_profil || "par default",
@@ -40,21 +43,9 @@ function Profile() {
         userToUpdate
       );
       setUser(userToUpdate);
-      // navigate("/home");
+      handleConfirmationModification();
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  const handlecheckPasswordsMatch = () => {
-    if (newPassword.length > 2 && confirmPassword.length > 2) {
-      if (newPassword === "" && confirmPassword === "") {
-        setMessage("");
-      } else if (newPassword === confirmPassword) {
-        setMessage("Les mots de passe correspondent");
-      } else if (newPassword !== confirmPassword) {
-        setMessage("Les mots de passe ne correspondent pas");
-      }
     }
   };
 
@@ -71,6 +62,10 @@ function Profile() {
     }
   };
 
+  const handleReturnToHome = (e) => {
+    e.preventDefault();
+    navigate("/home");
+  };
   return (
     <div>
       <div className="profile-page">
@@ -94,12 +89,21 @@ function Profile() {
               <button type="button">Télécharger photo</button>
             </div>
           </div>
+          {/* div for modal */}
+          <div
+            className={`${
+              isOpenModificationModal ? "" : "hide-modification-modal"
+            }`}
+          >
+            <ValidateModale
+              type="modale6"
+              setTypeModal={() => console.info("")}
+              handleReturnToHome={handleReturnToHome}
+            />
+          </div>
+          {/* div modal ends here */}
           {user && (
-            <form
-              className="profile-form"
-              onSubmit={handlePut}
-              onChange={handlecheckPasswordsMatch}
-            >
+            <form className="profile-form" onSubmit={handlePut}>
               <div className="profile-form-item">
                 <label className="label-profile" htmlFor="firstname">
                   Prénom
@@ -176,8 +180,6 @@ function Profile() {
                     placeholder="Nouveau mot de passe"
                     // name="new password"
                     minLength={6}
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
                   />
                   <button
                     className="toggle-button"
@@ -206,8 +208,6 @@ function Profile() {
                     placeholder="Confirmation du nouveau mot de passe"
                     // name="check password"
                     minLength={6}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                   <button
                     className="toggle-button"
@@ -229,7 +229,6 @@ function Profile() {
                     )}
                   </button>
                 </div>
-                <div className="message-password">{message}</div>
               </div>
               <div className="submit-button">
                 <button type="submit">Sauvegarder</button>
