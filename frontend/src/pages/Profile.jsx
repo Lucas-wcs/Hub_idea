@@ -9,11 +9,13 @@ function Profile() {
 
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
-  // const [checkNewPassword, setCheckNewPassword] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
-  // const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
   const [isEyeOpenNew, setIsEyeOpenNew] = useState(false);
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
 
@@ -44,10 +46,22 @@ function Profile() {
     }
   };
 
+  const handlecheckPasswordsMatch = () => {
+    if (newPassword.length > 2 && confirmPassword.length > 2) {
+      if (newPassword === "" && confirmPassword === "") {
+        setMessage("");
+      } else if (newPassword === confirmPassword) {
+        setMessage("Les mots de passe correspondent");
+      } else if (newPassword !== confirmPassword) {
+        setMessage("Les mots de passe ne correspondent pas");
+      }
+    }
+  };
+
   const handleShowPassword = (passwordType) => {
     if (passwordType === "current") {
       setShowPassword(!showPassword);
-      // setIsEyeOpen((current) => !current);
+      setIsEyeOpen((current) => !current);
     } else if (passwordType === "new") {
       setShowNewPassword(!showNewPassword);
       setIsEyeOpenNew((current) => !current);
@@ -81,7 +95,11 @@ function Profile() {
             </div>
           </div>
           {user && (
-            <form className="profile-form" onSubmit={handlePut}>
+            <form
+              className="profile-form"
+              onSubmit={handlePut}
+              onChange={handlecheckPasswordsMatch}
+            >
               <div className="profile-form-item">
                 <label className="label-profile" htmlFor="firstname">
                   Prénom
@@ -126,14 +144,15 @@ function Profile() {
                 <div className="container-profile-input">
                   <input
                     className="profile-input-pass"
-                    type="password" // type={showPassword ? "text" : "password"}
+                    // type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Mot de passe actuel"
                     name="password"
                   />
-                  {/* <button
+                  <button
                     className="toggle-button"
                     type="button"
-                    // onClick={() => handleShowPassword("current")}
+                    onClick={() => handleShowPassword("current")}
                   >
                     {isEyeOpen ? (
                       <img
@@ -148,15 +167,17 @@ function Profile() {
                         alt="oeil fermé"
                       />
                     )}
-                  </button> */}
+                  </button>
                 </div>
                 <div className="container-profile-input">
                   <input
                     className="profile-input-pass"
                     type={showNewPassword ? "text" : "password"}
                     placeholder="Nouveau mot de passe"
-                    // name="password"
+                    // name="new password"
                     minLength={6}
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
                   />
                   <button
                     className="toggle-button"
@@ -183,8 +204,10 @@ function Profile() {
                     className="profile-input-pass"
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirmation du nouveau mot de passe"
-                    // name="password"
+                    // name="check password"
                     minLength={6}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                   <button
                     className="toggle-button"
@@ -206,6 +229,7 @@ function Profile() {
                     )}
                   </button>
                 </div>
+                <div className="message-password">{message}</div>
               </div>
               <div className="submit-button">
                 <button type="submit">Sauvegarder</button>
