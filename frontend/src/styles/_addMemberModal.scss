@@ -1,9 +1,27 @@
+.modal-global-container-member {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
 .addMemberModal {
   width: 40vw;
-  height: 40vh;
+  height: 50vh;
   border: 2px solid var(--quinary-color);
   border-radius: 5px;
   background-color: var(--senary-color);
+  &.dark {
+    background-color: var(--dark);
+    p {
+      color: white;
+    }
+  }
 
   .modal-cross-container {
     height: 13%;
@@ -79,6 +97,10 @@
     width: 75%;
     border: 2px solid var(--quinary-color);
     border-radius: 5px;
+
+    &.dark {
+      background-color: #36383c;
+    }
   }
 
   input[type="checkbox"] {
@@ -104,7 +126,6 @@
   }
 
   h4 {
-    margin-top: -3%;
     font-family: var(--title-font);
     font-size: 1.5rem;
     font-weight: 300;

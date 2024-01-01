@@ -1,9 +1,30 @@
+.modal-global-container-moderator {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
 .addModeratorModal {
   width: 40vw;
   height: 60vh;
   border: 2px solid var(--quinary-color);
   border-radius: 5px;
   background-color: var(--senary-color);
+
+  &.dark {
+    background-color: var(--dark);
+
+    p {
+      color: white;
+    }
+  }
 
   .modal-cross-container {
     height: 10%;
@@ -65,6 +86,11 @@
     font-weight: 300;
     font-size: 1.2rem;
     padding-bottom: 3%;
+    &.dark {
+      p {
+        color: white;
+      }
+    }
   }
 
   tr,

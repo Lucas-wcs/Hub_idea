@@ -20,7 +20,13 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <div className="logo-container">
-        <img src="/images/logo.png" alt="logo" />
+        {location.pathname !== "/" ? (
+          <NavLink to="/home">
+            <img src="/images/logo.png" alt="logo" />
+          </NavLink>
+        ) : (
+          <img src="/images/logo.png" alt="logo" />
+        )}
       </div>
       <div className="nav-right">
         <div className="image-container">
@@ -31,7 +37,21 @@ function Navbar() {
             className="theme-checkbox"
           />
         </div>
-
+        {user && user.is_administrator ? (
+          <div className="image-container">
+            <NavLink to="/administrator/">
+              <img
+                title="Profil-administrator"
+                src={
+                  theme === "dark"
+                    ? "/images/icons/administrateur-dark.png"
+                    : "/images/icons/administrateur.png"
+                }
+                alt="profile"
+              />
+            </NavLink>
+          </div>
+        ) : null}
         {user &&
           location.pathname !== "/profile" &&
           location.pathname !== "/rules" &&
