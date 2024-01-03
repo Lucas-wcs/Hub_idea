@@ -45,7 +45,9 @@
         }
       }
     }
-
+    .hide-modification-modal {
+      display: none;
+    }
     .profile-form {
       display: flex;
       flex-direction: column;
@@ -67,6 +69,7 @@
           background-color: var(--quinary-color);
           border: none;
           width: 30vw;
+          height: 6vh;
 
           &::placeholder {
             font-family: var(--text-font);
@@ -77,6 +80,7 @@
       .profile-form-password {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 1em;
 
         .label-profile-pass {
@@ -84,17 +88,37 @@
           margin-left: 2px;
           margin-top: 1.25em;
           padding: 0;
+          width: 100%;
         }
-        .profile-input-pass {
-          padding: var(--spacing);
-          margin-left: 3px;
+        .container-profile-input {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           background-color: var(--quinary-color);
+          padding: 0.5em var(--spacing);
+          margin-left: 3px;
           border: none;
           width: 30vw;
+          height: 6vh;
 
-          &::placeholder {
-            font-family: var(--text-font);
-            font-size: 12px;
+          .profile-input-pass {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+
+            &::placeholder {
+              font-family: var(--text-font);
+              font-size: 12px;
+            }
+          }
+          .toggle-button {
+            background-color: transparent;
+            width: 7%;
+            padding: 0;
+            .img-password {
+              width: 100%;
+            }
           }
         }
       }
@@ -166,14 +190,20 @@
           font-size: 12px;
           width: 65vw;
         }
-
-        .profile-input-pass {
-          padding: 5px;
+        .container-profile-input {
           width: 65vw;
-        }
-
-        &::placeholder {
-          font-size: 10px;
+          height: 4vh;
+          .profile-input-pass {
+            &::placeholder {
+              font-size: 10px;
+            }
+          }
+          .toggle-button {
+            .img-password {
+              position: relative;
+              bottom: 3px;
+            }
+          }
         }
       }
       .submit-button {
