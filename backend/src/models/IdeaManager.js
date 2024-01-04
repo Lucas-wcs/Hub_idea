@@ -75,6 +75,14 @@ class IdeaManager extends AbstractManager {
     return result;
   }
 
+  async updateStatusId({ status_id: statusId, id }) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET status_id=? WHERE id=?`,
+      [statusId, id]
+    );
+    return result;
+  }
+
   async delete(id) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE id=?`,
