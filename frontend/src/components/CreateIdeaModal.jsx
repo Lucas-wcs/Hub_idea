@@ -2,11 +2,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
-function CreateIdeaModal({
-  handleOpenModalIdea,
-  handleClickDraft,
-  handleSubmitIdea,
-}) {
+function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -145,7 +141,6 @@ function CreateIdeaModal({
                   className="button-blue"
                   type="submit"
                   value="Brouillon"
-                  onClick={handleClickDraft}
                 />
                 <input
                   className="button-green"
@@ -164,7 +159,6 @@ function CreateIdeaModal({
 
 CreateIdeaModal.propTypes = {
   handleOpenModalIdea: PropTypes.func.isRequired,
-  handleClickDraft: PropTypes.func.isRequired,
   handleSubmitIdea: PropTypes.func.isRequired,
 };
 
