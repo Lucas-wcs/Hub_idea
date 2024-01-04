@@ -64,6 +64,22 @@ const edit = async (req, res, next) => {
   }
 };
 
+const editStatusId = async (req, res, next) => {
+  const { status_id: statusId } = req.body;
+
+  const statusUpdatedIdea = {
+    status_id: statusId,
+    id: req.params.id,
+  };
+
+  try {
+    await tables.Idea.updateStatusId(statusUpdatedIdea);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const destroy = async (req, res, next) => {
   try {
     await tables.Idea.delete(req.params.id);
@@ -77,6 +93,7 @@ module.exports = {
   browse,
   read,
   edit,
+  editStatusId,
   add,
   destroy,
 };

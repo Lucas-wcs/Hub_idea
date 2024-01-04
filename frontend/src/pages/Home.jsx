@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate, useLoaderData } from "react-router-dom";
+import { useNavigate, useLoaderData, useRevalidator } from "react-router-dom";
 import axios from "axios";
 import IdeaCard from "../components/IdeaCard";
 import CreateIdeaModal from "../components/CreateIdeaModal";
@@ -7,25 +7,25 @@ import ValidateModale from "../components/ValidateModale";
 import { UserContext } from "../context/UserContext";
 
 function Home() {
+  const revalidator = useRevalidator();
   const { ideas, statuses } = useLoaderData();
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
+  const [newIdeaId, setNewIdeaId] = useState("");
   const { user } = useContext(UserContext);
 
-  // creating(post) new idea
+  // modal create idea : brouillon ou publier une idée
   const handleSubmitIdea = async (e) => {
-    console.info(e.nativeEvent.submitter.value);
     e.preventDefault();
-    setIsOpenIdeaModal(false);
     if (e.nativeEvent.submitter.value === "Brouillon") {
-      console.info("je suisla");
+      navigate("/home");
     } else {
       setIsOpenConfirmModal((current) => !current);
     }
-
+    setIsOpenIdeaModal(false);
     const title = e.target.title.value;
     const limitDate = e.target.date.value;
     const ideaImage = "https://picsum.photos/300/600";
@@ -34,13 +34,22 @@ function Home() {
     const description = e.target.description.value;
 
     try {
-      await axios.post(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
-        title,
-        date_limit: limitDate,
-        idea_image: ideaImage,
-        idea_description: description,
-        status_id: statusId,
-      });
+      await axios
+        .post(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
+          title,
+          date_limit: limitDate,
+          idea_image: ideaImage,
+          idea_description: description,
+          status_id: statusId,
+          user_id: user.id,
+        })
+        .then((response) => {
+          setNewIdeaId(response.data.insertId.insertId);
+        })
+        .then(() => {
+          revalidator.revalidate();
+        })
+        .catch((error) => console.error(error));
       e.target.title.value = "";
       e.target.date.value = "";
       e.target.description.value = "";
@@ -54,16 +63,23 @@ function Home() {
     setIsOpenIdeaModal((current) => !current);
   };
 
-  const handleClickDraft = (event) => {
-    event.preventDefault();
-    navigate("/home");
-    handleOpenModalIdea();
+  const ideaToUpdate = {
+    status_id: "2",
   };
 
-  const handleClickSubmitButton = () => {
+  // modal submitting idea : soumettre
+  const handleClickSubmitButton = async () => {
     setIsOpenConfirmModal(false);
     setIsOpenSubmitModal((current) => !current);
-    // ここでputでstatusidを変更しなければならない
+
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${newIdeaId}`,
+        ideaToUpdate
+      );
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleClickIdeaCancelButton = () => {
@@ -81,7 +97,6 @@ function Home() {
       <div className={`${isOpenIdeaModal ? "" : "hide-idea-modal"}`}>
         <CreateIdeaModal
           handleOpenModalIdea={handleOpenModalIdea}
-          handleClickDraft={handleClickDraft}
           handleSubmitIdea={handleSubmitIdea} // when you click submit
         />
       </div>

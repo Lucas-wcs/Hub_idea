@@ -41,6 +41,7 @@ router.get("/ideas", ideaControllers.browse);
 router.get("/ideas/:id", ideaControllers.read);
 router.post("/ideas", ideaControllers.add);
 router.put("/ideas/:id", ideaControllers.edit);
+router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
 router.delete("/ideas/:id", ideaControllers.destroy);
 // Routes notification controllers
 router.get("/notifications", notificationControllers.browse);
