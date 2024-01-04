@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { useState } from "react";
 import axios from "axios";
-import { useLoaderData, useRevalidator } from "react-router-dom";
+import { useLoaderData, useRevalidator, Link } from "react-router-dom";
 import AddMemberModal from "../components/AddMemberModal";
 import AddModeratorModal from "../components/AddModeratorModal";
 import AdmindecisionModal from "../components/AdmindecisionModal";
@@ -62,15 +62,13 @@ function HomeAdministrator() {
         <div className="content-container">
           {ideas.map((idea) => {
             return (
-              <div className="bloc-ideas">
-                <p
-                  key={idea.id}
-                  onClick={handleOpenIdeaModal}
-                  role="presentation"
-                >
-                  {idea.title}
-                </p>
-              </div>
+              <Link
+                to={`/administrator/idea/${idea.id}`}
+                className="bloc-ideas"
+                key={idea.id}
+              >
+                <p>{idea.title}</p>
+              </Link>
             );
           })}
         </div>
