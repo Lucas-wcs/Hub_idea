@@ -60,6 +60,7 @@ const router = createBrowserRouter([
             <HomeAdministrator />
           </ProtectedRoute>
         ),
+        id: "admin",
         children: [
           {
             path: "/administrator/idea/:id",

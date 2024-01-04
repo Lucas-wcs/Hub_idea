@@ -1,3 +1,16 @@
+.modal-global-container-decisionAdmin {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
 .homeAdministrator {
   width: 100vw;
   height: 85vh;
@@ -124,14 +137,6 @@
     }
   }
 
-  // Modal to see the idea :
-  .selectIdea-modal {
-    position: absolute;
-    top: 10vh;
-    left: 18vw;
-    z-index: 10;
-  }
-
   // Modal to add a member :
   .addMember-modal {
     position: absolute;
@@ -147,13 +152,6 @@
     left: 30vw;
     z-index: 11;
   }
-}
-
-// background for the page when modals are open :
-.container-flou-admin {
-  position: relative;
-  z-index: 1;
-  filter: blur(2px);
 }
 
 // responsive:
