@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import ValidateModale from "../components/ValidateModale";
 import { ThemeContext } from "../context/ThemeContext";
@@ -11,6 +11,12 @@ function Profile() {
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
 
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [message, setMessage] = useState("");
+  const [isMessage, setIsMessage] = useState(false);
+
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
@@ -19,12 +25,31 @@ function Profile() {
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
   const [isOpenModificationModal, setIsOpenModificationModal] = useState(false);
 
+  const handlePasswordChange = (event, setPassword) => {
+    setPassword(event.target.value);
+  };
+
+  useEffect(() => {
+    if (newPassword.length > 0 && confirmPassword.length > 0) {
+      if (newPassword === confirmPassword) {
+        setMessage("Les mots de passe correspondent");
+        setIsMessage(true);
+      } else if (newPassword !== confirmPassword) {
+        setMessage("Les mots de passe ne correspondent pas");
+        setIsMessage(false);
+      } else {
+        setMessage("");
+      }
+    }
+  }, [newPassword, confirmPassword]);
+
   const handlePut = async (e) => {
     e.preventDefault();
     const handleConfirmationModification = () => {
       e.preventDefault();
       setIsOpenModificationModal(true);
     };
+
     const userToUpdate = {
       id: user.id,
       image_profil: user?.image_profil || "par default",
@@ -148,10 +173,8 @@ function Profile() {
                 <div className="container-profile-input">
                   <input
                     className="profile-input-pass"
-                    // type="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Mot de passe actuel"
-                    name="password"
                   />
                   <button
                     className="toggle-button"
@@ -178,8 +201,11 @@ function Profile() {
                     className="profile-input-pass"
                     type={showNewPassword ? "text" : "password"}
                     placeholder="Nouveau mot de passe"
-                    // name="new password"
                     minLength={6}
+                    value={newPassword}
+                    onInput={(event) =>
+                      handlePasswordChange(event, setNewPassword)
+                    }
                   />
                   <button
                     className="toggle-button"
@@ -206,8 +232,12 @@ function Profile() {
                     className="profile-input-pass"
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirmation du nouveau mot de passe"
-                    // name="check password"
+                    name="password"
                     minLength={6}
+                    value={confirmPassword}
+                    onInput={(event) =>
+                      handlePasswordChange(event, setConfirmPassword)
+                    }
                   />
                   <button
                     className="toggle-button"
@@ -228,6 +258,9 @@ function Profile() {
                       />
                     )}
                   </button>
+                </div>
+                <div className={isMessage ? "correct" : "incorrect"}>
+                  <p className="message">{message}</p>
                 </div>
               </div>
               <div className="submit-button">
