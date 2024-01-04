@@ -6,25 +6,33 @@ import Navbar from "../components/Navbar";
 import { UserContext } from "../context/UserContext";
 
 function Connection() {
+  // Using the UserContext to get the setUser function
   const { setUser } = useContext(UserContext);
 
+  // Using the ThemeContext to get the current theme
   const { theme } = useContext(ThemeContext);
+
+  // Using the useNavigate hook to get a function to navigate to different routes
   const navigate = useNavigate();
 
+  // Using useRef to create references for the email and password inputs
   const emailRef = useRef();
-
   const passwordRef = useRef();
+
+  // Using useState to manage the state of the popup, password visibility and eye icon
   const [showPopup, setShowPopup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isEyeOpen, setIsEyeOpen] = useState(false);
 
+  // Function to handle form submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+      // Getting the values of the email and password inputs
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
-
+      // Sending a POST request to the login API with the email and password
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND}/api/login`,
         {
@@ -32,20 +40,31 @@ function Connection() {
           password,
         }
       );
+      // If the response status is 200, set the user data and navigate to the home page
 
       if (res.status === 200) {
         setUser(res.data);
         navigate("/home");
       } else {
+        // If the response status is not 200, handle the error (not shown in this code snippet)
         setShowPopup(true);
       }
     } catch {
+      // If the request fails, handle the error (not shown in this code snippet)
       console.error(e);
       setShowPopup(true);
     }
   };
+  // The handleShowPassword function is used to toggle the visibility of the password in the input field
+
   const handleShowPassword = () => {
+    // The setShowPassword function is called with the current state of showPassword inverted
+    // If showPassword is currently true, it will become false, and vice versa
+    // This effectively toggles the visibility state of the password each time the function is called
     setShowPassword(!showPassword);
+    // The setIsEyeOpen function is called with the current state of isEyeOpen inverted
+    // If isEyeOpen is currently true, it will become false, and vice versa
+    // This effectively toggles the state of the eye icon each time the function is called
     setIsEyeOpen((current) => !current);
   };
 
@@ -80,7 +99,12 @@ function Connection() {
             <div className="input-button-container">
               <input
                 className="input-button-style-password"
+                // The type attribute determines the type of the input field
+                // If showPassword is true, the type is "text", which means the password is visible
+                // If showPassword is false, the type is "password", which means the password is hidden
                 type={showPassword ? "text" : "password"}
+                // The placeholder attribute provides a hint that describes the expected value of the input field
+
                 placeholder="Mot de passe"
                 ref={passwordRef}
                 required
@@ -88,7 +112,7 @@ function Connection() {
               <button
                 className="toggle-button-connection"
                 type="button"
-                onClick={() => handleShowPassword("current")}
+                onClick={() => handleShowPassword()}
               >
                 {isEyeOpen ? (
                   <img

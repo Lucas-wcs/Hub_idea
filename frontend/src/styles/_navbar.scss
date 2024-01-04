@@ -6,6 +6,7 @@
 
   .logo-container {
     height: 9vh;
+    user-select: none;
     img {
       height: 100%;
     }
@@ -79,7 +80,7 @@
       gap: 4vw;
 
       .image-container {
-        height: 4vh;
+        height: 3vh;
 
         img {
           height: 100%;
