@@ -1,48 +1,71 @@
-// voir pour la navbar
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import ValidateModale from "../components/ValidateModale";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
 function Profile() {
-  // const users = useLoaderData();
   const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isEyeOpenNew, setIsEyeOpenNew] = useState(false);
+  const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
+  const [isOpenModificationModal, setIsOpenModificationModal] = useState(false);
 
   const handlePut = async (e) => {
     e.preventDefault();
-    const imageProfil = user.image_profil;
-    const firstname = e.target.firstname.value;
-    const lastname = e.target.lastname.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const isAdmin = user.is_administrator;
-    const isModerator = user.is_moderator;
+    const handleConfirmationModification = () => {
+      e.preventDefault();
+      setIsOpenModificationModal(true);
+    };
+    const userToUpdate = {
+      id: user.id,
+      image_profil: user?.image_profil || "par default",
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      is_administrator: user.is_administrator,
+      is_moderator: user.is_moderator,
+    };
 
     try {
       // eslint-disable-next-line no-unused-vars
       const res = await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/users/${user.id}`,
-        {
-          imageProfil,
-          firstname,
-          lastname,
-          email,
-          password,
-          is_administrator: isAdmin,
-          is_moderator: isModerator,
-        }
+        userToUpdate
       );
-
-      navigate("/home");
+      setUser(userToUpdate);
+      handleConfirmationModification();
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleShowPassword = (passwordType) => {
+    if (passwordType === "current") {
+      setShowPassword(!showPassword);
+      setIsEyeOpen((current) => !current);
+    } else if (passwordType === "new") {
+      setShowNewPassword(!showNewPassword);
+      setIsEyeOpenNew((current) => !current);
+    } else if (passwordType === "confirm") {
+      setShowsConfirmPassword(!showConfirmPassword);
+      setIsEyeOpenConfirm((current) => !current);
+    }
+  };
+
+  const handleReturnToHome = (e) => {
+    e.preventDefault();
+    navigate("/home");
+  };
   return (
     <div>
       <div className="profile-page">
@@ -66,6 +89,19 @@ function Profile() {
               <button type="button">Télécharger photo</button>
             </div>
           </div>
+          {/* div for modal */}
+          <div
+            className={`${
+              isOpenModificationModal ? "" : "hide-modification-modal"
+            }`}
+          >
+            <ValidateModale
+              type="modale6"
+              setTypeModal={() => console.info("")}
+              handleReturnToHome={handleReturnToHome}
+            />
+          </div>
+          {/* div modal ends here */}
           {user && (
             <form className="profile-form" onSubmit={handlePut}>
               <div className="profile-form-item">
@@ -109,26 +145,90 @@ function Profile() {
                 <label className="label-profile-pass" htmlFor="password">
                   Changer de mot de passe
                 </label>
-                <input
-                  className="profile-input-pass"
-                  type="password"
-                  placeholder="Mot de passe actuel"
-                  name="password"
-                />
-
-                <input
-                  className="profile-input-pass"
-                  type="password"
-                  placeholder="Nouveau mot de passe"
-                  name="password"
-                />
-
-                <input
-                  className="profile-input-pass"
-                  type="password"
-                  placeholder="Confirmation du nouveau mot de passe"
-                  name="check password"
-                />
+                <div className="container-profile-input">
+                  <input
+                    className="profile-input-pass"
+                    // type="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Mot de passe actuel"
+                    name="password"
+                  />
+                  <button
+                    className="toggle-button"
+                    type="button"
+                    onClick={() => handleShowPassword("current")}
+                  >
+                    {isEyeOpen ? (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-ouvert.png"
+                        alt="oeil ouvert"
+                      />
+                    ) : (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-fermé.png"
+                        alt="oeil fermé"
+                      />
+                    )}
+                  </button>
+                </div>
+                <div className="container-profile-input">
+                  <input
+                    className="profile-input-pass"
+                    type={showNewPassword ? "text" : "password"}
+                    placeholder="Nouveau mot de passe"
+                    // name="new password"
+                    minLength={6}
+                  />
+                  <button
+                    className="toggle-button"
+                    type="button"
+                    onClick={() => handleShowPassword("new")}
+                  >
+                    {isEyeOpenNew ? (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-ouvert.png"
+                        alt="oeil ouvert"
+                      />
+                    ) : (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-fermé.png"
+                        alt="oeil fermé"
+                      />
+                    )}
+                  </button>
+                </div>
+                <div className="container-profile-input">
+                  <input
+                    className="profile-input-pass"
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirmation du nouveau mot de passe"
+                    // name="check password"
+                    minLength={6}
+                  />
+                  <button
+                    className="toggle-button"
+                    type="button"
+                    onClick={() => handleShowPassword("confirm")}
+                  >
+                    {isEyeOpenConfirm ? (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-ouvert.png"
+                        alt="oeil ouvert"
+                      />
+                    ) : (
+                      <img
+                        className="img-password"
+                        src="/images/oeil-fermé.png"
+                        alt="oeil fermé"
+                      />
+                    )}
+                  </button>
+                </div>
               </div>
               <div className="submit-button">
                 <button type="submit">Sauvegarder</button>

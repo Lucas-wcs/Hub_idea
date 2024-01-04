@@ -1,3 +1,16 @@
+.modal-global-container-moderator {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
 .addModeratorModal {
   width: 40vw;
   height: 60vh;
@@ -12,6 +25,14 @@
   -webkit-box-shadow: 0px 0px 30px 4px var(--quinary-color);
   -moz-box-shadow: 0px 0px 30px 4px var(--quinary-color);
   box-shadow: 0px 0px 30px 4px var(--quinary-color);
+
+  &.dark {
+    background-color: var(--dark);
+
+    p {
+      color: white;
+    }
+  }
 
   .modal-cross-container {
     height: 9%;
@@ -47,16 +68,72 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2%;
+  }
+
+  h4 {
+    margin-top: -3%;
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--primary-color);
+  }
+
+  .table-container {
+    width: 100%;
+    height: 85%;
+    padding-left: 2%;
+    padding-right: 2%;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+    width: 90%;
+    height: 100%;
+  }
+
+  th {
+    height: 20%;
+    font-family: var(--title-font);
+    font-weight: 300;
+    font-size: 1.2rem;
+    padding-bottom: 3%;
+    &.dark {
+      p {
+        color: white;
+      }
+    }
+  }
+
+  tr,
+  td {
+    width: calc(100% / 3);
+    border-top: 1px solid var(--quinary-color);
+    padding: 2%;
+  }
+
+  td {
+    text-align: center;
+    font-family: var(--text-font);
+  }
+
+  .td-one {
+    width: 100%;
+    height: 100%;
+    display: flex;
     justify-content: space-around;
     overflow-y: scroll;
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
-  .content-container::-webkit-scrollbar {
+  .modal-main-container::-webkit-scrollbar {
     display: none;
   }
   /* Hide scrollbar for IE, Edge and Firefox */
-  .content-container {
+  .modal-main-container {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
@@ -142,7 +219,7 @@
 
 @media screen and (max-width: 500px) {
   .addModeratorModal {
-    .content-container {
+    .modal-main-container {
       width: 100%;
     }
 
