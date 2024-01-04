@@ -38,8 +38,8 @@ function Navbar() {
           />
         </div>
         {user && user.is_administrator ? (
-          <div className="image-container">
-            <NavLink to="/administrator/">
+          <NavLink to="/administrator/">
+            <div className="image-container">
               <img
                 title="Profil-administrator"
                 src={
@@ -47,10 +47,10 @@ function Navbar() {
                     ? "/images/icons/administrateur-dark.png"
                     : "/images/icons/administrateur.png"
                 }
-                alt="profile"
+                alt="administrateur"
               />
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
         ) : null}
         {user &&
           location.pathname !== "/profile" &&
