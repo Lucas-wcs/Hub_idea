@@ -104,9 +104,47 @@ button:active .button_top {
   transform: translateY(0);
 }
 
+.input-button-container {
+  display: flex;
+  padding: 5px 8px;
+  background-color: var(--senary-color);
+  color: rgb(24, 23, 23);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease 0s;
+  margin: 15px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  width: 84%;
+  .input-button-style-password {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: auto;
+
+    .input-button-style:hover {
+      background-color: #ffffff;
+    }
+  }
+  .toggle-button-connection {
+    background-color: transparent;
+    width: auto;
+    margin-bottom: 5px;
+    .img-password-connection-open {
+      width: fit-content;
+      height: 2vh;
+    }
+    .img-password-connection {
+      width: fit-content;
+      height: 2vh;
+    }
+  }
+}
 .input-button-style {
   border: none;
-  padding: 10px 20px;
+  padding: 13px 20px;
   background-color: var(--senary-color);
   color: rgb(24, 23, 23);
   cursor: pointer;

@@ -15,6 +15,8 @@ function Connection() {
 
   const passwordRef = useRef();
   const [showPopup, setShowPopup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,6 +43,10 @@ function Connection() {
       console.error(e);
       setShowPopup(true);
     }
+  };
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+    setIsEyeOpen((current) => !current);
   };
 
   return (
@@ -71,13 +77,35 @@ function Connection() {
               ref={emailRef}
               required
             />
-            <input
-              className="input-button-style"
-              type="password"
-              placeholder="Mot de passe"
-              ref={passwordRef}
-              required
-            />
+            <div className="input-button-container">
+              <input
+                className="input-button-style-password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Mot de passe"
+                ref={passwordRef}
+                required
+              />
+              <button
+                className="toggle-button-connection"
+                type="button"
+                onClick={() => handleShowPassword("current")}
+              >
+                {isEyeOpen ? (
+                  <img
+                    className="img-password-connection-open"
+                    src="/images/oeil-ouvert.png"
+                    alt="oeil ouvert"
+                  />
+                ) : (
+                  <img
+                    className="img-password-connection"
+                    src="/images/oeil-fermé.png"
+                    alt="oeil fermé"
+                  />
+                )}
+              </button>
+            </div>
+
             <button type="submit">
               <span className="button_top"> Se connecter</span>
             </button>
