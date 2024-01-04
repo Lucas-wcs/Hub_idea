@@ -122,6 +122,18 @@
           }
         }
       }
+      .correct {
+        color: green;
+      }
+
+      .incorrect {
+        color: red;
+      }
+      .message {
+        font-family: var(--text-font);
+        font-size: var(--spacing--x2);
+        font-style: italic;
+      }
       .submit-button {
         display: flex;
         justify-content: flex-end;
