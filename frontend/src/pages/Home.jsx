@@ -17,9 +17,15 @@ function Home() {
 
   // creating(post) new idea
   const handleSubmitIdea = async (e) => {
+    console.info(e.nativeEvent.submitter.value);
     e.preventDefault();
     setIsOpenIdeaModal(false);
-    setIsOpenConfirmModal((current) => !current);
+    if (e.nativeEvent.submitter.value === "Brouillon") {
+      console.info("je suisla");
+    } else {
+      setIsOpenConfirmModal((current) => !current);
+    }
+
     const title = e.target.title.value;
     const limitDate = e.target.date.value;
     const ideaImage = "https://picsum.photos/300/600";
@@ -57,7 +63,6 @@ function Home() {
   const handleClickSubmitButton = () => {
     setIsOpenConfirmModal(false);
     setIsOpenSubmitModal((current) => !current);
-
     // ここでputでstatusidを変更しなければならない
   };
 
@@ -84,7 +89,7 @@ function Home() {
         <ValidateModale
           type="modale1"
           setTypeModal={() => console.info("")}
-          // handleClickSubmitButton={handleClickSubmitButton}
+          handleClickSubmitButton={handleClickSubmitButton}
           handleClickIdeaCancelButton={handleClickIdeaCancelButton}
         />
       </div>
