@@ -11,11 +11,13 @@
   backdrop-filter: blur(5px);
 }
 .addMemberModal {
-  width: 40vw;
-  height: 50vh;
-  border: 2px solid var(--quinary-color);
+  width: 35vw;
+  height: 40vh;
   border-radius: 5px;
   background-color: var(--senary-color);
+  -webkit-box-shadow: 0px 0px 30px 4px var(--quinary-color);
+  -moz-box-shadow: 0px 0px 30px 4px var(--quinary-color);
+  box-shadow: 0px 0px 30px 4px var(--quinary-color);
   &.dark {
     background-color: var(--dark);
     p {
@@ -104,8 +106,6 @@
   }
 
   input[type="checkbox"] {
-    // border: 2px solid var(--quinary-color);
-    // border-radius: 5px;
     cursor: pointer;
   }
 
@@ -134,52 +134,44 @@
 }
 
 // responsive :
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
   .addMemberModal {
-    height: 60vh;
-
-    .modal-cross-container {
-      padding-right: 3%;
+    height: 45vh;
+    button {
+      width: 40%;
+    }
+    button {
+      width: 55%;
     }
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   .addMemberModal {
-    width: 50vw;
-    height: 35vh;
+    width: 40vw;
+  }
+}
 
-    label {
-      font-size: 0.8rem;
+@media screen and (max-width: 750px) {
+  .addMemberModal {
+    width: 60vw;
+
+    .inputs {
+      width: 85%;
     }
 
     button {
-      font-size: 0.8rem;
+      width: 60%;
     }
 
     h4 {
       font-size: 1.3rem;
     }
-  }
-}
 
-@media screen and (max-width: 600px) {
-  .addMemberModal {
-    height: 45vh;
-    width: 90vw;
-
-    .inputs {
-      flex-direction: column;
+    label,
+    input,
+    button {
+      font-size: 0.8rem;
     }
-
-    .form-bottom {
-      width: 100%;
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .addMemberModal {
-    height: 50vh;
   }
 }
