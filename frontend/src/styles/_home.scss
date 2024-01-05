@@ -49,6 +49,7 @@
       gap: calc(var(--spacing) * 3.8);
 
       .create-idea-button {
+        width: 60%;
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease;
