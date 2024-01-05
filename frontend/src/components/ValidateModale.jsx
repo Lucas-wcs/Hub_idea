@@ -76,6 +76,12 @@ function ValidateModale({
       logo: "/images/icons/validation.png",
       textButton: "Accueil",
     },
+    modal7: {
+      title: "",
+      text: "Decision enregistrée !",
+      logo: "/images/icons/validation.png",
+      textButton: "Page Administrateur",
+    },
   };
 
   const { theme } = useContext(ThemeContext);

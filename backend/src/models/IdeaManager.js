@@ -90,6 +90,18 @@ class IdeaManager extends AbstractManager {
     );
     return result;
   }
+
+  async updateStatusIdByAdmin({
+    status_id: statusId,
+    date_limit: dateLimit,
+    id,
+  }) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET status_id=?, date_limit=? WHERE id=?`,
+      [statusId, dateLimit, id]
+    );
+    return result;
+  }
 }
 
 module.exports = IdeaManager;

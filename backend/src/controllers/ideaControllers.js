@@ -89,6 +89,23 @@ const destroy = async (req, res, next) => {
   }
 };
 
+const editStatusIdByAdmin = async (req, res, next) => {
+  const { status_id: statusId, date_limit: dateLimit } = req.body;
+
+  const statusUpdatedIdea = {
+    status_id: statusId,
+    date_limit: dateLimit,
+    id: req.params.id,
+  };
+
+  try {
+    await tables.Idea.updateStatusId(statusUpdatedIdea);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
   read,
@@ -96,4 +113,5 @@ module.exports = {
   editStatusId,
   add,
   destroy,
+  editStatusIdByAdmin,
 };
