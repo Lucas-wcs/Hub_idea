@@ -76,6 +76,12 @@
     scrollbar-width: none; /* Firefox */
   }
 
+  a {
+    text-decoration: none;
+    font-family: var(--text-font);
+    color: var(--text-color);
+  }
+
   .bloc-ideas {
     background-color: rgba(212, 232, 232, 0.3);
     border: 2.5px solid rgba(212, 232, 232, 0.3);
@@ -104,7 +110,7 @@
     border: 2.5px solid rgba(212, 232, 232, 0.3);
     border-radius: 5px;
     width: 15%;
-    height: 52%;
+    height: 48%;
     padding: 1%;
     display: flex;
     align-items: center;

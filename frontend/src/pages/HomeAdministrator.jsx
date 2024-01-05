@@ -49,17 +49,19 @@ function HomeAdministrator() {
           <h4>Idées proposées par les membres</h4>
         </div>
         <div className="content-container">
-          {ideas.map((idea) => {
-            return (
-              <Link
-                to={`/administrator/idea/${idea.id}`}
-                className="bloc-ideas"
-                key={idea.id}
-              >
-                <p>{idea.title}</p>
-              </Link>
-            );
-          })}
+          {ideas
+            .filter((idea) => idea.status_id === 2)
+            .map((idea) => {
+              return (
+                <Link
+                  to={`/administrator/idea/${idea.id}`}
+                  className="bloc-ideas"
+                  key={idea.id}
+                >
+                  <p>{idea.title}</p>
+                </Link>
+              );
+            })}
         </div>
       </div>
 

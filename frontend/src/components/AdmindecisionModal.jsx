@@ -1,3 +1,5 @@
+/* eslint-disable no-const-assign */
+import axios from "axios";
 import { useNavigate, useParams, useRouteLoaderData } from "react-router-dom";
 
 function AdmindecisionModal() {
@@ -9,6 +11,33 @@ function AdmindecisionModal() {
   const navigate = useNavigate();
 
   const handleCloseWindow = () => {
+    navigate("/administrator");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let ideaToUpdate = {};
+    if (e.nativeEvent.submitter.value === "soumettre") {
+      ideaToUpdate = {
+        status_id: "4",
+        date_limit: e.target.date.value,
+      };
+    } else {
+      ideaToUpdate = {
+        status_id: "3",
+        date_limit: e.target.date.value,
+      };
+    }
+
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/admin-decision/${idea.id}`,
+        ideaToUpdate
+      );
+    } catch (err) {
+      console.error(err);
+    }
+    console.info(ideaToUpdate);
     navigate("/administrator");
   };
 
@@ -26,21 +55,20 @@ function AdmindecisionModal() {
         </div>
         <h4>{idea.title}</h4>
         <p className="description">{idea.idea_description}</p>
-        <label htmlFor="start">{idea.date_limit.split("T")[0]}</label>
-
-        <input type="date" id="start" name="date" />
-        <div className="decision">
-          <input
-            type="submit"
-            value="Soumettre l'idée au vote"
-            className="choice refuse"
-          />
-          <input
-            type="submit"
-            value="Ne pas soumettre l'idée au vote"
-            className="choice accept"
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="date">
+            <label htmlFor="start">{idea.date_limit.split("T")[0]}</label>
+            <input type="date" id="start" name="date" />
+          </div>
+          <div className="decision">
+            <button type="submit" value="soumettre" className="choice refuse">
+              Soumettre l'idée au vote
+            </button>
+            <button type="submit" value="rejeter" className="choice accept">
+              Ne pas soumettre l'idée au vote
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
