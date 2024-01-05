@@ -43,6 +43,8 @@
 
     .button-container {
       display: flex;
+      justify-content: center;
+      align-items: center;
       padding: calc(var(--spacing) * 2) 0;
       gap: calc(var(--spacing) * 3.8);
 
@@ -76,16 +78,23 @@
         background-color: var(--tertiary-color);
         cursor: pointer;
       }
-      .serch-button {
-        border: none;
-        cursor: pointer;
-        background-color: var(--quinary-color);
-        padding: 10px 15px;
+      .filter-input {
+        width: 45%;
+        height: 50px;
+        padding: 10px 20px;
         border-radius: 10px;
-
-        img {
-          height: 30px;
-        }
+        border: none;
+        text-align: center;
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        font-family: var(--text-font);
+        font-weight: bold;
+        color: black;
+      }
+      .filter-input option:checked {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
       }
     }
   }
@@ -115,6 +124,23 @@
 
       .button-container {
         width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .filter-input {
+          width: 80%;
+          height: 50px;
+          padding: 10px 20px;
+          border-radius: 10px;
+          text-align: center;
+          border: none;
+          background-color: var(--secondary-color);
+          color: var(--primary-color);
+          font-size: 1.2rem;
+          font-family: var(--text-font);
+          font-weight: bold;
+          color: black;
+        }
         .create-idea-button {
           width: 80%;
           border-radius: 10px;
