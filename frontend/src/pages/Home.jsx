@@ -13,7 +13,6 @@ function Home() {
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
-  const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const [newIdeaId, setNewIdeaId] = useState("");
   const { user } = useContext(UserContext);
 
@@ -89,9 +88,7 @@ function Home() {
 
   return (
     <div
-      className={`home-container ${
-        isOpenIdeaModal || (isOpenDecisionModal && "home-container-fixed")
-      }`}
+      className={`home-container ${isOpenIdeaModal && "home-container-fixed"}`}
     >
       {/* div for modal */}
       <div className={`${isOpenIdeaModal ? "" : "hide-idea-modal"}`}>
@@ -144,10 +141,9 @@ function Home() {
           return (
             <IdeaCard
               title={idea.title}
+              ideaId={idea.id}
               statusId={statuses[idea.status_id - 1].status_name}
               key={idea.title}
-              isOpenDecisionModal={isOpenDecisionModal}
-              setIsOpenDecisionModal={setIsOpenDecisionModal}
             />
           );
         })}

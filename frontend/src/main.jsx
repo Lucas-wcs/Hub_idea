@@ -33,11 +33,11 @@ const router = createBrowserRouter([
         loader: loaderHome,
       },
       {
-        path: "/idea",
+        path: "/idea/:id",
         element: (
-          <ProtectedRoute>
-            <Idea />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <Idea />
+          // </ProtectedRoute>
         ),
       },
       {
