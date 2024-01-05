@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Idea from "./pages/Idea";
 import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdmindecisionModal from "./components/AdmindecisionModal";
 
 // Create a router with a protected route
 const router = createBrowserRouter([
@@ -59,6 +60,13 @@ const router = createBrowserRouter([
             <HomeAdministrator />
           </ProtectedRoute>
         ),
+        id: "admin",
+        children: [
+          {
+            path: "/administrator/idea/:id",
+            element: <AdmindecisionModal />,
+          },
+        ],
         loader,
       },
     ],

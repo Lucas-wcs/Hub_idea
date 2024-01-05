@@ -41,91 +41,145 @@ INSERT INTO
         updated_at
     )
 VALUES (
-        'John',
-        'Doe',
-        'john@example.com',
-        'john.jpg',
+        'Étienne',
+        'Lefebvre',
+        'etienne@example.com',
+        'etienne.jpg',
+        'hashed_password',
+        1,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Charlotte',
+        'Dubois',
+        'charlotte@example.com',
+        'charlotte.jpg',
         'hashed_password',
         0,
         1,
         CURRENT_TIMESTAMP
     ), (
-        'Alice',
-        'Smith',
-        'alice@example.com',
-        'alice.jpg',
+        'Antoine',
+        'Girard',
+        'antoine@example.com',
+        'antoine.jpg',
         'hashed_password',
         0,
         1,
         CURRENT_TIMESTAMP
     ), (
-        'Robert',
-        'Johnson',
-        'robert@example.com',
-        'robert.jpg',
+        'Manon',
+        'Martel',
+        'manon@example.com',
+        'manon.jpg',
+        'hashed_password',
+        0,
+        1,
+        CURRENT_TIMESTAMP
+    ), (
+        'Luc',
+        'Berger',
+        'luc@example.com',
+        'luc.jpg',
+        'hashed_password',
+        0,
+        1,
+        CURRENT_TIMESTAMP
+    ), (
+        'Léa',
+        'Lavoie',
+        'lea@example.com',
+        'lea.jpg',
+        'hashed_password',
+        0,
+        1,
+        CURRENT_TIMESTAMP
+    ), (
+        'Gabriel',
+        'Boucher',
+        'gabriel@example.com',
+        'gabriel.jpg',
         'hashed_password',
         0,
         0,
         CURRENT_TIMESTAMP
     ), (
-        'Emily',
-        'Brown',
-        'emily@example.com',
-        'emily.jpg',
+        'Clara',
+        'Moreau',
+        'clara@example.com',
+        'clara.jpg',
         'hashed_password',
         0,
         0,
         CURRENT_TIMESTAMP
     ), (
-        'Michael',
-        'Wilson',
-        'michael@example.com',
-        'michael.jpg',
-        'hashed_password',
-        0,
-        0,
-        CURRENT_TIMESTAMP
-    ), (
-        'Sophia',
-        'Martinez',
-        'sophia@example.com',
-        'sophia.jpg',
-        'hashed_password',
-        0,
-        0,
-        CURRENT_TIMESTAMP
-    ), (
-        'William',
-        'Anderson',
-        'william@example.com',
-        'william.jpg',
-        'hashed_password',
-        0,
-        0,
-        CURRENT_TIMESTAMP
-    ), (
-        'Olivia',
-        'Garcia',
-        'olivia@example.com',
-        'olivia.jpg',
-        'hashed_password',
-        0,
-        0,
-        CURRENT_TIMESTAMP
-    ), (
-        'James',
-        'Lopez',
-        'james@example.com',
-        'james.jpg',
+        'Mathis',
+        'Caron',
+        'mathis@example.com',
+        'mathis.jpg',
         'hashed_password',
         0,
         0,
         CURRENT_TIMESTAMP
     ), (
         'Emma',
-        'Hernandez',
+        'Gagnon',
         'emma@example.com',
         'emma.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Nathan',
+        'Leblanc',
+        'nathan@example.com',
+        'nathan.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Chloé',
+        'Lemieux',
+        'chloe@example.com',
+        'chloe.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Adam',
+        'Perrault',
+        'adam@example.com',
+        'adam.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Lola',
+        'Rousseau',
+        'lola@example.com',
+        'lola.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Noah',
+        'Mercier',
+        'noah@example.com',
+        'noah.jpg',
+        'hashed_password',
+        0,
+        0,
+        CURRENT_TIMESTAMP
+    ), (
+        'Rose',
+        'Gauthier',
+        'rose@example.com',
+        'rose.jpg',
         'hashed_password',
         0,
         0,
@@ -138,7 +192,15 @@ CREATE TABLE
         `status_name` VARCHAR(30) DEFAULT "draft"
     );
 
-    INSERT INTO Status_idea (status_name) VALUES ("draft"), ("to_accept"), ("admin_refused"), ("on_going"), ("to_decide"), ("moderator_accepted"), ("moderator_refused");
+INSERT INTO
+    Status_idea (status_name)
+VALUES ("Brouillon"), (
+        "Acceptées par l'administrateur"
+    ), (
+        "Refusées par l'administrateur"
+    ), ("En cours de vote"), (
+        "En attente décision modérateur"
+    ), ("Idées validées"), ("Idées refusées");
 
 CREATE TABLE
     `Idea` (
@@ -156,20 +218,124 @@ CREATE TABLE
         CONSTRAINT `fk_idea_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE
     );
 
-    INSERT INTO Idea (
-        title, idea_description, idea_image, date_limit, is_validation_administrator
-    ) VALUES ("réaliser un repas de Noel", "Pour les fêtes de fin d'années et avant les vacances, ce serait sympa d'organiser un repas collectif", "idée image",CURRENT_TIMESTAMP, 0), ("changer les fenêtres du bureau 402", "Depuis plusieurs hivers, les fenêtres ne sont plus efficaces, il fait froid, il y a de l'humidité ; il faudrait donc remplacer ces fenêtres en urgence", "idée image",CURRENT_TIMESTAMP, 0), ("mettre une télé dans la salle de pause", "pour les pauses du midi, ce serait bien d'avoir une télé pour pouvoir jouer à la console ou regarder des films ou séries", "idée image",CURRENT_TIMESTAMP, 0);
+INSERT INTO
+    Idea (
+        title,
+        idea_description,
+        idea_image,
+        date_limit,
+        is_validation_administrator,
+        status_id
+    )
+VALUES (
+        "réaliser un repas de Noel",
+        "Pour les fêtes de fin d'années et avant les vacances, ce serait sympa d'organiser un repas collectif",
+        "idée image",
+        CURRENT_TIMESTAMP,
+        0,
+        1
+    ), (
+        "changer les fenêtres du bureau 402",
+        "Depuis plusieurs hivers, les fenêtres ne sont plus efficaces, il fait froid, il y a de l'humidité ; il faudrait donc remplacer ces fenêtres en urgence",
+        "idée image",
+        CURRENT_TIMESTAMP,
+        0,
+        2
+    ), (
+        "mettre une télé dans la salle de pause",
+        "pour les pauses du midi, ce serait bien d'avoir une télé pour pouvoir jouer à la console ou regarder des films ou séries",
+        "idée image",
+        CURRENT_TIMESTAMP,
+        0,
+        3
+    ), (
+        "Organiser une journée d'intégration",
+        "Proposer une journée d'activités pour favoriser l'intégration des nouveaux employés dans l'entreprise.",
+        "image1.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        4
+    ), (
+        "Programme de mentorat interne",
+        "Créer un programme de mentorat pour aider les employés juniors à développer leurs compétences avec l'aide des seniors.",
+        "image2.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        5
+    ), (
+        "Amélioration des espaces de travail",
+        "Réaménager les espaces de travail pour favoriser la collaboration et le bien-être des employés.",
+        "image3.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        6
+    ), (
+        "Initier des formations inter-équipes",
+        "Organiser des sessions de formation où différentes équipes peuvent partager leurs connaissances et compétences.",
+        "image4.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        7
+    ), (
+        "Campagne de sensibilisation écologique",
+        "Promouvoir des actions en faveur de l'environnement et sensibiliser les employés à adopter des pratiques durables.",
+        "image5.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        1
+    ), (
+        "Mise en place d'un système de récompenses",
+        "Créer un système de récompenses pour reconnaître les employés méritants et encourager la productivité.",
+        "image6.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        2
+    ), (
+        "Evénements sociaux réguliers",
+        "Organiser des événements sociaux périodiques pour renforcer la cohésion d'équipe et le moral des employés.",
+        "image7.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        3
+    ), (
+        "Développement d'une application interne",
+        "Concevoir une application interne pour simplifier les processus de communication et de collaboration.",
+        "image8.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        4
+    ), (
+        "Création d'un programme de bien-être",
+        "Lancer un programme de bien-être pour soutenir la santé mentale et physique des employés.",
+        "image9.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        5
+    ), (
+        "Installation d'équipements sportifs",
+        "Installer des équipements sportifs pour encourager l'activité physique et la détente au sein de l'entreprise.",
+        "image10.jpg",
+        CURRENT_TIMESTAMP,
+        0,
+        6
+    );
 
 CREATE TABLE
     `Notification` (
         `id` INT PRIMARY KEY AUTO_INCREMENT,
         `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
         `content` VARCHAR(500) NOT NULL
-    );  
+    );
 
 INSERT INTO
     Notification (content)
-VALUES ('Ton idée a été soumise à l administrateur'), ('Ton idée a été acceptée par les décideurs, félicitations !'), ('Tu peux dès à présent voter pour l idée : changer les fenêtres du bureau 402');
+VALUES (
+        'Ton idée a été soumise à l administrateur'
+    ), (
+        'Ton idée a été acceptée par les décideurs, félicitations !'
+    ), (
+        'Tu peux dès à présent voter pour l idée : changer les fenêtres du bureau 402'
+    );
 
 CREATE TABLE
     `User_notification` (
@@ -182,7 +348,7 @@ CREATE TABLE
 
 INSERT INTO
     User_notification (user_id, notification_id)
-VALUES (1, 1), (4, 3), (2,2);
+VALUES (1, 1), (4, 3), (2, 2);
 
 CREATE TABLE
     `Vote` (
@@ -194,7 +360,9 @@ CREATE TABLE
         PRIMARY KEY (`user_id`, `idea_id`)
     );
 
-INSERT INTO Vote (user_id, idea_id, is_vote) VALUES (3, 1, 0), (4, 1, 1), (5, 1, 0);
+INSERT INTO
+    Vote (user_id, idea_id, is_vote)
+VALUES (3, 1, 0), (4, 1, 1), (5, 1, 0);
 
 CREATE TABLE
     `Impacted_user` (
@@ -205,7 +373,9 @@ CREATE TABLE
         PRIMARY KEY (`user_id`, `idea_id`)
     );
 
-INSERT INTO Impacted_user (user_id, idea_id) VALUES (2, 1), (3, 1), (4, 2);
+INSERT INTO
+    Impacted_user (user_id, idea_id)
+VALUES (2, 1), (3, 1), (4, 2);
 
 CREATE TABLE
     `Comment` (
@@ -220,4 +390,16 @@ CREATE TABLE
 
 INSERT INTO
     Comment (user_id, idea_id, description)
-VALUES (3, 1, "Super idée! J'adore la créativité derrière cela. "),  (2, 3, "C'est une idée intéressante, mais peut-être pourriez-vous explorer davantage?  Cela pourrait résoudre certains défis potentiels et rendre l'idée encore plus robuste"), (1, 3, "Je suis vraiment enthousiaste à propos de cette idée!");
+VALUES (
+        3,
+        1,
+        "Super idée! J'adore la créativité derrière cela. "
+    ), (
+        2,
+        3,
+        "C'est une idée intéressante, mais peut-être pourriez-vous explorer davantage?  Cela pourrait résoudre certains défis potentiels et rendre l'idée encore plus robuste"
+    ), (
+        1,
+        3,
+        "Je suis vraiment enthousiaste à propos de cette idée!"
+    );
