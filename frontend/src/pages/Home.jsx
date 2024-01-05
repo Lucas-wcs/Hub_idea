@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLoaderData, useRevalidator } from "react-router-dom";
 import axios from "axios";
 import IdeaCard from "../components/IdeaCard";
@@ -8,7 +8,7 @@ import { UserContext } from "../context/UserContext";
 
 function Home() {
   const revalidator = useRevalidator();
-  const { ideas, statuses } = useLoaderData();
+  const { statuses } = useLoaderData();
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -86,6 +86,51 @@ function Home() {
     setIsOpenIdeaModal(true);
   };
 
+  // filter to status ideas
+  // Declare a state variable 'statusFilter' and a function to update it 'setStatusFilter'
+  // Initialize 'statusFilter' with an empty string
+  const [statusFilter, setStatusFilter] = useState("");
+  // Define a function to handle changes in the status filter
+  const handleStatusFilterChange = (event) => {
+    // Destructure 'value' from the event target
+    const { value } = event.target;
+    // Split the 'value' string by comma and convert each part to a number
+    // This results in an array of status IDs
+    const statusIds = value.split(",").map(Number);
+    // Update 'statusFilter' with the array of status IDs
+    setStatusFilter(statusIds);
+  };
+  // Declare a state variable 'ideas' and a function to update it 'setIdeas'
+  // Initialize 'ideas' with an empty array
+  const [ideas, setIdeas] = useState([]);
+  // Define an asynchronous function to fetch ideas
+
+  const getIdeas = async () => {
+    try {
+      // Send a GET request to the ideas API
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/ideas`
+      );
+      let filteredIdeas = response.data;
+      // If 'statusFilter' is not empty, filter the ideas by status ID
+      if (statusFilter) {
+        filteredIdeas = response.data.filter(
+          // For each idea, check if its status ID is in the 'statusFilter' array
+          (idea) => statusFilter.includes(idea.status_id)
+        );
+      }
+      // Update 'ideas' with the filtered ideas
+      setIdeas(filteredIdeas);
+    } catch (e) {
+      // If an error occurs, log it to the console
+      console.error(e);
+    }
+  };
+  // Use the 'useEffect' hook to call 'getIdeas' whenever 'statusFilter' changes
+  useEffect(() => {
+    getIdeas();
+  }, [statusFilter]);
+
   return (
     <div
       className={`home-container ${isOpenIdeaModal && "home-container-fixed"}`}
@@ -120,13 +165,18 @@ function Home() {
           <h2>Nouvelles idées de WILD CODE SCHOOL</h2>
         </div>
         <div className="button-container">
-          <button type="button" className="serch-button">
-            <img
-              title="rechercher"
-              src="images/icons/search_icon.png"
-              alt="search-button"
-            />
-          </button>
+          <select
+            className="filter-input"
+            value={statusFilter}
+            onChange={handleStatusFilterChange}
+          >
+            <option value="1">Brouillon</option>
+            <option value="2,5">En attente</option>
+            <option value="3,7">Refusées</option>
+            <option value="4">En cours</option>
+            <option value="6">Validées</option>
+          </select>
+
           <button
             type="button"
             className="create-idea-button"
@@ -143,7 +193,7 @@ function Home() {
               title={idea.title}
               ideaId={idea.id}
               statusId={statuses[idea.status_id - 1].status_name}
-              key={idea.title}
+              key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
             />
           );
         })}
