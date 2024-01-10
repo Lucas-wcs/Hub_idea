@@ -45,7 +45,7 @@
         }
       }
       button {
-        background-color: var(--secondary-color);
+        background-color: var(--primary-color);
         font-family: var(--text-font);
         font-size: 12px;
         border-radius: 5px;
@@ -57,16 +57,19 @@
           transform: scale(1.05);
         }
       }
+
       .input-upload {
         padding: 3%;
       }
       .custom-file-upload {
-        background-color: var(--secondary-color);
+        background-color: var(--primary-color);
         font-family: var(--text-font);
         font-size: 12px;
         border-radius: 5px;
         padding: 5px 16px;
         border: none;
+        color: black;
+        font-weight: bold;
       }
       .name-of-image {
         padding: 10px;
