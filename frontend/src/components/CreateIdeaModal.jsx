@@ -1,9 +1,27 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { ThemeContext } from "../context/ThemeContext";
 
 function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
   const { theme } = useContext(ThemeContext);
+  const [allUsers, setAllUsers] = useState([]);
+
+  const getUsers = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/users`
+      );
+
+      setAllUsers(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <div className="modal-idea-container">
@@ -62,7 +80,7 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
                   />
                 </div>
               </div>
-              <label htmlFor="user">Personne impactées</label>
+              <label htmlFor="user">Personnes impactées</label>
               <div className="form-impacted-person-container">
                 {/* Personne impactées */}
                 <table className={`table ${theme === "dark" && "dark"}`}>
@@ -74,61 +92,49 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
                       <th>Email</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td
-                        aria-label="image-checkbox"
-                        className="checkbox-avatar"
-                      >
-                        <input type="checkbox" id="user" name="user" />
-                        <img src="images/hugo.png" alt="" />
-                      </td>
-                      <td>Hugo</td>
-                      <td>lastname</td>
-                      <td>hugo@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td
-                        aria-label="image-checkbox"
-                        className="checkbox-avatar"
-                      >
-                        <input type="checkbox" id="user" name="user" />
-                        <img src="images/hugo.png" alt="" />
-                      </td>
-                      <td>Hugo</td>
-                      <td>lastname</td>
-                      <td>hugo@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td
-                        aria-label="image-checkbox"
-                        className="checkbox-avatar"
-                      >
-                        <input type="checkbox" id="user" name="user" />
-                        <img src="images/hugo.png" alt="" />
-                      </td>
-                      <td>Hugo</td>
-                      <td>lastname</td>
-                      <td>hugo@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td
-                        aria-label="image-checkbox"
-                        className="checkbox-avatar"
-                      >
-                        <input type="checkbox" id="user" name="user" />
-                        <img src="images/hugo.png" alt="" />
-                      </td>
-                      <td>Hugo</td>
-                      <td>lastname</td>
-                      <td>hugo@gmail.com</td>
-                    </tr>
-                  </tbody>
+
+                  {allUsers.map((user) => {
+                    return (
+                      <tbody>
+                        <tr key={user.id}>
+                          <td
+                            aria-label="image-checkbox"
+                            className="checkbox-avatar"
+                          >
+                            <input type="checkbox" id="user" name="user" />
+                            {user.image_profil ? (
+                              <img
+                                className="avatar"
+                                title="Profil"
+                                src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                                  user.image_profil
+                                }`}
+                                alt="profile"
+                              />
+                            ) : (
+                              <img
+                                title="Profil"
+                                src={
+                                  theme === "dark"
+                                    ? "/images/icons/avatar_icon_dark.png"
+                                    : "/images/icons/avatar_icon.png"
+                                }
+                                alt="default profile"
+                              />
+                            )}
+                          </td>
+                          <td>{user.firstname}</td>
+                          <td>{user.lastname}</td>
+                          <td>{user.email}</td>
+                        </tr>
+                      </tbody>
+                    );
+                  })}
                 </table>
               </div>
               <div className="form-description-container">
                 {/* personne Déscription */}
-                <label htmlFor="description">Déscription</label>
+                <label htmlFor="description">Description</label>
                 <textarea
                   id="description"
                   name="description"
