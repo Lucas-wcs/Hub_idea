@@ -22,7 +22,7 @@ CREATE TABLE
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
         `email` TEXT NOT NULL,
-        `image_profil` VARCHAR(50),
+        `image_profil` VARCHAR(100),
         `password` VARCHAR(50) NOT NULL DEFAULT 'welcometohubidea',
         `is_administrator` BOOLEAN NOT NULL DEFAULT 0,
         `is_moderator` BOOLEAN NOT NULL DEFAULT 0,

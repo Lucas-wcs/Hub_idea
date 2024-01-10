@@ -52,7 +52,7 @@ function Profile() {
 
     const userToUpdate = {
       id: user.id,
-      image_profil: user?.image_profil || "par default",
+      image_profil: user.image_profil,
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
@@ -91,6 +91,37 @@ function Profile() {
     e.preventDefault();
     navigate("/home");
   };
+
+  // function upload image
+  const [image, setImage] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleAdd = async () => {
+    setErrorMessage("");
+
+    if (image === undefined) {
+      setErrorMessage("Veuillez choisir une image");
+      return;
+    }
+
+    const data = new FormData();
+    data.append("image", image);
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/upload/${user.id}`,
+        data
+      );
+
+      setUser((prevUser) => ({
+        ...prevUser,
+        image_profil: response.data,
+      }));
+    } catch (e) {
+      setErrorMessage("Insertion échouée");
+    }
+  };
+  const [fileName, setFileName] = useState("");
+
   return (
     <div>
       <div className="profile-page">
@@ -109,9 +140,36 @@ function Profile() {
         </div>
         <div className="profile-form-container">
           <div className="thumbnail">
-            <img src="/images/hugo.png" alt="my thumbnail" />
-            <div>
-              <button type="button">Télécharger photo</button>
+            <div className="upload-container">
+              <img
+                src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                  user.image_profil
+                }`}
+                alt="Mon portrait"
+              />
+              {errorMessage && <p>{errorMessage}</p>}
+
+              <button type="button" onClick={handleAdd}>
+                Changer la photo
+              </button>
+              <div className="input-upload">
+                <input
+                  id="file-upload"
+                  className="upload-input"
+                  type="file"
+                  onInput={(e) => {
+                    setImage(e.target.files[0]);
+                    setFileName(
+                      e.target.files[0] ? e.target.files[0].name : ""
+                    );
+                  }}
+                  style={{ display: "none" }} // Cachez l'input
+                />
+                <label htmlFor="file-upload" className="custom-file-upload">
+                  Parcourir
+                </label>
+                <p className="name-of-image">{fileName || ""}</p>
+              </div>
             </div>
           </div>
           {/* div for modal */}
