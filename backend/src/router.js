@@ -1,4 +1,24 @@
 const express = require("express");
+const multer = require("multer");
+const { v4 } = require("uuid");
+
+const options = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads");
+  },
+  filename: (req, file, cb) => {
+    const name = `${v4()}-${file.originalname}`;
+    req.body.url = name;
+    cb(null, name);
+  },
+  limits: {
+    fieldSize: 1024 * 5,
+  },
+});
+
+const upload = multer({
+  storage: options,
+});
 
 const router = express.Router();
 
@@ -84,5 +104,8 @@ router.delete("/comments/:id", commentControllers.destroy);
 // Routes authentification
 router.post("/login", authControllers.login);
 router.post("/signin", authControllers.signin);
+
+// Routes upload
+router.put("/upload/:id", upload.single("image"), userControllers.upload);
 
 module.exports = router;

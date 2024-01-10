@@ -60,11 +60,9 @@ function Navbar() {
               <div className="image-container">
                 <img
                   title="Profil"
-                  src={
-                    theme === "dark"
-                      ? "/images/icons/avatar_icon_dark.png"
-                      : "/images/icons/avatar_icon.png"
-                  }
+                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                    user.image_profil
+                  }`}
                   alt="profile"
                 />
               </div>
