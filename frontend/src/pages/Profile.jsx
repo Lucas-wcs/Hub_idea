@@ -141,12 +141,23 @@ function Profile() {
         <div className="profile-form-container">
           <div className="thumbnail">
             <div className="upload-container">
-              <img
-                src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                  user.image_profil
-                }`}
-                alt="Mon portrait"
-              />
+              {user.image_profil ? (
+                <img
+                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                    user.image_profil
+                  }`}
+                  alt="profile"
+                />
+              ) : (
+                <img
+                  src={
+                    theme === "dark"
+                      ? "/images/icons/avatar_icon_dark.png"
+                      : "/images/icons/avatar_icon.png"
+                  }
+                  alt="default profile"
+                />
+              )}
               {errorMessage && <p>{errorMessage}</p>}
 
               <button type="button" onClick={handleAdd}>
