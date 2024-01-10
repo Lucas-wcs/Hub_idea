@@ -92,7 +92,6 @@
       }
 
       .button-green {
-        color: var(--black-color);
         margin-top: 0;
         font-size: 1vh;
         height: 6vh;
@@ -108,7 +107,8 @@
         width: 40%;
 
         p {
-          padding-top: 1.8vh;
+          color: var(--black-color);
+          padding-top: 1.5vh;
           width: 100%;
           display: flex;
           justify-content: center;

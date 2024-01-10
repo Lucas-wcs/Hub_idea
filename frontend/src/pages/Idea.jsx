@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import DecisionModal from "../components/DecisionModal";
 import ValidateModale from "../components/ValidateModale";
@@ -6,10 +8,14 @@ import ValidateModale from "../components/ValidateModale";
 //     <p className={`${user.is_moderator && "is-moderator"}`}>
 
 function Idea() {
+  const idea = useLoaderData();
   const { user } = useContext(UserContext);
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const [isOpenDecisionConfirmModal, setIsOpenDecisionConfirmModal] =
     useState(false);
+
+  // for showing just date without hours
+  const date = idea[0].date_limit.split("T");
 
   const handleClickDecisionModal = () => {
     setIsOpenDecisionModal((current) => !current);
@@ -32,6 +38,7 @@ function Idea() {
   };
   return (
     <>
+      {console.info(idea)}
       {/* div for modal */}
       <div className={`${isOpenDecisionModal ? "" : "hide-decision-modal"}`}>
         <DecisionModal
@@ -58,7 +65,7 @@ function Idea() {
         }`}
       />
       <div className="idea">
-        <h2>Réaliser un repas de Noel</h2>
+        <h2>{idea[0].title}</h2>
         <h3>Créé par Nicolas Hugo</h3>
         <div className="idea-main-container">
           <div className="idea-main-img-container">
@@ -66,19 +73,7 @@ function Idea() {
           </div>
           <div className="idea-main-info-container">
             <h4>Description</h4>
-            <p>
-              Le Lorem Ipsum est simplement du faux texte employé dans la
-              composition et la mise en page avant impression. Le Lorem Ipsum
-              est le faux texte standard de l'imprimerie depuis les années 1500,
-              quand un imprimeur anonyme assembla ensemble des morceaux de texte
-              pour réaliser un livre spécimen de polices de texte. Il n'a pas
-              fait que survivre cinq siècles, mais s'est aussi adapté à la
-              bureautique informatique, sans que son contenu n'en soit modifié.
-              Il a été popularisé dans les années 1960 grâce à la vente de
-              feuilles Letraset contenant des passages du Lorem Ipsum, et, plus
-              récemment, par son inclusion dans des applications de mise en page
-              de texte, comme Aldus PageMaker.
-            </p>
+            <p>{idea[0].idea_description}</p>
             <div className="idea-info-vote">
               <progress id="avancement" value="40" max="100" />
               <div className="idea-info-vote-bottom">
@@ -92,53 +87,52 @@ function Idea() {
                   </div>
                   <div className="idea-enddate">
                     <p>Date de fin :</p>
-                    <p>18_12_2024</p>
+                    <p>{date[0]}</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="idea-info-impacted-vote-container">
-              <div className="idea-impacted-container">
-                <p>Personnes impactées</p>
-                <div>
-                  <img src="" alt="" />
-                </div>
-                <div>
-                  <img src="" alt="" />
-                </div>
-                <div>
-                  <img src="" alt="" />
-                </div>
+
+            <div className="idea-impacted-container">
+              <p>Personnes impactées</p>
+              <div className="impacteduser-image-container">
+                <img src="/images/hugo.png" alt="" />
               </div>
-              <div className="idea-vote-container">
-                <button
-                  className={`button-moderateur ${
-                    user.is_moderator ? "" : "is-not-moderator"
-                  }`}
-                  type="button"
-                  onClick={handleClickDecisionModal}
-                >
-                  Modérateur
-                </button>
-                <button className="button-vote" type="submit">
-                  <div className="vote-logo-container">
-                    <img
-                      src="/images/icons_pouces_bas.png"
-                      alt="logo_pouce_bas"
-                    />
-                  </div>
-                  <p>Je suis contre</p>
-                </button>
-                <button className="button-vote" type="submit">
-                  <div className="vote-logo-container">
-                    <img
-                      src="/images/icons_pouce_haut.png"
-                      alt="logo_pouce_haut"
-                    />
-                  </div>
-                  <p>Je suis pour</p>
-                </button>
+              <div>
+                <img src="" alt="" />
               </div>
+              <div>
+                <img src="" alt="" />
+              </div>
+            </div>
+            <div className="idea-vote-container">
+              <button
+                className={`button-moderateur ${
+                  user.is_moderator ? "" : "is-not-moderator"
+                }`}
+                type="button"
+                onClick={handleClickDecisionModal}
+              >
+                Modérateur
+              </button>
+              <button className="button-vote vote-pour" type="submit">
+                <div className="vote-logo-container">
+                  <img
+                    src="/images/icons_pouces_bas.png"
+                    alt="logo_pouce_bas"
+                  />
+                </div>
+                <p>Je suis contre</p>
+              </button>
+              <button className="button-vote vote-contre" type="submit">
+                <div className="vote-logo-container">
+                  <img
+                    src="/images/icons_pouce_haut.png"
+                    alt="logo_pouce_haut"
+                  />
+                </div>
+                <p>Je suis pour</p>
+              </button>
             </div>
           </div>
         </div>
@@ -178,5 +172,16 @@ function Idea() {
     </>
   );
 }
+export const loaderIdea = async ({ params }) => {
+  try {
+    const idea = await axios.get(
+      `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`
+    );
+    return idea.data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
 
 export default Idea;
