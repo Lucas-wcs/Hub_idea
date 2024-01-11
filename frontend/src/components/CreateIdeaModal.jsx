@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { ThemeContext } from "../context/ThemeContext";
+import { UserContext } from "../context/UserContext";
 
 function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
+  const { user } = useContext(UserContext);
 
   const getUsers = async () => {
     try {
@@ -14,6 +17,24 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
       );
 
       setAllUsers(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChoseUser = async (e) => {
+    const impactedUser = e.target.checked;
+
+    try {
+      const ideaId = await handleSubmitIdea();
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND}/api/impacted_users`,
+        {
+          impactedUser,
+          ideaId,
+        }
+      );
+      e.target.checked = false;
     } catch (error) {
       console.error(error);
     }
@@ -93,21 +114,21 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
                     </tr>
                   </thead>
 
-                  {allUsers.map((user) => {
+                  {allUsers.map((person) => {
                     return (
-                      <tbody>
-                        <tr key={user.id}>
+                      <tbody key={person.id}>
+                        <tr>
                           <td
                             aria-label="image-checkbox"
                             className="checkbox-avatar"
                           >
                             <input type="checkbox" id="user" name="user" />
-                            {user.image_profil ? (
+                            {person.image_profil ? (
                               <img
                                 className="avatar"
                                 title="Profil"
                                 src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                                  user.image_profil
+                                  person.image_profil
                                 }`}
                                 alt="profile"
                               />
@@ -123,9 +144,9 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
                               />
                             )}
                           </td>
-                          <td>{user.firstname}</td>
-                          <td>{user.lastname}</td>
-                          <td>{user.email}</td>
+                          <td>{person.firstname}</td>
+                          <td>{person.lastname}</td>
+                          <td>{person.email}</td>
                         </tr>
                       </tbody>
                     );

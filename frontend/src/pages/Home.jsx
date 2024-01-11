@@ -143,6 +143,7 @@ function Home() {
         <CreateIdeaModal
           handleOpenModalIdea={handleOpenModalIdea}
           handleSubmitIdea={handleSubmitIdea} // when you click submit
+          // newIdeaId={newIdeaId}
         />
       </div>
       <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>

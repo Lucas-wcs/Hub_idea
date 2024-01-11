@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const readByUserId = async (req, res, next) => {
   try {
-    const impactedUser = await tables.Impacted_user.read(req.params.id);
+    const impactedUser = await tables.Impacted_user.readByUserId(req.params.id);
     if (impactedUser == null) {
       res.sendStatus(404);
     } else {
@@ -24,7 +24,7 @@ const readByUserId = async (req, res, next) => {
 
 const readByIdeaId = async (req, res, next) => {
   try {
-    const impactedUser = await tables.Impacted_user.read(req.params.id);
+    const impactedUser = await tables.Impacted_user.readByIdeaId(req.params.id);
     if (impactedUser == null) {
       res.sendStatus(404);
     } else {
@@ -36,12 +36,13 @@ const readByIdeaId = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const impactedUser = req.body;
+  const userId = req.body.user_id;
+  const ideaId = req.body.idea_id;
 
   try {
-    const insertId = await tables.Impacted_user.create(impactedUser);
+    const impacted = await tables.Impacted_user.create(userId, ideaId);
 
-    res.status(201).json({ insertId });
+    res.status(201).json(impacted);
   } catch (err) {
     next(err);
   }
