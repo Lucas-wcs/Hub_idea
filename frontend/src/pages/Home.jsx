@@ -109,7 +109,10 @@ function Home() {
     try {
       // Send a GET request to the ideas API
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/ideas`
+        `${import.meta.env.VITE_BACKEND}/api/ideas`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
       let filteredIdeas = response.data;
       // If 'statusFilter' is not empty, filter the ideas by status ID
@@ -161,7 +164,7 @@ function Home() {
       {/* div for modal until here */}
       <div className="title-button-container">
         <div>
-          <h1>Bienvenue {user.firstname} 👋</h1>
+          <h1>Bienvenue {user && user.firstname} 👋</h1>
           <h2>Nouvelles idées de WILD CODE SCHOOL</h2>
         </div>
         <div className="button-container">
@@ -207,7 +210,10 @@ export const loaderHome = async () => {
   const loadStatus = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/status-idea`
+        `${import.meta.env.VITE_BACKEND}/api/status-idea`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
       return res.data;
     } catch (e) {
@@ -217,7 +223,9 @@ export const loaderHome = async () => {
   };
   const loadIdeas = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
       return res.data;
     } catch (e) {
       console.error(e);

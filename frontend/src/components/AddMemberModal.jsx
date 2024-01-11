@@ -18,13 +18,19 @@ function AddMemberModal({ handleOpenModalAddMember }) {
 
     try {
       // eslint-disable-next-line no-unused-vars
-      const res = await axios.post("http://localhost:3310/api/users", {
-        firstname,
-        lastname,
-        email,
-        is_administrator: administrator,
-        is_moderator: moderator,
-      });
+      const res = await axios.post(
+        "http://localhost:3310/api/users",
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        },
+        {
+          firstname,
+          lastname,
+          email,
+          is_administrator: administrator,
+          is_moderator: moderator,
+        }
+      );
       revalidator.revalidate();
       e.target.firstname.value = "";
       e.target.lastname.value = "";

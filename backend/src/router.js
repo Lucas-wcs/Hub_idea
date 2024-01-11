@@ -37,6 +37,24 @@ const voteControllers = require("./controllers/voteControllers"); // test ok
 const impactedUserControllers = require("./controllers/impactedUserControllers"); // test ok
 const commentControllers = require("./controllers/commentControllers"); // test ok
 const authControllers = require("./controllers/authControllers");
+const { verifyToken } = require("./services/auth");
+
+// Routes authentification
+router.post("/login", authControllers.login);
+router.post("/signin", authControllers.signin);
+
+// Authentification wall
+router.use(verifyToken);
+
+// Routes user controllers
+router.get("/users", userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.get("/users-by-token", userControllers.readByToken);
+router.post("/users", userControllers.add);
+router.put("/users/:id", userControllers.edit);
+router.delete("/users/:id", userControllers.destroy);
+router.put("/users/moderator/:id", userControllers.addModerator);
+router.put("/users/remove-moderator/:id", userControllers.deleteModerator);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -45,14 +63,6 @@ router.get("/items/:id", itemControllers.read);
 // Route to add a new item
 router.post("/items", itemControllers.add);
 
-// Routes user controllers
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.post("/users", userControllers.add);
-router.put("/users/:id", userControllers.edit);
-router.delete("/users/:id", userControllers.destroy);
-router.put("/users/moderator/:id", userControllers.addModerator);
-router.put("/users/remove-moderator/:id", userControllers.deleteModerator);
 // Routes status-idea controllers
 router.get("/status-idea", statusIdeaControllers.browse);
 router.get("/status-idea/:id", statusIdeaControllers.read);

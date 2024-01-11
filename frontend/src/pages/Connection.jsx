@@ -43,6 +43,12 @@ function Connection() {
       // If the response status is 200, set the user data and navigate to the home page
 
       if (res.status === 200) {
+        const { user } = res.data;
+        const { token } = res.data;
+
+        setUser(user);
+        localStorage.setItem("token", token);
+
         setUser(res.data);
         navigate("/home");
       } else {
