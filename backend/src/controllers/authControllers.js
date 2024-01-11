@@ -1,23 +1,40 @@
+const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
 const tables = require("../tables");
 
 // If the request fails, handle the error (not shown in this code snippet)
 
 const login = async (req, res, next) => {
   // If the request fails, handle the error (not shown in this code snippet)
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   try {
     // If the request fails, handle the error (not shown in this code snippet)
-    const user = await tables.User.getByMail(email);
-    // If the user is found and the password matches
-    if (user[0] && user[0].password === password) {
-      // Deleting the password from the user object for security reasons
-      delete user[0].password;
-      // Sending the response with status 200 (OK) and the user data
-      res.status(200).send(user[0]);
-    } else {
-      // If the email or password is incorrect, sending a response with status 400 (Bad Request)
-      res.status(400).send("Incorrect mail ou mot de passe");
+    const result = await tables.User.getByMail(email);
+
+    if (result && result[0]) {
+      const user = result[0];
+      const verified = await argon2.verify(user.password, req.body.password);
+
+      if (verified) {
+        // Respond with the user and a signed token in JSON format (but without the hashed password)
+        delete user.hashed_password;
+
+        const token = await jwt.sign(
+          { userId: user.id, isAdmin: user.isAdmin },
+          process.env.APP_SECRET,
+          {
+            expiresIn: "1h",
+          }
+        );
+
+        res.json({
+          token,
+          user,
+        });
+      } else {
+        res.status(400).send("Incorrect mail ou mot de passe");
+      }
     }
   } catch (err) {
     // If an error occurs, pass it to the next error handler
