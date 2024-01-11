@@ -132,12 +132,7 @@ function Idea() {
                 onClick={handleClickVote}
                 disabled={buttonContre}
               >
-                <div className="vote-logo-container">
-                  <img
-                    src="/images/icons_pouces_bas.png"
-                    alt="logo_pouce_bas"
-                  />
-                </div>
+                <img src="/images/icons_pouces_bas.png" alt="logo_pouce_bas" />
                 Je suis contre
               </button>
               <button
@@ -147,12 +142,7 @@ function Idea() {
                 onClick={handleClickVote}
                 disabled={buttonPour}
               >
-                <div className="vote-logo-container">
-                  <img
-                    src="/images/icons_pouce_haut.png"
-                    alt="logo_pouce_haut"
-                  />
-                </div>
+                <img src="/images/icons_pouce_haut.png" alt="logo_pouce_haut" />
                 Je suis pour
               </button>
             </div>
