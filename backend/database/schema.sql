@@ -45,7 +45,7 @@ VALUES (
         'Lefebvre',
         'etienne@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         1,
         0,
         CURRENT_TIMESTAMP
@@ -54,7 +54,7 @@ VALUES (
         'Dubois',
         'charlotte@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         1,
         CURRENT_TIMESTAMP
@@ -63,7 +63,7 @@ VALUES (
         'Girard',
         'antoine@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         1,
         CURRENT_TIMESTAMP
@@ -72,7 +72,7 @@ VALUES (
         'Martel',
         'manon@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         1,
         CURRENT_TIMESTAMP
@@ -81,7 +81,7 @@ VALUES (
         'Berger',
         'luc@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         1,
         CURRENT_TIMESTAMP
@@ -90,7 +90,7 @@ VALUES (
         'Lavoie',
         'lea@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         1,
         CURRENT_TIMESTAMP
@@ -99,7 +99,7 @@ VALUES (
         'Boucher',
         'gabriel@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -108,7 +108,7 @@ VALUES (
         'Moreau',
         'clara@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -117,7 +117,7 @@ VALUES (
         'Caron',
         'mathis@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -126,7 +126,7 @@ VALUES (
         'Gagnon',
         'emma@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -135,7 +135,7 @@ VALUES (
         'Leblanc',
         'nathan@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -144,7 +144,7 @@ VALUES (
         'Lemieux',
         'chloe@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -153,7 +153,7 @@ VALUES (
         'Perrault',
         'adam@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -162,7 +162,7 @@ VALUES (
         'Rousseau',
         'lola@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -171,7 +171,7 @@ VALUES (
         'Mercier',
         'noah@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
@@ -180,7 +180,7 @@ VALUES (
         'Gauthier',
         'rose@example.com',
         null,
-        'hashed_password',
+        '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
         0,
         CURRENT_TIMESTAMP
