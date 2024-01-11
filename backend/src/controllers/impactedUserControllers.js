@@ -36,13 +36,12 @@ const readByIdeaId = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const userId = req.body.user_id;
-  const ideaId = req.body.idea_id;
+  const impactedUser = req.body;
 
   try {
-    const impacted = await tables.Impacted_user.create(userId, ideaId);
+    const insertId = await tables.Impacted_user.create(impactedUser);
 
-    res.status(201).json(impacted);
+    res.status(201).json({ insertId });
   } catch (err) {
     next(err);
   }
