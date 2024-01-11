@@ -142,6 +142,11 @@ app.use(logErrors);
 
 /* ************************************************************************* */
 
+// Utilise le middleware express.static pour servir les fichiers statiques
+// à partir du dossier 'public'. Les fichiers statiques sont des fichiers
+// qui ne changent pas, comme les images, les fichiers CSS et les fichiers JavaScript.
+app.use(express.static("./public/"));
+
 const errorManager = require("./services/errorManager");
 
 app.use(errorManager);

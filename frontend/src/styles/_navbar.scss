@@ -26,15 +26,13 @@
     .image-container {
       display: flex;
       align-items: center;
-    }
-
-    .logout {
-      display: flex;
-      align-items: center;
-      margin-bottom: 3px;
-      &:hover {
-        transform: scale(1.1);
-        transition: all 0.1s ease-in-out;
+      img,
+      button {
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        cursor: pointer;
       }
     }
   }

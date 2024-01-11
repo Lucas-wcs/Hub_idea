@@ -58,15 +58,25 @@ function Navbar() {
           location.pathname !== "/" && (
             <NavLink to={`/profile/${user.id}`}>
               <div className="image-container">
-                <img
-                  title="Profil"
-                  src={
-                    theme === "dark"
-                      ? "/images/icons/avatar_icon_dark.png"
-                      : "/images/icons/avatar_icon.png"
-                  }
-                  alt="profile"
-                />
+                {user.image_profil ? (
+                  <img
+                    title="Profil"
+                    src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                      user.image_profil
+                    }`}
+                    alt="profile"
+                  />
+                ) : (
+                  <img
+                    title="Profil"
+                    src={
+                      theme === "dark"
+                        ? "/images/icons/avatar_icon_dark.png"
+                        : "/images/icons/avatar_icon.png"
+                    }
+                    alt="default profile"
+                  />
+                )}
               </div>
             </NavLink>
           )}

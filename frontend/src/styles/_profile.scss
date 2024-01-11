@@ -8,10 +8,10 @@
     height: 2vh;
     align-items: center;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
 
     .clickable-image {
-      width: 4vw;
+      width: 3vw;
     }
   }
   .profile-form-container {
@@ -29,20 +29,50 @@
       img {
         width: 8vw;
       }
+      .upload-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        gap: 10px;
 
+        img {
+          border-radius: 50%;
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
       button {
-        background-color: var(--secondary-color);
+        background-color: var(--primary-color);
         font-family: var(--text-font);
         font-size: 12px;
         border-radius: 5px;
         padding: 5px 16px;
-        margin-left: 20px;
         border: none;
 
         &:hover {
           cursor: pointer;
           transform: scale(1.05);
         }
+      }
+
+      .input-upload {
+        padding: 3%;
+      }
+      .custom-file-upload {
+        background-color: var(--primary-color);
+        font-family: var(--text-font);
+        font-size: 12px;
+        border-radius: 5px;
+        padding: 5px 16px;
+        border: none;
+        color: black;
+        font-weight: bold;
+      }
+      .name-of-image {
+        padding: 10px;
       }
     }
     .hide-modification-modal {

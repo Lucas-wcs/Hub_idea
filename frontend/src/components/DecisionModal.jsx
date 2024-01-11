@@ -13,12 +13,12 @@ function DecisionModal({
           onClick={handleClickDecisionModal}
           role="presentation"
         >
-          <img src="images/icon_cross.png" alt="cross" />
+          <img src="../public/images/icon_cross.png" alt="cross" />
         </div>
         <h1>Réaliser un repas de Noel</h1>
         <div className="image-form-container">
           <div className="coverimage-container">
-            <img src="images/repas_noel.webp" alt="idea" />
+            <img src="/images/repas_noel.webp" alt="idea" />
           </div>
           <div className="progress-percentage-container">
             <progress id="decision" value="80" max="100" />

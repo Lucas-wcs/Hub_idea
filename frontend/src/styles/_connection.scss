@@ -128,9 +128,12 @@ button:active .button_top {
     }
   }
   .toggle-button-connection {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
-    width: auto;
-    margin-bottom: 5px;
     .img-password-connection-open {
       width: fit-content;
       height: 2vh;
@@ -151,6 +154,17 @@ button:active .button_top {
   text-align: center;
   transition: all 0.3s ease 0s;
   margin: 20px;
+  font-weight: bold;
+}
+
+.input-button-style-password {
+  border: none;
+  background-color: var(--senary-color);
+  color: rgb(24, 23, 23);
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.3s ease 0s;
   font-weight: bold;
 }
 
