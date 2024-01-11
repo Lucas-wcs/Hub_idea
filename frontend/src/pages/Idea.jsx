@@ -5,21 +5,25 @@ import { UserContext } from "../context/UserContext";
 import DecisionModal from "../components/DecisionModal";
 import ValidateModale from "../components/ValidateModale";
 
-//     <p className={`${user.is_moderator && "is-moderator"}`}>
-
 function Idea() {
   const idea = useLoaderData();
   const { user } = useContext(UserContext);
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const [isOpenDecisionConfirmModal, setIsOpenDecisionConfirmModal] =
     useState(false);
+  const [buttonContre, setButtonContre] = useState(false);
+  const [buttonPour, setButtonPour] = useState(false);
 
-  // for showing just date without hours
+  // for showing just date without hour
   const date = idea[0].date_limit.split("T");
 
   // vote
   const handleClickVote = (e) => {
-    console.info(e.target.value);
+    if (e.target.value === "contre") {
+      setButtonPour(true);
+    } else if (e.target.value === "pour") {
+      setButtonContre(true);
+    }
   };
 
   // modal for moderateur
@@ -44,7 +48,6 @@ function Idea() {
   };
   return (
     <>
-      {console.info(idea)}
       {/* div for modal */}
       <div className={`${isOpenDecisionModal ? "" : "hide-decision-modal"}`}>
         <DecisionModal
@@ -114,7 +117,7 @@ function Idea() {
             <div className="idea-vote-container">
               <button
                 className={`button-moderateur ${
-                  user.is_moderator ? "" : "is-not-moderator"
+                  user && user.is_moderator ? "" : "is-not-moderator"
                 }`}
                 type="button"
                 onClick={handleClickDecisionModal}
@@ -127,6 +130,7 @@ function Idea() {
                 value="contre"
                 name="name"
                 onClick={handleClickVote}
+                disabled={buttonContre}
               >
                 <div className="vote-logo-container">
                   <img
@@ -141,6 +145,7 @@ function Idea() {
                 type="submit"
                 value="pour"
                 onClick={handleClickVote}
+                disabled={buttonPour}
               >
                 <div className="vote-logo-container">
                   <img
@@ -148,7 +153,7 @@ function Idea() {
                     alt="logo_pouce_haut"
                   />
                 </div>
-                <p>Je suis pour</p>
+                Je suis pour
               </button>
             </div>
           </div>
@@ -192,7 +197,10 @@ function Idea() {
 export const loaderIdea = async ({ params }) => {
   try {
     const idea = await axios.get(
-      `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`
+      `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }
     );
     return idea.data;
   } catch (e) {
