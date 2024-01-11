@@ -22,6 +22,19 @@ const read = async (req, res, next) => {
   }
 };
 
+const readByToken = async (req, res, next) => {
+  try {
+    const user = await tables.User.read(req.auth.userId);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user[0]);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   const user = req.body;
 
@@ -78,6 +91,7 @@ const deleteModerator = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readByToken,
   edit,
   add,
   destroy,

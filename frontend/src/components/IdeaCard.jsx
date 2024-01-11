@@ -83,12 +83,12 @@ function IdeaCard({
           <p>65%</p>
         </div>
         <div className="name-button-container">
-          <p className={`${user.is_moderator && "is-moderator"}`}>
+          <p className={user?.is_moderator && "is-moderator"}>
             Créée par Nicolas
           </p>
           <button
             className={`button-blue ${
-              user.is_moderator ? "" : "is-not-moderator"
+              user && user.is_moderator ? "" : "is-not-moderator"
             }`}
             type="button"
             onClick={handleClickDecisionModal}
