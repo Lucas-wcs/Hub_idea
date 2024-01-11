@@ -9,7 +9,7 @@ import Connection from "./pages/Connection";
 import Home, { loaderHome } from "./pages/Home";
 import Rules from "./pages/Rules";
 import Profile from "./pages/Profile";
-import Idea from "./pages/Idea";
+import Idea, { loaderIdea } from "./pages/Idea";
 import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdmindecisionModal from "./components/AdmindecisionModal";
@@ -34,12 +34,13 @@ const router = createBrowserRouter([
         loader: loaderHome,
       },
       {
-        path: "/idea",
+        path: "/idea/:id",
         element: (
-          <ProtectedRoute>
-            <Idea />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <Idea />
+          // </ProtectedRoute>
         ),
+        loader: loaderIdea,
       },
       {
         path: "/rules",
