@@ -170,6 +170,7 @@ function Home() {
             value={statusFilter}
             onChange={handleStatusFilterChange}
           >
+            <option value="1,2,3,4,5,6,7">Toutes les idées</option>
             <option value="1">Brouillon</option>
             <option value="2,5">En attente</option>
             <option value="3,7">Refusées</option>

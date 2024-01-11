@@ -17,6 +17,12 @@ function Idea() {
   // for showing just date without hours
   const date = idea[0].date_limit.split("T");
 
+  // vote
+  const handleClickVote = (e) => {
+    console.info(e.target.value);
+  };
+
+  // modal for moderateur
   const handleClickDecisionModal = () => {
     setIsOpenDecisionModal((current) => !current);
   };
@@ -115,16 +121,27 @@ function Idea() {
               >
                 Modérateur
               </button>
-              <button className="button-vote vote-pour" type="submit">
+              <button
+                className="button-vote vote-pour"
+                type="button"
+                value="contre"
+                name="name"
+                onClick={handleClickVote}
+              >
                 <div className="vote-logo-container">
                   <img
                     src="/images/icons_pouces_bas.png"
                     alt="logo_pouce_bas"
                   />
                 </div>
-                <p>Je suis contre</p>
+                Je suis contre
               </button>
-              <button className="button-vote vote-contre" type="submit">
+              <button
+                className="button-vote vote-contre"
+                type="submit"
+                value="pour"
+                onClick={handleClickVote}
+              >
                 <div className="vote-logo-container">
                   <img
                     src="/images/icons_pouce_haut.png"

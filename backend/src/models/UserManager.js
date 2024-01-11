@@ -85,6 +85,14 @@ class UserManager extends AbstractManager {
     );
     return result;
   }
+
+  async upload(id, imageProfil) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET image_profil=? WHERE id=?`,
+      [imageProfil, id]
+    );
+    return result;
+  }
 }
 
 module.exports = UserManager;
