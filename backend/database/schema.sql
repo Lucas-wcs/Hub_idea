@@ -56,7 +56,7 @@ VALUES (
         null,
         '$argon2id$v=19$m=19456,t=2,p=1$j2uSPObl/PilgZ3DgOD9Ow$QAhtI7YmZbxAmtO1Gz9kkXGfs5wY6kCwW9wrAy1hia0',
         0,
-        0,
+        1,
         CURRENT_TIMESTAMP
     ), (
         'Antoine',
