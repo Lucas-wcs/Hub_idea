@@ -112,7 +112,10 @@ function Profile() {
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/upload/${user.id}`,
-        data
+        data,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
 
       setUser((prevUser) => ({

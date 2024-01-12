@@ -5,7 +5,7 @@ class CommentManager extends AbstractManager {
     super({ table: "Comment" });
   }
 
-  async create({ user_id: userId, idea_id: ideaId, description }) {
+  async create({ userId, ideaId, description }) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (user_id, idea_id, description) VALUES (?,?,?)`,
       [userId, ideaId, description]
@@ -19,6 +19,17 @@ class CommentManager extends AbstractManager {
       [id]
     );
     return result;
+  }
+  // requete jointure entre idée et commentaires
+
+  async getByIdeaId(id) {
+    const [results] = await this.database.query(
+      `SELECT comment.description
+      FROM comment 
+      INNER JOIN idea ON comment.idea_id = idea.id WHERE idea.id=?`,
+      [id]
+    );
+    return results;
   }
 
   async update({ id, description }) {

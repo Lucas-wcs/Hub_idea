@@ -1,20 +1,72 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import DecisionModal from "../components/DecisionModal";
 import ValidateModale from "../components/ValidateModale";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Idea() {
-  const idea = useLoaderData();
+  const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
+  const idea = useLoaderData();
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const [isOpenDecisionConfirmModal, setIsOpenDecisionConfirmModal] =
     useState(false);
   const [buttonContre, setButtonContre] = useState(false);
   const [buttonPour, setButtonPour] = useState(false);
 
-  // for showing just date without hour
+  // comments
+  const [comment, setComment] = useState("");
+  // const [commentData, setCommentData] = useState(useLoaderData());
+  const [comments, setComments] = useState([]);
+
+  const IdeaComments = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/comments-by-idea/${idea[0].id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setComments(response.data);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des commentaires :", error);
+    }
+  };
+
+  const postComment = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND}/api/comments`,
+        {
+          ideaId: idea[0].id,
+          userId: user.id,
+          description: comment,
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      if (response.status === 201) {
+        IdeaComments();
+      }
+    } catch (error) {
+      console.error("Erreur", error);
+    }
+  };
+
+  useEffect(() => {
+    IdeaComments();
+  }, []);
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  // for showing just date without hours
   const date = idea[0].date_limit.split("T");
 
   // vote
@@ -76,6 +128,7 @@ function Idea() {
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
   };
+
   return (
     <>
       {/* div for modal */}
@@ -162,12 +215,7 @@ function Idea() {
                 onClick={handleClickVote}
                 disabled={buttonContre}
               >
-                <div className="vote-logo-container">
-                  <img
-                    src="/images/icons_pouces_bas.png"
-                    alt="logo_pouce_bas"
-                  />
-                </div>
+                <img src="/images/icons_pouces_bas.png" alt="logo_pouce_bas" />
                 Je suis contre
               </button>
               <button
@@ -177,12 +225,7 @@ function Idea() {
                 onClick={handleClickVote}
                 disabled={buttonPour}
               >
-                <div className="vote-logo-container">
-                  <img
-                    src="/images/icons_pouce_haut.png"
-                    alt="logo_pouce_haut"
-                  />
-                </div>
+                <img src="/images/icons_pouce_haut.png" alt="logo_pouce_haut" />
                 Je suis pour
               </button>
             </div>
@@ -192,31 +235,77 @@ function Idea() {
         <div className="idea-comments-container">
           <h3>Commentaires :</h3>
           <div className="idea-comment-container">
-            <div>
-              <img src="/images/figure1.png" alt="figure1" />
-            </div>
-            <div>
-              <p className="idea-bold">Victoria :</p>
-              <p>
-                Le Lorem Ipsum est simplement du faux texte employé dans la
-                composition et la mise en page avant impression. Le Lorem Ipsum
-                est le faux texte standard de l'imprimerie depuis les années
-                1500, quand un
-              </p>
+            <div className="container-post-message">
+              {user.image_profil ? (
+                <img
+                  className="img-comment-user"
+                  title="Profil"
+                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                    user.image_profil
+                  }`}
+                  alt="profile"
+                />
+              ) : (
+                <img
+                  className="img-comment-user"
+                  title="Profil"
+                  src={
+                    theme === "dark"
+                      ? "/images/icons/avatar_icon_dark.png"
+                      : "/images/icons/avatar_icon.png"
+                  }
+                  alt="default profile"
+                />
+              )}
+              <p className="idea-bold">{user.firstname + user.lastname}</p>
+              <form onSubmit={postComment}>
+                <textarea value={comment} onChange={handleCommentChange} />
+                <button className="button-comment" type="submit">
+                  Poster votre commentaire
+                </button>
+              </form>
+              <div className="idea-container">
+                <h2>{idea.title}</h2>
+                <p>{idea.description}</p>
+              </div>
             </div>
           </div>
+
           <div className="idea-comment-container">
             <div>
-              <img src="/images/figure1.png" alt="figure1" />
+              {user.image_profil ? (
+                <img
+                  className="img-comment-user"
+                  title="Profil"
+                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                    user.image_profil
+                  }`}
+                  alt="profile"
+                />
+              ) : (
+                <img
+                  className="img-comment-user"
+                  title="Profil"
+                  src={
+                    theme === "dark"
+                      ? "/images/icons/avatar_icon_dark.png"
+                      : "/images/icons/avatar_icon.png"
+                  }
+                  alt="default profile"
+                />
+              )}
             </div>
-            <div>
-              <p className="idea-bold">Victoria :</p>
-              <p>
-                Le Lorem Ipsum est simplement du faux texte employé dans la
-                composition et la mise en page avant impression. Le Lorem Ipsum
-                est le faux texte standard de l'imprimerie depuis les années
-                1500, quand un
-              </p>
+            <div className="comments-container">
+              {/* map comments pour appeler la personne qui a commentée */}
+
+              <p className="idea-bold">{user.firstname + user.lastname} :</p>
+              <div>
+                {comments.map((com) => (
+                  <div className="container-new-comment" key={com.id}>
+                    <p className="new-comment">{com.description}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
