@@ -1,9 +1,16 @@
 /* eslint-disable no-const-assign */
 import axios from "axios";
-import { useNavigate, useParams, useRouteLoaderData } from "react-router-dom";
+import {
+  useRevalidator,
+  useNavigate,
+  useParams,
+  useRouteLoaderData,
+} from "react-router-dom";
 
 function AdmindecisionModal() {
   const { ideas } = useRouteLoaderData("admin");
+
+  const revalidator = useRevalidator();
 
   const { id } = useParams();
   const idea = ideas.find((p) => p.id === parseInt(id, 10));
@@ -32,8 +39,12 @@ function AdmindecisionModal() {
     try {
       await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/ideas/admin-decision/${idea.id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        },
         ideaToUpdate
       );
+      revalidator.revalidate();
     } catch (err) {
       console.error(err);
     }

@@ -34,7 +34,7 @@ function IdeaCard({ title, ideaId, statusId }) {
           <p>65%</p>
         </div>
         <div className="name-button-container">
-          <p className={`${user.is_moderator && "is-moderator"}`}>
+          <p className={user?.is_moderator && "is-moderator"}>
             Créée par Nicolas
           </p>
           <Link to={`/idea/${ideaId}`} className="button-green">

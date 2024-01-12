@@ -8,7 +8,7 @@ import { UserContext } from "../context/UserContext";
 
 function Home() {
   const revalidator = useRevalidator();
-  const { statuses } = useLoaderData();
+  const { ideas, statuses } = useLoaderData();
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -34,14 +34,22 @@ function Home() {
     const description = e.target.description.value;
 
     axios
-      .post(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
-        title,
-        date_limit: limitDate,
-        idea_image: ideaImage,
-        idea_description: description,
-        status_id: statusId,
-        user_id: user.id,
-      })
+      .post(
+        `${import.meta.env.VITE_BACKEND}/api/ideas`,
+        {
+          title,
+          date_limit: limitDate,
+          idea_image: ideaImage,
+          idea_description: description,
+          status_id: statusId,
+          user_id: user.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((response) => {
         setNewIdeaId(response.data.insertId.insertId);
 
@@ -83,7 +91,12 @@ function Home() {
     try {
       await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${newIdeaId}`,
-        ideaToUpdate
+        ideaToUpdate,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
     } catch (e) {
       console.error(e);
@@ -95,46 +108,25 @@ function Home() {
     setIsOpenIdeaModal(true);
   };
 
-  // filter to status ideas
-  // Declare a state variable 'statusFilter' and a function to update it 'setStatusFilter'
-  // Initialize 'statusFilter' with an empty string
   const [statusFilter, setStatusFilter] = useState("");
-  // Define a function to handle changes in the status filter
+  const [ideasToShow, setIdeasToShow] = useState(ideas);
+
   const handleStatusFilterChange = (event) => {
-    // Destructure 'value' from the event target
     const { value } = event.target;
-    // Split the 'value' string by comma and convert each part to a number
-    // This results in an array of status IDs
     const statusIds = value.split(",").map(Number);
-    // Update 'statusFilter' with the array of status IDs
     setStatusFilter(statusIds);
   };
-  // Declare a state variable 'ideas' and a function to update it 'setIdeas'
-  // Initialize 'ideas' with an empty array
-  const [ideas, setIdeas] = useState([]);
-  // Define an asynchronous function to fetch ideas
 
   const getIdeas = async () => {
-    try {
-      // Send a GET request to the ideas API
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/ideas`
+    let filteredIdeas = ideasToShow;
+    if (statusFilter) {
+      filteredIdeas = ideas.filter((idea) =>
+        statusFilter.includes(idea.status_id)
       );
-      let filteredIdeas = response.data;
-      // If 'statusFilter' is not empty, filter the ideas by status ID
-      if (statusFilter) {
-        filteredIdeas = response.data.filter(
-          // For each idea, check if its status ID is in the 'statusFilter' array
-          (idea) => statusFilter.includes(idea.status_id)
-        );
-      }
-      // Update 'ideas' with the filtered ideas
-      setIdeas(filteredIdeas);
-    } catch (e) {
-      // If an error occurs, log it to the console
-      console.error(e);
+      setIdeasToShow(filteredIdeas);
     }
   };
+
   // Use the 'useEffect' hook to call 'getIdeas' whenever 'statusFilter' changes
   useEffect(() => {
     getIdeas();
@@ -172,7 +164,7 @@ function Home() {
       {/* div for modal until here */}
       <div className="title-button-container">
         <div>
-          <h1>Bienvenue {user.firstname} 👋</h1>
+          <h1>Bienvenue {user && user.firstname} 👋</h1>
           <h2>Nouvelles idées de WILD CODE SCHOOL</h2>
         </div>
         <div className="button-container">
@@ -199,7 +191,7 @@ function Home() {
         </div>
       </div>
       <div className="idea-cards-container">
-        {ideas.map((idea) => {
+        {ideasToShow.map((idea) => {
           return (
             <IdeaCard
               title={idea.title}
@@ -218,7 +210,10 @@ export const loaderHome = async () => {
   const loadStatus = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/status-idea`
+        `${import.meta.env.VITE_BACKEND}/api/status-idea`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
       return res.data;
     } catch (e) {
@@ -228,7 +223,9 @@ export const loaderHome = async () => {
   };
   const loadIdeas = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
       return res.data;
     } catch (e) {
       console.error(e);

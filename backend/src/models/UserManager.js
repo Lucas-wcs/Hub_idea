@@ -1,4 +1,5 @@
 const AbstractManager = require("./AbstractManager");
+const auth = require("../services/auth");
 
 class UserManager extends AbstractManager {
   constructor() {
@@ -13,9 +14,19 @@ class UserManager extends AbstractManager {
     is_administrator: isAdministrator,
     is_moderator: isModerator,
   }) {
+    const hashedDefault = await auth.hashAString("welcometohubidea");
+
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (firstname, lastname, email, image_profil, is_administrator, is_moderator) VALUES (?, ?, ?, ?, ?, ?)`,
-      [firstname, lastname, email, imageProfil, isAdministrator, isModerator]
+      `INSERT INTO ${this.table} (firstname, lastname, email, image_profil, password, is_administrator, is_moderator) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        firstname,
+        lastname,
+        email,
+        imageProfil,
+        hashedDefault,
+        isAdministrator,
+        isModerator,
+      ]
     );
     return result;
   }
