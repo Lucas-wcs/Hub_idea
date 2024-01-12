@@ -51,9 +51,12 @@ const edit = async (req, res, next) => {
   try {
     const user = await tables.User.getByMail(req.body.email);
 
-    if (user && Number(user[0]?.id) !== Number(req.params.id)) {
+    if (user.length > 0 && Number(user[0]?.id) !== Number(req.params.id)) {
       res.status(400).send("Email already exists");
-    } else {
+    } else if (
+      user.length === 0 ||
+      (user.length > 0 && user[0]?.id === Number(req.params.id))
+    ) {
       if (req.body.password === "") {
         req.body.password = user[0]?.password;
       }

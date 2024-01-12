@@ -7,7 +7,7 @@ class ImpactedUserManager extends AbstractManager {
 
   async create(userId, ideaId) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (user_id, idea_id) VALUES (?, ?)`,
+      `INSERT INTO ${this.table} (user_id, idea_id) VALUES (?,?)`,
       [userId, ideaId]
     );
     return result;
