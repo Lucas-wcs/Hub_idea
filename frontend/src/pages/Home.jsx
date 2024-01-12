@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, useLoaderData, useRevalidator } from "react-router-dom";
 import axios from "axios";
 import IdeaCard from "../components/IdeaCard";
@@ -16,6 +16,7 @@ function Home() {
   const [newIdeaId, setNewIdeaId] = useState("");
   const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
+  const [statusFilter, setStatusFilter] = useState("1,2,3,4,5,6,7");
 
   // modal create idea : brouillon ou publier une idée
   const handleSubmitIdea = async (e) => {
@@ -116,29 +117,11 @@ function Home() {
     setIsOpenIdeaModal(true);
   };
 
-  const [statusFilter, setStatusFilter] = useState("");
-  const [ideasToShow, setIdeasToShow] = useState(ideas);
-
   const handleStatusFilterChange = (event) => {
     const { value } = event.target;
     const statusIds = value.split(",").map(Number);
     setStatusFilter(statusIds);
   };
-
-  const getIdeas = async () => {
-    let filteredIdeas = ideasToShow;
-    if (statusFilter) {
-      filteredIdeas = ideas.filter((idea) =>
-        statusFilter.includes(idea.status_id)
-      );
-      setIdeasToShow(filteredIdeas);
-    }
-  };
-
-  // Use the 'useEffect' hook to call 'getIdeas' whenever 'statusFilter' changes
-  useEffect(() => {
-    getIdeas();
-  }, [statusFilter]);
 
   return (
     <div
@@ -199,16 +182,18 @@ function Home() {
         </div>
       </div>
       <div className="idea-cards-container">
-        {ideasToShow.map((idea) => {
-          return (
-            <IdeaCard
-              title={idea.title}
-              ideaId={idea.id}
-              statusId={statuses[idea.status_id - 1].status_name}
-              key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
-            />
-          );
-        })}
+        {ideas
+          .filter((idea) => statusFilter.includes(idea.status_id))
+          .map((idea) => {
+            return (
+              <IdeaCard
+                title={idea.title}
+                ideaId={idea.id}
+                statusId={statuses[idea.status_id - 1].status_name}
+                key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
+              />
+            );
+          })}
       </div>
     </div>
   );
