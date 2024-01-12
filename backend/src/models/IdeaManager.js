@@ -47,6 +47,13 @@ class IdeaManager extends AbstractManager {
     return result;
   }
 
+  async readAllIdea() {
+    const [result] = await this.database.query(
+      `SELECT * FROM ${this.table} INNER JOIN user ON idea.user_id = user.id`
+    );
+    return result;
+  }
+
   async update({
     title,
     idea_description: ideaDescription,
