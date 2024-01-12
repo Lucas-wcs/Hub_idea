@@ -5,7 +5,12 @@ import axios from "axios";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
-function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
+function CreateIdeaModal({
+  handleOpenModalIdea,
+  handleSubmitIdea,
+  usersAssociated,
+  setUsersAssociated,
+}) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
@@ -23,21 +28,15 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
   };
 
   const handleChoseUser = async (e) => {
-    const impactedUser = e.target.checked;
-
-    try {
-      const ideaId = await handleSubmitIdea();
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND}/api/impacted_users`,
-        {
-          impactedUser,
-          ideaId,
-        }
-      );
-      e.target.checked = false;
-    } catch (error) {
-      console.error(error);
+    const array = [...usersAssociated];
+    const index = array.indexOf(e.target.value);
+    if (index >= 0) {
+      array.splice(index, 1);
+    } else {
+      array.push(e.target.value);
     }
+
+    setUsersAssociated(array);
   };
 
   useEffect(() => {
@@ -122,7 +121,13 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
                             aria-label="image-checkbox"
                             className="checkbox-avatar"
                           >
-                            <input type="checkbox" id="user" name="user" />
+                            <input
+                              type="checkbox"
+                              id="user"
+                              name="user"
+                              value={person.id}
+                              onChange={handleChoseUser}
+                            />
                             {person.image_profil ? (
                               <img
                                 className="avatar"
@@ -187,6 +192,8 @@ function CreateIdeaModal({ handleOpenModalIdea, handleSubmitIdea }) {
 CreateIdeaModal.propTypes = {
   handleOpenModalIdea: PropTypes.func.isRequired,
   handleSubmitIdea: PropTypes.func.isRequired,
+  usersAssociated: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setUsersAssociated: PropTypes.func.isRequired,
 };
 
 export default CreateIdeaModal;

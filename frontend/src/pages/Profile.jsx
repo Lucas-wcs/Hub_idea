@@ -67,9 +67,14 @@ function Profile() {
         `${import.meta.env.VITE_BACKEND}/api/users/${user.id}`,
         userToUpdate
       );
+
       setUser(userToUpdate);
       handleConfirmationModification();
     } catch (error) {
+      // if (error?.response?.data === "Email already exists") {
+      // }
+      // TODO message d'erreur
+
       console.error(error);
     }
   };

@@ -36,13 +36,19 @@ const readByIdeaId = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const impactedUser = req.body;
+  const ideaId = req.body.idea_id;
+  const userId = req.body.user_id;
 
   try {
-    const insertId = await tables.Impacted_user.create(impactedUser);
+    const response = await tables.Impacted_user.create(userId, ideaId);
 
-    res.status(201).json({ insertId });
+    if (response.affectedRows > 0) {
+      res.sendStatus(201);
+    } else {
+      res.status(500).send({ idUserError: userId });
+    }
   } catch (err) {
+    res.status(500).send({ idUserError: userId });
     next(err);
   }
 };

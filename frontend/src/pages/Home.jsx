@@ -14,6 +14,7 @@ function Home() {
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   const [newIdeaId, setNewIdeaId] = useState("");
+  const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
 
   // modal create idea : brouillon ou publier une idée
@@ -32,29 +33,37 @@ function Home() {
     // const ideaimage = e.target.ideaimage.value;
     const description = e.target.description.value;
 
-    try {
-      await axios
-        .post(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
-          title,
-          date_limit: limitDate,
-          idea_image: ideaImage,
-          idea_description: description,
-          status_id: statusId,
-          user_id: user.id,
-        })
-        .then((response) => {
-          setNewIdeaId(response.data.insertId.insertId);
-        })
-        .then(() => {
-          revalidator.revalidate();
-        })
-        .catch((error) => console.error(error));
-      e.target.title.value = "";
-      e.target.date.value = "";
-      e.target.description.value = "";
-    } catch (error) {
-      console.error(error);
-    }
+    axios
+      .post(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
+        title,
+        date_limit: limitDate,
+        idea_image: ideaImage,
+        idea_description: description,
+        status_id: statusId,
+        user_id: user.id,
+      })
+      .then((response) => {
+        setNewIdeaId(response.data.insertId.insertId);
+
+        usersAssociated.forEach((userAssociated) => {
+          axios
+            .post(`${import.meta.env.VITE_BACKEND}/api/impacted-users`, {
+              idea_id: response.data.insertId.insertId,
+              user_id: userAssociated,
+            })
+            .then(() => {
+              // TODO pop up pour dire que l'idée a bien été créée et userAssociated a bien été ajouté
+            })
+            .catch((error) => console.error(error));
+        });
+      })
+      .then(() => {
+        revalidator.revalidate();
+      })
+      .catch((error) => console.error(error));
+    e.target.title.value = "";
+    e.target.date.value = "";
+    e.target.description.value = "";
   };
 
   // modal for creating idea
@@ -140,7 +149,8 @@ function Home() {
         <CreateIdeaModal
           handleOpenModalIdea={handleOpenModalIdea}
           handleSubmitIdea={handleSubmitIdea} // when you click submit
-          // newIdeaId={newIdeaId}
+          usersAssociated={usersAssociated}
+          setUsersAssociated={setUsersAssociated}
         />
       </div>
       <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>
