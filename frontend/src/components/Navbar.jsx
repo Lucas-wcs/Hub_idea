@@ -81,19 +81,6 @@ function Navbar() {
             </NavLink>
           )}
         {location.pathname !== "/rules" && location.pathname !== "/" && (
-          <div className="image-container">
-            <img
-              title="Notifications"
-              src={
-                theme === "dark"
-                  ? "/images/icons/notification_icon_light.png"
-                  : "/images/icons/notification_icon.png"
-              }
-              alt="notification"
-            />
-          </div>
-        )}
-        {location.pathname !== "/rules" && location.pathname !== "/" && (
           <button
             type="button"
             onClick={handleLogout}

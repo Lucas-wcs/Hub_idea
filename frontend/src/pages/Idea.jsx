@@ -87,16 +87,52 @@ function Idea() {
     setIsOpenDecisionConfirmModal((current) => !current);
   };
 
-  const handleClickDecisionValidate = (e) => {
+  const handleClickDecisionValidate = async (e) => {
     e.preventDefault();
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
+
+    const ideaValidated = {
+      status_id: "6",
+    };
+
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
+        ideaValidated,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleClickDecisionRefuse = (e) => {
+  const handleClickDecisionRefuse = async (e) => {
     e.preventDefault();
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
+
+    const ideaRefused = {
+      status_id: "7",
+    };
+
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
+        ideaRefused,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -195,12 +195,12 @@ CREATE TABLE
 INSERT INTO
     Status_idea (status_name)
 VALUES ("Brouillon"), (
-        "Acceptées par l'administrateur"
+        "Acceptée par l'administrateur"
     ), (
-        "Refusées par l'administrateur"
+        "Refusée par l'administrateur"
     ), ("En cours de vote"), (
         "En attente décision modérateur"
-    ), ("Idées validées"), ("Idées refusées");
+    ), ("Idée validée"), ("Idée refusée");
 
 CREATE TABLE
     `Idea` (
