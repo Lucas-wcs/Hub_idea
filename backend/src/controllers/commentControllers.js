@@ -34,6 +34,17 @@ const add = async (req, res, next) => {
   }
 };
 
+// fonction getByIdeaId avec pour res -> comments
+
+const getByIdeaId = async (req, res, next) => {
+  try {
+    const comments = await tables.Comment.getByIdeaId(req.params.ideaId);
+    res.json(comments);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const edit = async (req, res, next) => {
   const { description } = req.body;
 
@@ -65,4 +76,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  getByIdeaId,
 };
