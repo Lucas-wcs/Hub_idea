@@ -41,7 +41,7 @@ const add = async (req, res, next) => {
   try {
     const insertId = await tables.Vote.create(vote);
 
-    res.status(201).json({ insertId });
+    res.status(200).json({ insertId });
   } catch (err) {
     next(err);
   }

@@ -16,6 +16,7 @@ function Idea() {
     useState(false);
   const [buttonContre, setButtonContre] = useState(false);
   const [buttonPour, setButtonPour] = useState(false);
+  const [message, setMessage] = useState("");
 
   // comments
   const [comment, setComment] = useState("");
@@ -63,8 +64,10 @@ function Idea() {
     IdeaComments();
   }, []);
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
+  const handleCommentChange = (event) => {
+    const newComment = event.target.value;
+    setComment(newComment);
+    setMessage(newComment);
   };
 
   // for showing just date without hours
@@ -132,16 +135,52 @@ function Idea() {
     setIsOpenDecisionConfirmModal((current) => !current);
   };
 
-  const handleClickDecisionValidate = (e) => {
+  const handleClickDecisionValidate = async (e) => {
     e.preventDefault();
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
+
+    const ideaValidated = {
+      status_id: "6",
+    };
+
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
+        ideaValidated,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleClickDecisionRefuse = (e) => {
+  const handleClickDecisionRefuse = async (e) => {
     e.preventDefault();
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
+
+    const ideaRefused = {
+      status_id: "7",
+    };
+
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
+        ideaRefused,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -251,7 +290,7 @@ function Idea() {
           <h3>Commentaires :</h3>
           <div className="idea-comment-container">
             <div className="container-post-message">
-              {user.image_profil ? (
+              {user && user.image_profil ? (
                 <img
                   className="img-comment-user"
                   title="Profil"
@@ -272,12 +311,24 @@ function Idea() {
                   alt="default profile"
                 />
               )}
-              <p className="idea-bold">{user.firstname + user.lastname}</p>
+              <p className="idea-bold">{`${user && user.firstname} ${
+                user && user.lastname
+              }`}</p>
               <form onSubmit={postComment}>
-                <textarea value={comment} onChange={handleCommentChange} />
-                <button className="button-comment" type="submit">
-                  Poster votre commentaire
-                </button>
+                <textarea
+                  value={comment}
+                  onChange={handleCommentChange}
+                  maxLength="500"
+                  placeholder="Votre commentaire..."
+                />
+                <div className="container-button-count">
+                  <p className="character-count">
+                    {500 - message.length} caractères restants
+                  </p>
+                  <button className="button-comment" type="submit">
+                    Poster votre commentaire
+                  </button>
+                </div>
               </form>
               <div className="idea-container">
                 <h2>{idea.title}</h2>
@@ -287,37 +338,37 @@ function Idea() {
           </div>
 
           <div className="idea-comment-container">
-            <div>
-              {user.image_profil ? (
-                <img
-                  className="img-comment-user"
-                  title="Profil"
-                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                    user.image_profil
-                  }`}
-                  alt="profile"
-                />
-              ) : (
-                <img
-                  className="img-comment-user"
-                  title="Profil"
-                  src={
-                    theme === "dark"
-                      ? "/images/icons/avatar_icon_dark.png"
-                      : "/images/icons/avatar_icon.png"
-                  }
-                  alt="default profile"
-                />
-              )}
-            </div>
             <div className="comments-container">
-              {/* map comments pour appeler la personne qui a commentée */}
-
-              <p className="idea-bold">{user.firstname + user.lastname} :</p>
               <div>
                 {comments.map((com) => (
                   <div className="container-new-comment" key={com.id}>
+                    <p className="idea-bold">
+                      {`${com.firstname} ${com.lastname}`} :
+                    </p>
                     <p className="new-comment">{com.description}</p>
+                    <div>
+                      {com.image_profil ? (
+                        <img
+                          className="img-comment-user"
+                          title="Profil"
+                          src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                            com.image_profil
+                          }`}
+                          alt="profile"
+                        />
+                      ) : (
+                        <img
+                          className="img-comment-user"
+                          title="Profil"
+                          src={
+                            theme === "dark"
+                              ? "/images/icons/avatar_icon_dark.png"
+                              : "/images/icons/avatar_icon.png"
+                          }
+                          alt="default profile"
+                        />
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
