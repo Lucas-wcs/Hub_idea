@@ -39,10 +39,10 @@ function AdmindecisionModal() {
     try {
       await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/ideas/admin-decision/${idea.id}`,
+        ideaToUpdate,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        },
-        ideaToUpdate
+        }
       );
       revalidator.revalidate();
     } catch (err) {
