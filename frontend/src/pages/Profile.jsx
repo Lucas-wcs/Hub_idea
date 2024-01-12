@@ -25,21 +25,25 @@ function Profile() {
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
   const [isOpenModificationModal, setIsOpenModificationModal] = useState(false);
 
+  const [isErrorMail, setIsErrorMail] = useState(false);
+  const [messageErrorMail, setMessageErrorMail] = useState("");
+
   const handlePasswordChange = (event, setPassword) => {
     setPassword(event.target.value);
   };
 
   useEffect(() => {
-    if (newPassword.length > 0 && confirmPassword.length > 0) {
+    if (newPassword.length > 0 || confirmPassword.length > 0) {
       if (newPassword === confirmPassword) {
         setMessage("Les mots de passe correspondent");
         setIsMessage(true);
-      } else if (newPassword !== confirmPassword) {
+      } else {
         setMessage("Les mots de passe ne correspondent pas");
         setIsMessage(false);
-      } else {
-        setMessage("");
       }
+    } else {
+      setMessage("");
+      setIsMessage(false);
     }
   }, [newPassword, confirmPassword]);
 
@@ -71,11 +75,17 @@ function Profile() {
       setUser(userToUpdate);
       handleConfirmationModification();
     } catch (error) {
-      // if (error?.response?.data === "Email already exists") {
-      // }
-      // TODO message d'erreur
-
-      console.error(error);
+      if (error?.response?.data === "Email already exists") {
+        setIsErrorMail(true);
+        setMessageErrorMail("Cet email est déjà utilisé");
+        setTimeout(() => {
+          setMessageErrorMail("");
+        }, 5000);
+        console.error(error);
+      } else {
+        setIsErrorMail(false);
+        setMessageErrorMail("");
+      }
     }
   };
 
@@ -238,6 +248,9 @@ function Profile() {
                   name="email"
                   defaultValue={user.email}
                 />
+                <div className={isErrorMail ? "incorrect" : "correct"}>
+                  <p className="message-mail">{messageErrorMail}</p>
+                </div>
               </div>
 
               <div className="profile-form-password">

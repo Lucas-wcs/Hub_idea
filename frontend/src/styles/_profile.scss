@@ -159,10 +159,15 @@
       .incorrect {
         color: red;
       }
-      .message {
+      .message,
+      .message-mail {
         font-family: var(--text-font);
-        font-size: var(--spacing--x2);
+        font-size: 14px;
         font-style: italic;
+        text-align: center;
+      }
+      .message-mail {
+        margin-top: 1em;
       }
       .submit-button {
         display: flex;
