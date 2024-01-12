@@ -18,10 +18,40 @@ function Idea() {
   const date = idea[0].date_limit.split("T");
 
   // vote
-  const handleClickVote = (e) => {
+  const handleClickVote = async (e) => {
     if (e.target.value === "contre") {
       setButtonPour(true);
+      try {
+        const userId = user.id;
+        const ideaId = idea[0].id;
+        axios.post(
+          `${import.meta.env.VITE_BACKEND}/api/votes`,
+          { user_id: userId, idea_id: ideaId, is_vote: 0 },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      } catch (err) {
+        console.error(err);
+      }
     } else if (e.target.value === "pour") {
+      try {
+        const userId = user.id;
+        const ideaId = idea[0].id;
+        axios.post(
+          `${import.meta.env.VITE_BACKEND}/api/votes`,
+          { user_id: userId, idea_id: ideaId, is_vote: 1 },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      } catch (err) {
+        console.error(err);
+      }
       setButtonContre(true);
     }
   };
