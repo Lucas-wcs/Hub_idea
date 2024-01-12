@@ -69,10 +69,10 @@ function Profile() {
       // eslint-disable-next-line no-unused-vars
       const res = await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/users/${user && user.id}`,
+        userToUpdate,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        },
-        userToUpdate
+        }
       );
 
       setUser(userToUpdate);

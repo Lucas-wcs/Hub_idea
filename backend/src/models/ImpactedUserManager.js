@@ -17,6 +17,7 @@ class ImpactedUserManager extends AbstractManager {
     const [result] = await this.database.query(
       `SELECT * FROM ${this.table} WHERE user_id=?`,
       [userId]
+      // rajouter inner join avec user pour la photo voir commentManager
     );
     return result;
   }
