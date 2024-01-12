@@ -64,7 +64,7 @@ function Profile() {
     try {
       // eslint-disable-next-line no-unused-vars
       const res = await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/users/${user.id}`,
+        `${import.meta.env.VITE_BACKEND}/api/users/${user && user.id}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         },
@@ -111,7 +111,7 @@ function Profile() {
     data.append("image", image);
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/upload/${user.id}`,
+        `${import.meta.env.VITE_BACKEND}/api/upload/${user && user.id}`,
         data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -147,10 +147,10 @@ function Profile() {
         <div className="profile-form-container">
           <div className="thumbnail">
             <div className="upload-container">
-              {user.image_profil ? (
+              {user && user.image_profil ? (
                 <img
                   src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                    user.image_profil
+                    user && user.image_profil
                   }`}
                   alt="profile"
                 />
@@ -213,7 +213,7 @@ function Profile() {
                   type="text"
                   placeholder="Prénom"
                   name="firstname"
-                  defaultValue={user.firstname}
+                  defaultValue={user && user.firstname}
                 />
               </div>
               <div className="profile-form-item">
@@ -225,7 +225,7 @@ function Profile() {
                   type="text"
                   placeholder="Nom"
                   name="lastname"
-                  defaultValue={user.lastname}
+                  defaultValue={user && user.lastname}
                 />
               </div>
               <div className="profile-form-item">
@@ -237,7 +237,7 @@ function Profile() {
                   type="email"
                   placeholder="Email"
                   name="email"
-                  defaultValue={user.email}
+                  defaultValue={user && user.email}
                 />
               </div>
 

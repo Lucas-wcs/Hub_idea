@@ -15,6 +15,7 @@ function Idea() {
     useState(false);
   const [buttonContre, setButtonContre] = useState(false);
   const [buttonPour, setButtonPour] = useState(false);
+  const [message, setMessage] = useState("");
 
   // comments
   const [comment, setComment] = useState("");
@@ -62,8 +63,10 @@ function Idea() {
     IdeaComments();
   }, []);
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
+  const handleCommentChange = (event) => {
+    const newComment = event.target.value;
+    setComment(newComment);
+    setMessage(newComment);
   };
 
   // for showing just date without hours
@@ -206,7 +209,7 @@ function Idea() {
           <h3>Commentaires :</h3>
           <div className="idea-comment-container">
             <div className="container-post-message">
-              {user.image_profil ? (
+              {user && user.image_profil ? (
                 <img
                   className="img-comment-user"
                   title="Profil"
@@ -227,12 +230,24 @@ function Idea() {
                   alt="default profile"
                 />
               )}
-              <p className="idea-bold">{user.firstname + user.lastname}</p>
+              <p className="idea-bold">{`${user && user.firstname} ${
+                user && user.lastname
+              }`}</p>
               <form onSubmit={postComment}>
-                <textarea value={comment} onChange={handleCommentChange} />
-                <button className="button-comment" type="submit">
-                  Poster votre commentaire
-                </button>
+                <textarea
+                  value={comment}
+                  onChange={handleCommentChange}
+                  maxLength="500"
+                  placeholder="Votre commentaire..."
+                />
+                <div className="container-button-count">
+                  <p className="character-count">
+                    {500 - message.length} caractères restants
+                  </p>
+                  <button className="button-comment" type="submit">
+                    Poster votre commentaire
+                  </button>
+                </div>
               </form>
               <div className="idea-container">
                 <h2>{idea.title}</h2>
