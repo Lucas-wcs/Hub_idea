@@ -114,8 +114,8 @@ function Home() {
       filteredIdeas = ideas.filter((idea) =>
         statusFilter.includes(idea.status_id)
       );
+      setIdeasToShow(filteredIdeas);
     }
-    setIdeasToShow(filteredIdeas);
   };
 
   // Use the 'useEffect' hook to call 'getIdeas' whenever 'statusFilter' changes
@@ -180,7 +180,7 @@ function Home() {
         </div>
       </div>
       <div className="idea-cards-container">
-        {ideas.map((idea) => {
+        {ideasToShow.map((idea) => {
           return (
             <IdeaCard
               title={idea.title}
