@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import DecisionModal from "../components/DecisionModal";
@@ -9,7 +9,8 @@ import { ThemeContext } from "../context/ThemeContext";
 function Idea() {
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
-  const idea = useLoaderData();
+  const { idea, votes } = useLoaderData();
+  const revalidator = useRevalidator();
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const [isOpenDecisionConfirmModal, setIsOpenDecisionConfirmModal] =
     useState(false);
@@ -73,12 +74,56 @@ function Idea() {
   const date = idea[0].date_limit.split("T");
 
   // vote
-  const handleClickVote = (e) => {
+  const handleClickVote = async (e) => {
     if (e.target.value === "contre") {
       setButtonPour(true);
-    } else if (e.target.value === "pour") {
       setButtonContre(true);
+      try {
+        const userId = user.id;
+        const ideaId = idea[0].id;
+        axios.post(
+          `${import.meta.env.VITE_BACKEND}/api/votes`,
+          { user_id: userId, idea_id: ideaId, is_vote: 0 },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        revalidator.revalidate();
+      } catch (err) {
+        console.error(err);
+      }
+    } else if (e.target.value === "pour") {
+      try {
+        const userId = user.id;
+        const ideaId = idea[0].id;
+        axios.post(
+          `${import.meta.env.VITE_BACKEND}/api/votes`,
+          { user_id: userId, idea_id: ideaId, is_vote: 1 },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        revalidator.revalidate();
+      } catch (err) {
+        console.error(err);
+      }
+      setButtonContre(true);
+      setButtonPour(true);
     }
+  };
+
+  const percentage = (n) => {
+    let forVote = 0;
+    for (let i = 0; i < n.length; i + 1) {
+      if (n[i].is_vote === 1) {
+        forVote += 1;
+      }
+    }
+    return (forVote / n.length) * 100;
   };
 
   // modal for moderateur
@@ -176,9 +221,9 @@ function Idea() {
             <h4>Description</h4>
             <p>{idea[0].idea_description}</p>
             <div className="idea-info-vote">
-              <progress id="avancement" value="40" max="100" />
+              <progress id="avancement" value={percentage(votes)} max="100" />
               <div className="idea-info-vote-bottom">
-                <p>35 personnes ont voté</p>
+                <p>{votes.length} personnes ont voté</p>
                 <div className="idea-chosendate">
                   <div className="idea-logocalandar-container">
                     <img
@@ -334,19 +379,39 @@ function Idea() {
     </>
   );
 }
-export const loaderIdea = async ({ params }) => {
-  try {
-    const idea = await axios.get(
-      `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`,
-      {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      }
-    );
-    return idea.data;
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+
+export const loaders = async ({ params }) => {
+  const loaderIdea = async () => {
+    try {
+      const ideas = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      return ideas.data;
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  };
+
+  const loadVotes = async () => {
+    try {
+      const vote = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/votes/ideas/${params.id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      return vote.data;
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  };
+  const [idea, votes] = await Promise.all([loaderIdea(), loadVotes()]);
+  return { idea, votes };
 };
 
 export default Idea;

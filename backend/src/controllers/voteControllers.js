@@ -24,7 +24,7 @@ const readByUserId = async (req, res, next) => {
 
 const readByIdeaId = async (req, res, next) => {
   try {
-    const vote = await tables.Vote.read(req.params.id);
+    const vote = await tables.Vote.readByIdeaId(req.params.id);
     if (vote == null) {
       res.sendStatus(404);
     } else {
