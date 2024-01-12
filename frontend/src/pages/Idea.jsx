@@ -118,7 +118,7 @@ function Idea() {
 
   const percentage = (n) => {
     let forVote = 0;
-    for (let i = 0; i < n.length; i + 1) {
+    for (let i = 0; i < n.length; i += 1) {
       if (n[i].is_vote === 1) {
         forVote += 1;
       }
@@ -221,7 +221,11 @@ function Idea() {
             <h4>Description</h4>
             <p>{idea[0].idea_description}</p>
             <div className="idea-info-vote">
-              <progress id="avancement" value={percentage(votes)} max="100" />
+              <progress
+                id="avancement"
+                value={votes.length === 0 ? 0 : percentage(votes)}
+                max="100"
+              />
               <div className="idea-info-vote-bottom">
                 <p>{votes.length} personnes ont voté</p>
                 <div className="idea-chosendate">
