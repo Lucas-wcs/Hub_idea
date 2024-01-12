@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import DecisionModal from "../components/DecisionModal";
@@ -9,12 +9,14 @@ import { ThemeContext } from "../context/ThemeContext";
 function Idea() {
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
-  const idea = useLoaderData();
+  const { idea, votes } = useLoaderData();
+  const revalidator = useRevalidator();
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
   const [isOpenDecisionConfirmModal, setIsOpenDecisionConfirmModal] =
     useState(false);
   const [buttonContre, setButtonContre] = useState(false);
   const [buttonPour, setButtonPour] = useState(false);
+  const [message, setMessage] = useState("");
 
   // comments
   const [comment, setComment] = useState("");
@@ -62,20 +64,66 @@ function Idea() {
     IdeaComments();
   }, []);
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
+  const handleCommentChange = (event) => {
+    const newComment = event.target.value;
+    setComment(newComment);
+    setMessage(newComment);
   };
 
   // for showing just date without hours
   const date = idea[0].date_limit.split("T");
 
   // vote
-  const handleClickVote = (e) => {
+  const handleClickVote = async (e) => {
     if (e.target.value === "contre") {
       setButtonPour(true);
-    } else if (e.target.value === "pour") {
       setButtonContre(true);
+      try {
+        const userId = user.id;
+        const ideaId = idea[0].id;
+        axios.post(
+          `${import.meta.env.VITE_BACKEND}/api/votes`,
+          { user_id: userId, idea_id: ideaId, is_vote: 0 },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        revalidator.revalidate();
+      } catch (err) {
+        console.error(err);
+      }
+    } else if (e.target.value === "pour") {
+      try {
+        const userId = user.id;
+        const ideaId = idea[0].id;
+        axios.post(
+          `${import.meta.env.VITE_BACKEND}/api/votes`,
+          { user_id: userId, idea_id: ideaId, is_vote: 1 },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        revalidator.revalidate();
+      } catch (err) {
+        console.error(err);
+      }
+      setButtonContre(true);
+      setButtonPour(true);
     }
+  };
+
+  const percentage = (n) => {
+    let forVote = 0;
+    for (let i = 0; i < n.length; i + 1) {
+      if (n[i].is_vote === 1) {
+        forVote += 1;
+      }
+    }
+    return (forVote / n.length) * 100;
   };
 
   // modal for moderateur
@@ -173,9 +221,9 @@ function Idea() {
             <h4>Description</h4>
             <p>{idea[0].idea_description}</p>
             <div className="idea-info-vote">
-              <progress id="avancement" value="40" max="100" />
+              <progress id="avancement" value={percentage(votes)} max="100" />
               <div className="idea-info-vote-bottom">
-                <p>35 personnes ont voté</p>
+                <p>{votes.length} personnes ont voté</p>
                 <div className="idea-chosendate">
                   <div className="idea-logocalandar-container">
                     <img
@@ -242,7 +290,7 @@ function Idea() {
           <h3>Commentaires :</h3>
           <div className="idea-comment-container">
             <div className="container-post-message">
-              {user.image_profil ? (
+              {user && user.image_profil ? (
                 <img
                   className="img-comment-user"
                   title="Profil"
@@ -263,12 +311,24 @@ function Idea() {
                   alt="default profile"
                 />
               )}
-              <p className="idea-bold">{user.firstname + user.lastname}</p>
+              <p className="idea-bold">{`${user && user.firstname} ${
+                user && user.lastname
+              }`}</p>
               <form onSubmit={postComment}>
-                <textarea value={comment} onChange={handleCommentChange} />
-                <button className="button-comment" type="submit">
-                  Poster votre commentaire
-                </button>
+                <textarea
+                  value={comment}
+                  onChange={handleCommentChange}
+                  maxLength="500"
+                  placeholder="Votre commentaire..."
+                />
+                <div className="container-button-count">
+                  <p className="character-count">
+                    {500 - message.length} caractères restants
+                  </p>
+                  <button className="button-comment" type="submit">
+                    Poster votre commentaire
+                  </button>
+                </div>
               </form>
               <div className="idea-container">
                 <h2>{idea.title}</h2>
@@ -278,37 +338,37 @@ function Idea() {
           </div>
 
           <div className="idea-comment-container">
-            <div>
-              {user.image_profil ? (
-                <img
-                  className="img-comment-user"
-                  title="Profil"
-                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                    user.image_profil
-                  }`}
-                  alt="profile"
-                />
-              ) : (
-                <img
-                  className="img-comment-user"
-                  title="Profil"
-                  src={
-                    theme === "dark"
-                      ? "/images/icons/avatar_icon_dark.png"
-                      : "/images/icons/avatar_icon.png"
-                  }
-                  alt="default profile"
-                />
-              )}
-            </div>
             <div className="comments-container">
-              {/* map comments pour appeler la personne qui a commentée */}
-
-              <p className="idea-bold">{user.firstname + user.lastname} :</p>
               <div>
                 {comments.map((com) => (
                   <div className="container-new-comment" key={com.id}>
+                    <p className="idea-bold">
+                      {`${com.firstname} ${com.lastname}`} :
+                    </p>
                     <p className="new-comment">{com.description}</p>
+                    <div>
+                      {com.image_profil ? (
+                        <img
+                          className="img-comment-user"
+                          title="Profil"
+                          src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                            com.image_profil
+                          }`}
+                          alt="profile"
+                        />
+                      ) : (
+                        <img
+                          className="img-comment-user"
+                          title="Profil"
+                          src={
+                            theme === "dark"
+                              ? "/images/icons/avatar_icon_dark.png"
+                              : "/images/icons/avatar_icon.png"
+                          }
+                          alt="default profile"
+                        />
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -319,19 +379,39 @@ function Idea() {
     </>
   );
 }
-export const loaderIdea = async ({ params }) => {
-  try {
-    const idea = await axios.get(
-      `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`,
-      {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      }
-    );
-    return idea.data;
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+
+export const loaders = async ({ params }) => {
+  const loaderIdea = async () => {
+    try {
+      const ideas = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/ideas/${params.id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      return ideas.data;
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  };
+
+  const loadVotes = async () => {
+    try {
+      const vote = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/votes/ideas/${params.id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      return vote.data;
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  };
+  const [idea, votes] = await Promise.all([loaderIdea(), loadVotes()]);
+  return { idea, votes };
 };
 
 export default Idea;
