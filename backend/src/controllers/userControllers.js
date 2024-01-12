@@ -49,13 +49,23 @@ const add = async (req, res, next) => {
 
 const edit = async (req, res, next) => {
   try {
-    if (req.body.password === "") {
-      const user = await tables.User.getByMail(req.body.email);
-      req.body.password = user[0]?.password;
-    }
+    const user = await tables.User.getByMail(req.body.email);
 
-    await tables.User.update(req.body);
-    res.sendStatus(204);
+    if (user && Number(user[0]?.id) !== Number(req.params.id)) {
+      res.status(400).send("Email already exists");
+    } else {
+      if (req.body.password === "") {
+        req.body.password = user[0]?.password;
+      }
+
+      const response = await tables.User.update(req.body);
+
+      if (response.affectedRows > 0) {
+        res.sendStatus(200);
+      } else {
+        res.sendStatus(500);
+      }
+    }
   } catch (err) {
     next(err);
   }

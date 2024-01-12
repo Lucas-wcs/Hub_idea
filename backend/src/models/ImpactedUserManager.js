@@ -5,7 +5,7 @@ class ImpactedUserManager extends AbstractManager {
     super({ table: "Impacted_user" });
   }
 
-  async create({ user_id: userId, idea_id: ideaId }) {
+  async create(userId, ideaId) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (user_id, idea_id) VALUES (?, ?)`,
       [userId, ideaId]
