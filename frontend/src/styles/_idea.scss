@@ -187,6 +187,12 @@
     }
   }
 
+  .button-vote:disabled {
+    background-color: var(--quinary-color);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   .button-moderateur {
     display: flex;
     align-items: center;
@@ -208,14 +214,6 @@
 
   .button-moderateur:hover {
     background-color: var(--secondary-color);
-  }
-
-  .vote-pour:hover {
-    border: 3px solid var(--quaternary-color);
-  }
-
-  .vote-contre:hover {
-    border: 3px solid var(--primary-color);
   }
 
   .idea-comments-container {
