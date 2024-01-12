@@ -222,16 +222,30 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
   }
   .idea-comment-container {
     display: flex;
     justify-content: space-around;
     gap: 2%;
-  }
 
-  .idea-bold {
-    font-weight: 300;
-    font-family: var(--title-font);
+    .comments-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 80%;
+    }
+    .img-comment-user {
+      width: 100px;
+      height: auto;
+    }
+
+    .idea-bold {
+      font-weight: 300;
+      font-size: 1.1rem;
+      font-family: var(--title-font);
+      margin-bottom: 10px;
+    }
   }
 
   .is-not-moderator {
@@ -239,6 +253,78 @@
   }
 }
 
+.new-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.container-post-message {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+
+  .idea-bold {
+    font-weight: 300;
+    font-size: 1.1rem;
+    font-family: var(--title-font);
+    padding-right: 5px;
+  }
+  .button-comment {
+    background-color: var(--secondary-color);
+    color: var(--button-color);
+    font-family: var(--text-font);
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    &:hover {
+      scale: 1.1;
+    }
+  }
+
+  .img-comment {
+    width: 100px;
+    height: auto;
+    margin: 20px;
+  }
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  textarea {
+    width: 70%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+}
+.container-new-comment {
+  width: 80%;
+  border-top: 2px solid #ccc;
+  margin-top: 10px;
+  p {
+    display: flex;
+    align-items: flex-start;
+    text-align: justify;
+    overflow-x: scroll;
+  }
+}
 // responsive:
 @media screen and (max-width: 1100px) {
   .idea {
