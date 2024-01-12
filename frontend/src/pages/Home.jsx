@@ -55,10 +55,18 @@ function Home() {
 
         usersAssociated.forEach((userAssociated) => {
           axios
-            .post(`${import.meta.env.VITE_BACKEND}/api/impacted-users`, {
-              idea_id: response.data.insertId.insertId,
-              user_id: userAssociated,
-            })
+            .post(
+              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+              {
+                idea_id: response.data.insertId.insertId,
+                user_id: userAssociated,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              }
+            )
             .then(() => {
               // TODO pop up pour dire que l'idée a bien été créée et userAssociated a bien été ajouté
             })

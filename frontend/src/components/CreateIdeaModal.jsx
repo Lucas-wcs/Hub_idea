@@ -18,7 +18,12 @@ function CreateIdeaModal({
   const getUsers = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/users`
+        `${import.meta.env.VITE_BACKEND}/api/users`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       setAllUsers(response.data);
