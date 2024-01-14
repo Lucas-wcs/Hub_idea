@@ -17,6 +17,7 @@ function Home() {
   const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
   const [statusFilter, setStatusFilter] = useState("1,2,3,4,5,6,7");
+  const [showPopup, setShowPopup] = useState(false);
 
   // modal create idea : brouillon ou publier une idée
   const handleSubmitIdea = async (e) => {
@@ -78,6 +79,7 @@ function Home() {
         revalidator.revalidate();
       })
       .catch((error) => console.error(error));
+    // setShowPopup(true); VOIR AVEC AKANE POUR LES MESSAGES D'ERREUR ET DE SUCCÈS
     e.target.title.value = "";
     e.target.date.value = "";
     e.target.description.value = "";
@@ -134,6 +136,8 @@ function Home() {
           handleSubmitIdea={handleSubmitIdea} // when you click submit
           usersAssociated={usersAssociated}
           setUsersAssociated={setUsersAssociated}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
         />
       </div>
       <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>

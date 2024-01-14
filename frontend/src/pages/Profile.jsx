@@ -11,12 +11,15 @@ function Profile() {
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
 
+  // state to confirm new password
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // state to indicate if the passwords match
   const [message, setMessage] = useState("");
   const [isMessage, setIsMessage] = useState(false);
 
+  // state to show or not the password in the input
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
@@ -25,9 +28,12 @@ function Profile() {
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
   const [isOpenModificationModal, setIsOpenModificationModal] = useState(false);
 
+  // state to inform that the email is already used
   const [isErrorMail, setIsErrorMail] = useState(false);
   const [messageErrorMail, setMessageErrorMail] = useState("");
 
+  // state to show or not the popup when an error happens
+  const [showpopup, setShowpopup] = useState(false);
   const handlePasswordChange = (event, setPassword) => {
     setPassword(event.target.value);
   };
@@ -49,10 +55,6 @@ function Profile() {
 
   const handlePut = async (e) => {
     e.preventDefault();
-    const handleConfirmationModification = () => {
-      e.preventDefault();
-      setIsOpenModificationModal(true);
-    };
 
     const userToUpdate = {
       id: user.id,
@@ -66,7 +68,6 @@ function Profile() {
     };
 
     try {
-      // eslint-disable-next-line no-unused-vars
       const res = await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/users/${user && user.id}`,
         userToUpdate,
@@ -74,9 +75,12 @@ function Profile() {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
-
-      setUser(userToUpdate);
-      handleConfirmationModification();
+      if (res.status === 200) {
+        setUser(userToUpdate);
+        setIsOpenModificationModal(true);
+      } else {
+        setShowpopup(true);
+      }
     } catch (error) {
       if (error?.response?.data === "Email already exists") {
         setIsErrorMail(true);
@@ -105,8 +109,7 @@ function Profile() {
     }
   };
 
-  const handleReturnToHome = (e) => {
-    e.preventDefault();
+  const handleReturnToHome = () => {
     navigate("/home");
   };
 
@@ -217,6 +220,20 @@ function Profile() {
             />
           </div>
           {/* div modal ends here */}
+          {showpopup && (
+            <div className="popup-profile-error ">
+              <div className="popup-content-profile-error ">
+                <p>La modification a échoué</p>
+                <button
+                  type="button"
+                  className="popup-close-button-profile-error "
+                  onClick={() => setShowpopup(false)}
+                >
+                  Fermer
+                </button>
+              </div>
+            </div>
+          )}
           {user && (
             <form className="profile-form" onSubmit={handlePut}>
               <div className="profile-form-item">

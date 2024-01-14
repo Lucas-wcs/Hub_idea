@@ -39,14 +39,6 @@ class UserManager extends AbstractManager {
     return result;
   }
 
-  // async validateEmail(email) {
-  //   const [result] = await this.database.query(
-  //     `SELECT email FROM ${this.table} WHERE email=?`,
-  //     [email]
-  //   );
-  //   return result;
-  // }
-
   async read(id) {
     const [result] = await this.database.query(
       `SELECT * FROM ${this.table} WHERE id=?`,
