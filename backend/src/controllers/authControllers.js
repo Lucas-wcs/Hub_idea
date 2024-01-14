@@ -35,6 +35,8 @@ const login = async (req, res, next) => {
       } else {
         res.status(400).send("Incorrect mail ou mot de passe");
       }
+    } else {
+      res.status(400).send("Incorrect mail ou mot de passe");
     }
   } catch (err) {
     // If an error occurs, pass it to the next error handler
