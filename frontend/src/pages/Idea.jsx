@@ -305,7 +305,7 @@ function Idea() {
               <button
                 className={`button-moderateur ${
                   theme === "dark" ? "dark" : "light"
-                } ${user?.is_moderator ? "" : "is-not-moderator"}`}
+                } ${user && user.is_moderator ? "" : "is-not-moderator"}`}
                 type="button"
                 onClick={handleClickDecisionModal}
               >
