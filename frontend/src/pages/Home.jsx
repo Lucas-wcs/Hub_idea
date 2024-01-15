@@ -194,6 +194,7 @@ function Home() {
                 title={idea.title}
                 ideaId={idea.id}
                 statusId={statuses[idea.status_id - 1].status_name}
+                createdUserFirstname={idea.firstname}
                 key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
               />
             );

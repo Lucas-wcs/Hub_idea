@@ -80,11 +80,15 @@ function Connection() {
       <div className="connection">
         {showPopup && (
           <div className="popup">
-            <div className="popup-content">
+            <div
+              className={`popup-content ${theme === "dark" ? "dark" : "light"}`}
+            >
               <p>Votre mail ou mot de passe est invalide</p>
               <button
                 type="button"
-                className="popup-close-button"
+                className={`popup-close-button ${
+                  theme === "dark" ? "dark" : "light"
+                }`}
                 onClick={() => setShowPopup(false)}
               >
                 Fermer
@@ -136,8 +140,16 @@ function Connection() {
               </button>
             </div>
 
-            <button type="submit">
-              <span className="button_top"> Se connecter</span>
+            <button
+              className={`button-connection ${
+                theme === "dark" ? "dark" : "light"
+              }`}
+              type="submit"
+            >
+              <p className={theme === "dark" ? "text-white" : "text-black"}>
+                {" "}
+                Se connecter
+              </p>
             </button>
           </div>
         </form>
@@ -188,8 +200,11 @@ function Connection() {
         </div>
         <div className="container-button-rules">
           <Link to="/rules">
-            <button type="button">
-              <span className="button_top"> Voir le réglement</span>
+            <button
+              className={`button-rules ${theme === "dark" ? "dark" : "light"}`}
+              type="button"
+            >
+              <p> Voir le réglement</p>
             </button>
           </Link>
         </div>

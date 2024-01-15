@@ -234,10 +234,7 @@ function Idea() {
       />
       <div className="idea">
         <h2>{idea[0].title}</h2>
-        <h3>
-          Créé par
-          {/* {idea[0].firstname} {idea[0].lastname} */}
-        </h3>
+        <h3>Créé par {idea[0].firstname}</h3>
         <div className="idea-main-container">
           <div className="idea-main-img-container">
             <img src="/images/repas_noel.webp" alt="repas_noel_logo" />
@@ -307,15 +304,17 @@ function Idea() {
             <div className="idea-vote-container">
               <button
                 className={`button-moderateur ${
-                  user && user.is_moderator ? "" : "is-not-moderator"
-                }`}
+                  theme === "dark" ? "dark" : "light"
+                } ${user?.is_moderator ? "" : "is-not-moderator"}`}
                 type="button"
                 onClick={handleClickDecisionModal}
               >
                 Modérateur
               </button>
               <button
-                className="button-vote vote-pour"
+                className={`button-vote vote-pour ${
+                  theme === "dark" ? "dark" : "light"
+                }`}
                 type="button"
                 value="contre"
                 name="name"
@@ -326,7 +325,9 @@ function Idea() {
                 Je suis contre
               </button>
               <button
-                className="button-vote vote-contre"
+                className={`button-vote vote-contre ${
+                  theme === "dark" ? "dark" : "light"
+                }`}
                 type="submit"
                 value="pour"
                 onClick={handleClickVote}
@@ -369,6 +370,7 @@ function Idea() {
               }`}</p>
               <form onSubmit={postComment}>
                 <textarea
+                  className={theme === "dark" ? "dark" : ""}
                   value={comment}
                   onChange={handleCommentChange}
                   maxLength="500"

@@ -2,7 +2,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const ideas = await tables.Idea.readAll();
+    const ideas = await tables.Idea.readAllIdea();
     res.json(ideas);
   } catch (err) {
     next(err);
