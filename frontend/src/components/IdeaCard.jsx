@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
-function IdeaCard({ title, ideaId, statusId }) {
+function IdeaCard({ title, ideaId, statusId, createdUserFirstname }) {
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
 
@@ -35,7 +35,7 @@ function IdeaCard({ title, ideaId, statusId }) {
         </div>
         <div className="name-button-container">
           <p className={user?.is_moderator && "is-moderator"}>
-            Créée par Nicolas
+            Créée par {createdUserFirstname}
           </p>
           <Link to={`/idea/${ideaId}`} className="button-green">
             <p>Voir détails</p>
@@ -50,6 +50,7 @@ IdeaCard.propTypes = {
   title: PropTypes.string.isRequired,
   ideaId: PropTypes.number.isRequired,
   statusId: PropTypes.string.isRequired,
+  createdUserFirstname: PropTypes.string.isRequired,
 };
 
 export default IdeaCard;
