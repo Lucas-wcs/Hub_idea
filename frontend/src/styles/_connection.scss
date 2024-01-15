@@ -67,40 +67,69 @@
   margin: 20px;
 }
 
+.button-connection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 40px;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 4px;
+  margin: 20px;
+  font-family: var(--text-font);
+  font-weight: 800;
+
+  &:hover {
+    background-color: var(--senary-color);
+    border: 1px groove var(--dark);
+
+    .text-white {
+      color: black;
+    }
+  }
+
+  .text-white {
+    color: white;
+  }
+
+  .text-black {
+    color: black;
+  }
+}
+
 .container-button-rules {
   margin-top: 1%;
+
+  a {
+    text-decoration: none;
+    color: var(--dark);
+  }
+
+  .button-rules {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -60%;
+    width: 220%;
+    height: 40px;
+    background-color: var(--quinary-color);
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: var(--text-font);
+    font-weight: 800;
+
+    &:hover {
+      background-color: var(--senary-color);
+      color: var(--dark);
+      border: 1px groove var(--dark);
+    }
+  }
 }
 
-button {
-  --button_radius: 0.75em;
-  --button_color: #ffffff;
-  --button_outline_color: #000000;
-  font-size: 15px;
-  font-weight: bold;
+.button-rules.dark:hover {
   border: none;
-  border-radius: var(--button_radius);
-  background: var(--button_outline_color);
-}
-
-.button_top {
-  display: block;
-  box-sizing: border-box;
-  border: 2px solid var(--button_outline_color);
-  border-radius: var(--button_radius);
-  padding: 0.75em 1.5em;
-  background: var(--button_color);
-  color: var(--button_outline_color);
-  transform: translateY(-0.2em);
-  transition: transform 0.1s ease;
-}
-
-button:hover .button_top {
-  transform: translateY(-0.33em);
-  cursor: pointer;
-}
-
-button:active .button_top {
-  transform: translateY(0);
 }
 
 .input-button-container {
@@ -134,13 +163,14 @@ button:active .button_top {
     justify-content: center;
     align-items: center;
     background-color: transparent;
+    border: none;
     .img-password-connection-open {
       width: fit-content;
-      height: 2vh;
+      height: 1vh;
     }
     .img-password-connection {
       width: fit-content;
-      height: 2vh;
+      height: 1.2vh;
     }
   }
 }
@@ -211,6 +241,10 @@ button:active .button_top {
   border-radius: 4px;
   max-width: fit-content;
   max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   p {
     font-family: var(--text-font);
@@ -218,15 +252,34 @@ button:active .button_top {
     font-size: 1.2rem;
     text-align: center;
   }
+  .popup-close-button {
+    cursor: pointer;
+    background-color: var(--senary-color);
+    height: 30px;
+    width: 100px;
+    font-size: 1rem;
+    font-family: var(--text-font);
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    &:hover {
+      border: 1px groove var(--dark);
+    }
+  }
 }
 
-.popup-close-button {
-  cursor: pointer;
-  background-color: var(--senary-color);
-  height: 30px;
-  width: 100px;
-  font-size: 1rem;
-  font-family: var(--text-font);
+.popup-content.dark {
+  background-color: var(
+    --dark
+  ); // Remplacez par la couleur de fond que vous voulez pour le mode sombre
+  color: white; // Remplacez par la couleur de texte que vous voulez pour le mode sombre
+}
+
+.popup-close-button.dark {
+  background-color: var(
+    --black-color
+  ); // Remplacez par la couleur de fond que vous voulez pour le mode sombre
+  color: white; // Remplacez par la couleur de texte que vous voulez pour le mode sombre
 }
 
 @media (max-width: 500px) {
