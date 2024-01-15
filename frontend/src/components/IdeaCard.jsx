@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { ThemeContext } from "../context/ThemeContext";
+// import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
 function IdeaCard({ title, ideaId, statusId, createdUserFirstname }) {
-  const { theme } = useContext(ThemeContext);
+  // const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
 
   return (
@@ -16,15 +16,6 @@ function IdeaCard({ title, ideaId, statusId, createdUserFirstname }) {
         </div>
         <div className="status-container">
           <p>{statusId}</p>
-          <img
-            className="clickable-image"
-            src={
-              theme === "dark"
-                ? "/images/icons/timer_icon_light.png"
-                : "/images/icons/timer_icon.png"
-            }
-            alt="logo_retour"
-          />
         </div>
       </div>
       <div className="text-container">

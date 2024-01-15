@@ -185,13 +185,24 @@ function Home() {
         {ideas
           .filter((idea) => statusFilter.includes(idea.status_id))
           .map((idea) => {
+            if (idea.status_id === 1) {
+              return (
+                <IdeaCard
+                  title={idea.title}
+                  ideaId={idea.id}
+                  statusId={statuses[idea.status_id - 1].status_name}
+                  createdUserFirstname={idea.firstname}
+                  key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
+                />
+              );
+            }
             return (
               <IdeaCard
                 title={idea.title}
                 ideaId={idea.id}
                 statusId={statuses[idea.status_id - 1].status_name}
                 createdUserFirstname={idea.firstname}
-                key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
+                key={idea.title} // Utiliser l'ID de l'idée comme clé plutôt que le titre
               />
             );
           })}

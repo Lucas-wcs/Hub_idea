@@ -28,7 +28,7 @@
       position: absolute;
       align-items: center;
       font-size: 16px;
-      padding: calc(var(--spacing) * 0.4) calc(var(--spacing) * 0.6);
+      padding: calc(var(--spacing) * 0.6) calc(var(--spacing) * 1);
       background-color: var(--cardidea-color);
       margin: 10px;
       border-radius: 10px;
@@ -86,32 +86,25 @@
       justify-content: space-between;
       gap: 10px;
 
-      p {
-        width: 60%;
-        font-size: 1rem;
-      }
-
       .button-green {
-        margin-top: 0;
-        font-size: 1vh;
-        height: 6vh;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 20px 20px;
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease;
-        display: inline-block;
         text-decoration: none;
         border: none;
         border-radius: 10px;
         cursor: pointer;
         background-color: var(--primary-color);
-        width: 40%;
 
         p {
+          font-size: 1rem;
           color: var(--black-color);
-          padding-top: 1.5vh;
+          // padding-top: 1.5vh;
           width: 100%;
-          display: flex;
-          justify-content: center;
           text-decoration: none;
           font-family: var(--title-font);
         }
