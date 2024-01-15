@@ -225,7 +225,8 @@ INSERT INTO
         idea_image,
         date_limit,
         is_validation_administrator,
-        status_id
+        status_id,
+        user_id
     )
 VALUES (
         "réaliser un repas de Noel",
@@ -233,76 +234,87 @@ VALUES (
         "idée image",
         CURRENT_TIMESTAMP,
         0,
-        1
+        1,
+        4
     ), (
         "changer les fenêtres du bureau 402",
         "Depuis plusieurs hivers, les fenêtres ne sont plus efficaces, il fait froid, il y a de l'humidité ; il faudrait donc remplacer ces fenêtres en urgence",
         "idée image",
         CURRENT_TIMESTAMP,
         0,
-        2
+        2,
+        3
     ), (
         "mettre une télé dans la salle de pause",
         "pour les pauses du midi, ce serait bien d'avoir une télé pour pouvoir jouer à la console ou regarder des films ou séries",
         "idée image",
         CURRENT_TIMESTAMP,
         0,
-        3
+        3,
+        1
     ), (
         "Organiser une journée d'intégration",
         "Proposer une journée d'activités pour favoriser l'intégration des nouveaux employés dans l'entreprise.",
         "image1.jpg",
         CURRENT_TIMESTAMP,
         0,
-        4
+        4,
+        6
     ), (
         "Programme de mentorat interne",
         "Créer un programme de mentorat pour aider les employés juniors à développer leurs compétences avec l'aide des seniors.",
         "image2.jpg",
         CURRENT_TIMESTAMP,
         0,
-        5
+        5,
+        7
     ), (
         "Amélioration des espaces de travail",
         "Réaménager les espaces de travail pour favoriser la collaboration et le bien-être des employés.",
         "image3.jpg",
         CURRENT_TIMESTAMP,
         0,
-        6
+        6,
+        8
     ), (
         "Initier des formations inter-équipes",
         "Organiser des sessions de formation où différentes équipes peuvent partager leurs connaissances et compétences.",
         "image4.jpg",
         CURRENT_TIMESTAMP,
         0,
-        7
+        7,
+        2
     ), (
         "Campagne de sensibilisation écologique",
         "Promouvoir des actions en faveur de l'environnement et sensibiliser les employés à adopter des pratiques durables.",
         "image5.jpg",
         CURRENT_TIMESTAMP,
         0,
-        1
+        1,
+        3
     ), (
         "Mise en place d'un système de récompenses",
         "Créer un système de récompenses pour reconnaître les employés méritants et encourager la productivité.",
         "image6.jpg",
         CURRENT_TIMESTAMP,
         0,
-        2
+        2,
+        9
     ), (
         "Evénements sociaux réguliers",
         "Organiser des événements sociaux périodiques pour renforcer la cohésion d'équipe et le moral des employés.",
         "image7.jpg",
         CURRENT_TIMESTAMP,
         0,
-        3
+        3,
+        2
     ), (
         "Développement d'une application interne",
         "Concevoir une application interne pour simplifier les processus de communication et de collaboration.",
         "image8.jpg",
         CURRENT_TIMESTAMP,
         0,
+        4,
         4
     ), (
         "Création d'un programme de bien-être",
@@ -310,14 +322,16 @@ VALUES (
         "image9.jpg",
         CURRENT_TIMESTAMP,
         0,
-        5
+        5,
+        9
     ), (
         "Installation d'équipements sportifs",
         "Installer des équipements sportifs pour encourager l'activité physique et la détente au sein de l'entreprise.",
         "image10.jpg",
         CURRENT_TIMESTAMP,
         0,
-        6
+        6,
+        8
     );
 
 CREATE TABLE
