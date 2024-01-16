@@ -231,7 +231,7 @@ INSERT INTO
 VALUES (
         "réaliser un repas de Noel",
         "Pour les fêtes de fin d'années et avant les vacances, ce serait sympa d'organiser un repas collectif",
-        "idée image",
+        "/images/repas_noel.jpg",
         CURRENT_TIMESTAMP,
         0,
         1,
@@ -239,7 +239,7 @@ VALUES (
     ), (
         "changer les fenêtres du bureau 402",
         "Depuis plusieurs hivers, les fenêtres ne sont plus efficaces, il fait froid, il y a de l'humidité ; il faudrait donc remplacer ces fenêtres en urgence",
-        "idée image",
+        "/images/bureau_402.jpg",
         CURRENT_TIMESTAMP,
         0,
         2,
@@ -247,7 +247,7 @@ VALUES (
     ), (
         "mettre une télé dans la salle de pause",
         "pour les pauses du midi, ce serait bien d'avoir une télé pour pouvoir jouer à la console ou regarder des films ou séries",
-        "idée image",
+        "/images/pause.jpg",
         CURRENT_TIMESTAMP,
         0,
         3,
@@ -255,7 +255,7 @@ VALUES (
     ), (
         "Organiser une journée d'intégration",
         "Proposer une journée d'activités pour favoriser l'intégration des nouveaux employés dans l'entreprise.",
-        "image1.jpg",
+        "/images/integration.jpg",
         CURRENT_TIMESTAMP,
         0,
         4,
@@ -263,7 +263,7 @@ VALUES (
     ), (
         "Programme de mentorat interne",
         "Créer un programme de mentorat pour aider les employés juniors à développer leurs compétences avec l'aide des seniors.",
-        "image2.jpg",
+        "/images/mentor.jpg",
         CURRENT_TIMESTAMP,
         0,
         5,
@@ -271,7 +271,7 @@ VALUES (
     ), (
         "Amélioration des espaces de travail",
         "Réaménager les espaces de travail pour favoriser la collaboration et le bien-être des employés.",
-        "image3.jpg",
+        "/images/espace_travail.jpg",
         CURRENT_TIMESTAMP,
         0,
         6,
@@ -279,7 +279,7 @@ VALUES (
     ), (
         "Initier des formations inter-équipes",
         "Organiser des sessions de formation où différentes équipes peuvent partager leurs connaissances et compétences.",
-        "image4.jpg",
+        "/images/formation.jpg",
         CURRENT_TIMESTAMP,
         0,
         7,
@@ -287,7 +287,7 @@ VALUES (
     ), (
         "Campagne de sensibilisation écologique",
         "Promouvoir des actions en faveur de l'environnement et sensibiliser les employés à adopter des pratiques durables.",
-        "image5.jpg",
+        "/images/ecologie.jpg",
         CURRENT_TIMESTAMP,
         0,
         1,
@@ -295,7 +295,7 @@ VALUES (
     ), (
         "Mise en place d'un système de récompenses",
         "Créer un système de récompenses pour reconnaître les employés méritants et encourager la productivité.",
-        "image6.jpg",
+        "/images/recompense.jpg",
         CURRENT_TIMESTAMP,
         0,
         2,
@@ -303,7 +303,7 @@ VALUES (
     ), (
         "Evénements sociaux réguliers",
         "Organiser des événements sociaux périodiques pour renforcer la cohésion d'équipe et le moral des employés.",
-        "image7.jpg",
+        "/images/evenement.jpg",
         CURRENT_TIMESTAMP,
         0,
         3,
@@ -311,7 +311,7 @@ VALUES (
     ), (
         "Développement d'une application interne",
         "Concevoir une application interne pour simplifier les processus de communication et de collaboration.",
-        "image8.jpg",
+        "/images/saas.jpg",
         CURRENT_TIMESTAMP,
         0,
         4,
@@ -319,7 +319,7 @@ VALUES (
     ), (
         "Création d'un programme de bien-être",
         "Lancer un programme de bien-être pour soutenir la santé mentale et physique des employés.",
-        "image9.jpg",
+        "/images/zen.jpg",
         CURRENT_TIMESTAMP,
         0,
         5,
@@ -327,7 +327,7 @@ VALUES (
     ), (
         "Installation d'équipements sportifs",
         "Installer des équipements sportifs pour encourager l'activité physique et la détente au sein de l'entreprise.",
-        "image10.jpg",
+        "/images/sport.jpg",
         CURRENT_TIMESTAMP,
         0,
         6,
