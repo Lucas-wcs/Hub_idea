@@ -38,6 +38,9 @@ function Profile() {
     setPassword(event.target.value);
   };
 
+  // state to lead the client to verify his identity by rewrite his current password
+  const [actualPassword, setActualPassword] = useState(false);
+
   useEffect(() => {
     if (newPassword.length > 0 || confirmPassword.length > 0) {
       if (newPassword === confirmPassword) {
@@ -62,6 +65,7 @@ function Profile() {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
+      currentPassword: e.target.currentPassword.value,
       password: e.target.password.value,
       is_administrator: user.is_administrator,
       is_moderator: user.is_moderator,
@@ -82,7 +86,9 @@ function Profile() {
         setShowpopup(true);
       }
     } catch (error) {
-      if (error?.response?.data === "Email already exists") {
+      if (error?.response?.data === "Incorrect credentials") {
+        setActualPassword(true);
+      } else if (error?.response?.data === "Email already exists") {
         setIsErrorMail(true);
         setMessageErrorMail("Cet email est déjà utilisé");
         setTimeout(() => {
@@ -280,11 +286,18 @@ function Profile() {
                 <label className="label-profile-pass" htmlFor="password">
                   Changer de mot de passe
                 </label>
-                <div className="container-profile-input">
+                <div
+                  className={
+                    actualPassword
+                      ? "container-profile-input-wrong"
+                      : "container-profile-input"
+                  }
+                >
                   <input
                     className="profile-input-pass"
                     type={showPassword ? "text" : "password"}
                     placeholder="Mot de passe actuel"
+                    name="currentPassword"
                   />
                   <button
                     className="toggle-button"

@@ -51,7 +51,11 @@ router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.get("/users-by-token", userControllers.readByToken);
 router.post("/users", userControllers.add);
-router.put("/users/:id", userControllers.edit);
+router.put(
+  "/users/:id",
+  userControllers.verifyPasswordByToken,
+  userControllers.edit
+);
 router.delete("/users/:id", userControllers.destroy);
 router.put("/users/moderator/:id", userControllers.addModerator);
 router.put("/users/remove-moderator/:id", userControllers.deleteModerator);

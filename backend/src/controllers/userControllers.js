@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const tables = require("../tables");
 
 const browse = async (req, res, next) => {
@@ -29,6 +30,33 @@ const readByToken = async (req, res, next) => {
       res.sendStatus(404);
     } else {
       res.json(user[0]);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+// middleware pour vérifier le mot de passe
+const verifyPasswordByToken = async (req, res, next) => {
+  try {
+    const { userId } = req.auth;
+
+    const result = await tables.User.read(userId);
+
+    if (result && result[0]) {
+      const user = result[0];
+      const verified = await argon2.verify(
+        user.password,
+        req.body.currentPassword
+      );
+
+      if (verified || req.body.password === "") {
+        next();
+      } else {
+        res.status(400).send("Incorrect credentials");
+      }
+    } else {
+      res.status(500).send("Internal server error");
     }
   } catch (err) {
     next(err);
@@ -129,4 +157,5 @@ module.exports = {
   addModerator,
   deleteModerator,
   upload,
+  verifyPasswordByToken,
 };

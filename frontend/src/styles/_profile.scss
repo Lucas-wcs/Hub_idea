@@ -142,6 +142,41 @@
               font-size: 12px;
             }
           }
+
+          .toggle-button {
+            background-color: transparent;
+            width: 7%;
+            padding: 0;
+            border: none;
+            .img-password {
+              width: 100%;
+            }
+          }
+        }
+        .container-profile-input-wrong {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color: var(--quinary-color);
+          padding: 0.5em var(--spacing);
+          margin-left: 3px;
+          border: none;
+          width: 30vw;
+          height: 6vh;
+          border: 2px solid red;
+
+          .profile-input-pass {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+
+            &::placeholder {
+              font-family: var(--text-font);
+              font-size: 12px;
+            }
+          }
+
           .toggle-button {
             background-color: transparent;
             width: 7%;
