@@ -192,6 +192,7 @@ function Home() {
                   ideaId={idea.id}
                   statusId={statuses[idea.status_id - 1].status_name}
                   createdUserFirstname={idea.firstname}
+                  image={`${import.meta.env.VITE_BACKEND}${idea.idea_image}`}
                   key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
                 />
               );
@@ -202,6 +203,7 @@ function Home() {
                 ideaId={idea.id}
                 statusId={statuses[idea.status_id - 1].status_name}
                 createdUserFirstname={idea.firstname}
+                image={`${import.meta.env.VITE_BACKEND}${idea.idea_image}`}
                 key={idea.title} // Utiliser l'ID de l'idée comme clé plutôt que le titre
               />
             );
