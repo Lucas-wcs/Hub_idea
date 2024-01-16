@@ -11,12 +11,15 @@ function Profile() {
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(UserContext);
 
+  // state to confirm new password
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // state to indicate if the passwords match
   const [message, setMessage] = useState("");
   const [isMessage, setIsMessage] = useState(false);
 
+  // state to show or not the password in the input
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowsConfirmPassword] = useState(false);
@@ -25,12 +28,18 @@ function Profile() {
   const [isEyeOpenConfirm, setIsEyeOpenConfirm] = useState(false);
   const [isOpenModificationModal, setIsOpenModificationModal] = useState(false);
 
+  // state to inform that the email is already used
   const [isErrorMail, setIsErrorMail] = useState(false);
   const [messageErrorMail, setMessageErrorMail] = useState("");
 
+  // state to show or not the popup when an error happens
+  const [showpopup, setShowpopup] = useState(false);
   const handlePasswordChange = (event, setPassword) => {
     setPassword(event.target.value);
   };
+
+  // state to lead the client to verify his identity by rewrite his current password
+  const [actualPassword, setActualPassword] = useState(false);
 
   useEffect(() => {
     if (newPassword.length > 0 || confirmPassword.length > 0) {
@@ -49,10 +58,6 @@ function Profile() {
 
   const handlePut = async (e) => {
     e.preventDefault();
-    const handleConfirmationModification = () => {
-      e.preventDefault();
-      setIsOpenModificationModal(true);
-    };
 
     const userToUpdate = {
       id: user.id,
@@ -60,13 +65,13 @@ function Profile() {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
+      currentPassword: e.target.currentPassword.value,
       password: e.target.password.value,
       is_administrator: user.is_administrator,
       is_moderator: user.is_moderator,
     };
 
     try {
-      // eslint-disable-next-line no-unused-vars
       const res = await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/users/${user && user.id}`,
         userToUpdate,
@@ -74,11 +79,16 @@ function Profile() {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
-
-      setUser(userToUpdate);
-      handleConfirmationModification();
+      if (res.status === 200) {
+        setUser(userToUpdate);
+        setIsOpenModificationModal(true);
+      } else {
+        setShowpopup(true);
+      }
     } catch (error) {
-      if (error?.response?.data === "Email already exists") {
+      if (error?.response?.data === "Incorrect credentials") {
+        setActualPassword(true);
+      } else if (error?.response?.data === "Email already exists") {
         setIsErrorMail(true);
         setMessageErrorMail("Cet email est déjà utilisé");
         setTimeout(() => {
@@ -105,8 +115,7 @@ function Profile() {
     }
   };
 
-  const handleReturnToHome = (e) => {
-    e.preventDefault();
+  const handleReturnToHome = () => {
     navigate("/home");
   };
 
@@ -217,6 +226,20 @@ function Profile() {
             />
           </div>
           {/* div modal ends here */}
+          {showpopup && (
+            <div className="popup-profile-error ">
+              <div className="popup-content-profile-error ">
+                <p>La modification a échoué</p>
+                <button
+                  type="button"
+                  className="popup-close-button-profile-error "
+                  onClick={() => setShowpopup(false)}
+                >
+                  Fermer
+                </button>
+              </div>
+            </div>
+          )}
           {user && (
             <form className="profile-form" onSubmit={handlePut}>
               <div className="profile-form-item">
@@ -263,11 +286,18 @@ function Profile() {
                 <label className="label-profile-pass" htmlFor="password">
                   Changer de mot de passe
                 </label>
-                <div className="container-profile-input">
+                <div
+                  className={
+                    actualPassword
+                      ? "container-profile-input-wrong"
+                      : "container-profile-input"
+                  }
+                >
                   <input
                     className="profile-input-pass"
                     type={showPassword ? "text" : "password"}
                     placeholder="Mot de passe actuel"
+                    name="currentPassword"
                   />
                   <button
                     className="toggle-button"

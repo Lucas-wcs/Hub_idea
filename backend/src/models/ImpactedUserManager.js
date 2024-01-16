@@ -7,7 +7,7 @@ class ImpactedUserManager extends AbstractManager {
 
   async create(userId, ideaId) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (user_id, idea_id) VALUES (?, ?)`,
+      `INSERT INTO ${this.table} (user_id, idea_id) VALUES (?,?)`,
       [userId, ideaId]
     );
     return result;
@@ -23,7 +23,7 @@ class ImpactedUserManager extends AbstractManager {
 
   async readByIdeaId(ideaId) {
     const [result] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE idea_id=?`,
+      `SELECT user.id, user.image_profil, user.firstname, user.lastname FROM ${this.table} INNER JOIN user ON impacted_user.user_id = user.id INNER JOIN idea ON impacted_user.idea_id = idea.id WHERE idea.id=?`,
       [ideaId]
     );
     return result;

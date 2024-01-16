@@ -39,14 +39,6 @@ class UserManager extends AbstractManager {
     return result;
   }
 
-  // async validateEmail(email) {
-  //   const [result] = await this.database.query(
-  //     `SELECT email FROM ${this.table} WHERE email=?`,
-  //     [email]
-  //   );
-  //   return result;
-  // }
-
   async read(id) {
     const [result] = await this.database.query(
       `SELECT * FROM ${this.table} WHERE id=?`,
@@ -65,6 +57,8 @@ class UserManager extends AbstractManager {
     is_administrator: isAdministrator,
     is_moderator: isModerator,
   }) {
+    const hashedNewPassword = await auth.hashAString(password);
+
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET firstname=?, lastname=?, email=?, image_profil=?, password=?, is_administrator=?, is_moderator=? WHERE id=?`,
       [
@@ -72,7 +66,7 @@ class UserManager extends AbstractManager {
         lastname,
         email,
         imageProfil,
-        password,
+        hashedNewPassword,
         isAdministrator,
         isModerator,
         id,

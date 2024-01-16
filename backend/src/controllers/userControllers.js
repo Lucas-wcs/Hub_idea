@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const tables = require("../tables");
 
 const browse = async (req, res, next) => {
@@ -35,6 +36,33 @@ const readByToken = async (req, res, next) => {
   }
 };
 
+// middleware pour vérifier le mot de passe
+const verifyPasswordByToken = async (req, res, next) => {
+  try {
+    const { userId } = req.auth;
+
+    const result = await tables.User.read(userId);
+
+    if (result && result[0]) {
+      const user = result[0];
+      const verified = await argon2.verify(
+        user.password,
+        req.body.currentPassword
+      );
+
+      if (verified || req.body.password === "") {
+        next();
+      } else {
+        res.status(400).send("Incorrect credentials");
+      }
+    } else {
+      res.status(500).send("Internal server error");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   const user = req.body;
 
@@ -51,9 +79,12 @@ const edit = async (req, res, next) => {
   try {
     const user = await tables.User.getByMail(req.body.email);
 
-    if (user && Number(user[0]?.id) !== Number(req.params.id)) {
+    if (user.length > 0 && Number(user[0]?.id) !== Number(req.params.id)) {
       res.status(400).send("Email already exists");
-    } else {
+    } else if (
+      user.length === 0 ||
+      (user.length > 0 && user[0]?.id === Number(req.params.id))
+    ) {
       if (req.body.password === "") {
         req.body.password = user[0]?.password;
       }
@@ -126,4 +157,5 @@ module.exports = {
   addModerator,
   deleteModerator,
   upload,
+  verifyPasswordByToken,
 };

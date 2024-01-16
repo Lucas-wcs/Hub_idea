@@ -183,6 +183,28 @@ function Idea() {
     }
   };
 
+  const [showImpactedUsers, setShowImpactedUsers] = useState([]);
+
+  const getImpactedUsers = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api//impacted-users/ideas/${
+          idea[0].id
+        }`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setShowImpactedUsers(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getImpactedUsers();
+  }, []);
+
   return (
     <>
       {/* div for modal */}
@@ -244,22 +266,46 @@ function Idea() {
             </div>
 
             <div className="idea-impacted-container">
-              <p>Personnes impactées</p>
-              <div className="impacteduser-image-container">
-                <img src="/images/hugo.png" alt="" />
+              <div className="idea-impacted-paragraph">
+                <p>Personnes impactées</p>
               </div>
-              <div>
-                <img src="" alt="" />
-              </div>
-              <div>
-                <img src="" alt="" />
-              </div>
+
+              {showImpactedUsers.map((impacted) => {
+                return (
+                  <div
+                    key={impacted.user_id}
+                    className="impacteduser-image-container"
+                  >
+                    {impacted.image_profil ? (
+                      <img
+                        className="img-impacted-user"
+                        title={`${impacted.firstname} ${impacted.lastname}`}
+                        src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                          impacted.image_profil
+                        }`}
+                        alt="profile"
+                      />
+                    ) : (
+                      <img
+                        className="img-impacted-user"
+                        title={`${impacted.firstname} ${impacted.lastname}`}
+                        src={
+                          theme === "dark"
+                            ? "/images/icons/avatar_icon_dark.png"
+                            : "/images/icons/avatar_icon.png"
+                        }
+                        alt="default profile"
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </div>
             <div className="idea-vote-container">
               <button
                 className={`button-moderateur ${
                   theme === "dark" ? "dark" : "light"
-                } ${user?.is_moderator ? "" : "is-not-moderator"}`}
+                } ${user && user.is_moderator ? "" : "is-not-moderator"}`}
                 type="button"
                 onClick={handleClickDecisionModal}
               >
