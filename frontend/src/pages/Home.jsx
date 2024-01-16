@@ -212,12 +212,12 @@ function Home() {
               <IdeaCard
                 title={idea.title}
                 dateLimit={idea.date_limit}
-                image={idea.idea_image}
                 description={idea.idea_description}
                 ideaId={idea.id}
                 statusId={idea.status_id}
                 statusName={statuses[idea.status_id - 1].status_name}
                 createdUserFirstname={idea.firstname}
+                image={`${import.meta.env.VITE_BACKEND}${idea.idea_image}`}
                 key={idea.title} // Utiliser l'ID de l'idée comme clé plutôt que le titre
                 handleOpenModalIdeaDraft={handleOpenModalIdeaDraft}
               />

@@ -350,39 +350,36 @@ function Idea() {
               </div>
             </div>
           </div>
-
           <div className="idea-comment-container">
             <div className="comments-container">
               <div>
                 {comments.map((com) => (
                   <div className="container-new-comment" key={com.id}>
-                    <p className="idea-bold">
-                      {`${com.firstname} ${com.lastname}`} :
-                    </p>
                     <p className="new-comment">{com.description}</p>
-                    <div>
-                      {com.image_profil ? (
-                        <img
-                          className="img-comment-user"
-                          title="Profil"
-                          src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                            com.image_profil
-                          }`}
-                          alt="profile"
-                        />
-                      ) : (
-                        <img
-                          className="img-comment-user"
-                          title="Profil"
-                          src={
-                            theme === "dark"
-                              ? "/images/icons/avatar_icon_dark.png"
-                              : "/images/icons/avatar_icon.png"
-                          }
-                          alt="default profile"
-                        />
-                      )}
-                    </div>
+                    <p className="idea-bold">
+                      {`${com.firstname} ${com.lastname}`}
+                    </p>
+                    {com.image_profil ? (
+                      <img
+                        className="img-comment-user"
+                        title="Profil"
+                        src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                          com.image_profil
+                        }`}
+                        alt="profile"
+                      />
+                    ) : (
+                      <img
+                        className="img-comment-user"
+                        title="Profil"
+                        src={
+                          theme === "dark"
+                            ? "/images/icons/avatar_icon_dark.png"
+                            : "/images/icons/avatar_icon.png"
+                        }
+                        alt="default profile"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
