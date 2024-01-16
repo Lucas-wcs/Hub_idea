@@ -4,18 +4,31 @@ import PropTypes from "prop-types";
 // import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
-function IdeaCard({ title, ideaId, statusId, createdUserFirstname }) {
+function IdeaCard({
+  title,
+  ideaId,
+  statusName,
+  statusId,
+  createdUserFirstname,
+}) {
   // const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
 
   return (
-    <div className="idea-card-container">
+    <div
+      className={`idea-card-container ${statusId === 1 ? "ideaCardDraft" : ""}`}
+    >
       <div className="status-image-container">
         <div className="card-image-container">
           <img src="/images/repas_noel.webp" alt="idea" />
         </div>
         <div className="status-container">
-          <p>{statusId}</p>
+          <p>{statusName}</p>
+          {statusId === 1 ? (
+            <img src="images/icon-modify.png" alt="" className="modify-draft" />
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="text-container">
@@ -26,11 +39,20 @@ function IdeaCard({ title, ideaId, statusId, createdUserFirstname }) {
         </div>
         <div className="name-button-container">
           <p className={user?.is_moderator && "is-moderator"}>
-            Créée par {createdUserFirstname}
+            Créée par{" "}
+            {createdUserFirstname === (user && user.firstname)
+              ? "vous"
+              : createdUserFirstname}
           </p>
-          <Link to={`/idea/${ideaId}`} className="button-green">
-            <p>Voir détails</p>
-          </Link>
+          {statusId === 1 ? (
+            <Link to={`/idea/${ideaId}`} className="disabled-button">
+              <p>Voir détails</p>
+            </Link>
+          ) : (
+            <Link to={`/idea/${ideaId}`} className="button-green">
+              <p>Voir détails</p>
+            </Link>
+          )}
         </div>
       </div>
     </div>
@@ -40,7 +62,8 @@ function IdeaCard({ title, ideaId, statusId, createdUserFirstname }) {
 IdeaCard.propTypes = {
   title: PropTypes.string.isRequired,
   ideaId: PropTypes.number.isRequired,
-  statusId: PropTypes.string.isRequired,
+  statusId: PropTypes.number.isRequired,
+  statusName: PropTypes.string.isRequired,
   createdUserFirstname: PropTypes.string.isRequired,
 };
 

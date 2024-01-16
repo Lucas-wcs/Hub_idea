@@ -51,7 +51,7 @@ class IdeaManager extends AbstractManager {
 
   async readAllIdea() {
     const [result] = await this.database.query(
-      `SELECT i.id, i.title, i.idea_image, i.status_id, u.firstname FROM ${this.table} AS i JOIN user AS u ON i.user_id = u.id`
+      `SELECT i.id, i.title, i.idea_image, i.status_id, i.user_id, u.firstname FROM ${this.table} AS i JOIN user AS u ON i.user_id = u.id`
     );
     return result;
   }

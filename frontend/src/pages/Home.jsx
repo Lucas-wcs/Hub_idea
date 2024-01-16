@@ -166,9 +166,9 @@ function Home() {
           >
             <option value="1,2,3,4,5,6,7">Toutes les idées</option>
             <option value="1">Brouillon</option>
-            <option value="5">En attente</option>
+            <option value="2,5">En attente</option>
             <option value="3,7">Refusées</option>
-            <option value="4,2">En cours</option>
+            <option value="4">En cours</option>
             <option value="6">Validées</option>
           </select>
 
@@ -185,22 +185,18 @@ function Home() {
         {ideas
           .filter((idea) => statusFilter.includes(idea.status_id))
           .map((idea) => {
-            if (idea.status_id === 1) {
-              return (
-                <IdeaCard
-                  title={idea.title}
-                  ideaId={idea.id}
-                  statusId={statuses[idea.status_id - 1].status_name}
-                  createdUserFirstname={idea.firstname}
-                  key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
-                />
-              );
+            if (
+              (idea.status_id === 1 || idea.status_id === 2) &&
+              idea.user_id !== (user && user.id)
+            ) {
+              return [];
             }
             return (
               <IdeaCard
                 title={idea.title}
                 ideaId={idea.id}
-                statusId={statuses[idea.status_id - 1].status_name}
+                statusId={idea.status_id}
+                statusName={statuses[idea.status_id - 1].status_name}
                 createdUserFirstname={idea.firstname}
                 key={idea.title} // Utiliser l'ID de l'idée comme clé plutôt que le titre
               />

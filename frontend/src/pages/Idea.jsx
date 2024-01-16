@@ -212,7 +212,12 @@ function Idea() {
       />
       <div className="idea">
         <h2>{idea[0].title}</h2>
-        <h3>Créé par {idea[0].firstname}</h3>
+        <h3>
+          Créé par{" "}
+          {idea[0].firstname === (user && user.firstname)
+            ? "vous"
+            : idea[0].firstname}
+        </h3>
         <div className="idea-main-container">
           <div className="idea-main-img-container">
             <img src="/images/repas_noel.webp" alt="repas_noel_logo" />
