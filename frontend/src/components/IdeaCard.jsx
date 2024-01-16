@@ -6,10 +6,14 @@ import { UserContext } from "../context/UserContext";
 
 function IdeaCard({
   title,
+  dateLimit,
+  image,
+  description,
   ideaId,
   statusName,
   statusId,
   createdUserFirstname,
+  handleOpenModalIdeaDraft,
 }) {
   // const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
@@ -25,7 +29,19 @@ function IdeaCard({
         <div className="status-container">
           <p>{statusName}</p>
           {statusId === 1 ? (
-            <img src="images/icon-modify.png" alt="" className="modify-draft" />
+            <button
+              type="submit"
+              onClick={() =>
+                handleOpenModalIdeaDraft(title, dateLimit, image, description)
+              }
+            >
+              {" "}
+              <img
+                src="images/icon-modify.png"
+                alt=""
+                className="modify-draft"
+              />
+            </button>
           ) : (
             ""
           )}
@@ -61,10 +77,18 @@ function IdeaCard({
 
 IdeaCard.propTypes = {
   title: PropTypes.string.isRequired,
+  dateLimit: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   ideaId: PropTypes.number.isRequired,
   statusId: PropTypes.number.isRequired,
   statusName: PropTypes.string.isRequired,
   createdUserFirstname: PropTypes.string.isRequired,
+  handleOpenModalIdeaDraft: PropTypes.func,
+};
+
+IdeaCard.defaultProps = {
+  handleOpenModalIdeaDraft: null,
 };
 
 export default IdeaCard;

@@ -17,6 +17,12 @@ function Home() {
   const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
   const [statusFilter, setStatusFilter] = useState("1,2,3,4,5,6,7");
+  const [draftIdea, setDraftIdea] = useState({
+    title: "",
+    dateLimit: "",
+    image: "",
+    description: "",
+  });
 
   // modal create idea : brouillon ou publier une idée
   const handleSubmitIdea = async (e) => {
@@ -86,6 +92,17 @@ function Home() {
   // modal for creating idea
   const handleOpenModalIdea = () => {
     setIsOpenIdeaModal((current) => !current);
+  };
+
+  const handleOpenModalIdeaDraft = (title, dateLimit, image, description) => {
+    setIsOpenIdeaModal((current) => !current);
+    setDraftIdea({
+      title,
+      dateLimit,
+      image,
+      description,
+    });
+    console.info(draftIdea);
   };
 
   const ideaToUpdate = {
@@ -189,16 +206,20 @@ function Home() {
               (idea.status_id === 1 || idea.status_id === 2) &&
               idea.user_id !== (user && user.id)
             ) {
-              return [];
+              return null;
             }
             return (
               <IdeaCard
                 title={idea.title}
+                dateLimit={idea.date_limit}
+                image={idea.idea_image}
+                description={idea.idea_description}
                 ideaId={idea.id}
                 statusId={idea.status_id}
                 statusName={statuses[idea.status_id - 1].status_name}
                 createdUserFirstname={idea.firstname}
                 key={idea.title} // Utiliser l'ID de l'idée comme clé plutôt que le titre
+                handleOpenModalIdeaDraft={handleOpenModalIdeaDraft}
               />
             );
           })}
