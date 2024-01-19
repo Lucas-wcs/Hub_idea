@@ -38,11 +38,10 @@ const edit = async (req, res, next) => {
     idea_description: ideaDescription,
     idea_image: ideaImage,
     date_limit: dateLimit,
-    is_validation_administrator: isValidationAdministrator,
     status_id: statusId,
-    idea_final_comment: ideaFinalComment,
-    user_id: userId,
   } = req.body;
+
+  console.info(req.body);
 
   const updatedIdea = {
     id: req.params.id,
@@ -50,10 +49,7 @@ const edit = async (req, res, next) => {
     idea_description: ideaDescription,
     idea_image: ideaImage,
     date_limit: dateLimit,
-    is_validation_administrator: isValidationAdministrator,
     status_id: statusId,
-    idea_final_comment: ideaFinalComment,
-    user_id: userId,
   };
 
   try {

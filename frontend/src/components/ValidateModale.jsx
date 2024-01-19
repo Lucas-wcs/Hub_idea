@@ -7,6 +7,7 @@ function ValidateModale({
   type,
   setTypeModal,
   handleClickSubmitButton = null,
+  handleClickUpdateSubmitButton,
   handleClickIdeaCancelButton,
   handleDecisionConfirmModal,
   handleReturnToHome,
@@ -35,6 +36,9 @@ function ValidateModale({
     } else if (type === "modale6" && event.target.value === "button1") {
       navigate("/home");
       handleReturnToHome();
+    } else if (type === "modale8" && event.target.value === "button1") {
+      navigate("/home");
+      handleClickUpdateSubmitButton();
     }
   };
 
@@ -81,6 +85,12 @@ function ValidateModale({
       text: "Decision enregistrée !",
       logo: "/images/icons/validation.png",
       textButton: "Page Administrateur",
+    },
+    modale8: {
+      title: "",
+      text: "Merci d'avoir soumis l'idée au vote!",
+      logo: "/images/icons/confetti.png",
+      textButton: "Accueil",
     },
   };
 
@@ -147,6 +157,7 @@ ValidateModale.propTypes = {
   handleClickIdeaCancelButton: PropTypes.func,
   handleDecisionConfirmModal: PropTypes.func,
   handleReturnToHome: PropTypes.func,
+  handleClickUpdateSubmitButton: PropTypes.func,
 };
 
 ValidateModale.defaultProps = {
@@ -154,6 +165,7 @@ ValidateModale.defaultProps = {
   handleClickIdeaCancelButton: null,
   handleDecisionConfirmModal: null,
   handleReturnToHome: null,
+  handleClickUpdateSubmitButton: null,
 };
 
 // importation modale dans pages <ValidateModale type="modale1" setTypeModal={() => console.log("")} />
