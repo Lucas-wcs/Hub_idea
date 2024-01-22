@@ -209,7 +209,7 @@ CREATE TABLE
         `idea_description` VARCHAR (1000) NOT NULL,
         `idea_image` VARCHAR(50),
         `idea_date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        `date_limit` DATETIME,
+        `date_limit` DATE,
         `is_validation_administrator` BOOLEAN,
         `status_id` INT DEFAULT 1,
         `idea_final_comment` VARCHAR(500),

@@ -10,10 +10,12 @@ function UpdateIdeaModal({
   handleOpenModalIdeaDraft,
   usersAssociated,
   setUsersAssociated,
+  draftIdea,
 }) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
+  console.info(draftIdea);
 
   const getUsers = async () => {
     try {
@@ -72,6 +74,7 @@ function UpdateIdeaModal({
                 <input
                   type="text"
                   name="title"
+                  defaultValue={draftIdea.title}
                   id="title"
                   className={`input-border ${theme === "dark" && "dark"}`}
                 />
@@ -83,6 +86,7 @@ function UpdateIdeaModal({
                   type="date"
                   name="date"
                   id="date"
+                  defaultValue={draftIdea.dateLimit.slice(0, 10)}
                   className={`input-border ${theme === "dark" && "dark"}`}
                 />
               </div>
@@ -170,6 +174,7 @@ function UpdateIdeaModal({
                   id="description"
                   name="description"
                   className={`input-border ${theme === "dark" && "dark"}`}
+                  defaultValue={draftIdea.description}
                 />
               </div>
               <div className="buttons-container">
@@ -199,6 +204,7 @@ UpdateIdeaModal.propTypes = {
   handleOpenModalIdeaDraft: PropTypes.func.isRequired,
   usersAssociated: PropTypes.arrayOf(PropTypes.string).isRequired,
   setUsersAssociated: PropTypes.func.isRequired,
+  draftIdea: PropTypes.shape.isRequired,
 };
 
 export default UpdateIdeaModal;

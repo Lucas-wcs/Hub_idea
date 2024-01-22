@@ -41,8 +41,6 @@ const edit = async (req, res, next) => {
     status_id: statusId,
   } = req.body;
 
-  console.info(req.body);
-
   const updatedIdea = {
     id: req.params.id,
     title,

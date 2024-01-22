@@ -144,7 +144,6 @@ function Home() {
       description,
       ideaId,
     });
-    console.info(draftIdea);
   };
 
   // handle submit 1st draft modal
