@@ -24,6 +24,7 @@ const read = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   const idea = req.body;
+  idea.date_limit = new Date(idea.date_limit);
   try {
     const insertId = await tables.Idea.create(idea);
     res.status(201).json({ insertId });
