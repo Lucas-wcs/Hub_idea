@@ -31,8 +31,6 @@ const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers"); // test ok
 const statusIdeaControllers = require("./controllers/statusIdeaControllers"); // test ok
 const ideaControllers = require("./controllers/ideaControllers"); // test ok
-const notificationControllers = require("./controllers/notificationControllers"); // test ok
-const userNotificationControllers = require("./controllers/userNotificationControllers"); // test ok (no read)
 const voteControllers = require("./controllers/voteControllers"); // test ok
 const impactedUserControllers = require("./controllers/impactedUserControllers"); // test ok
 const commentControllers = require("./controllers/commentControllers"); // test ok
@@ -78,23 +76,7 @@ router.put("/ideas/:id", ideaControllers.edit);
 router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
 router.delete("/ideas/:id", ideaControllers.destroy);
 router.put("/ideas/admin-decision/:id", ideaControllers.editStatusIdByAdmin);
-// Routes notification controllers
-router.get("/notifications", notificationControllers.browse);
-router.get("/notifications/:id", notificationControllers.read);
-router.post("/notifications", notificationControllers.add);
-router.delete("/notifications/:id", notificationControllers.destroy);
-// Routes userNotification controllers
-router.get("/user-notifications", userNotificationControllers.browse);
-router.get(
-  "/user-notifications/users/:id",
-  userNotificationControllers.readByUserId
-);
-router.get(
-  "/user-notifications/notifications/:id",
-  userNotificationControllers.readByNotificationId
-);
-router.post("/user-notifications", userNotificationControllers.add);
-router.delete("/user-notifications", userNotificationControllers.destroy);
+
 // Routes vote controllers
 router.get("/votes", voteControllers.browse);
 router.get("/votes/users/:id", voteControllers.readByUserId);
