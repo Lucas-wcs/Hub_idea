@@ -354,6 +354,7 @@ export const loaderHome = async () => {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
+
       return res.data;
     } catch (e) {
       console.error(e);
