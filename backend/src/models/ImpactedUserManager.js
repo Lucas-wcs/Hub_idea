@@ -23,9 +23,10 @@ class ImpactedUserManager extends AbstractManager {
 
   async readByIdeaId(ideaId) {
     const [result] = await this.database.query(
-      `SELECT user.id, user.image_profil, user.firstname, user.lastname FROM ${this.table} INNER JOIN user ON impacted_user.user_id = user.id INNER JOIN idea ON impacted_user.idea_id = idea.id WHERE idea.id=?`,
+      `SELECT user.image_profil, user.firstname, user.lastname FROM ${this.table} JOIN user ON impacted_user.user_id = user.id JOIN idea ON impacted_user.idea_id = idea.id WHERE idea.id=? `,
       [ideaId]
     );
+
     return result;
   }
 

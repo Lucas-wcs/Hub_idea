@@ -28,6 +28,7 @@ const readByIdeaId = async (req, res, next) => {
     if (impactedUser == null) {
       res.sendStatus(404);
     } else {
+      res.status(200);
       res.json(impactedUser);
     }
   } catch (err) {

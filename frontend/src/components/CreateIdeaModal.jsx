@@ -42,7 +42,6 @@ function CreateIdeaModal({
     } else {
       array.push(e.target.value);
     }
-
     setUsersAssociated(array);
   };
 
