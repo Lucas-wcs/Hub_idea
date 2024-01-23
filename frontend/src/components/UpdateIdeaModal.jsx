@@ -5,17 +5,17 @@ import axios from "axios";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
-function CreateIdeaModal({
-  handleOpenModalIdea,
-  handleSubmitIdea,
+function UpdateIdeaModal({
+  handleUpdateIdea,
+  handleOpenModalIdeaDraft,
   usersAssociated,
   setUsersAssociated,
-  showPopup,
-  setShowPopup,
+  draftIdea,
 }) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
+  console.info(draftIdea);
 
   const getUsers = async () => {
     try {
@@ -52,20 +52,6 @@ function CreateIdeaModal({
 
   return (
     <div className="modal-idea-container">
-      {showPopup && (
-        <div className="popup-idea-error ">
-          <div className="popup-content-idea-error ">
-            <p>Une erreur s'est produite, veuillez réessayer</p>
-            <button
-              type="button"
-              className="popup-close-button-idea-error "
-              onClick={() => setShowPopup(false)}
-            >
-              Fermer
-            </button>
-          </div>
-        </div>
-      )}
       <div
         className={`create-idea-container ${
           theme === "dark" ? "dark" : "light"
@@ -73,7 +59,7 @@ function CreateIdeaModal({
       >
         <div
           className="icon-close-container"
-          onClick={handleOpenModalIdea}
+          onClick={handleOpenModalIdeaDraft}
           role="presentation"
         >
           <img src="images/icon_cross.png" alt="cross" />
@@ -81,16 +67,16 @@ function CreateIdeaModal({
         <h1>Votre idée</h1>
         <div className="form-entire-container">
           <div className="form-container">
-            <form onSubmit={handleSubmitIdea}>
+            <form onSubmit={handleUpdateIdea}>
               <div className="form-title-container">
                 {/* titre */}
                 <label htmlFor="title">Titre</label>
                 <input
                   type="text"
                   name="title"
+                  defaultValue={draftIdea.title}
                   id="title"
                   className={`input-border ${theme === "dark" && "dark"}`}
-                  required
                 />
               </div>
               <div className="form-date-container">
@@ -100,8 +86,10 @@ function CreateIdeaModal({
                   type="date"
                   name="date"
                   id="date"
+                  defaultValue={
+                    draftIdea.dateLimit && draftIdea.dateLimit.slice(0, 10)
+                  }
                   className={`input-border ${theme === "dark" && "dark"}`}
-                  required
                 />
               </div>
 
@@ -188,7 +176,7 @@ function CreateIdeaModal({
                   id="description"
                   name="description"
                   className={`input-border ${theme === "dark" && "dark"}`}
-                  required
+                  defaultValue={draftIdea.description}
                 />
               </div>
               <div className="buttons-container">
@@ -213,13 +201,12 @@ function CreateIdeaModal({
   );
 }
 
-CreateIdeaModal.propTypes = {
-  handleOpenModalIdea: PropTypes.func.isRequired,
-  handleSubmitIdea: PropTypes.func.isRequired,
+UpdateIdeaModal.propTypes = {
+  handleUpdateIdea: PropTypes.func.isRequired,
+  handleOpenModalIdeaDraft: PropTypes.func.isRequired,
   usersAssociated: PropTypes.arrayOf(PropTypes.string).isRequired,
   setUsersAssociated: PropTypes.func.isRequired,
-  showPopup: PropTypes.bool.isRequired,
-  setShowPopup: PropTypes.func.isRequired,
+  draftIdea: PropTypes.shape.isRequired,
 };
 
-export default CreateIdeaModal;
+export default UpdateIdeaModal;

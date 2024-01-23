@@ -24,6 +24,7 @@ const read = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   const idea = req.body;
+  idea.date_limit = new Date(idea.date_limit);
   try {
     const insertId = await tables.Idea.create(idea);
     res.status(201).json({ insertId });
@@ -38,10 +39,7 @@ const edit = async (req, res, next) => {
     idea_description: ideaDescription,
     idea_image: ideaImage,
     date_limit: dateLimit,
-    is_validation_administrator: isValidationAdministrator,
     status_id: statusId,
-    idea_final_comment: ideaFinalComment,
-    user_id: userId,
   } = req.body;
 
   const updatedIdea = {
@@ -50,10 +48,7 @@ const edit = async (req, res, next) => {
     idea_description: ideaDescription,
     idea_image: ideaImage,
     date_limit: dateLimit,
-    is_validation_administrator: isValidationAdministrator,
     status_id: statusId,
-    idea_final_comment: ideaFinalComment,
-    user_id: userId,
   };
 
   try {
