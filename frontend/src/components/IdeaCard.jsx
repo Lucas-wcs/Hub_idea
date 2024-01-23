@@ -5,7 +5,17 @@ import PropTypes from "prop-types";
 // import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
-function IdeaCard({ title, ideaId, statusId, createdUserFirstname, image }) {
+function IdeaCard({
+  title,
+  dateLimit,
+  image,
+  description,
+  ideaId,
+  statusName,
+  statusId,
+  createdUserFirstname,
+  handleOpenModalIdeaDraft,
+}) {
   // const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
   const [votes, setVotes] = useState([]);
@@ -41,13 +51,38 @@ function IdeaCard({ title, ideaId, statusId, createdUserFirstname, image }) {
   };
 
   return (
-    <div className="idea-card-container">
+    <div
+      className={`idea-card-container ${statusId === 1 ? "ideaCardDraft" : ""}`}
+    >
       <div className="status-image-container">
         <div className="card-image-container">
           <img src={image} alt={title} />
         </div>
         <div className="status-container">
-          <p>{statusId}</p>
+          <p>{statusName}</p>
+          {statusId === 1 ? (
+            <button
+              type="submit"
+              onClick={() =>
+                handleOpenModalIdeaDraft(
+                  title,
+                  dateLimit,
+                  image,
+                  description,
+                  ideaId
+                )
+              }
+            >
+              {" "}
+              <img
+                src="images/icon-modify.png"
+                alt=""
+                className="modify-draft"
+              />
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="text-container">
@@ -62,11 +97,20 @@ function IdeaCard({ title, ideaId, statusId, createdUserFirstname, image }) {
         </div>
         <div className="name-button-container">
           <p className={user?.is_moderator && "is-moderator"}>
-            Créée par {createdUserFirstname}
+            Créée par{" "}
+            {createdUserFirstname === (user && user.firstname)
+              ? "vous"
+              : createdUserFirstname}
           </p>
-          <Link to={`/idea/${ideaId}`} className="button-green">
-            <p>Voir détails</p>
-          </Link>
+          {statusId === 1 ? (
+            <Link to={`/idea/${ideaId}`} className="disabled-button">
+              <p>Voir détails</p>
+            </Link>
+          ) : (
+            <Link to={`/idea/${ideaId}`} className="button-green">
+              <p>Voir détails</p>
+            </Link>
+          )}
         </div>
       </div>
     </div>
@@ -75,10 +119,18 @@ function IdeaCard({ title, ideaId, statusId, createdUserFirstname, image }) {
 
 IdeaCard.propTypes = {
   title: PropTypes.string.isRequired,
-  ideaId: PropTypes.number.isRequired,
-  statusId: PropTypes.string.isRequired,
-  createdUserFirstname: PropTypes.string.isRequired,
+  dateLimit: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  ideaId: PropTypes.number.isRequired,
+  statusId: PropTypes.number.isRequired,
+  statusName: PropTypes.string.isRequired,
+  createdUserFirstname: PropTypes.string.isRequired,
+  handleOpenModalIdeaDraft: PropTypes.func,
+};
+
+IdeaCard.defaultProps = {
+  handleOpenModalIdeaDraft: null,
 };
 
 export default IdeaCard;

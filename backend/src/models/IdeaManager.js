@@ -51,7 +51,7 @@ class IdeaManager extends AbstractManager {
 
   async readAllIdea() {
     const [result] = await this.database.query(
-      `SELECT i.id, i.title, i.idea_image, i.status_id, u.firstname FROM ${this.table} AS i JOIN user AS u ON i.user_id = u.id`
+      `SELECT i.id, i.title, i.idea_image, i.date_limit, i.idea_description, i.status_id, i.user_id, u.firstname FROM ${this.table} AS i JOIN user AS u ON i.user_id = u.id`
     );
     return result;
   }
@@ -61,25 +61,12 @@ class IdeaManager extends AbstractManager {
     idea_description: ideaDescription,
     idea_image: ideaImage,
     date_limit: dateLimit,
-    is_validation_administrator: isValidationAdministrator,
     status_id: statusId,
-    idea_final_comment: ideaFinalComment,
-    user_id: userId,
     id,
   }) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET title=?, idea_description=?, idea_image=?, date_limit=?, is_validation_administrator=?, status_id=?, idea_final_comment=?, user_id = ? WHERE id=?`,
-      [
-        title,
-        ideaDescription,
-        ideaImage,
-        dateLimit,
-        isValidationAdministrator,
-        statusId,
-        ideaFinalComment,
-        userId,
-        id,
-      ]
+      `UPDATE ${this.table} SET title=?, idea_description=?, idea_image=?, date_limit=?, status_id=? WHERE id=?`,
+      [title, ideaDescription, ideaImage, dateLimit, statusId, id]
     );
     return result;
   }
