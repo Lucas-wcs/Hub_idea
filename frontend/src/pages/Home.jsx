@@ -18,7 +18,7 @@ function Home() {
   const [isOpenUpdateIdeaModal, setIsOpenUpdateIdeaModal] = useState(false);
   const [isOpenUpdateConfirmModal, setIsOpenUpdateConfirmModal] =
     useState(false);
-  const [newIdeaId, setNewIdeaId] = useState("");
+  // const [newIdeaId, setNewIdeaId] = useState("");
   const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
   const [statusFilter, setStatusFilter] = useState("1,2,3,4,5,6,7");
@@ -29,69 +29,80 @@ function Home() {
     image: "",
     description: "",
   });
+  const [inputIdea, setInputIdea] = useState({
+    ideaTitle: "",
+    ideaDateLimit: "",
+    ideaDescription: "",
+  });
 
   // 1st modal create idea : brouillon ou publier une idée
   const handleSubmitIdea = async (e) => {
     e.preventDefault();
     if (e.nativeEvent.submitter.value === "Brouillon") {
       navigate("/home");
+
+      const title = e.target.title.value;
+      const limitDate = e.target.date.value;
+      const ideaImage = "https://picsum.photos/300/600";
+      const statusId = 1;
+      const description = e.target.description.value;
+
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND}/api/ideas`,
+          {
+            title,
+            date_limit: limitDate,
+            idea_image: ideaImage,
+            idea_description: description,
+            status_id: statusId,
+            user_id: user.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          // setNewIdeaId(response.data.insertId.insertId);
+
+          usersAssociated.forEach((userAssociated) => {
+            axios
+              .post(
+                `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+                {
+                  idea_id: response.data.insertId.insertId,
+                  user_id: userAssociated,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                }
+              )
+              .then(() => {
+                // TODO pop up pour dire que l'idée a bien été créée et userAssociated a bien été ajouté
+              })
+              .catch((error) => console.error(error));
+          });
+        })
+        .then(() => {
+          revalidator.revalidate();
+        })
+        .catch((error) => console.error(error));
+      e.target.title.value = "";
+      e.target.date.value = "";
+      e.target.description.value = "";
     } else {
       setIsOpenConfirmModal((current) => !current);
+      setInputIdea({
+        ideaTitle: e.target.title.value,
+        ideaDateLimit: e.target.date.value,
+        ideaDescription: e.target.description.value,
+      });
     }
     setIsOpenIdeaModal(false);
-    const title = e.target.title.value;
-    const limitDate = e.target.date.value;
-    const ideaImage = "https://picsum.photos/300/600";
-    const statusId = 1;
-    const description = e.target.description.value;
-
-    axios
-      .post(
-        `${import.meta.env.VITE_BACKEND}/api/ideas`,
-        {
-          title,
-          date_limit: limitDate,
-          idea_image: ideaImage,
-          idea_description: description,
-          status_id: statusId,
-          user_id: user.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then((response) => {
-        setNewIdeaId(response.data.insertId.insertId);
-
-        usersAssociated.forEach((userAssociated) => {
-          axios
-            .post(
-              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
-              {
-                idea_id: response.data.insertId.insertId,
-                user_id: userAssociated,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-              }
-            )
-            .then(() => {
-              // TODO pop up pour dire que l'idée a bien été créée et userAssociated a bien été ajouté
-            })
-            .catch((error) => console.error(error));
-        });
-      })
-      .then(() => {
-        revalidator.revalidate();
-      })
-      .catch((error) => console.error(error));
-    e.target.title.value = "";
-    e.target.date.value = "";
-    e.target.description.value = "";
   };
 
   // handling 1st modal for creating idea
@@ -99,16 +110,30 @@ function Home() {
     setIsOpenIdeaModal((current) => !current);
   };
 
-  const ideaToUpdate = {
-    status_id: "2",
-  };
-
   // 2nd modal of validateModale
-  const handleClickSubmitButton = async () => {
+  const handleClickSubmitButton = async (button) => {
     setIsOpenConfirmModal(false);
     setIsOpenSubmitModal((current) => !current);
 
-    try {
+    if (button === 1) {
+      axios.post(
+        `${import.meta.env.VITE_BACKEND}/api/ideas`,
+        {
+          title: inputIdea.ideaTitle,
+          date_limit: inputIdea.ideaDateLimit,
+          idea_image: "idea-image",
+          idea_description: inputIdea.ideaDescription,
+          status_id: 2,
+          user_id: user.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      /* try {
       await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${newIdeaId}`,
         ideaToUpdate,
@@ -120,6 +145,7 @@ function Home() {
       );
     } catch (e) {
       console.error(e);
+    } */
     }
   };
   // handling button to close
@@ -165,21 +191,25 @@ function Home() {
     const description = e.target.description.value;
 
     try {
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/ideas/${draftIdea.ideaId}`,
-        {
-          title,
-          date_limit: limitDate,
-          idea_image: ideaImage,
-          idea_description: description,
-          status_id: statusId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+      await axios
+        .put(
+          `${import.meta.env.VITE_BACKEND}/api/ideas/${draftIdea.ideaId}`,
+          {
+            title,
+            date_limit: limitDate,
+            idea_image: ideaImage,
+            idea_description: description,
+            status_id: statusId,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(() => {
+          revalidator.revalidate();
+        });
     } catch (error) {
       console.error(error);
     }

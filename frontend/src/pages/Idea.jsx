@@ -72,6 +72,7 @@ function Idea() {
 
   // for showing just date without hours
   const date = idea[0].date_limit.split("T");
+  // console.log(idea[0].date_limit)
 
   // vote
   const handleClickVote = async (e) => {

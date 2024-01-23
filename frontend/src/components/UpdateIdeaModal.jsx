@@ -64,7 +64,7 @@ function UpdateIdeaModal({
         >
           <img src="images/icon_cross.png" alt="cross" />
         </div>
-        <h1>Modify Votre idée</h1>
+        <h1>Votre idée</h1>
         <div className="form-entire-container">
           <div className="form-container">
             <form onSubmit={handleUpdateIdea}>
@@ -86,7 +86,9 @@ function UpdateIdeaModal({
                   type="date"
                   name="date"
                   id="date"
-                  defaultValue={draftIdea.dateLimit.slice(0, 10)}
+                  defaultValue={
+                    draftIdea.dateLimit && draftIdea.dateLimit.slice(0, 10)
+                  }
                   className={`input-border ${theme === "dark" && "dark"}`}
                 />
               </div>

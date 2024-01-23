@@ -74,6 +74,7 @@ function CreateIdeaModal({
                   name="title"
                   id="title"
                   className={`input-border ${theme === "dark" && "dark"}`}
+                  required
                 />
               </div>
               <div className="form-date-container">
@@ -84,6 +85,7 @@ function CreateIdeaModal({
                   name="date"
                   id="date"
                   className={`input-border ${theme === "dark" && "dark"}`}
+                  required
                 />
               </div>
 
@@ -170,6 +172,7 @@ function CreateIdeaModal({
                   id="description"
                   name="description"
                   className={`input-border ${theme === "dark" && "dark"}`}
+                  required
                 />
               </div>
               <div className="buttons-container">
