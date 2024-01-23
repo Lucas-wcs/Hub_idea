@@ -20,7 +20,6 @@ function Idea() {
 
   // comments
   const [comment, setComment] = useState("");
-  // const [commentData, setCommentData] = useState(useLoaderData());
   const [comments, setComments] = useState([]);
 
   const IdeaComments = async () => {
@@ -69,6 +68,19 @@ function Idea() {
     setComment(newComment);
     setMessage(newComment);
   };
+
+  const handleDeleteComment = async (id) => {
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND}/api/comments/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then(() => {
+        IdeaComments();
+        revalidator.revalidate();
+      })
+      .catch((e) => console.error(e));
+  };
+  // console.log(comments])
 
   // for showing just date without hours
   const date = idea[0].date_limit.split("T");
@@ -397,6 +409,7 @@ function Idea() {
                 {comments.map((com) => (
                   <div className="container-new-comment" key={com.id}>
                     <p className="new-comment">{com.description}</p>
+
                     <p className="idea-bold">
                       {`${com.firstname} ${com.lastname}`}
                     </p>
@@ -421,6 +434,14 @@ function Idea() {
                         alt="default profile"
                       />
                     )}
+                    <div className="logo-delete-comment">
+                      <img
+                        src="/images/icon_cross.png"
+                        alt="del_logo"
+                        onClick={() => handleDeleteComment(com.id)}
+                        role="presentation"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
