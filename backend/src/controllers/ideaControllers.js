@@ -38,9 +38,11 @@ const edit = async (req, res, next) => {
     title,
     idea_description: ideaDescription,
     idea_image: ideaImage,
-    date_limit: dateLimit,
+    date_limit: bodyDateLimit,
     status_id: statusId,
   } = req.body;
+
+  const dateLimit = new Date(bodyDateLimit);
 
   const updatedIdea = {
     id: req.params.id,
