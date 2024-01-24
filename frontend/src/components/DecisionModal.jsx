@@ -20,10 +20,6 @@ function DecisionModal({
           <div className="coverimage-container">
             <img src="/images/repas_noel.webp" alt="idea" />
           </div>
-          <div className="progress-percentage-container">
-            <progress id="decision" value="80" max="100" />
-            <p>65%</p>
-          </div>
           <div className="form-entire-container">
             <h2>Commentaire: </h2>
             <form action="">

@@ -80,7 +80,6 @@ function Idea() {
       })
       .catch((e) => console.error(e));
   };
-  // console.log(comments])
 
   // for showing just date without hours
   const date = idea[0].date_limit.split("T");
@@ -158,7 +157,7 @@ function Idea() {
     try {
       await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
-        ideaValidated,
+        { ideaValidated },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -362,25 +361,29 @@ function Idea() {
               </div>
             ) : (
               <div>
-                <div>
-                  {idea[0].status_id === 6 ? (
-                    <h3 className="decision-result">L'idée a été validée</h3>
-                  ) : (
-                    <h3 className="decision-result">L'idée a été refusée</h3>
-                  )}
-                  <div className="decision-comment-container">
-                    <p className="decision-comment">
-                      {" "}
-                      Commentaire des modérateurs :{" "}
-                    </p>
-                    <div>
-                      <p>
-                        Pour les fêtes de fin d'années et avant les vacances, ce
-                        serait sympa d'organiser un repas collectif
+                {idea[0].status_id !== 6 && idea[0].status_id !== 7 ? (
+                  ""
+                ) : (
+                  <div>
+                    {idea[0].status_id === 6 ? (
+                      <h3 className="decision-result">L'idée a été validée</h3>
+                    ) : (
+                      <h3 className="decision-result">L'idée a été refusée</h3>
+                    )}
+                    <div className="decision-comment-container">
+                      <p className="decision-comment">
+                        {" "}
+                        Commentaire des modérateurs :{" "}
                       </p>
+                      <div>
+                        <p>
+                          Pour les fêtes de fin d'années et avant les vacances,
+                          ce serait sympa d'organiser un repas collectif
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
           </div>
