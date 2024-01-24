@@ -391,6 +391,14 @@
     overflow-x: scroll;
     padding: 15px;
   }
+  .logo-delete-comment {
+    cursor: pointer;
+    padding-right: 10px;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
   @media (max-width: 900px) {
     width: 100%;
     border-top: 2px solid #cccccc85;
