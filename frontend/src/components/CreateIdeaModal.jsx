@@ -16,6 +16,11 @@ function CreateIdeaModal({
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
+  const [description, setDescription] = useState("");
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
 
   const getUsers = async () => {
     try {
@@ -187,10 +192,16 @@ function CreateIdeaModal({
                 <textarea
                   id="description"
                   name="description"
+                  maxLength="500"
+                  placeholder="Votre description"
                   className={`input-border ${theme === "dark" && "dark"}`}
+                  onChange={handleDescriptionChange}
                   required
                 />
               </div>
+              <p className="character-counter-idea">
+                {500 - description.length} caractères restants
+              </p>
               <div className="buttons-container">
                 {/* submit buttons */}
                 <input
