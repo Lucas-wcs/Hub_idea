@@ -77,7 +77,7 @@ INSERT INTO
     Status_idea (status_name)
 VALUES ("Brouillon"),
     (
-        "Acceptée par l'administrateur"
+        "En attente de l'administrateur"
     ),
     (
         "Refusée par l'administrateur"

@@ -37,19 +37,19 @@ const readByIdeaId = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const ideaId = req.body.idea_id;
-  const userId = req.body.user_id;
+  const { idea_id: ideaId } = req.body;
+  const { usersAssociated } = req.body;
 
   try {
-    const response = await tables.Impacted_user.create(userId, ideaId);
+    const response = await tables.Impacted_user.create(ideaId, usersAssociated);
 
     if (response.affectedRows > 0) {
       res.sendStatus(201);
     } else {
-      res.status(500).send({ idUserError: userId });
+      res.sendStatus(500);
     }
   } catch (err) {
-    res.status(500).send({ idUserError: userId });
+    res.sendStatus(500);
     next(err);
   }
 };
@@ -63,10 +63,52 @@ const destroy = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  const { idea_id: ideaId } = req.body;
+  const { usersAssociated } = req.body;
+
+  try {
+    const usersAssocietedCurrentRes = await tables.Impacted_user.readByIdeaId(
+      ideaId
+    );
+    const usersAssocietedCurrent = usersAssocietedCurrentRes.map((user) => {
+      return String(user.userId);
+    });
+
+    const forDelete = [];
+    const forAdd = [];
+
+    usersAssocietedCurrent.forEach((userId) => {
+      if (!usersAssociated.includes(userId)) {
+        forDelete.push(userId);
+      }
+    });
+
+    usersAssociated.forEach((userId) => {
+      if (!usersAssocietedCurrent.includes(userId)) {
+        forAdd.push(userId);
+      }
+    });
+
+    if (forDelete.length > 0) {
+      await tables.Impacted_user.delete(ideaId, forDelete);
+    }
+
+    if (forAdd.length > 0) {
+      await tables.Impacted_user.create(ideaId, forAdd);
+    }
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
   readByUserId,
   readByIdeaId,
   add,
   destroy,
+  edit,
 };

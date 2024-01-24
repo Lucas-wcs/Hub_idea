@@ -15,9 +15,8 @@ function UpdateIdeaModal({
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
-  console.info(draftIdea);
 
-  const getUsers = async () => {
+  const getUsers = async (e) => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND}/api/users`,
@@ -40,15 +39,51 @@ function UpdateIdeaModal({
     if (index >= 0) {
       array.splice(index, 1);
     } else {
-      array.push(e.target.value);
+      array.push(String(e.target.value));
     }
 
     setUsersAssociated(array);
+    // localStorage.setItem("usersAssociated", JSON.parse(array));
+  };
+
+  const getUserSAssocieted = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/api/impacted-users/ideas/${
+          draftIdea.ideaId
+        }`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const usersAssociatedIds = res.data.map((userAssociated) => {
+        return String(userAssociated.userId);
+      });
+
+      // Set helps to delete items that are duplicated. After we go back to array typic with Array.from
+      const uniqueIds = new Set([...usersAssociated, ...usersAssociatedIds]);
+      setUsersAssociated(Array.from(uniqueIds));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     getUsers();
+    // const storedUsersAssociated = localStorage.getItem(
+    //   "usersAssociated",
+    //   usersAssociated
+    // );
+    // if (storedUsersAssociated) {
+    //   setUsersAssociated(JSON.parse(storedUsersAssociated));
+    // }
   }, []);
+
+  useEffect(() => {
+    getUserSAssocieted();
+  }, [draftIdea.ideaId]);
 
   return (
     <div className="modal-idea-container">
@@ -137,7 +172,10 @@ function UpdateIdeaModal({
                               id="user"
                               name="user"
                               value={person.id}
-                              onChange={handleChoseUser}
+                              checked={usersAssociated.includes(
+                                String(person.id)
+                              )}
+                              onChange={(event) => handleChoseUser(event)}
                             />
                             {person.image_profil ? (
                               <img
@@ -206,7 +244,13 @@ UpdateIdeaModal.propTypes = {
   handleOpenModalIdeaDraft: PropTypes.func.isRequired,
   usersAssociated: PropTypes.arrayOf(PropTypes.string).isRequired,
   setUsersAssociated: PropTypes.func.isRequired,
-  draftIdea: PropTypes.shape.isRequired,
+  draftIdea: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    ideaId: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    dateLimit: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default UpdateIdeaModal;
