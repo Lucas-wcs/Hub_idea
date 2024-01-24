@@ -8,9 +8,13 @@ function AddModeratorModal({ handleOpenModalAddModerator, users }) {
   const revalidator = useRevalidator();
   const handleAddModerator = (id) => {
     axios
-      .put(`http://localhost:3310/api/users/moderator/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
+      .put(
+        `http://localhost:3310/api/users/moderator/${id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
       .then(() => {
         revalidator.revalidate();
       })
