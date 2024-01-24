@@ -125,6 +125,22 @@
       }
     }
   }
+  .decision-result {
+    color: var(--quaternary-color);
+  }
+
+  .decision-comment {
+    font-weight: bold;
+    font-size: 1rem;
+    padding-bottom: 3%;
+  }
+
+  .decision-comment-container {
+    border: 1px solid #d5d7d4;
+    border-radius: 5px;
+    padding: 2% 2% 2% 2%;
+    margin-top: 2%;
+  }
 
   .vote-logo-container {
     width: 40%;

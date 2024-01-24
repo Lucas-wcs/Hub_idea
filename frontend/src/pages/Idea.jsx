@@ -317,42 +317,72 @@ function Idea() {
                 );
               })}
             </div>
-            <div className="idea-vote-container">
-              <button
-                className={`button-moderateur ${
-                  theme === "dark" ? "dark" : "light"
-                } ${user && user.is_moderator ? "" : "is-not-moderator"}`}
-                type="button"
-                onClick={handleClickDecisionModal}
-              >
-                Modérateur
-              </button>
-              <button
-                className={`button-vote vote-pour ${
-                  theme === "dark" ? "dark" : "light"
-                }`}
-                type="button"
-                value="contre"
-                name="name"
-                onClick={handleClickVote}
-                disabled={buttonContre}
-              >
-                <img src="/images/icons_pouces_bas.png" alt="logo_pouce_bas" />
-                Je suis contre
-              </button>
-              <button
-                className={`button-vote vote-contre ${
-                  theme === "dark" ? "dark" : "light"
-                }`}
-                type="submit"
-                value="pour"
-                onClick={handleClickVote}
-                disabled={buttonPour}
-              >
-                <img src="/images/icons_pouce_haut.png" alt="logo_pouce_haut" />
-                Je suis pour
-              </button>
-            </div>
+            {idea[0].status_id === 4 || idea[0].status_id === 5 ? (
+              <div className="idea-vote-container">
+                <button
+                  className={`button-moderateur ${
+                    theme === "dark" ? "dark" : "light"
+                  } ${user && user.is_moderator ? "" : "is-not-moderator"}`}
+                  type="button"
+                  onClick={handleClickDecisionModal}
+                >
+                  Modérateur
+                </button>
+                <button
+                  className={`button-vote vote-pour ${
+                    theme === "dark" ? "dark" : "light"
+                  }`}
+                  type="button"
+                  value="contre"
+                  name="name"
+                  onClick={handleClickVote}
+                  disabled={buttonContre}
+                >
+                  <img
+                    src="/images/icons_pouces_bas.png"
+                    alt="logo_pouce_bas"
+                  />
+                  Je suis contre
+                </button>
+                <button
+                  className={`button-vote vote-contre ${
+                    theme === "dark" ? "dark" : "light"
+                  }`}
+                  type="submit"
+                  value="pour"
+                  onClick={handleClickVote}
+                  disabled={buttonPour}
+                >
+                  <img
+                    src="/images/icons_pouce_haut.png"
+                    alt="logo_pouce_haut"
+                  />
+                  Je suis pour
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div>
+                  {idea[0].status_id === 6 ? (
+                    <h3 className="decision-result">L'idée a été validée</h3>
+                  ) : (
+                    <h3 className="decision-result">L'idée a été refusée</h3>
+                  )}
+                  <div className="decision-comment-container">
+                    <p className="decision-comment">
+                      {" "}
+                      Commentaire des modérateurs :{" "}
+                    </p>
+                    <div>
+                      <p>
+                        Pour les fêtes de fin d'années et avant les vacances, ce
+                        serait sympa d'organiser un repas collectif
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -439,7 +469,8 @@ function Idea() {
                       />
                     )}
                     <div className="logo-delete-comment">
-                      {user.is_moderator || user.is_administrator ? (
+                      {(user && user.is_moderator) ||
+                      (user && user.is_administrator) ? (
                         <img
                           src="/images/icon_cross.png"
                           alt="del_logo"
