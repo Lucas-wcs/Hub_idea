@@ -15,7 +15,6 @@ function UpdateIdeaModal({
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
-  console.info(draftIdea);
 
   const getUsers = async () => {
     try {
@@ -206,7 +205,17 @@ UpdateIdeaModal.propTypes = {
   handleOpenModalIdeaDraft: PropTypes.func.isRequired,
   usersAssociated: PropTypes.arrayOf(PropTypes.string).isRequired,
   setUsersAssociated: PropTypes.func.isRequired,
-  draftIdea: PropTypes.shape.isRequired,
+  draftIdea: PropTypes.shape({
+    title: PropTypes.string,
+    dateLimit: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    ideaId: PropTypes.string,
+  }),
+};
+
+UpdateIdeaModal.defaultProps = {
+  draftIdea: null,
 };
 
 export default UpdateIdeaModal;
