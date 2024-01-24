@@ -24,7 +24,7 @@ class CommentManager extends AbstractManager {
 
   async getByIdeaId(id) {
     const [results] = await this.database.query(
-      `SELECT comment.description, user.firstname, user.lastname, user.image_profil
+      `SELECT comment.id AS id, comment.description, user.firstname, user.lastname, user.image_profil
       FROM comment 
       INNER JOIN idea ON comment.idea_id = idea.id
       INNER JOIN user ON comment.user_id = user.id
