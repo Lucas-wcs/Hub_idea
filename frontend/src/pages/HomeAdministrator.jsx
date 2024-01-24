@@ -22,9 +22,13 @@ function HomeAdministrator() {
 
   const handleDeleteModerator = (id) => {
     axios
-      .put(`${import.meta.env.VITE_BACKEND}/api/users/remove-moderator/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
+      .put(
+        `${import.meta.env.VITE_BACKEND}/api/users/remove-moderator/${id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
       .then(() => {
         revalidator.revalidate();
       })
