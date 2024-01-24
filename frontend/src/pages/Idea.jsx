@@ -439,12 +439,14 @@ function Idea() {
                       />
                     )}
                     <div className="logo-delete-comment">
-                      <img
-                        src="/images/icon_cross.png"
-                        alt="del_logo"
-                        onClick={() => handleDeleteComment(com.id)}
-                        role="presentation"
-                      />
+                      {user.is_moderator || user.is_administrator ? (
+                        <img
+                          src="/images/icon_cross.png"
+                          alt="del_logo"
+                          onClick={() => handleDeleteComment(com.id)}
+                          role="presentation"
+                        />
+                      ) : null}
                     </div>
                   </div>
                 ))}
