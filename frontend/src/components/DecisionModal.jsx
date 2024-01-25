@@ -4,6 +4,8 @@ function DecisionModal({
   handleClickDecisionModal,
   handleClickDecisionValidate,
   handleClickDecisionRefuse,
+  ideaTitle,
+  ideaImage,
 }) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,10 +26,13 @@ function DecisionModal({
         >
           <img src="../public/images/icon_cross.png" alt="cross" />
         </div>
-        <h1>Réaliser un repas de Noel</h1>
+        <h1>{ideaTitle}</h1>
         <div className="image-form-container">
           <div className="coverimage-container">
-            <img src="/images/repas_noel.webp" alt="idea" />
+            <img
+              src={`${import.meta.env.VITE_BACKEND}${ideaImage}`}
+              alt={ideaTitle}
+            />
           </div>
           <div className="form-entire-container">
             <h2>Commentaire: </h2>
@@ -65,6 +70,8 @@ DecisionModal.propTypes = {
   handleClickDecisionModal: PropTypes.func.isRequired,
   handleClickDecisionValidate: PropTypes.func.isRequired,
   handleClickDecisionRefuse: PropTypes.func.isRequired,
+  ideaTitle: PropTypes.string.isRequired,
+  ideaImage: PropTypes.string.isRequired,
 };
 
 export default DecisionModal;

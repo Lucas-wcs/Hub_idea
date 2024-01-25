@@ -210,24 +210,27 @@ function Idea() {
   return (
     <>
       {/* div for modal */}
-      <div className={`${isOpenDecisionModal ? "" : "hide-decision-modal"}`}>
-        <DecisionModal
-          handleClickDecisionValidate={handleClickDecisionValidate}
-          handleClickDecisionRefuse={handleClickDecisionRefuse}
-          handleClickDecisionModal={handleClickDecisionModal}
-        />
-      </div>
-      <div
-        className={`${
-          isOpenDecisionConfirmModal ? "" : "hide-decision-confirm-modal"
-        }`}
-      >
-        <ValidateModale
-          type="modale4"
-          setTypeModal={() => console.info("")}
-          handleDecisionConfirmModal={handleDecisionConfirmModal}
-        />
-      </div>
+      {isOpenDecisionModal && (
+        <div>
+          <DecisionModal
+            handleClickDecisionValidate={handleClickDecisionValidate}
+            handleClickDecisionRefuse={handleClickDecisionRefuse}
+            handleClickDecisionModal={handleClickDecisionModal}
+            ideaTitle={idea[0].title}
+            ideaImage={idea[0].idea_image}
+          />
+        </div>
+      )}
+      {isOpenDecisionConfirmModal && (
+        <div>
+          <ValidateModale
+            type="modale4"
+            setTypeModal={() => console.info("")}
+            handleDecisionConfirmModal={handleDecisionConfirmModal}
+          />
+        </div>
+      )}
+
       {/* div for modal until here */}
       <div
         className={`home-container ${

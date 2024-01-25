@@ -251,22 +251,26 @@ function Home() {
           />
         </div>
       )}
-      <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>
-        <ValidateModale
-          type="modale1"
-          setTypeModal={() => console.info("")}
-          handleClickSubmitButton={handleClickSubmitButton}
-          handleClickIdeaCancelButton={handleClickIdeaCancelButton}
-        />
-      </div>
-      <div className={`${isOpenSubmitModal ? "" : "hide-submit-modal"}`}>
-        <ValidateModale
-          type="modale2"
-          setTypeModal={() => console.info("")}
-          handleClickSubmitButton={handleClickSubmitButton}
-          handleClickIdeaCancelButton={handleClickIdeaCancelButton}
-        />
-      </div>
+      {isOpenConfirmModal && (
+        <div>
+          <ValidateModale
+            type="modale1"
+            setTypeModal={() => console.info("")}
+            handleClickSubmitButton={handleClickSubmitButton}
+            handleClickIdeaCancelButton={handleClickIdeaCancelButton}
+          />
+        </div>
+      )}
+      {isOpenSubmitModal && (
+        <div>
+          <ValidateModale
+            type="modale2"
+            setTypeModal={() => console.info("")}
+            handleClickSubmitButton={handleClickSubmitButton}
+            handleClickIdeaCancelButton={handleClickIdeaCancelButton}
+          />
+        </div>
+      )}
       {isOpenUpdateIdeaModal && (
         <div>
           <UpdateIdeaModal
@@ -279,17 +283,15 @@ function Home() {
         </div>
       )}
 
-      <div
-        className={`${
-          isOpenUpdateConfirmModal ? "" : "hide-update-confirm-modal"
-        }`}
-      >
-        <ValidateModale
-          type="modale8"
-          setTypeModal={() => console.info("")}
-          handleClickUpdateSubmitButton={handleClickUpdateSubmitButton}
-        />
-      </div>
+      {isOpenUpdateConfirmModal && (
+        <div>
+          <ValidateModale
+            type="modale8"
+            setTypeModal={() => console.info("")}
+            handleClickUpdateSubmitButton={handleClickUpdateSubmitButton}
+          />
+        </div>
+      )}
       {/* div for modal until here */}
       <div className="title-button-container">
         <div>
