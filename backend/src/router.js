@@ -8,7 +8,7 @@ const optionsAvatar = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const name = `${v4()}-${file.originalname}`;
-    req.body.url = name;
+    req.body.url = `/uploads/avatars/${name}`;
     cb(null, name);
   },
   limits: {
