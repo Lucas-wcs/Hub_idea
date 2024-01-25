@@ -8,7 +8,7 @@ class IdeaManager extends AbstractManager {
   async create({
     title,
     idea_description: ideaDescription,
-    idea_image: ideaImage,
+    ideaImg,
     date_limit: dateLimit,
     is_validation_administrator: isValidationAdministrator,
     status_id: statusId,
@@ -28,7 +28,7 @@ class IdeaManager extends AbstractManager {
       [
         title,
         ideaDescription,
-        ideaImage,
+        ideaImg,
         dateLimit,
         isValidationAdministrator,
         statusId,
@@ -95,6 +95,14 @@ class IdeaManager extends AbstractManager {
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET status_id=?, date_limit=? WHERE id=?`,
       [statusId, dateLimit, id]
+    );
+    return result;
+  }
+
+  async upload(id, ideaImage) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET idea_image=? WHERE id=?`,
+      [ideaImage, id]
     );
     return result;
   }

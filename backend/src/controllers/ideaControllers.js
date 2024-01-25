@@ -103,6 +103,22 @@ const editStatusIdByAdmin = async (req, res, next) => {
   }
 };
 
+// On déclare une fonction asynchrone nommée 'upload'
+const upload = async (req, res, next) => {
+  try {
+    // On appelle la méthode 'upload' de l'objet 'Idea' de 'tables'
+    // On passe en paramètres l'id de l'utilisateur (récupéré depuis les paramètres de la requête)
+    // et l'URL de l'image (récupérée depuis le corps de la requête)
+    await tables.Idea.upload(req.params.id, req.body.url);
+    // Si tout se passe bien, on renvoie le statut 200 (OK) et l'URL de l'image
+
+    res.status(200).send(req.body.url);
+  } catch (err) {
+    // Si une erreur se produit, on passe l'erreur au gestionnaire d'erreurs suivant
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
   read,
@@ -111,4 +127,5 @@ module.exports = {
   add,
   destroy,
   editStatusIdByAdmin,
+  upload,
 };
