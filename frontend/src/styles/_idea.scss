@@ -1,11 +1,3 @@
-.hide-decision-modal {
-  display: none;
-}
-
-.hide-decision-confirm-modal {
-  display: none;
-}
-
 .idea {
   max-width: 100vw;
   padding-top: 2%;
@@ -124,6 +116,26 @@
         object-fit: cover;
       }
     }
+  }
+
+  .decision-result-container {
+    width: 100%;
+  }
+  .decision-result {
+    color: var(--quaternary-color);
+  }
+
+  .decision-comment {
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding-bottom: 3%;
+  }
+
+  .decision-comment-container {
+    border: 1px solid #d5d7d4;
+    border-radius: 5px;
+    padding: 2% 2% 2% 2%;
+    margin-top: 2%;
   }
 
   .vote-logo-container {

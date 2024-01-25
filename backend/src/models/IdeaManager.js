@@ -41,7 +41,7 @@ class IdeaManager extends AbstractManager {
 
   async read(id) {
     const [result] = await this.database.query(
-      `SELECT idea.id, idea.title, idea.idea_image, idea.status_id, user.firstname, idea.idea_description, idea.date_limit FROM ${this.table}
+      `SELECT idea.id, idea.title, idea.idea_image, idea.status_id, user.firstname, idea.idea_description, idea.date_limit, idea.idea_final_comment FROM ${this.table}
        JOIN user ON idea.user_id = user.id
       WHERE idea.id = ?`,
       [id]
@@ -76,6 +76,20 @@ class IdeaManager extends AbstractManager {
       `UPDATE ${this.table} SET status_id=? WHERE id=?`,
       [statusId, id]
     );
+
+    return result;
+  }
+
+  async updateByModerator({
+    status_id: statusId,
+    idea_final_comment: ideaFinalComment,
+    id,
+  }) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET status_id=?, idea_final_comment=? WHERE id=?`,
+      [statusId, ideaFinalComment, id]
+    );
+
     return result;
   }
 

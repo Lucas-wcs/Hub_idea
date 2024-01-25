@@ -4,7 +4,18 @@ function DecisionModal({
   handleClickDecisionModal,
   handleClickDecisionValidate,
   handleClickDecisionRefuse,
+  ideaTitle,
+  ideaImage,
 }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (event.nativeEvent.submitter.value === "Refus de l’idée") {
+      handleClickDecisionRefuse(event.target.decisioncomment.value);
+    } else {
+      handleClickDecisionValidate(event.target.decisioncomment.value);
+    }
+  };
   return (
     <div className="decision-modal-container">
       <div className="decision-container">
@@ -15,21 +26,20 @@ function DecisionModal({
         >
           <img src="../public/images/icon_cross.png" alt="cross" />
         </div>
-        <h1>Réaliser un repas de Noel</h1>
+        <h1>{ideaTitle}</h1>
         <div className="image-form-container">
           <div className="coverimage-container">
-            <img src="/images/repas_noel.webp" alt="idea" />
-          </div>
-          <div className="progress-percentage-container">
-            <progress id="decision" value="80" max="100" />
-            <p>65%</p>
+            <img
+              src={`${import.meta.env.VITE_BACKEND}${ideaImage}`}
+              alt={ideaTitle}
+            />
           </div>
           <div className="form-entire-container">
             <h2>Commentaire: </h2>
-            <form action="">
+            <form action="submit" onSubmit={handleSubmit}>
               <textarea
-                name=""
-                id=""
+                name="decisioncomment"
+                id="decisioncomment"
                 cols="30"
                 rows="10"
                 placeholder="Mettre un commentaire si vous souhaitez expliquer votre décision  ... "
@@ -39,13 +49,13 @@ function DecisionModal({
                   className="button-blue"
                   type="submit"
                   value="Refus de l’idée"
-                  onClick={handleClickDecisionRefuse}
+                  // onClick={handleClickDecisionRefuse}
                 />
                 <input
                   className="button-green"
                   type="submit"
                   value="Approuver l’idée"
-                  onClick={handleClickDecisionValidate}
+                  // onClick={handleClickDecisionValidate}
                 />
               </div>
             </form>
@@ -60,6 +70,8 @@ DecisionModal.propTypes = {
   handleClickDecisionModal: PropTypes.func.isRequired,
   handleClickDecisionValidate: PropTypes.func.isRequired,
   handleClickDecisionRefuse: PropTypes.func.isRequired,
+  ideaTitle: PropTypes.string.isRequired,
+  ideaImage: PropTypes.string.isRequired,
 };
 
 export default DecisionModal;

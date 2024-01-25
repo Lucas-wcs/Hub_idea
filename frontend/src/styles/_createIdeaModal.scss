@@ -291,76 +291,20 @@
 
 // responsive:
 @media (max-width: 768px) {
-  .modal-idea-container {
-    width: 100%;
-    .create-idea-container {
-      width: 100vw;
-      height: 140%;
-      margin: 0;
-
-      .form-container {
-        .form-title-container {
-          display: flex;
-          flex-direction: column;
-
-          input {
-            height: 3vh;
-            width: 80vw;
-          }
-        }
-        .form-date-container {
-          label {
-            padding-right: 3vw;
-          }
-          input {
-            width: 50vw;
-          }
-        }
-        .form-image-container {
-          img {
-            width: 60vw;
-            padding-bottom: 3vh;
-          }
-          .image-input-container {
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
-          }
-        }
-        .form-impacted-person-container {
-          overflow: scroll;
-          height: 20vh;
-          table {
-            width: 80vw;
-            background-color: white;
-            border-collapse: collapse;
-            border: 2px solid var(--quinary-color);
-            border-radius: 5px;
-            text-align: left;
-          }
-          img {
-            height: 3vh;
-          }
-          .checkbox-avatar {
-            display: flex;
-            justify-content: space-around;
-            gap: 1.5vw;
-
-            input {
-              transform: scale(1.2);
-              margin: 0.4vw;
-              accent-color: #bae3e3;
-            }
-          }
-        }
-        .form-description-container {
-          display: flex;
-          flex-direction: column;
-
-          textarea {
-            width: 80vw;
-            height: 15vh;
-          }
+  .create-idea-container {
+    .form-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      form {
+        width: 80vw;
+      }
+      .modal-idea-container {
+        width: 50%;
+        .create-idea-container {
+          width: 100vw;
+          height: 100vh;
+          margin: 0;
         }
       }
     }
