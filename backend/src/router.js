@@ -2,9 +2,9 @@ const express = require("express");
 const multer = require("multer");
 const { v4 } = require("uuid");
 
-const options = multer.diskStorage({
+const optionsAvatar = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/uploads");
+    cb(null, "./public/uploads/avatars");
   },
   filename: (req, file, cb) => {
     const name = `${v4()}-${file.originalname}`;
@@ -16,8 +16,27 @@ const options = multer.diskStorage({
   },
 });
 
-const upload = multer({
-  storage: options,
+const uploadAvatar = multer({
+  storage: optionsAvatar,
+});
+
+const optionsIdea = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads/ideas");
+  },
+  filename: (req, file, cb) => {
+    const name = `${v4()}-${file.originalname}`;
+
+    req.body.ideaImg = `/uploads/ideas/${name}`;
+    cb(null, name);
+  },
+  limits: {
+    fieldSize: 1024 * 5,
+  },
+});
+
+const uploadIdea = multer({
+  storage: optionsIdea,
 });
 
 const router = express.Router();
@@ -52,6 +71,7 @@ router.post("/users", userControllers.add);
 router.put(
   "/users/:id",
   userControllers.verifyPasswordByToken,
+
   userControllers.edit
 );
 router.delete("/users/:id", userControllers.destroy);
@@ -71,7 +91,7 @@ router.get("/status-idea/:id", statusIdeaControllers.read);
 // Routes idea controllers
 router.get("/ideas", ideaControllers.browse);
 router.get("/ideas/:id", ideaControllers.read);
-router.post("/ideas", ideaControllers.add);
+router.post("/ideas", uploadIdea.single("ideaImage"), ideaControllers.add);
 router.put("/ideas/:id", ideaControllers.edit);
 router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
 router.delete("/ideas/:id", ideaControllers.destroy);
@@ -103,6 +123,10 @@ router.post("/login", authControllers.login);
 router.post("/signin", authControllers.signin);
 
 // Routes upload
-router.put("/upload/:id", upload.single("image"), userControllers.upload);
+router.put(
+  "/upload/:id",
+  uploadAvatar.single("AvatarImage"),
+  userControllers.upload
+);
 
 module.exports = router;

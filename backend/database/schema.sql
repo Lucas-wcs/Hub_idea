@@ -90,7 +90,7 @@ VALUES ("Brouillon"),
     ("Idée refusée");
 
 CREATE TABLE `Idea` (
-    `id` INT PRIMARY KEY AUTO_INCREMENT, `title` VARCHAR(50) NOT NULL, `idea_description` VARCHAR(1000) NOT NULL, `idea_image` VARCHAR(50), `idea_date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, `date_limit` DATETIME, `is_validation_administrator` BOOLEAN, `status_id` INT DEFAULT 1, `idea_final_comment` VARCHAR(500), `user_id` INT, CONSTRAINT `fk_idea_status_id` FOREIGN KEY (`status_id`) REFERENCES `Status_idea` (`id`), CONSTRAINT `fk_idea_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE
+    `id` INT PRIMARY KEY AUTO_INCREMENT, `title` VARCHAR(50) NOT NULL, `idea_description` VARCHAR(1000) NOT NULL, `idea_image` VARCHAR(150) DEFAULT "https://picsum.photos/300/600", `idea_date_creation` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, `date_limit` DATETIME, `is_validation_administrator` BOOLEAN, `status_id` INT DEFAULT 1, `idea_final_comment` VARCHAR(500), `user_id` INT, CONSTRAINT `fk_idea_status_id` FOREIGN KEY (`status_id`) REFERENCES `Status_idea` (`id`), CONSTRAINT `fk_idea_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE
 );
 
 INSERT INTO

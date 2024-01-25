@@ -18,6 +18,7 @@ function Home() {
   const [isOpenUpdateIdeaModal, setIsOpenUpdateIdeaModal] = useState(false);
   const [isOpenUpdateConfirmModal, setIsOpenUpdateConfirmModal] =
     useState(false);
+  const [image, setImage] = useState();
   // const [newIdeaId, setNewIdeaId] = useState("");
   const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
@@ -41,29 +42,24 @@ function Home() {
     if (e.nativeEvent.submitter.value === "Brouillon") {
       navigate("/home");
 
-      const title = e.target.title.value;
-      const limitDate = e.target.date.value;
-      const ideaImage = "https://picsum.photos/300/600";
+      // const ideaImage = "https://picsum.photos/300/600";
       const statusId = 1;
-      const description = e.target.description.value;
+
+      const data = new FormData();
+
+      data.append("title", inputIdea.ideaTitle);
+      data.append("date_limit", inputIdea.ideaDateLimit);
+      data.append("idea_description", inputIdea.ideaDescription);
+      data.append("status_id", statusId);
+      data.append("user_id", user.id);
+      data.append("ideaImage", image);
 
       axios
-        .post(
-          `${import.meta.env.VITE_BACKEND}/api/ideas`,
-          {
-            title,
-            date_limit: limitDate,
-            idea_image: ideaImage,
-            idea_description: description,
-            status_id: statusId,
-            user_id: user.id,
+        .post(`${import.meta.env.VITE_BACKEND}/api/ideas`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        )
+        })
         .then((response) => {
           // setNewIdeaId(response.data.insertId.insertId);
 
@@ -132,20 +128,6 @@ function Home() {
           },
         }
       );
-
-      /* try {
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${newIdeaId}`,
-        ideaToUpdate,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-    } catch (e) {
-      console.error(e);
-    } */
     }
   };
   // handling button to close
@@ -158,7 +140,7 @@ function Home() {
   const handleOpenModalIdeaDraft = (
     title,
     dateLimit,
-    image,
+    // image,
     description,
     ideaId
   ) => {
@@ -166,7 +148,7 @@ function Home() {
     setDraftIdea({
       title,
       dateLimit,
-      image,
+      // image,
       description,
       ideaId,
     });
@@ -231,14 +213,20 @@ function Home() {
       className={`home-container ${isOpenIdeaModal && "home-container-fixed"}`}
     >
       {/* div for modal */}
-      <div className={`${isOpenIdeaModal ? "" : "hide-idea-modal"}`}>
-        <CreateIdeaModal
-          handleOpenModalIdea={handleOpenModalIdea}
-          handleSubmitIdea={handleSubmitIdea} // when you click submit
-          usersAssociated={usersAssociated}
-          setUsersAssociated={setUsersAssociated}
-        />
-      </div>
+      {isOpenIdeaModal && (
+        <div>
+          <CreateIdeaModal
+            handleOpenModalIdea={handleOpenModalIdea}
+            handleSubmitIdea={handleSubmitIdea} // when you click submit
+            usersAssociated={usersAssociated}
+            setUsersAssociated={setUsersAssociated}
+            image={image}
+            setImage={setImage}
+            inputIdea={inputIdea}
+            setInputIdea={setInputIdea}
+          />
+        </div>
+      )}
       <div className={`${isOpenConfirmModal ? "" : "hide-confirm-modal"}`}>
         <ValidateModale
           type="modale1"

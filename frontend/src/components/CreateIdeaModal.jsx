@@ -12,14 +12,22 @@ function CreateIdeaModal({
   setUsersAssociated,
   showPopup,
   setShowPopup,
+  image,
+  setImage,
+  inputIdea,
+  setInputIdea,
 }) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
   const [description, setDescription] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // const [fileName, setFileName] = useState("");
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
+    setInputIdea({ ...inputIdea, ideaDescription: e.target.value });
   };
 
   const getUsers = async () => {
@@ -96,6 +104,10 @@ function CreateIdeaModal({
                   id="title"
                   className={`input-border ${theme === "dark" && "dark"}`}
                   required
+                  value={inputIdea.ideaTitle}
+                  onChange={(e) =>
+                    setInputIdea({ ...inputIdea, ideaTitle: e.target.value })
+                  }
                 />
               </div>
               <div className="form-date-container">
@@ -107,6 +119,13 @@ function CreateIdeaModal({
                   id="date"
                   className={`input-border ${theme === "dark" && "dark"}`}
                   required
+                  value={inputIdea.ideaDateLimit}
+                  onChange={(e) =>
+                    setInputIdea({
+                      ...inputIdea,
+                      ideaDateLimit: e.target.value,
+                    })
+                  }
                 />
               </div>
 
@@ -125,6 +144,12 @@ function CreateIdeaModal({
                     id="ideaimage"
                     name="ideaimage"
                     accept="image/png, image/jpeg"
+                    onInput={(e) => {
+                      setImage(e.target.files[0]);
+                      // setFileName(
+                      //   e.target.files[0] ? e.target.files[0].name : ""
+                      // );
+                    }}
                   />
                 </div>
               </div>
@@ -197,6 +222,7 @@ function CreateIdeaModal({
                   className={`input-border ${theme === "dark" && "dark"}`}
                   onChange={handleDescriptionChange}
                   required
+                  value={inputIdea.ideaDescription}
                 />
               </div>
               <p className="character-counter-idea">
@@ -209,12 +235,7 @@ function CreateIdeaModal({
                   type="submit"
                   value="Brouillon"
                 />
-                <input
-                  className="button-green"
-                  type="submit"
-                  value="Publier"
-                  // onClick={handleClickPublish}
-                />
+                <input className="button-green" type="submit" value="Publier" />
               </div>
             </form>
           </div>
@@ -231,6 +252,14 @@ CreateIdeaModal.propTypes = {
   setUsersAssociated: PropTypes.func.isRequired,
   showPopup: PropTypes.bool.isRequired,
   setShowPopup: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
+  setImage: PropTypes.func.isRequired,
+  inputIdea: PropTypes.shape({
+    ideaTitle: PropTypes.string.isRequired,
+    ideaDateLimit: PropTypes.string.isRequired,
+    ideaDescription: PropTypes.string.isRequired,
+  }).isRequired,
+  setInputIdea: PropTypes.func.isRequired,
 };
 
 export default CreateIdeaModal;
