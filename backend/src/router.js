@@ -94,6 +94,7 @@ router.get("/ideas/:id", ideaControllers.read);
 router.post("/ideas", uploadIdea.single("ideaImage"), ideaControllers.add);
 router.put("/ideas/:id", ideaControllers.edit);
 router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
+router.put("/ideas/moderator/:id", ideaControllers.editByModerator);
 router.delete("/ideas/:id", ideaControllers.destroy);
 router.put("/ideas/admin-decision/:id", ideaControllers.editStatusIdByAdmin);
 

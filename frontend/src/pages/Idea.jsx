@@ -9,7 +9,6 @@ import { ThemeContext } from "../context/ThemeContext";
 function Idea() {
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
-
   const { idea, votes } = useLoaderData();
   const revalidator = useRevalidator();
   const [isOpenDecisionModal, setIsOpenDecisionModal] = useState(false);
@@ -81,7 +80,6 @@ function Idea() {
       })
       .catch((e) => console.error(e));
   };
-  // console.log(comments])
 
   // for showing just date without hours
   const date = idea[0].date_limit.split("T");
@@ -147,19 +145,15 @@ function Idea() {
     setIsOpenDecisionConfirmModal((current) => !current);
   };
 
-  const handleClickDecisionValidate = async (e) => {
-    e.preventDefault();
+  const handleClickDecisionValidate = async (decisionComment) => {
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
-
-    const ideaValidated = {
-      status_id: "6",
-    };
+    const ideaFinalComment = decisionComment;
 
     try {
       await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
-        ideaValidated,
+        `${import.meta.env.VITE_BACKEND}/api/ideas/moderator/${idea[0].id}`,
+        { status_id: "6", idea_final_comment: ideaFinalComment },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -171,19 +165,15 @@ function Idea() {
     }
   };
 
-  const handleClickDecisionRefuse = async (e) => {
-    e.preventDefault();
+  const handleClickDecisionRefuse = async (decisionComment) => {
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
-
-    const ideaRefused = {
-      status_id: "7",
-    };
+    const ideaFinalComment = decisionComment;
 
     try {
       await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
-        ideaRefused,
+        `${import.meta.env.VITE_BACKEND}/api/ideas/moderator/${idea[0].id}`,
+        { status_id: "7", idea_final_comment: ideaFinalComment },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -194,12 +184,13 @@ function Idea() {
       console.error(error);
     }
   };
+
   const [showImpactedUsers, setShowImpactedUsers] = useState([]);
 
   const getImpactedUsers = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api/impacted-users/ideas/${
+        `${import.meta.env.VITE_BACKEND}/api//impacted-users/ideas/${
           idea[0].id
         }`,
         {
@@ -219,24 +210,27 @@ function Idea() {
   return (
     <>
       {/* div for modal */}
-      <div className={`${isOpenDecisionModal ? "" : "hide-decision-modal"}`}>
-        <DecisionModal
-          handleClickDecisionValidate={handleClickDecisionValidate}
-          handleClickDecisionRefuse={handleClickDecisionRefuse}
-          handleClickDecisionModal={handleClickDecisionModal}
-        />
-      </div>
-      <div
-        className={`${
-          isOpenDecisionConfirmModal ? "" : "hide-decision-confirm-modal"
-        }`}
-      >
-        <ValidateModale
-          type="modale4"
-          setTypeModal={() => console.info("")}
-          handleDecisionConfirmModal={handleDecisionConfirmModal}
-        />
-      </div>
+      {isOpenDecisionModal && (
+        <div>
+          <DecisionModal
+            handleClickDecisionValidate={handleClickDecisionValidate}
+            handleClickDecisionRefuse={handleClickDecisionRefuse}
+            handleClickDecisionModal={handleClickDecisionModal}
+            ideaTitle={idea[0].title}
+            ideaImage={idea[0].idea_image}
+          />
+        </div>
+      )}
+      {isOpenDecisionConfirmModal && (
+        <div>
+          <ValidateModale
+            type="modale4"
+            setTypeModal={() => console.info("")}
+            handleDecisionConfirmModal={handleDecisionConfirmModal}
+          />
+        </div>
+      )}
+
       {/* div for modal until here */}
       <div
         className={`home-container ${
@@ -320,42 +314,76 @@ function Idea() {
                 );
               })}
             </div>
-            <div className="idea-vote-container">
-              <button
-                className={`button-moderateur ${
-                  theme === "dark" ? "dark" : "light"
-                } ${user && user.is_moderator ? "" : "is-not-moderator"}`}
-                type="button"
-                onClick={handleClickDecisionModal}
-              >
-                Modérateur
-              </button>
-              <button
-                className={`button-vote vote-pour ${
-                  theme === "dark" ? "dark" : "light"
-                }`}
-                type="button"
-                value="contre"
-                name="name"
-                onClick={handleClickVote}
-                disabled={buttonContre}
-              >
-                <img src="/images/icons_pouces_bas.png" alt="logo_pouce_bas" />
-                Je suis contre
-              </button>
-              <button
-                className={`button-vote vote-contre ${
-                  theme === "dark" ? "dark" : "light"
-                }`}
-                type="submit"
-                value="pour"
-                onClick={handleClickVote}
-                disabled={buttonPour}
-              >
-                <img src="/images/icons_pouce_haut.png" alt="logo_pouce_haut" />
-                Je suis pour
-              </button>
-            </div>
+            {idea[0].status_id === 4 || idea[0].status_id === 5 ? (
+              <div className="idea-vote-container">
+                <button
+                  className={`button-moderateur ${
+                    theme === "dark" ? "dark" : "light"
+                  } ${user && user.is_moderator ? "" : "is-not-moderator"}`}
+                  type="button"
+                  onClick={handleClickDecisionModal}
+                >
+                  Modérateur
+                </button>
+                <button
+                  className={`button-vote vote-pour ${
+                    theme === "dark" ? "dark" : "light"
+                  }`}
+                  type="button"
+                  value="contre"
+                  name="name"
+                  onClick={handleClickVote}
+                  disabled={buttonContre}
+                >
+                  <img
+                    src="/images/icons_pouces_bas.png"
+                    alt="logo_pouce_bas"
+                  />
+                  Je suis contre
+                </button>
+                <button
+                  className={`button-vote vote-contre ${
+                    theme === "dark" ? "dark" : "light"
+                  }`}
+                  type="submit"
+                  value="pour"
+                  onClick={handleClickVote}
+                  disabled={buttonPour}
+                >
+                  <img
+                    src="/images/icons_pouce_haut.png"
+                    alt="logo_pouce_haut"
+                  />
+                  Je suis pour
+                </button>
+              </div>
+            ) : (
+              <div className="decision-result-container">
+                {idea[0].status_id !== 6 && idea[0].status_id !== 7 ? (
+                  ""
+                ) : (
+                  <div>
+                    {idea[0].status_id === 6 ? (
+                      <h3 className="decision-result">L'idée a été validée</h3>
+                    ) : (
+                      <h3 className="decision-result">L'idée a été refusée</h3>
+                    )}
+                    <div className="decision-comment-container">
+                      <p className="decision-comment">
+                        {" "}
+                        Commentaire des modérateurs :{" "}
+                      </p>
+                      <div>
+                        <p>
+                          {idea[0].idea_final_comment &&
+                            idea[0].idea_final_comment}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -442,7 +470,8 @@ function Idea() {
                       />
                     )}
                     <div className="logo-delete-comment">
-                      {user.is_moderator || user.is_administrator ? (
+                      {(user && user.is_moderator) ||
+                      (user && user.is_administrator) ? (
                         <img
                           src="/images/icon_cross.png"
                           alt="del_logo"
