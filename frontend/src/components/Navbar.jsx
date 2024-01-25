@@ -63,9 +63,7 @@ function Navbar() {
                 {user.image_profil ? (
                   <img
                     title="Profil"
-                    src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                      user.image_profil
-                    }`}
+                    src={`${import.meta.env.VITE_BACKEND}${user.image_profil}`}
                     alt="profile"
                   />
                 ) : (
