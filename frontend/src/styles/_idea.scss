@@ -345,8 +345,11 @@
     cursor: pointer;
     margin: 5px;
     border: none;
+    transition: transform 0.1s ease-in-out;
+
     &:hover {
-      scale: 1.02;
+      transform: scale(1.04);
+      cursor: pointer;
     }
     .character-count {
       font-family: var(--text-font);

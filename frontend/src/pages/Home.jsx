@@ -6,10 +6,13 @@ import CreateIdeaModal from "../components/CreateIdeaModal";
 import UpdateIdeaModal from "../components/UpdateIdeaModal";
 import ValidateModale from "../components/ValidateModale";
 import { UserContext } from "../context/UserContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Home() {
   const revalidator = useRevalidator();
   const { ideas, statuses } = useLoaderData();
+  const { theme } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -300,7 +303,7 @@ function Home() {
         </div>
         <div className="button-container">
           <select
-            className="filter-input"
+            className={`filter-input ${theme === "dark" ? "dark" : "light"}`}
             value={statusFilter}
             onChange={handleStatusFilterChange}
           >
