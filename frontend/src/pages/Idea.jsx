@@ -145,19 +145,15 @@ function Idea() {
     setIsOpenDecisionConfirmModal((current) => !current);
   };
 
-  const handleClickDecisionValidate = async (e) => {
-    e.preventDefault();
+  const handleClickDecisionValidate = async (decisionComment) => {
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
-
-    const ideaValidated = {
-      status_id: "6",
-    };
+    const ideaFinalComment = decisionComment;
 
     try {
       await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
-        { ideaValidated },
+        `${import.meta.env.VITE_BACKEND}/api/ideas/moderator/${idea[0].id}`,
+        { status_id: "6", idea_final_comment: ideaFinalComment },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -169,19 +165,15 @@ function Idea() {
     }
   };
 
-  const handleClickDecisionRefuse = async (e) => {
-    e.preventDefault();
+  const handleClickDecisionRefuse = async (decisionComment) => {
     setIsOpenDecisionModal((current) => !current);
     handleDecisionConfirmModal();
-
-    const ideaRefused = {
-      status_id: "7",
-    };
+    const ideaFinalComment = decisionComment;
 
     try {
       await axios.put(
-        `${import.meta.env.VITE_BACKEND}/api/ideas/change-status/${idea[0].id}`,
-        ideaRefused,
+        `${import.meta.env.VITE_BACKEND}/api/ideas/moderator/${idea[0].id}`,
+        { status_id: "7", idea_final_comment: ideaFinalComment },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -360,7 +352,7 @@ function Idea() {
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="decision-result-container">
                 {idea[0].status_id !== 6 && idea[0].status_id !== 7 ? (
                   ""
                 ) : (
@@ -377,8 +369,8 @@ function Idea() {
                       </p>
                       <div>
                         <p>
-                          Pour les fêtes de fin d'années et avant les vacances,
-                          ce serait sympa d'organiser un repas collectif
+                          {idea[0].idea_final_comment &&
+                            idea[0].idea_final_comment}
                         </p>
                       </div>
                     </div>

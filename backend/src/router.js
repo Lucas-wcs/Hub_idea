@@ -74,6 +74,7 @@ router.get("/ideas/:id", ideaControllers.read);
 router.post("/ideas", ideaControllers.add);
 router.put("/ideas/:id", ideaControllers.edit);
 router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
+router.put("/ideas/moderator/:id", ideaControllers.editByModerator);
 router.delete("/ideas/:id", ideaControllers.destroy);
 router.put("/ideas/admin-decision/:id", ideaControllers.editStatusIdByAdmin);
 
@@ -89,6 +90,7 @@ router.get("/impacted-users", impactedUserControllers.browse);
 router.get("/impacted-users/users/:id", impactedUserControllers.readByUserId);
 router.get("/impacted-users/ideas/:id", impactedUserControllers.readByIdeaId);
 router.post("/impacted-users", impactedUserControllers.add);
+router.put("/impacted-users", impactedUserControllers.edit);
 router.delete("/impacted-users", impactedUserControllers.destroy);
 // Routes comment controllers
 router.get("/comments", commentControllers.browse);

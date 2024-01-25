@@ -77,6 +77,24 @@ const editStatusId = async (req, res, next) => {
   }
 };
 
+const editByModerator = async (req, res, next) => {
+  const { status_id: statusId, idea_final_comment: ideaFinalComment } =
+    req.body;
+
+  const statusUpdatedIdea = {
+    status_id: statusId,
+    idea_final_comment: ideaFinalComment,
+    id: req.params.id,
+  };
+
+  try {
+    await tables.Idea.updateByModerator(statusUpdatedIdea);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const destroy = async (req, res, next) => {
   try {
     await tables.Idea.delete(req.params.id);
@@ -108,6 +126,7 @@ module.exports = {
   read,
   edit,
   editStatusId,
+  editByModerator,
   add,
   destroy,
   editStatusIdByAdmin,

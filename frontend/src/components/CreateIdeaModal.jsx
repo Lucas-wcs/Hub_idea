@@ -45,9 +45,8 @@ function CreateIdeaModal({
     if (index >= 0) {
       array.splice(index, 1);
     } else {
-      array.push(e.target.value);
+      array.push(String(e.target.value));
     }
-
     setUsersAssociated(array);
   };
 

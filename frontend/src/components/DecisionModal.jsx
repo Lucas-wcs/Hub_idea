@@ -5,6 +5,15 @@ function DecisionModal({
   handleClickDecisionValidate,
   handleClickDecisionRefuse,
 }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (event.nativeEvent.submitter.value === "Refus de l’idée") {
+      handleClickDecisionRefuse(event.target.decisioncomment.value);
+    } else {
+      handleClickDecisionValidate(event.target.decisioncomment.value);
+    }
+  };
   return (
     <div className="decision-modal-container">
       <div className="decision-container">
@@ -22,10 +31,10 @@ function DecisionModal({
           </div>
           <div className="form-entire-container">
             <h2>Commentaire: </h2>
-            <form action="">
+            <form action="submit" onSubmit={handleSubmit}>
               <textarea
-                name=""
-                id=""
+                name="decisioncomment"
+                id="decisioncomment"
                 cols="30"
                 rows="10"
                 placeholder="Mettre un commentaire si vous souhaitez expliquer votre décision  ... "
@@ -35,13 +44,13 @@ function DecisionModal({
                   className="button-blue"
                   type="submit"
                   value="Refus de l’idée"
-                  onClick={handleClickDecisionRefuse}
+                  // onClick={handleClickDecisionRefuse}
                 />
                 <input
                   className="button-green"
                   type="submit"
                   value="Approuver l’idée"
-                  onClick={handleClickDecisionValidate}
+                  // onClick={handleClickDecisionValidate}
                 />
               </div>
             </form>

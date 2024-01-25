@@ -13,7 +13,6 @@ function ValidateModale({
   handleReturnToHome,
 }) {
   const navigate = useNavigate();
-  const button = 1;
 
   const handleButton = (event) => {
     if (
@@ -21,7 +20,7 @@ function ValidateModale({
       event.target.value === "button1" &&
       handleClickSubmitButton
     ) {
-      handleClickSubmitButton(button);
+      handleClickSubmitButton();
     } else if (
       type === "modale2" &&
       event.target.value === "button1" &&
