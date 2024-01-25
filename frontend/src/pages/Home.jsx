@@ -97,6 +97,11 @@ function Home() {
       });
     }
     setIsOpenIdeaModal(false);
+    setInputIdea({
+      ideaTitle: "",
+      ideaDateLimit: "",
+      ideaDescription: "",
+    });
   };
 
   // handling 1st modal for creating idea
@@ -140,18 +145,11 @@ function Home() {
   };
 
   // reopen 1st create idea modal for draft
-  const handleOpenModalIdeaDraft = (
-    title,
-    dateLimit,
-    // image,
-    description,
-    ideaId
-  ) => {
+  const handleOpenModalIdeaDraft = (title, dateLimit, description, ideaId) => {
     setIsOpenUpdateIdeaModal((current) => !current);
     setDraftIdea({
       title,
       dateLimit,
-      // image,
       description,
       ideaId,
     });
