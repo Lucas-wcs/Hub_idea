@@ -132,7 +132,7 @@ function Profile() {
     }
 
     const data = new FormData();
-    data.append("image", image);
+    data.append("AvatarImage", image);
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BACKEND}/api/upload/${user && user.id}`,
@@ -173,7 +173,7 @@ function Profile() {
             <div className="upload-container">
               {user && user.image_profil ? (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                  src={`${import.meta.env.VITE_BACKEND}${
                     user && user.image_profil
                   }`}
                   alt="profile"
