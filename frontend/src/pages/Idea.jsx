@@ -293,7 +293,7 @@ function Idea() {
                       <img
                         className="img-impacted-user"
                         title={`${impacted.firstname} ${impacted.lastname}`}
-                        src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                        src={`${import.meta.env.VITE_BACKEND}${
                           impacted.image_profil
                         }`}
                         alt="profile"
@@ -395,9 +395,7 @@ function Idea() {
                 <img
                   className="img-comment-user"
                   title="Profil"
-                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                    user.image_profil
-                  }`}
+                  src={`${import.meta.env.VITE_BACKEND}${user.image_profil}`}
                   alt="profile"
                 />
               ) : (
@@ -452,7 +450,7 @@ function Idea() {
                       <img
                         className="img-comment-user"
                         title="Profil"
-                        src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                        src={`${import.meta.env.VITE_BACKEND}${
                           com.image_profil
                         }`}
                         alt="profile"
