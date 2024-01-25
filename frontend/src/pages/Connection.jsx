@@ -48,6 +48,7 @@ function Connection() {
 
         setUser(user);
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", user.id);
 
         setUser(res.data);
         navigate("/home");

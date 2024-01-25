@@ -109,6 +109,7 @@ router.get("/impacted-users", impactedUserControllers.browse);
 router.get("/impacted-users/users/:id", impactedUserControllers.readByUserId);
 router.get("/impacted-users/ideas/:id", impactedUserControllers.readByIdeaId);
 router.post("/impacted-users", impactedUserControllers.add);
+router.put("/impacted-users", impactedUserControllers.edit);
 router.delete("/impacted-users", impactedUserControllers.destroy);
 // Routes comment controllers
 router.get("/comments", commentControllers.browse);

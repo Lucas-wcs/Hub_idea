@@ -61,27 +61,25 @@ function Home() {
           },
         })
         .then((response) => {
-          // setNewIdeaId(response.data.insertId.insertId);
+          // TODO change. logic in backend Menager
 
-          usersAssociated.forEach((userAssociated) => {
-            axios
-              .post(
-                `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
-                {
-                  idea_id: response.data.insertId.insertId,
-                  user_id: userAssociated,
+          axios
+            .post(
+              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+              {
+                idea_id: response.data.insertId.insertId,
+                usersAssociated,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
-                {
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                }
-              )
-              .then(() => {
-                // TODO pop up pour dire que l'idée a bien été créée et userAssociated a bien été ajouté
-              })
-              .catch((error) => console.error(error));
-          });
+              }
+            )
+            .then(() => {
+              // TODO pop up confirmation post
+            })
+            .catch((error) => console.error(error));
         })
         .then(() => {
           revalidator.revalidate();
@@ -112,22 +110,27 @@ function Home() {
     setIsOpenSubmitModal((current) => !current);
 
     if (button === 1) {
-      axios.post(
-        `${import.meta.env.VITE_BACKEND}/api/ideas`,
-        {
-          title: inputIdea.ideaTitle,
-          date_limit: inputIdea.ideaDateLimit,
-          idea_image: "idea-image",
-          idea_description: inputIdea.ideaDescription,
-          status_id: 2,
-          user_id: user.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+      axios
+        .post(
+          `${import.meta.env.VITE_BACKEND}/api/ideas`,
+          {
+            title: inputIdea.ideaTitle,
+            date_limit: inputIdea.ideaDateLimit,
+            idea_image: "idea-image",
+            idea_description: inputIdea.ideaDescription,
+            status_id: 2,
+            user_id: user.id,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(() => {
+          // TODO update users associeted
+        })
+        .catch((error) => console.error(error));
     }
   };
   // handling button to close
@@ -160,7 +163,7 @@ function Home() {
     setIsOpenUpdateIdeaModal(false);
     let statusId;
     if (e.nativeEvent.submitter.value === "Brouillon") {
-      navigate("/home");
+      // navigate("/home");
       statusId = 1;
     } else {
       setIsOpenUpdateConfirmModal(true);
@@ -190,8 +193,29 @@ function Home() {
           }
         )
         .then(() => {
-          revalidator.revalidate();
-        });
+          axios
+            .put(
+              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+              {
+                idea_id: draftIdea.ideaId,
+                usersAssociated,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              }
+            )
+            .then(() => {
+              // TODO pop up confirmation post
+              revalidator.revalidate();
+            })
+            .catch((error) => {
+              revalidator.revalidate();
+              console.error(error);
+            });
+        })
+        .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);
     }
@@ -243,15 +267,18 @@ function Home() {
           handleClickIdeaCancelButton={handleClickIdeaCancelButton}
         />
       </div>
-      <div className={`${isOpenUpdateIdeaModal ? "" : "hide-idea-modal"}`}>
-        <UpdateIdeaModal
-          handleOpenModalIdeaDraft={handleOpenModalIdeaDraft}
-          handleUpdateIdea={handleUpdateIdea}
-          usersAssociated={usersAssociated}
-          setUsersAssociated={setUsersAssociated}
-          draftIdea={draftIdea}
-        />
-      </div>
+      {isOpenUpdateIdeaModal && (
+        <div>
+          <UpdateIdeaModal
+            handleOpenModalIdeaDraft={handleOpenModalIdeaDraft}
+            handleUpdateIdea={handleUpdateIdea}
+            usersAssociated={usersAssociated}
+            setUsersAssociated={setUsersAssociated}
+            draftIdea={draftIdea}
+          />
+        </div>
+      )}
+
       <div
         className={`${
           isOpenUpdateConfirmModal ? "" : "hide-update-confirm-modal"
