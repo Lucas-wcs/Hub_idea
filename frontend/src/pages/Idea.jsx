@@ -244,7 +244,10 @@ function Idea() {
         </h3>
         <div className="idea-main-container">
           <div className="idea-main-img-container">
-            <img src="/images/repas_noel.webp" alt="repas_noel_logo" />
+            <img
+              src={`${import.meta.env.VITE_BACKEND}${idea[0].idea_image}`}
+              alt={idea[0].title}
+            />
           </div>
           <div className="idea-main-info-container">
             <h4>Description</h4>
