@@ -1,4 +1,5 @@
 .modal-idea-container {
+  margin-top: 3%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -290,23 +291,25 @@
     }
   }
 }
-
 // responsive:
 @media (max-width: 768px) {
-  .create-idea-container {
-    .form-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      form {
-        width: 80vw;
-      }
-      .modal-idea-container {
-        width: 50%;
-        .create-idea-container {
-          width: 100vw;
-          height: 100vh;
-          margin: 0;
+  .modal-idea-container {
+    margin-top: 14%;
+    .create-idea-container {
+      .form-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        form {
+          width: 80vw;
+        }
+        .modal-idea-container {
+          width: 50%;
+          .create-idea-container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+          }
         }
       }
     }

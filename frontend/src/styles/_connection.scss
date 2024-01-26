@@ -1,4 +1,5 @@
 .connection {
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,7 +99,7 @@
 }
 
 .container-button-rules {
-  margin-top: 1%;
+  margin-top: 2%;
 
   a {
     text-decoration: none;
@@ -282,8 +283,23 @@
 }
 
 @media (max-width: 500px) {
+  .connection {
+    margin-top: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .presentation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
   .presentation-hub {
     flex-direction: column;
+    gap: 20px;
   }
 
   .arrow {
