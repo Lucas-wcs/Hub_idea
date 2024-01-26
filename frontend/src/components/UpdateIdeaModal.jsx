@@ -43,7 +43,6 @@ function UpdateIdeaModal({
     }
 
     setUsersAssociated(array);
-    // localStorage.setItem("usersAssociated", JSON.parse(array));
   };
 
   const getUserSAssocieted = async () => {
@@ -72,13 +71,6 @@ function UpdateIdeaModal({
 
   useEffect(() => {
     getUsers();
-    // const storedUsersAssociated = localStorage.getItem(
-    //   "usersAssociated",
-    //   usersAssociated
-    // );
-    // if (storedUsersAssociated) {
-    //   setUsersAssociated(JSON.parse(storedUsersAssociated));
-    // }
   }, []);
 
   useEffect(() => {
@@ -181,7 +173,7 @@ function UpdateIdeaModal({
                               <img
                                 className="avatar"
                                 title="Profil"
-                                src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                                src={`${import.meta.env.VITE_BACKEND}${
                                   person.image_profil
                                 }`}
                                 alt="profile"
