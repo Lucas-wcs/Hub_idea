@@ -64,7 +64,13 @@ function IdeaCard({
             <button
               type="submit"
               onClick={() =>
-                handleOpenModalIdeaDraft(title, dateLimit, description, ideaId)
+                handleOpenModalIdeaDraft(
+                  title,
+                  dateLimit,
+                  image,
+                  description,
+                  ideaId
+                )
               }
             >
               {" "}

@@ -11,11 +11,13 @@ function UpdateIdeaModal({
   usersAssociated,
   setUsersAssociated,
   draftIdea,
+  handleClickUpdateCancelButton,
+  setUpdateImage,
 }) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(draftIdea.draftImage);
 
   const handleUploadImage = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -91,7 +93,7 @@ function UpdateIdeaModal({
       >
         <div
           className="icon-close-container"
-          onClick={handleOpenModalIdeaDraft}
+          onClick={handleClickUpdateCancelButton}
           role="presentation"
         >
           <img src="images/icon_cross.png" alt="cross" />
@@ -134,9 +136,7 @@ function UpdateIdeaModal({
 
                 <div className="image-input-container">
                   <img
-                    src={
-                      file === "default" ? "/images/default-image.png" : file
-                    }
+                    src={file === null ? "/images/default-image.png" : file}
                     alt="default"
                   />
                   <input
@@ -146,6 +146,9 @@ function UpdateIdeaModal({
                     name="ideaimage"
                     accept="image/png, image/jpeg"
                     onChange={handleUploadImage}
+                    onInput={(e) => {
+                      setUpdateImage(e.target.files[0]);
+                    }}
                   />
                 </div>
               </div>
@@ -250,10 +253,12 @@ UpdateIdeaModal.propTypes = {
   draftIdea: PropTypes.shape({
     title: PropTypes.string.isRequired,
     ideaId: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    draftImage: PropTypes.string.isRequired,
     dateLimit: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  handleClickUpdateCancelButton: PropTypes.func.isRequired,
+  setUpdateImage: PropTypes.func.isRequired,
 };
 
 export default UpdateIdeaModal;
