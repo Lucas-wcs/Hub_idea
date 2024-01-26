@@ -186,6 +186,12 @@
     justify-content: center;
     align-items: center;
     gap: 4%;
+
+    .text-vot {
+      color: var(--quaternary-color);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
   }
 
   button {
@@ -403,7 +409,6 @@
     display: flex;
     align-items: flex-start;
     text-align: justify;
-    overflow-x: scroll;
     padding: 15px;
   }
   .logo-delete-comment {
