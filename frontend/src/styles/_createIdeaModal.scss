@@ -1,4 +1,4 @@
-.modal-idea-container {
+.create-modal-idea-container {
   margin-top: 3%;
   position: fixed;
   z-index: 1;
@@ -14,7 +14,7 @@
 
   .create-idea-container {
     width: 70vw;
-    height: 130%;
+    height: 150%;
     margin: 50px 100px 50px 100px;
     background-color: var(--senary-color);
 
@@ -293,7 +293,7 @@
 }
 // responsive:
 @media (max-width: 768px) {
-  .modal-idea-container {
+  .create-modal-idea-container {
     margin-top: 14%;
     .create-idea-container {
       .form-container {

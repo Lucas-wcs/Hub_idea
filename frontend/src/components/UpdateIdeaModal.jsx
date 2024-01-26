@@ -85,7 +85,7 @@ function UpdateIdeaModal({
   }, [draftIdea.ideaId]);
 
   return (
-    <div className="modal-idea-container">
+    <div className="update-modal-idea-container">
       <div
         className={`create-idea-container ${
           theme === "dark" ? "dark" : "light"

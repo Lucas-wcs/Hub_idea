@@ -1,4 +1,4 @@
-.modal-idea-container {
+.update-modal-idea-container {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -255,7 +255,7 @@
 
 // responsive:
 @media (max-width: 768px) {
-  .modal-idea-container {
+  .update-modal-idea-container {
     width: 100%;
     .create-idea-container {
       width: 100vw;
