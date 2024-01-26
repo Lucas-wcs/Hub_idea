@@ -15,6 +15,11 @@ function UpdateIdeaModal({
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
+  const [file, setFile] = useState();
+
+  const handleUploadImage = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
 
   const getUsers = async (e) => {
     try {
@@ -128,13 +133,19 @@ function UpdateIdeaModal({
                 </label>
 
                 <div className="image-input-container">
-                  <img src="/images/default-image.png" alt="default" />
+                  <img
+                    src={
+                      file === "default" ? "/images/default-image.png" : file
+                    }
+                    alt="default"
+                  />
                   <input
                     className={`button-picture ${theme === "dark" && "dark"}`}
                     type="file"
                     id="ideaimage"
                     name="ideaimage"
                     accept="image/png, image/jpeg"
+                    onChange={handleUploadImage}
                   />
                 </div>
               </div>

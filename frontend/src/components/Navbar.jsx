@@ -20,14 +20,24 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar-container">
+    <div className={`navbar-container ${theme === "dark" && "dark"}`}>
       <div className="logo-container">
         {location.pathname !== "/" ? (
           <NavLink to="/home">
-            <img src="/images/logo.png" alt="logo" />
+            <img
+              src={
+                theme === "dark" ? "/images/logo_dark.png" : "/images/logo.png"
+              }
+              alt="logo"
+            />{" "}
           </NavLink>
         ) : (
-          <img src="/images/logo.png" alt="logo" />
+          <img
+            src={
+              theme === "dark" ? "/images/logo_dark.png" : "/images/logo.png"
+            }
+            alt="logo"
+          />
         )}
       </div>
       <div className="nav-right">
