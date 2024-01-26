@@ -48,7 +48,6 @@ function AdmindecisionModal() {
     } catch (err) {
       console.error(err);
     }
-    console.info(ideaToUpdate);
     navigate("/administrator");
   };
 

@@ -10,8 +10,6 @@ function CreateIdeaModal({
   handleSubmitIdea,
   usersAssociated,
   setUsersAssociated,
-  showPopup,
-  setShowPopup,
   image,
   setImage,
   inputIdea,
@@ -68,20 +66,6 @@ function CreateIdeaModal({
 
   return (
     <div className="modal-idea-container">
-      {showPopup && (
-        <div className="popup-idea-error ">
-          <div className="popup-content-idea-error ">
-            <p>Une erreur s'est produite, veuillez réessayer</p>
-            <button
-              type="button"
-              className="popup-close-button-idea-error "
-              onClick={() => setShowPopup(false)}
-            >
-              Fermer
-            </button>
-          </div>
-        </div>
-      )}
       <div
         className={`create-idea-container ${
           theme === "dark" ? "dark" : "light"
@@ -256,9 +240,7 @@ CreateIdeaModal.propTypes = {
   handleSubmitIdea: PropTypes.func.isRequired,
   usersAssociated: PropTypes.arrayOf(PropTypes.string).isRequired,
   setUsersAssociated: PropTypes.func.isRequired,
-  showPopup: PropTypes.bool.isRequired,
-  setShowPopup: PropTypes.func.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   setImage: PropTypes.func.isRequired,
   inputIdea: PropTypes.shape({
     ideaTitle: PropTypes.string.isRequired,
@@ -266,6 +248,10 @@ CreateIdeaModal.propTypes = {
     ideaDescription: PropTypes.string.isRequired,
   }).isRequired,
   setInputIdea: PropTypes.func.isRequired,
+};
+
+CreateIdeaModal.defaultProps = {
+  image: undefined,
 };
 
 export default CreateIdeaModal;

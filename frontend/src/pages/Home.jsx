@@ -130,8 +130,29 @@ function Home() {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
+        .then((response) => {
+          // TODO change. logic in backend Menager
+
+          axios
+            .post(
+              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+              {
+                idea_id: response.data.insertId.insertId,
+                usersAssociated,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              }
+            )
+            .then(() => {
+              // TODO pop up confirmation post
+            })
+            .catch((error) => console.error(error));
+        })
         .then(() => {
-          // TODO update users associeted
+          revalidator.revalidate();
         })
         .catch((error) => console.error(error));
     }
@@ -189,17 +210,15 @@ function Home() {
     if (updateImage === undefined) {
       const title = e.target.title.value;
       const limitDate = e.target.date.value;
-      const ideaImage = "https://picsum.photos/300/600";
       const description = e.target.description.value;
 
       try {
-        await axios
+        axios
           .put(
             `${import.meta.env.VITE_BACKEND}/api/ideas/${draftIdea.ideaId}`,
             {
               title,
               date_limit: limitDate,
-              idea_image: ideaImage,
               idea_description: description,
               status_id: statusId,
             },
@@ -238,7 +257,7 @@ function Home() {
       }
     } else {
       try {
-        await axios
+        axios
           .put(
             `${import.meta.env.VITE_BACKEND}/api/ideas/change-image/${
               draftIdea.ideaId

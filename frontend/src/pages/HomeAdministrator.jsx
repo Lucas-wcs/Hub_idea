@@ -170,7 +170,7 @@ function HomeAdministrator() {
 export const loader = async () => {
   const loadIdeas = async () => {
     try {
-      const res = await axios.get("http://localhost:3310/api/ideas", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       return res.data;
@@ -182,7 +182,7 @@ export const loader = async () => {
 
   const loadUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3310/api/users", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/users`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       return res.data;

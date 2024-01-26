@@ -15,10 +15,6 @@ class IdeaManager extends AbstractManager {
     idea_final_comment: ideaFinalComment,
     user_id: userId,
   }) {
-    if (ideaImg === undefined) {
-      // eslint-disable-next-line no-param-reassign
-      ideaImg = "/uploads/ideas/default-image-bk.png";
-    }
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} ( 
         title,
