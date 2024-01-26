@@ -296,15 +296,22 @@
   .update-modal-idea-container {
     .create-idea-container {
       height: 120%;
-      margin: 0;
+      margin: 90px 0 0 0;
       width: 100%;
 
       .form-container {
         width: 100%;
         display: flex;
         justify-content: center;
-        form {
-          width: 80vw;
+        .form-title-container {
+          input {
+            width: 80vw;
+          }
+        }
+        .form-date-container {
+          input {
+            width: 60vw;
+          }
         }
         .modal-idea-container {
           width: 50%;

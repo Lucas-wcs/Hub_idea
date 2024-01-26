@@ -302,9 +302,17 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        form {
-          width: 80vw;
+        .form-title-container {
+          input {
+            width: 80vw;
+          }
         }
+        .form-date-container {
+          input {
+            width: 60vw;
+          }
+        }
+
         .modal-idea-container {
           width: 50%;
           .create-idea-container {
