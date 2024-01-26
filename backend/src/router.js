@@ -92,7 +92,12 @@ router.get("/status-idea/:id", statusIdeaControllers.read);
 router.get("/ideas", ideaControllers.browse);
 router.get("/ideas/:id", ideaControllers.read);
 router.post("/ideas", uploadIdea.single("ideaImage"), ideaControllers.add);
-router.put("/ideas/:id", ideaControllers.edit);
+router.put(
+  "/ideas/change-image/:id",
+  uploadIdea.single("ideaImage"),
+  ideaControllers.editMulter
+);
+router.put("/ideas/:id", uploadIdea.single("ideaImage"), ideaControllers.edit);
 router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
 router.put("/ideas/moderator/:id", ideaControllers.editByModerator);
 router.delete("/ideas/:id", ideaControllers.destroy);

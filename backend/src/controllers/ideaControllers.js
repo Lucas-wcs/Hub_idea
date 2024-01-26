@@ -37,7 +37,6 @@ const edit = async (req, res, next) => {
   const {
     title,
     idea_description: ideaDescription,
-    idea_image: ideaImage,
     date_limit: bodyDateLimit,
     status_id: statusId,
   } = req.body;
@@ -48,13 +47,40 @@ const edit = async (req, res, next) => {
     id: req.params.id,
     title,
     idea_description: ideaDescription,
-    idea_image: ideaImage,
     date_limit: dateLimit,
     status_id: statusId,
   };
 
   try {
     await tables.Idea.update(updatedIdea);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const editMulter = async (req, res, next) => {
+  const {
+    title,
+    idea_description: ideaDescription,
+    ideaImg,
+    date_limit: bodyDateLimit,
+    status_id: statusId,
+  } = req.body;
+
+  const dateLimit = new Date(bodyDateLimit);
+
+  const updatedIdea = {
+    id: req.params.id,
+    title,
+    idea_description: ideaDescription,
+    ideaImg,
+    date_limit: dateLimit,
+    status_id: statusId,
+  };
+
+  try {
+    await tables.Idea.updateMulter(updatedIdea);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -141,6 +167,7 @@ module.exports = {
   browse,
   read,
   edit,
+  editMulter,
   editStatusId,
   editByModerator,
   add,

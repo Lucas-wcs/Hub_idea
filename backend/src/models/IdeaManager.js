@@ -15,6 +15,10 @@ class IdeaManager extends AbstractManager {
     idea_final_comment: ideaFinalComment,
     user_id: userId,
   }) {
+    if (ideaImg === undefined) {
+      // eslint-disable-next-line no-param-reassign
+      ideaImg = "/uploads/ideas/default-image-bk.png";
+    }
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} ( 
         title,
@@ -59,14 +63,13 @@ class IdeaManager extends AbstractManager {
   async update({
     title,
     idea_description: ideaDescription,
-    idea_image: ideaImage,
     date_limit: dateLimit,
     status_id: statusId,
     id,
   }) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET title=?, idea_description=?, idea_image=?, date_limit=?, status_id=? WHERE id=?`,
-      [title, ideaDescription, ideaImage, dateLimit, statusId, id]
+      `UPDATE ${this.table} SET title=?, idea_description=?, date_limit=?, status_id=? WHERE id=?`,
+      [title, ideaDescription, dateLimit, statusId, id]
     );
     return result;
   }
@@ -77,6 +80,21 @@ class IdeaManager extends AbstractManager {
       [statusId, id]
     );
 
+    return result;
+  }
+
+  async updateMulter({
+    title,
+    idea_description: ideaDescription,
+    ideaImg,
+    date_limit: dateLimit,
+    status_id: statusId,
+    id,
+  }) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET title=?, idea_description=?, idea_image=?, date_limit=?, status_id=? WHERE id=?`,
+      [title, ideaDescription, ideaImg, dateLimit, statusId, id]
+    );
     return result;
   }
 
