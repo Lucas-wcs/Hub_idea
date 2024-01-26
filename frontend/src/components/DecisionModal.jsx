@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function DecisionModal({
@@ -7,6 +8,12 @@ function DecisionModal({
   ideaTitle,
   ideaImage,
 }) {
+  const [decisionCommentLength, setDecisionCommentLength] = useState(0);
+
+  const handleDecisionCommentChange = (e) => {
+    setDecisionCommentLength(e.target.value.length);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -42,8 +49,12 @@ function DecisionModal({
                 id="decisioncomment"
                 cols="30"
                 rows="10"
+                maxLength="200"
                 placeholder="Mettre un commentaire si vous souhaitez expliquer votre décision  ... "
+                onChange={handleDecisionCommentChange}
               />
+              <p>{decisionCommentLength}/200</p>
+
               <div className="buttons-container">
                 <input
                   className="button-blue"
