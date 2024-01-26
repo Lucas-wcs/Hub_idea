@@ -17,6 +17,7 @@ function Idea() {
   const [buttonContre, setButtonContre] = useState(false);
   const [buttonPour, setButtonPour] = useState(false);
   const [message, setMessage] = useState("");
+  const [progress, setProgress] = useState(0);
 
   // comments
   const [comment, setComment] = useState("");
@@ -104,7 +105,7 @@ function Idea() {
       try {
         const userId = user.id;
         const ideaId = idea[0].id;
-        axios.post(
+        await axios.post(
           `${import.meta.env.VITE_BACKEND}/api/votes`,
           { user_id: userId, idea_id: ideaId, is_vote: 0 },
           {
@@ -121,7 +122,7 @@ function Idea() {
       try {
         const userId = user.id;
         const ideaId = idea[0].id;
-        axios.post(
+        await axios.post(
           `${import.meta.env.VITE_BACKEND}/api/votes`,
           { user_id: userId, idea_id: ideaId, is_vote: 1 },
           {
@@ -148,6 +149,14 @@ function Idea() {
     }
     return (forVote / n.length) * 100;
   };
+
+  useEffect(() => {
+    if (votes.length === 0) {
+      setProgress(0);
+    } else {
+      setProgress(percentage(votes));
+    }
+  }, [votes]);
 
   // modal for moderateur
   const handleClickDecisionModal = () => {
@@ -269,11 +278,7 @@ function Idea() {
             <h4>Description</h4>
             <p>{idea[0].idea_description}</p>
             <div className="idea-info-vote">
-              <progress
-                id="avancement"
-                value={votes.length === 0 ? 0 : percentage(votes)}
-                max="100"
-              />
+              <progress id="avancement" value={progress} max="100" />
               <div className="idea-info-vote-bottom">
                 <p>{votes.length} personnes ont voté</p>
                 <div className="idea-chosendate">
@@ -327,7 +332,7 @@ function Idea() {
                 );
               })}
             </div>
-            {idea[0].status_id === 5 ? (
+            {idea[0].status_id === 4 || idea[0].status_id === 5 ? (
               <div className="idea-vote-container">
                 <button
                   className={`button-moderateur ${
@@ -338,8 +343,7 @@ function Idea() {
                 >
                   Modérateur
                 </button>
-                {idea[0].status_id === 4 &&
-                user &&
+                {user &&
                 (!votes.some(
                   (item) =>
                     item.user_id === objectToFind1.user_id &&
