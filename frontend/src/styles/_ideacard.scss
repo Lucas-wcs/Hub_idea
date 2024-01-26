@@ -12,6 +12,11 @@
   margin-top: 1.5vh;
   margin-bottom: 3%;
   padding-bottom: 1%;
+  transition: transform 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+  }
 
   .status-image-container {
     position: relative;
@@ -114,7 +119,12 @@
         border-radius: 10px;
         cursor: pointer;
         background-color: var(--primary-color);
+        transition: transform 0.1s ease-in-out;
 
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.02);
+        }
         p {
           font-size: 1rem;
           color: var(--black-color);

@@ -6,10 +6,13 @@ import CreateIdeaModal from "../components/CreateIdeaModal";
 import UpdateIdeaModal from "../components/UpdateIdeaModal";
 import ValidateModale from "../components/ValidateModale";
 import { UserContext } from "../context/UserContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Home() {
   const revalidator = useRevalidator();
   const { ideas, statuses } = useLoaderData();
+  const { theme } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -97,6 +100,11 @@ function Home() {
       });
     }
     setIsOpenIdeaModal(false);
+    setInputIdea({
+      ideaTitle: "",
+      ideaDateLimit: "",
+      ideaDescription: "",
+    });
   };
 
   // handling 1st modal for creating idea
@@ -140,18 +148,11 @@ function Home() {
   };
 
   // reopen 1st create idea modal for draft
-  const handleOpenModalIdeaDraft = (
-    title,
-    dateLimit,
-    // image,
-    description,
-    ideaId
-  ) => {
+  const handleOpenModalIdeaDraft = (title, dateLimit, description, ideaId) => {
     setIsOpenUpdateIdeaModal((current) => !current);
     setDraftIdea({
       title,
       dateLimit,
-      // image,
       description,
       ideaId,
     });
@@ -300,7 +301,7 @@ function Home() {
         </div>
         <div className="button-container">
           <select
-            className="filter-input"
+            className={`filter-input ${theme === "dark" ? "dark" : "light"}`}
             value={statusFilter}
             onChange={handleStatusFilterChange}
           >
