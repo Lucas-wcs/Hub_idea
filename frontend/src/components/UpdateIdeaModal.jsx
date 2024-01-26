@@ -11,10 +11,17 @@ function UpdateIdeaModal({
   usersAssociated,
   setUsersAssociated,
   draftIdea,
+  handleClickUpdateCancelButton,
+  setUpdateImage,
 }) {
   const { theme } = useContext(ThemeContext);
   const [allUsers, setAllUsers] = useState([]);
   const { user } = useContext(UserContext);
+  const [file, setFile] = useState(draftIdea.draftImage);
+
+  const handleUploadImage = (e) => {
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
 
   const getUsers = async (e) => {
     try {
@@ -72,13 +79,6 @@ function UpdateIdeaModal({
 
   useEffect(() => {
     getUsers();
-    // const storedUsersAssociated = localStorage.getItem(
-    //   "usersAssociated",
-    //   usersAssociated
-    // );
-    // if (storedUsersAssociated) {
-    //   setUsersAssociated(JSON.parse(storedUsersAssociated));
-    // }
   }, []);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ function UpdateIdeaModal({
       >
         <div
           className="icon-close-container"
-          onClick={handleOpenModalIdeaDraft}
+          onClick={handleClickUpdateCancelButton}
           role="presentation"
         >
           <img src="images/icon_cross.png" alt="cross" />
@@ -136,13 +136,20 @@ function UpdateIdeaModal({
                 </label>
 
                 <div className="image-input-container">
-                  <img src="/images/default-image.png" alt="default" />
+                  <img
+                    src={file === null ? "/images/default-image.png" : file}
+                    alt="default"
+                  />
                   <input
                     className={`button-picture ${theme === "dark" && "dark"}`}
                     type="file"
                     id="ideaimage"
                     name="ideaimage"
                     accept="image/png, image/jpeg"
+                    onChange={handleUploadImage}
+                    onInput={(e) => {
+                      setUpdateImage(e.target.files[0]);
+                    }}
                   />
                 </div>
               </div>
@@ -247,10 +254,12 @@ UpdateIdeaModal.propTypes = {
   draftIdea: PropTypes.shape({
     title: PropTypes.string.isRequired,
     ideaId: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    draftImage: PropTypes.string.isRequired,
     dateLimit: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  handleClickUpdateCancelButton: PropTypes.func.isRequired,
+  setUpdateImage: PropTypes.func.isRequired,
 };
 
 export default UpdateIdeaModal;

@@ -6,10 +6,13 @@ import CreateIdeaModal from "../components/CreateIdeaModal";
 import UpdateIdeaModal from "../components/UpdateIdeaModal";
 import ValidateModale from "../components/ValidateModale";
 import { UserContext } from "../context/UserContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 function Home() {
   const revalidator = useRevalidator();
   const { ideas, statuses } = useLoaderData();
+  const { theme } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   const [isOpenIdeaModal, setIsOpenIdeaModal] = useState(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
@@ -19,6 +22,7 @@ function Home() {
   const [isOpenUpdateConfirmModal, setIsOpenUpdateConfirmModal] =
     useState(false);
   const [image, setImage] = useState();
+  const [updateImage, setUpdateImage] = useState();
   // const [newIdeaId, setNewIdeaId] = useState("");
   const [usersAssociated, setUsersAssociated] = useState([]);
   const { user } = useContext(UserContext);
@@ -41,10 +45,7 @@ function Home() {
     e.preventDefault();
     if (e.nativeEvent.submitter.value === "Brouillon") {
       navigate("/home");
-
-      // const ideaImage = "https://picsum.photos/300/600";
       const statusId = 1;
-
       const data = new FormData();
 
       data.append("title", inputIdea.ideaTitle);
@@ -85,9 +86,12 @@ function Home() {
           revalidator.revalidate();
         })
         .catch((error) => console.error(error));
-      e.target.title.value = "";
-      e.target.date.value = "";
-      e.target.description.value = "";
+      setInputIdea({
+        ideaTitle: "",
+        ideaDateLimit: "",
+        ideaDescription: "",
+      });
+      setImage(undefined);
     } else {
       setIsOpenConfirmModal((current) => !current);
       setInputIdea({
@@ -109,24 +113,23 @@ function Home() {
     setIsOpenConfirmModal(false);
     setIsOpenSubmitModal((current) => !current);
 
+    const data = new FormData();
+    const statusId = 2;
+
+    data.append("title", inputIdea.ideaTitle);
+    data.append("date_limit", inputIdea.ideaDateLimit);
+    data.append("idea_description", inputIdea.ideaDescription);
+    data.append("status_id", statusId);
+    data.append("user_id", user.id);
+    data.append("ideaImage", image);
+
     if (button === 1) {
       axios
-        .post(
-          `${import.meta.env.VITE_BACKEND}/api/ideas`,
-          {
-            title: inputIdea.ideaTitle,
-            date_limit: inputIdea.ideaDateLimit,
-            idea_image: "idea-image",
-            idea_description: inputIdea.ideaDescription,
-            status_id: 2,
-            user_id: user.id,
+        .post(`${import.meta.env.VITE_BACKEND}/api/ideas`, data, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        )
+        })
         .then(() => {
           // TODO update users associeted
         })
@@ -143,7 +146,7 @@ function Home() {
   const handleOpenModalIdeaDraft = (
     title,
     dateLimit,
-    // image,
+    draftImage,
     description,
     ideaId
   ) => {
@@ -151,10 +154,14 @@ function Home() {
     setDraftIdea({
       title,
       dateLimit,
-      // image,
+      draftImage,
       description,
       ideaId,
     });
+  };
+  // handling button to close update modal
+  const handleClickUpdateCancelButton = () => {
+    setIsOpenUpdateIdeaModal(false);
   };
 
   // handle submit 1st draft modal
@@ -170,54 +177,106 @@ function Home() {
       statusId = 2;
     }
 
-    const title = e.target.title.value;
-    const limitDate = e.target.date.value;
-    const ideaImage = "https://picsum.photos/300/600";
-    const description = e.target.description.value;
+    const updateData = new FormData();
 
-    try {
-      await axios
-        .put(
-          `${import.meta.env.VITE_BACKEND}/api/ideas/${draftIdea.ideaId}`,
-          {
-            title,
-            date_limit: limitDate,
-            idea_image: ideaImage,
-            idea_description: description,
-            status_id: statusId,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+    updateData.append("title", e.target.title.value);
+    updateData.append("date_limit", e.target.date.value);
+    updateData.append("idea_description", e.target.description.value);
+    updateData.append("status_id", statusId);
+    updateData.append("user_id", user.id);
+    updateData.append("ideaImage", updateImage);
+
+    if (updateImage === undefined) {
+      const title = e.target.title.value;
+      const limitDate = e.target.date.value;
+      const ideaImage = "https://picsum.photos/300/600";
+      const description = e.target.description.value;
+
+      try {
+        await axios
+          .put(
+            `${import.meta.env.VITE_BACKEND}/api/ideas/${draftIdea.ideaId}`,
+            {
+              title,
+              date_limit: limitDate,
+              idea_image: ideaImage,
+              idea_description: description,
+              status_id: statusId,
             },
-          }
-        )
-        .then(() => {
-          axios
-            .put(
-              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
-              {
-                idea_id: draftIdea.ideaId,
-                usersAssociated,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
               },
-              {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+            }
+          )
+          .then(() => {
+            axios
+              .put(
+                `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+                {
+                  idea_id: draftIdea.ideaId,
+                  usersAssociated,
                 },
-              }
-            )
-            .then(() => {
-              // TODO pop up confirmation post
-              revalidator.revalidate();
-            })
-            .catch((error) => {
-              revalidator.revalidate();
-              console.error(error);
-            });
-        })
-        .catch((error) => console.error(error));
-    } catch (error) {
-      console.error(error);
+                {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                }
+              )
+              .then(() => {
+                // TODO pop up confirmation post
+                revalidator.revalidate();
+              })
+              .catch((error) => {
+                revalidator.revalidate();
+                console.error(error);
+              });
+          })
+          .catch((error) => console.error(error));
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        await axios
+          .put(
+            `${import.meta.env.VITE_BACKEND}/api/ideas/change-image/${
+              draftIdea.ideaId
+            }`,
+            updateData,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          )
+          .then(() => {
+            axios
+              .put(
+                `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+                {
+                  idea_id: draftIdea.ideaId,
+                  usersAssociated,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                }
+              )
+              .then(() => {
+                // TODO pop up confirmation post
+                revalidator.revalidate();
+              })
+              .catch((error) => {
+                revalidator.revalidate();
+                console.error(error);
+              });
+          })
+          .catch((error) => console.error(error));
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -279,6 +338,9 @@ function Home() {
             usersAssociated={usersAssociated}
             setUsersAssociated={setUsersAssociated}
             draftIdea={draftIdea}
+            handleClickUpdateCancelButton={handleClickUpdateCancelButton}
+            updateImage={updateImage}
+            setUpdateImage={setUpdateImage}
           />
         </div>
       )}
@@ -300,7 +362,7 @@ function Home() {
         </div>
         <div className="button-container">
           <select
-            className="filter-input"
+            className={`filter-input ${theme === "dark" ? "dark" : "light"}`}
             value={statusFilter}
             onChange={handleStatusFilterChange}
           >
@@ -341,7 +403,7 @@ function Home() {
                 statusName={statuses[idea.status_id - 1].status_name}
                 createdUserFirstname={idea.firstname}
                 image={`${import.meta.env.VITE_BACKEND}${idea.idea_image}`}
-                key={idea.title} // Utiliser l'ID de l'idée comme clé plutôt que le titre
+                key={idea.id} // Utiliser l'ID de l'idée comme clé plutôt que le titre
                 handleOpenModalIdeaDraft={handleOpenModalIdeaDraft}
               />
             );

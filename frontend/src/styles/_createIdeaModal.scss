@@ -107,6 +107,8 @@
       .form-image-container {
         img {
           width: 16vw;
+          max-height: 20vh;
+          object-fit: cover;
         }
         .image-input-container {
           padding-top: 10px;
