@@ -8,10 +8,9 @@
     height: 2vh;
     align-items: center;
     margin-left: 20px;
-    margin-top: 50px;
 
     .clickable-image {
-      width: 3vw;
+      width: 2vw;
     }
   }
   .profile-form-container {
@@ -313,7 +312,7 @@
         }
         .container-profile-input {
           width: 65vw;
-          height: 4vh;
+          height: 6vh;
           .profile-input-pass {
             &::placeholder {
               font-size: 10px;
@@ -331,7 +330,7 @@
         width: 65vw;
 
         button {
-          font-size: 10px;
+          font-size: 15px;
         }
       }
     }
