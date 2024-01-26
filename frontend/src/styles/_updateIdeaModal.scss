@@ -1,4 +1,4 @@
-.modal-idea-container {
+.update-modal-idea-container {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -13,7 +13,7 @@
 
   .create-idea-container {
     width: 70vw;
-    height: 130%;
+    height: 150%;
     margin: 50px 100px 50px 100px;
     background-color: var(--senary-color);
 
@@ -207,10 +207,48 @@
       }
     }
   }
+  .popup-idea-error {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .popup-content-idea-error {
+    background: var(--primary-color);
+    padding: 20px;
+    border-radius: 4px;
+    max-width: fit-content;
+    max-height: fit-content;
+
+    p {
+      font-family: var(--text-font);
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
+  .popup-close-button-idea-error {
+    cursor: pointer;
+    background-color: var(--senary-color);
+    height: 30px;
+    width: 100px;
+    font-size: 1rem;
+    font-family: var(--text-font);
+  }
 
   // responsive:
   @media (max-width: 1024px) and (min-width: 769px) {
-    .create-idea-container {
+    .update-idea-container {
       width: 70vw;
       height: 150%;
       margin: 100px 100px 200px 100px;
@@ -255,75 +293,25 @@
 
 // responsive:
 @media (max-width: 768px) {
-  .modal-idea-container {
-    width: 100%;
+  .update-modal-idea-container {
     .create-idea-container {
-      width: 100vw;
-      height: 140%;
+      height: 120%;
       margin: 0;
+      width: 100%;
 
       .form-container {
-        .form-title-container {
-          display: flex;
-          flex-direction: column;
-
-          input {
-            height: 3vh;
-            width: 80vw;
-          }
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        form {
+          width: 80vw;
         }
-        .form-date-container {
-          label {
-            padding-right: 3vw;
-          }
-          input {
-            width: 50vw;
-          }
-        }
-        .form-image-container {
-          img {
-            width: 60vw;
-            padding-bottom: 3vh;
-          }
-          .image-input-container {
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
-          }
-        }
-        .form-impacted-person-container {
-          overflow: scroll;
-          height: 20vh;
-          table {
-            width: 80vw;
-            background-color: white;
-            border-collapse: collapse;
-            border: 2px solid var(--quinary-color);
-            border-radius: 5px;
-            text-align: left;
-          }
-          img {
-            height: 3vh;
-          }
-          .checkbox-avatar {
-            display: flex;
-            justify-content: space-around;
-            gap: 1.5vw;
-
-            input {
-              transform: scale(1.2);
-              margin: 0.4vw;
-              accent-color: #bae3e3;
-            }
-          }
-        }
-        .form-description-container {
-          display: flex;
-          flex-direction: column;
-
-          textarea {
-            width: 80vw;
-            height: 15vh;
+        .modal-idea-container {
+          width: 50%;
+          .create-idea-container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
           }
         }
       }

@@ -1,4 +1,4 @@
-.modal-idea-container {
+.create-modal-idea-container {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -13,7 +13,7 @@
 
   .create-idea-container {
     width: 70vw;
-    height: 130%;
+    height: 150%;
     margin: 50px 100px 50px 100px;
     background-color: var(--senary-color);
 
@@ -293,20 +293,26 @@
 
 // responsive:
 @media (max-width: 768px) {
-  .create-idea-container {
-    .form-container {
+  .create-modal-idea-container {
+    .create-idea-container {
+      height: 120%;
+      margin: 90px 0 0 0;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      form {
-        width: 80vw;
-      }
-      .modal-idea-container {
-        width: 50%;
-        .create-idea-container {
-          width: 100vw;
-          height: 100vh;
-          margin: 0;
+
+      .form-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        form {
+          width: 80vw;
+        }
+        .modal-idea-container {
+          width: 50%;
+          .create-idea-container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+          }
         }
       }
     }

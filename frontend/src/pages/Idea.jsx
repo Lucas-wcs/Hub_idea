@@ -327,7 +327,7 @@ function Idea() {
                 );
               })}
             </div>
-            {idea[0].status_id === 4 || idea[0].status_id === 5 ? (
+            {idea[0].status_id === 5 ? (
               <div className="idea-vote-container">
                 <button
                   className={`button-moderateur ${
@@ -338,7 +338,8 @@ function Idea() {
                 >
                   Modérateur
                 </button>
-                {user &&
+                {idea[0].status_id === 4 &&
+                user &&
                 (!votes.some(
                   (item) =>
                     item.user_id === objectToFind1.user_id &&

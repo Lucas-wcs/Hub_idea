@@ -70,7 +70,7 @@ function CreateIdeaModal({
   }, []);
 
   return (
-    <div className="modal-idea-container">
+    <div className="create-modal-idea-container">
       <div
         className={`create-idea-container ${
           theme === "dark" ? "dark" : "light"
