@@ -23,8 +23,16 @@ function Idea() {
   const [comments, setComments] = useState([]);
 
   // to show or not vote buttons
-  const objectToFind1 = { user_id: user.id, idea_id: idea[0].id, is_vote: 1 };
-  const objectToFind2 = { user_id: user.id, idea_id: idea[0].id, is_vote: 0 };
+  const objectToFind1 = user && {
+    user_id: user.id,
+    idea_id: idea[0].id,
+    is_vote: 1,
+  };
+  const objectToFind2 = user && {
+    user_id: user.id,
+    idea_id: idea[0].id,
+    is_vote: 0,
+  };
 
   const IdeaComments = async () => {
     try {
@@ -61,6 +69,7 @@ function Idea() {
     } catch (error) {
       console.error("Erreur", error);
     }
+    setComment("");
   };
 
   useEffect(() => {
@@ -290,7 +299,7 @@ function Idea() {
               {showImpactedUsers.map((impacted) => {
                 return (
                   <div
-                    key={impacted.user_id}
+                    key={`${impacted.userId}-${idea[0].id}`}
                     className="impacteduser-image-container"
                   >
                     {impacted.image_profil ? (

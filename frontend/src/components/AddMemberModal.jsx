@@ -19,7 +19,7 @@ function AddMemberModal({ handleOpenModalAddMember }) {
     try {
       // eslint-disable-next-line no-unused-vars
       const res = await axios.post(
-        "http://localhost:3310/api/users",
+        `${import.meta.env.VITE_BACKEND}/api/users`,
         {
           firstname,
           lastname,

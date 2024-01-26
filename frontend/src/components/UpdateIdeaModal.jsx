@@ -252,7 +252,7 @@ UpdateIdeaModal.propTypes = {
   setUsersAssociated: PropTypes.func.isRequired,
   draftIdea: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    ideaId: PropTypes.string.isRequired,
+    ideaId: PropTypes.number.isRequired,
     draftImage: PropTypes.string.isRequired,
     dateLimit: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

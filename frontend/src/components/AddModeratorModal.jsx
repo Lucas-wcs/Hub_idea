@@ -9,7 +9,7 @@ function AddModeratorModal({ handleOpenModalAddModerator, users }) {
   const handleAddModerator = (id) => {
     axios
       .put(
-        `http://localhost:3310/api/users/moderator/${id}`,
+        `${import.meta.env.VITE_BACKEND}/api/users/moderator/${id}`,
         {},
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
