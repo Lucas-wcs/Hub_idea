@@ -22,6 +22,10 @@ function Idea() {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
+  // to show or not vote buttons
+  const objectToFind1 = { user_id: user.id, idea_id: idea[0].id, is_vote: 1 };
+  const objectToFind2 = { user_id: user.id, idea_id: idea[0].id, is_vote: 0 };
+
   const IdeaComments = async () => {
     try {
       const response = await axios.get(
@@ -325,37 +329,53 @@ function Idea() {
                 >
                   Modérateur
                 </button>
-                <button
-                  className={`button-vote vote-pour ${
-                    theme === "dark" ? "dark" : "light"
-                  }`}
-                  type="button"
-                  value="contre"
-                  name="name"
-                  onClick={handleClickVote}
-                  disabled={buttonContre}
-                >
-                  <img
-                    src="/images/icons_pouces_bas.png"
-                    alt="logo_pouce_bas"
-                  />
-                  Je suis contre
-                </button>
-                <button
-                  className={`button-vote vote-contre ${
-                    theme === "dark" ? "dark" : "light"
-                  }`}
-                  type="submit"
-                  value="pour"
-                  onClick={handleClickVote}
-                  disabled={buttonPour}
-                >
-                  <img
-                    src="/images/icons_pouce_haut.png"
-                    alt="logo_pouce_haut"
-                  />
-                  Je suis pour
-                </button>
+                {user &&
+                  (!votes.some(
+                    (item) =>
+                      item.user_id === objectToFind1.user_id &&
+                      item.idea_id === objectToFind1.idea_id &&
+                      item.is_vote === objectToFind1.is_vote
+                  ) ||
+                    votes.some(
+                      (item) =>
+                        item.user_id === objectToFind2.user_id &&
+                        item.idea_id === objectToFind2.idea_id &&
+                        item.is_vote === objectToFind2.is_vote
+                    )) && (
+                    <>
+                      <button
+                        className={`button-vote vote-pour ${
+                          theme === "dark" ? "dark" : "light"
+                        }`}
+                        type="button"
+                        value="contre"
+                        name="name"
+                        onClick={handleClickVote}
+                        disabled={buttonContre}
+                      >
+                        <img
+                          src="/images/icons_pouces_bas.png"
+                          alt="logo_pouce_bas"
+                        />
+                        Je suis contre
+                      </button>
+                      <button
+                        className={`button-vote vote-contre ${
+                          theme === "dark" ? "dark" : "light"
+                        }`}
+                        type="submit"
+                        value="pour"
+                        onClick={handleClickVote}
+                        disabled={buttonPour}
+                      >
+                        <img
+                          src="/images/icons_pouce_haut.png"
+                          alt="logo_pouce_haut"
+                        />
+                        Je suis pour
+                      </button>
+                    </>
+                  )}
               </div>
             ) : (
               <div className="decision-result-container">
