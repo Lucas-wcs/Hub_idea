@@ -159,7 +159,10 @@ function HomeAdministrator() {
       )}
       {isOpenMemberModal && (
         <div className="addMember-modal">
-          <AddMemberModal handleOpenModalAddMember={handleOpenModalAddMember} />
+          <AddMemberModal
+            handleOpenModalAddMember={handleOpenModalAddMember}
+            setIsOpenMemberModal={setIsOpenMemberModal}
+          />
         </div>
       )}
     </div>

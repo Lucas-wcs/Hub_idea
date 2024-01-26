@@ -21,14 +21,14 @@ function AddMemberModal({ handleOpenModalAddMember }) {
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND}/api/users`,
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        },
-        {
           firstname,
           lastname,
           email,
           is_administrator: administrator,
           is_moderator: moderator,
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
       revalidator.revalidate();
@@ -37,6 +37,7 @@ function AddMemberModal({ handleOpenModalAddMember }) {
       e.target.email.value = "";
       e.target.administrator.checked = false;
       e.target.moderator.checked = false;
+      handleOpenModalAddMember();
     } catch (err) {
       console.error(err);
     }

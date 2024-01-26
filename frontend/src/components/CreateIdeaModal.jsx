@@ -21,10 +21,15 @@ function CreateIdeaModal({
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [file, setFile] = useState("default");
+  const [titleLength, setTitleLength] = useState(0);
+
   const handleUploadImage = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
-
+  const handleTitleChange = (e) => {
+    setInputIdea({ ...inputIdea, ideaTitle: e.target.value });
+    setTitleLength(e.target.value.length);
+  };
   // const [fileName, setFileName] = useState("");
 
   const handleDescriptionChange = (e) => {
@@ -89,13 +94,13 @@ function CreateIdeaModal({
                   type="text"
                   name="title"
                   id="title"
+                  maxLength="50"
                   className={`input-border ${theme === "dark" && "dark"}`}
                   required
+                  onChange={handleTitleChange}
                   value={inputIdea.ideaTitle}
-                  onChange={(e) =>
-                    setInputIdea({ ...inputIdea, ideaTitle: e.target.value })
-                  }
                 />
+                <p>{titleLength}/50</p>
               </div>
               <div className="form-date-container">
                 {/* Date de fin */}
@@ -175,7 +180,7 @@ function CreateIdeaModal({
                               <img
                                 className="avatar"
                                 title="Profil"
-                                src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                                src={`${import.meta.env.VITE_BACKEND}${
                                   person.image_profil
                                 }`}
                                 alt="profile"

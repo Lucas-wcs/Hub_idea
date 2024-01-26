@@ -203,7 +203,7 @@ function Idea() {
   const getImpactedUsers = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api//impacted-users/ideas/${
+        `${import.meta.env.VITE_BACKEND}/api/impacted-users/ideas/${
           idea[0].id
         }`,
         {
@@ -306,7 +306,7 @@ function Idea() {
                       <img
                         className="img-impacted-user"
                         title={`${impacted.firstname} ${impacted.lastname}`}
-                        src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                        src={`${import.meta.env.VITE_BACKEND}${
                           impacted.image_profil
                         }`}
                         alt="profile"
@@ -339,52 +339,56 @@ function Idea() {
                   Modérateur
                 </button>
                 {user &&
-                  (!votes.some(
+                (!votes.some(
+                  (item) =>
+                    item.user_id === objectToFind1.user_id &&
+                    item.idea_id === objectToFind1.idea_id &&
+                    item.is_vote === objectToFind1.is_vote
+                ) ||
+                  votes.some(
                     (item) =>
-                      item.user_id === objectToFind1.user_id &&
-                      item.idea_id === objectToFind1.idea_id &&
-                      item.is_vote === objectToFind1.is_vote
-                  ) ||
-                    votes.some(
-                      (item) =>
-                        item.user_id === objectToFind2.user_id &&
-                        item.idea_id === objectToFind2.idea_id &&
-                        item.is_vote === objectToFind2.is_vote
-                    )) && (
-                    <>
-                      <button
-                        className={`button-vote vote-pour ${
-                          theme === "dark" ? "dark" : "light"
-                        }`}
-                        type="button"
-                        value="contre"
-                        name="name"
-                        onClick={handleClickVote}
-                        disabled={buttonContre}
-                      >
-                        <img
-                          src="/images/icons_pouces_bas.png"
-                          alt="logo_pouce_bas"
-                        />
-                        Je suis contre
-                      </button>
-                      <button
-                        className={`button-vote vote-contre ${
-                          theme === "dark" ? "dark" : "light"
-                        }`}
-                        type="submit"
-                        value="pour"
-                        onClick={handleClickVote}
-                        disabled={buttonPour}
-                      >
-                        <img
-                          src="/images/icons_pouce_haut.png"
-                          alt="logo_pouce_haut"
-                        />
-                        Je suis pour
-                      </button>
-                    </>
-                  )}
+                      item.user_id === objectToFind2.user_id &&
+                      item.idea_id === objectToFind2.idea_id &&
+                      item.is_vote === objectToFind2.is_vote
+                  )) ? (
+                  <>
+                    <button
+                      className={`button-vote vote-pour ${
+                        theme === "dark" ? "dark" : "light"
+                      }`}
+                      type="button"
+                      value="contre"
+                      name="name"
+                      onClick={handleClickVote}
+                      disabled={buttonContre}
+                    >
+                      <img
+                        src="/images/icons_pouces_bas.png"
+                        alt="logo_pouce_bas"
+                      />
+                      Je suis contre
+                    </button>
+                    <button
+                      className={`button-vote vote-contre ${
+                        theme === "dark" ? "dark" : "light"
+                      }`}
+                      type="submit"
+                      value="pour"
+                      onClick={handleClickVote}
+                      disabled={buttonPour}
+                    >
+                      <img
+                        src="/images/icons_pouce_haut.png"
+                        alt="logo_pouce_haut"
+                      />
+                      Je suis pour
+                    </button>
+                  </>
+                ) : (
+                  <p className="text-vot">
+                    Vous avez déjà voté pour cette idée.
+                  </p>
+                )}
               </div>
             ) : (
               <div className="decision-result-container">
@@ -424,9 +428,7 @@ function Idea() {
                 <img
                   className="img-comment-user"
                   title="Profil"
-                  src={`${import.meta.env.VITE_BACKEND}/uploads/${
-                    user.image_profil
-                  }`}
+                  src={`${import.meta.env.VITE_BACKEND}${user.image_profil}`}
                   alt="profile"
                 />
               ) : (
@@ -481,7 +483,7 @@ function Idea() {
                       <img
                         className="img-comment-user"
                         title="Profil"
-                        src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                        src={`${import.meta.env.VITE_BACKEND}${
                           com.image_profil
                         }`}
                         alt="profile"
