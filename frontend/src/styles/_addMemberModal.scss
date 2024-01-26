@@ -156,14 +156,16 @@
 
 @media screen and (max-width: 750px) {
   .addMemberModal {
-    width: 60vw;
+    width: 80vw;
 
     .inputs {
       width: 85%;
     }
 
     button {
-      width: 60%;
+      width: 70%;
+      height: 100%;
+      padding: 2%;
     }
 
     h4 {
