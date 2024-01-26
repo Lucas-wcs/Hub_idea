@@ -110,7 +110,7 @@
   }
 
   .button-container {
-    width: 120%;
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 1%;
@@ -119,6 +119,8 @@
   button {
     width: 30%;
     height: 100%;
+    border: none;
+    border-radius: 3px;
     background-color: var(--primary-color);
     font-family: var(--title-font);
     font-weight: 300;
