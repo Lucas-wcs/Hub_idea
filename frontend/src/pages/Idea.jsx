@@ -194,7 +194,7 @@ function Idea() {
   const getImpactedUsers = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/api//impacted-users/ideas/${
+        `${import.meta.env.VITE_BACKEND}/api/impacted-users/ideas/${
           idea[0].id
         }`,
         {

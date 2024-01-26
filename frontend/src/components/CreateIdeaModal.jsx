@@ -196,7 +196,7 @@ function CreateIdeaModal({
                               <img
                                 className="avatar"
                                 title="Profil"
-                                src={`${import.meta.env.VITE_BACKEND}/uploads/${
+                                src={`${import.meta.env.VITE_BACKEND}${
                                   person.image_profil
                                 }`}
                                 alt="profile"
