@@ -62,8 +62,6 @@ function Home() {
           },
         })
         .then((response) => {
-          // TODO change. logic in backend Menager
-
           axios
             .post(
               `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
@@ -131,25 +129,23 @@ function Home() {
           },
         })
         .then((response) => {
-          // TODO change. logic in backend Menager
-
-          axios
-            .post(
-              `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
-              {
-                idea_id: response.data.insertId.insertId,
-                usersAssociated,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+          if (usersAssociated.length > 0) {
+            axios
+              .post(
+                `${import.meta.env.VITE_BACKEND}/api/impacted-users`,
+                {
+                  idea_id: response.data.insertId.insertId,
+                  usersAssociated,
                 },
-              }
-            )
-            .then(() => {
-              // TODO pop up confirmation post
-            })
-            .catch((error) => console.error(error));
+                {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                }
+              )
+              .then(() => {})
+              .catch((error) => console.error(error));
+          }
         })
         .then(() => {
           revalidator.revalidate();

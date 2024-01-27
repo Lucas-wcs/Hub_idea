@@ -46,7 +46,7 @@ const add = async (req, res, next) => {
     if (response.affectedRows > 0) {
       res.sendStatus(201);
     } else {
-      res.sendStatus(500);
+      res.status(200).send("No user impacted");
     }
   } catch (err) {
     res.sendStatus(500);
