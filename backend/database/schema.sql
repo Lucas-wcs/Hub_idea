@@ -308,9 +308,9 @@ CREATE TABLE `Impacted_user` (
     `user_id` INT, `idea_id` INT, CONSTRAINT `fk_impacted_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE, CONSTRAINT `fk_impacted_user_idea_id` FOREIGN KEY (`idea_id`) REFERENCES `Idea` (`id`) ON DELETE CASCADE, PRIMARY KEY (`user_id`, `idea_id`)
 );
 
-INSERT INTO Impacted_user (user_id, idea_id)
-VALUES 
-    (5, 3),
+INSERT INTO
+    Impacted_user (user_id, idea_id)
+VALUES (5, 3),
     (6, 4),
     (7, 5),
     (8, 6),
@@ -402,537 +402,539 @@ CREATE TABLE `Comment` (
 INSERT INTO
     Comment (user_id, idea_id, description)
 VALUES (
-        3, 1, "Super idée! J'adore la créativité derrière cela. "
+        1, 1, "Excellent concept! Je suis impatient de participer à ce repas de Noël."
     ),
     (
-        2, 3, "C'est une idée intéressante, mais peut-être pourriez-vous explorer davantage?  Cela pourrait résoudre certains défis potentiels et rendre l'idée encore plus robuste"
+        2, 1, "Bonne idée! Ça va vraiment créer une atmosphère festive."
     ),
     (
-        1, 3, "Je suis vraiment enthousiaste à propos de cette idée!"
+        3, 1, "J'adore l'idée du repas de Noël. Ça renforce vraiment l'esprit d'équipe."
     ),
     (
-        6, 1, "C'est une excellente initiative! J'attends avec impatience ce repas de Noël festif."
+        4, 1, "C'est une excellente initiative! On peut peut-être organiser des activités ludiques aussi."
     ),
     (
-        7, 1, "Peut-on envisager des options végétariennes pour le repas? Ce serait génial pour ceux qui ne mangent pas de viande."
+        5, 1, "Je suis partant! Ça va être génial de célébrer les fêtes ensemble."
     ),
     (
-        8, 1, "J'aime cette idée de rassembler tout le monde pour célébrer les fêtes. Comptez sur moi pour aider à l'organisation."
+        6, 2, "Il est temps de changer ces fenêtres. Merci pour la suggestion."
     ),
     (
-        9, 1, "Est-ce que quelqu'un peut prendre en charge la décoration? Je suis partant pour contribuer!"
+        7, 2, "On ressent vraiment le froid dans le bureau 402. Bonne idée de changer les fenêtres."
     ),
     (
-        10, 1, "Je propose d'organiser des jeux et des activités amusantes pendant le repas. Qu'en pensez-vous?"
+        8, 2, "Je suis d'accord. Les fenêtres doivent être remplacées pour assurer le confort."
     ),
     (
-        1, 2, "C'est une demande légitime. Des fenêtres défectueuses peuvent vraiment affecter le confort au travail."
+        9, 2, "C'est une priorité. Les fenêtres défectueuses nuisent à la productivité."
     ),
     (
-        4, 2, "On pourrait peut-être obtenir des devis pour évaluer le coût de ce projet? Cela faciliterait la prise de décision."
+        10, 2, "On devrait vraiment s'occuper de cela rapidement. Merci de soulever ce point."
     ),
     (
-        7, 2, "Je suis d'accord, il est temps de remédier à ce problème. Allons de l'avant avec le remplacement des fenêtres."
+        5, 3, "Une télé dans la salle de pause serait génial! Ça détendra l'atmosphère."
     ),
     (
-        9, 2, "Je peux contribuer à la recherche de fournisseurs de fenêtres de qualité. Qui d'autre est partant?"
+        6, 3, "J'aime l'idée d'avoir une télé dans la salle de pause. Ça ajoutera une touche de détente."
     ),
     (
-        11, 2, "Je suggère d'opter pour des fenêtres écoénergétiques pour réduire notre empreinte environnementale."
+        7, 3, "Belle proposition! Cela ajouterait une ambiance conviviale à la salle de pause."
     ),
     (
-        2, 3, "Bonne idée! Une télé dans la salle de pause pourrait vraiment détendre l'atmosphère."
+        8, 3, "Je suis pour! Ça rendra les pauses plus agréables."
     ),
     (
-        5, 3, "Je propose de créer une liste de films et de séries que nous pourrions regarder ensemble. Des suggestions?"
+        9, 3, "C'est une excellente idée. On peut organiser des soirées cinéma!"
     ),
     (
-        8, 3, "Cela pourrait également être une opportunité pour des séances de jeux vidéo en équipe. Qui est partant pour une partie?"
+        10, 4, "Une journée d'intégration est une excellente idée! Ça renforce les liens entre les équipes."
     ),
     (
-        10, 3, "Pouvons-nous également envisager des abonnements à des plateformes de streaming pour avoir plus de choix?"
+        11, 4, "Je suis partant! Les nouvelles recrues seront ravies."
     ),
     (
-        12, 3, "Je suis partant pour contribuer à l'installation de la télé et à la création d'un système de réservation pour son utilisation."
+        12, 4, "C'est une initiative louable. Ça créera un environnement accueillant."
     ),
     (
-        3, 4, "Je pense qu'une journée d'intégration serait formidable pour renforcer les liens entre les équipes. J'apporte mes idées!"
+        13, 4, "On peut organiser des activités amusantes pour favoriser la cohésion."
     ),
     (
-        6, 4, "Peut-on organiser des activités de team-building amusantes? Cela facilitera la communication entre les nouveaux et les anciens employés."
+        14, 4, "J'apprécie l'idée de la journée d'intégration. Ça montre notre engagement envers les nouveaux employés."
     ),
     (
-        9, 4, "Je suggère de faire participer différentes équipes à des jeux collaboratifs pour renforcer la cohésion."
+        15, 5, "Un programme de mentorat interne serait bénéfique pour le développement professionnel."
     ),
     (
-        11, 4, "Je peux aider à planifier des activités de groupe. Pouvons-nous commencer à discuter des idées spécifiques?"
+        16, 5, "Je suis totalement pour le mentorat interne. Ça aidera les employés juniors."
     ),
     (
-        13, 4, "Nous pourrions organiser un déjeuner informel pour favoriser les conversations. Qui veut prendre en charge la logistique de la nourriture?"
+        1, 5, "Belle proposition! Ça favorisera le transfert de connaissances."
     ),
-
-(
-    1, 5, "Le mentorat peut vraiment aider les nouveaux employés à s'intégrer rapidement. Je suis prêt à être mentor!"
-),
-(
-    4, 5, "Nous pourrions créer des paires de mentorat basées sur les compétences pour maximiser les avantages. Des suggestions?"
-),
-(
-    7, 5, "Il serait également utile de prévoir des séances régulières de suivi pour évaluer le progrès des paires de mentorat."
-),
-(
-    10, 5, "Je suis intéressé à être mentoré. Comment pouvons-nous faciliter la mise en place de ce programme?"
-),
-(
-    12, 5, "Un programme de mentorat formel pourrait vraiment améliorer la transmission des connaissances au sein de l'équipe. J'appuie cette idée!"
-),
-(
-    2, 6, "Je suggère d'inclure des espaces de travail flexibles pour favoriser la collaboration inter-équipes."
-),
-(
-    5, 6, "Pourquoi ne pas organiser une séance de remue-méninges pour recueillir des idées sur l'amélioration des espaces de travail?"
-),
-(
-    8, 6, "Je suis en faveur d'une approche centrée sur l'ergonomie pour garantir le bien-être des employés dans leurs postes de travail."
-),
-(
-    11, 6, "Pouvons-nous envisager d'intégrer des zones de détente avec des plantes pour créer un environnement plus apaisant?"
-),
-(
-    13, 6, "C'est une excellente initiative! Je suis prêt à contribuer à la réalisation de cette amélioration."
-),
-(
-    1, 7, "Les formations inter-équipes peuvent renforcer la synergie entre les départements. Quels sujets spécifiques devrions-nous aborder?"
-),
-(
-    4, 7, "Je propose d'inclure des sessions interactives pour encourager la participation active des équipes lors des formations."
-),
-(
-    7, 7, "Est-ce que des formations en ligne pourraient également être envisagées pour la flexibilité des horaires des employés?"
-),
-(
-    10, 7, "Je suis partant pour partager mes compétences lors de ces formations inter-équipes. Qui est intéressé par quel sujet?"
-),
-(
-    12, 7, "C'est une excellente opportunité d'apprentissage mutuel. Nous pourrions également inviter des experts externes pour certaines sessions."
-),
-(
-    2, 8, "Je suggère d'organiser des ateliers pratiques pour encourager les employés à adopter des habitudes écologiques au quotidien."
-),
-(
-    5, 8, "Pouvons-nous envisager d'utiliser des matériaux recyclés pour les fournitures de bureau et le mobilier?"
-),
-(
-    8, 8, "Je suis passionné par les initiatives écologiques. Je peux coordonner la création de supports de sensibilisation visuels."
-),
-(
-    11, 8, "Comment pouvons-nous mesurer l'impact écologique positif de cette campagne au fil du temps?"
-),
-(
-    13, 8, "Je propose d'instaurer des défis mensuels pour encourager les employés à adopter des pratiques écoresponsables."
-),
-(
-    1, 9, "Les récompenses peuvent vraiment motiver les employés. Pouvons-nous discuter des types de récompenses à mettre en place?"
-),
-(
-    4, 9, "Je suggère d'inclure des reconnaissances publiques pour valoriser les réalisations individuelles."
-),
-(
-    7, 9, "Pourquoi ne pas créer un comité de récompenses impliquant des employés de différents départements?"
-),
-(
-    10, 9, "Je suis prêt à contribuer à la conception d'un système de points pour suivre les performances des employés."
-),
-(
-    12, 9, "C'est une excellente idée! Des récompenses peuvent également renforcer l'esprit d'équipe."
-),
-(
-    2, 10, "Je suis partant pour aider à organiser ces événements sociaux. Des suggestions sur les types d'événements que nous pourrions organiser?"
-),
-(
-    5, 10, "Pouvons-nous établir un calendrier annuel d'événements pour que les employés puissent planifier à l'avance?"
-),
-(
-    8, 10, "Je propose d'inclure des activités qui favorisent l'intégration des nouveaux employés lors de ces événements."
-),
-(
-    11, 10, "Est-ce que des événements virtuels pourraient également être envisagés pour inclure les employés en télétravail?"
-),
-(
-    13, 10, "C'est une excellente idée pour renforcer les liens entre les collègues en dehors de l'environnement de travail."
-),
-(
-    1, 11, "Une application interne peut vraiment améliorer la communication. Quels sont les fonctionnalités prioritaires à inclure?"
-),
-(
-    4, 11, "Je propose d'organiser des séances de formation pour aider les employés à utiliser efficacement l'application."
-),
-(
-    7, 11, "Comment pouvons-nous assurer la sécurité des données lors de l'utilisation de cette application interne?"
-),
-(
-    10, 11, "Je suis prêt à collaborer avec l'équipe informatique pour le développement de cette application."
-),
-(
-    12, 11, "Cela pourrait être une excellente initiative pour rationaliser nos processus internes. J'appuie cette idée!"
-),
-(
-    2, 12, "Je suggère d'inclure des séances de méditation et des cours de yoga dans le programme de bien-être."
-),
-(
-    5, 12, "Pouvons-nous également organiser des ateliers sur la gestion du stress et l'équilibre travail-vie personnelle?"
-),
-(
-    8, 12, "Je suis partant pour coordonner les activités liées au bien-être. Des idées sur la fréquence de ces sessions?"
-),
-(
-    11, 12, "Est-ce que des initiatives telles que des concours de remise en forme pourraient également être intégrées au programme?"
-),
-(
-    13, 12, "C'est une excellente manière de prendre soin de la santé mentale de nos employés. Merci pour cette proposition!"
-),
-(
-    2, 13, "Je peux aider à organiser cet événement d'intégration. Des suggestions pour les activités que nous pourrions inclure?"
-),
-(
-    5, 13, "Pouvons-nous envisager des jeux de team-building pour encourager l'interaction entre les nouveaux employés et les anciens?"
-),
-(
-    8, 13, "Je propose d'inclure une séance de présentation pour que chacun puisse mieux connaître ses collègues."
-),
-(
-    11, 13, "Est-ce que des ateliers sur la culture d'entreprise pourraient également être inclus dans l'événement?"
-),
-(
-    13, 13, "C'est une excellente façon de créer des liens dès le début. Je suis partant pour contribuer à la réussite de cet événement!"
-),
-(
-    1, 14, "Pour l'amélioration des espaces de travail, je suggère d'organiser une séance de brainstorming pour collecter diverses idées."
-),
-(
-    4, 14, "Quels sont les aspects spécifiques de l'espace de travail que nous devrions prioriser pour l'amélioration?"
-),
-(
-    7, 14, "Je suis en faveur d'une approche participative où les employés peuvent contribuer à la conception de leurs espaces de travail."
-),
-(
-    10, 14, "Pouvons-nous également envisager d'impliquer des professionnels du design pour des suggestions expertes?"
-),
-(
-    12, 14, "Cela pourrait vraiment améliorer l'ambiance et la productivité. Je suis prêt à participer à ce projet!"
-),
-(
-    2, 15, "Je soutiens pleinement l'idée d'un projet RSE. Quels domaines spécifiques devrions-nous cibler?"
-),
-(
-    5, 15, "Pouvons-nous également impliquer les employés dans le choix de l'organisme de bienfaisance ou de la cause à soutenir?"
-),
-(
-    8, 15, "Je propose d'organiser des événements caritatifs où les employés peuvent participer activement à la RSE."
-),
-(
-    11, 15, "Comment pouvons-nous mesurer l'impact positif de notre engagement dans des projets RSE?"
-),
-(
-    13, 15, "C'est une excellente opportunité d'être une force positive dans notre communauté. Je suis prêt à contribuer à ce projet!"
-),
-(
-    1, 16, "Le mentorat peut être bénéfique pour le développement professionnel. Quelles sont les compétences que nous devrions cibler?"
-),
-(
-    4, 16, "Je propose d'organiser des séances d'orientation pour les participants au programme de mentorat."
-),
-(
-    7, 16, "Pouvons-nous encourager les mentors à partager leurs expériences de carrière et leurs conseils lors de sessions informelles?"
-),
-(
-    10, 16, "Je suis partant pour être mentor. Comment pouvons-nous jumeler efficacement mentors et mentorés?"
-),
-(
-    12, 16, "C'est une excellente initiative pour favoriser la croissance professionnelle. Je suis prêt à soutenir cette idée!"
-),
-(
-    2, 17, "Je soutiens l'idée d'une journée sans réunion. Cela pourrait vraiment améliorer la productivité individuelle."
-),
-(
-    5, 17, "Pouvons-nous envisager des alternatives comme des mises à jour écrites pour les journées sans réunion?"
-),
-(
-    8, 17, "Je propose d'encourager une communication plus asynchrone pendant les journées sans réunion."
-),
-(
-    11, 17, "Est-ce que cette initiative pourrait s'étendre à d'autres équipes? Comment pouvons-nous faire connaître cette idée?"
-),
-(
-    13, 17, "C'est une excellente idée pour permettre aux employés de se concentrer sur des tâches individuelles. Je suis prêt à la soutenir!"
-),
-(
-    1, 18, "La boîte à idées virtuelle peut favoriser l'innovation. Pouvons-nous garantir l'anonymat des suggestions?"
-),
-(
-    4, 18, "Je suggère d'inclure des récompenses pour les meilleures idées soumises à la boîte à idées."
-),
-(
-    7, 18, "Comment pouvons-nous assurer une réponse rapide aux idées soumises pour montrer que chaque suggestion est valorisée?"
-),
-(
-    10, 18, "Je suis prêt à collaborer sur la mise en place et la gestion de cette boîte à idées virtuelle."
-),
-(
-    12, 18, "C'est une excellente initiative pour encourager la créativité. Je suis enthousiaste à l'idée de voir les suggestions qui émergeront!"
-),
-(
-    2, 19, "La formation continue est essentielle. Pouvons-nous également envisager des programmes de formation en ligne pour la flexibilité?"
-),
-(
-    5, 19, "Je propose de créer un calendrier de formation annuel pour que les employés puissent planifier leur développement professionnel."
-),
-(
-    8, 19, "Comment pouvons-nous personnaliser les programmes de formation en fonction des besoins individuels des employés?"
-),
-(
-    11, 19, "Je suis partant pour partager mes compétences lors de certaines sessions de formation. Quels sujets seraient les plus demandés?"
-),
-(
-    13, 19, "C'est une excellente initiative pour stimuler la croissance professionnelle. Je suis prêt à soutenir cette idée!"
-),
-(
-    1, 20, "Pour l'amélioration de la communication interne, je suggère d'organiser des réunions régulières pour discuter des progrès."
-),
-(
-    4, 20, "Pouvons-nous également envisager d'utiliser des outils de communication modernes pour faciliter les échanges rapides?"
-),
-(
-    7, 20, "Je propose de créer un guide de bonnes pratiques pour la communication interne afin de garantir la clarté."
-),
-(
-    10, 20, "Comment pouvons-nous inclure les employés en télétravail dans les initiatives de communication interne?"
-),
-(
-    12, 20, "C'est une excellente idée pour renforcer la transparence et l'efficacité de la communication. Je suis prêt à contribuer à cette amélioration!"
-),
-(
-    2, 21, "Je suis enthousiaste à l'idée d'aménager des espaces collaboratifs. Des suggestions pour rendre ces espaces plus stimulants?"
-),
-(
-    5, 21, "Pouvons-nous envisager des zones dédiées à des projets spécifiques pour encourager la collaboration inter-équipes?"
-),
-(
-    8, 21, "Je propose d'inclure des éléments de design inspirants pour stimuler la créativité dans ces espaces."
-),
-(
-    11, 21, "Est-ce que des espaces de détente peuvent également être inclus pour favoriser un environnement de travail équilibré?"
-),
-(
-    13, 21, "C'est une excellente initiative pour améliorer notre environnement de travail. Je suis partant pour contribuer à cette idée!"
-),
-(
-    1, 22, "Le programme de parrainage est crucial pour l'intégration. Comment pouvons-nous assurer une correspondance efficace entre parrains et nouveaux employés?"
-),
-(
-    4, 22, "Je propose d'organiser des événements sociaux pour que les parrains et les nouveaux employés puissent mieux se connaître."
-),
-(
-    7, 22, "Comment pouvons-nous mesurer le succès du programme de parrainage en termes d'intégration et de satisfaction des nouveaux employés?"
-),
-(
-    10, 22, "Je suis partant pour être parrain. Pouvons-nous mettre en place des formations pour les parrains?"
-),
-(
-    12, 22, "C'est une excellente initiative pour favoriser une intégration harmonieuse. Je suis prêt à soutenir cette idée!"
-),
-(
-    2, 23, "Je suis excité à l'idée d'un hackathon interne. Des suggestions pour les thèmes que nous pourrions explorer lors de cet événement?"
-),
-(
-    5, 23, "Pouvons-nous encourager la diversité d'idées en formant des équipes interfonctionnelles pour le hackathon?"
-),
-(
-    8, 23, "Je propose d'inclure des mentors pour guider les participants pendant le hackathon."
-),
-(
-    11, 23, "Est-ce que cet événement pourrait également servir de plateforme pour transformer les idées en projets concrets?"
-),
-(
-    13, 23, "C'est une excellente façon de stimuler la créativité et la collaboration. Je suis partant pour contribuer à la réussite de ce hackathon!"
-),
-(
-    1, 24, "Le système de récompenses basé sur la productivité est une excellente idée. Des suggestions pour les types de récompenses que nous pourrions offrir?"
-),
-(
-    4, 24, "Pouvons-nous inclure des reconnaissances publiques pour valoriser les efforts des employés?"
-),
-(
-    7, 24, "Comment pouvons-nous garantir que le système de récompenses est équitable et motivant pour tous les employés?"
-),
-(
-    10, 24, "Je suis prêt à collaborer sur la mise en place de ce système de récompenses. Quels critères devrions-nous considérer?"
-),
-(
-    12, 24, "C'est une excellente initiative pour promouvoir la productivité et la motivation. Je suis enthousiaste à l'idée de contribuer!"
-),
-(
-    2, 25, "Je soutiens l'idée du volontariat d'entreprise virtuel. Comment pouvons-nous faciliter la participation des employés?"
-),
-(
-    5, 25, "Pouvons-nous créer des partenariats avec des organisations caritatives en ligne pour diversifier les opportunités de volontariat?"
-),
-(
-    8, 25, "Je propose d'organiser des séances d'information pour sensibiliser les employés aux activités de volontariat virtuel."
-),
-(
-    11, 25, "Est-ce que cet engagement pourrait également être intégré à nos initiatives de responsabilité sociale des entreprises (RSE)?"
-),
-(
-    13, 25, "C'est une excellente façon d'étendre notre impact social. Je suis prêt à soutenir cette idée!"
-),
-(
-    1, 26, "Le club de lecture est une excellente initiative culturelle. Comment pouvons-nous encourager la participation active des membres?"
-),
-(
-    4, 26, "Pouvons-nous créer une liste de lecture mensuelle pour guider les discussions du club de lecture?"
-),
-(
-    7, 26, "Comment pouvons-nous assurer une diversité de genres littéraires pour répondre aux goûts variés des participants?"
-),
-(
-    10, 26, "Je suis partant pour animer certaines sessions du club de lecture. Quels thèmes seraient les plus intéressants?"
-),
-(
-    12, 26, "C'est une excellente façon de favoriser la culture et l'échange intellectuel. Je suis prêt à contribuer à la réussite de ce club de lecture!"
-),
-(
-    12, 27, "C'est une excellente initiative pour stimuler l'innovation. Comment pouvons-nous rendre le programme de récompenses encore plus attractif?"
-),
-(
-    2, 27, "Je suis d'accord, nous devrions peut-être inclure des catégories spécifiques d'innovation à récompenser. Des idées?"
-),
-(
-    5, 27, "Pouvons-nous également envisager des reconnaissances spéciales pour les innovations qui ont un impact significatif sur notre entreprise?"
-),
-(
-    8, 27, "Comment assurer la transparence dans le processus de sélection des innovations à récompenser?"
-),
-(
-    11, 27, "C'est une excellente façon de reconnaître les contributions innovantes. Je suis prêt à collaborer sur cette idée!"
-),
-(
-    2, 28, "Le développement professionnel est crucial. Comment pouvons-nous personnaliser le programme pour répondre aux besoins spécifiques des employés?"
-),
-(
-    5, 28, "Pouvons-nous explorer des partenariats avec des institutions externes pour offrir des formations spécialisées?"
-),
-(
-    8, 28, "Je suis partant pour participer à la conception de modules de formation. Quels sujets seraient les plus pertinents?"
-),
-(
-    11, 28, "Comment pouvons-nous mesurer l'efficacité du programme en termes d'avancement professionnel des employés?"
-),
-(
-    13, 28, "C'est une excellente initiative pour favoriser le développement continu. Je suis prêt à soutenir cette idée!"
-),
-(
-    12, 29, "Organiser une semaine dédiée à la diversité est essentiel. Comment pouvons-nous rendre les événements inclusifs pour tous les employés?"
-),
-(
-    2, 29, "Pouvons-nous inclure des ateliers interactifs pour sensibiliser les employés aux enjeux de la diversité?"
-),
-(
-    5, 29, "Comment garantir la représentation de toutes les communautés dans les activités de la semaine de la diversité?"
-),
-(
-    8, 29, "Je suis prêt à participer à l'organisation d'événements. Quels thèmes seraient les plus pertinents?"
-),
-(
-    11, 29, "C'est une excellente façon de promouvoir la diversité et l'inclusion. Je suis enthousiaste à l'idée de contribuer!"
-),
-(
-    2, 30, "La cybersécurité est cruciale. Comment pouvons-nous rendre la campagne informative tout en maintenant l'engagement des employés?"
-),
-(
-    5, 30, "Pouvons-nous inclure des simulations d'attaques pour renforcer la compréhension des employés sur les menaces cybernétiques?"
-),
-(
-    8, 30, "Je propose d'organiser des sessions de questions-réponses pour aborder les préoccupations spécifiques des employés."
-),
-(
-    11, 30, "Comment mesurerons-nous l'efficacité de la campagne en termes de renforcement de la sécurité des données?"
-),
-(
-    13, 30, "C'est une excellente initiative pour renforcer la sensibilisation. Je suis prêt à soutenir cette idée!"
-),
-(
-    12, 31, "Créer une bibliothèque numérique est une excellente idée. Comment pouvons-nous organiser le contenu pour le rendre facilement accessible?"
-),
-(
-    2, 31, "Pouvons-nous permettre aux employés de contribuer en partageant des ressources qu'ils trouvent utiles?"
-),
-(
-    5, 31, "Comment assurer la mise à jour régulière du contenu de la bibliothèque pour qu'il reste pertinent?"
-),
-(
-    8, 31, "Je suis partant pour aider à la sélection des ressources. Quels critères devrions-nous considérer?"
-),
-(
-    11, 31, "C'est une excellente initiative pour favoriser l'apprentissage continu. Je suis enthousiaste à l'idée de contribuer!"
-),
-(
-    13, 32, "Recueillir des suggestions pour les espaces collaboratifs est essentiel. Comment pouvons-nous assurer la flexibilité des espaces pour répondre aux différents besoins des équipes?"
-),
-(
-    2, 32, "Pouvons-nous intégrer des technologies collaboratives pour faciliter le travail d'équipe à distance?"
-),
-(
-    5, 32, "Je propose d'organiser des séances de brainstorms pour recueillir des idées créatives d'aménagement."
-),
-(
-    8, 32, "Comment mesurerons-nous l'impact de l'aménagement sur la collaboration et la créativité des équipes?"
-),
-(
-    11, 32, "C'est une excellente façon d'optimiser nos espaces de travail. Je suis prêt à collaborer sur cette idée!"
-),
-(
-    12, 33, "Mettre en place un programme de parrainage est une excellente idée. Comment pouvons-nous garantir une communication ouverte entre parrains et nouveaux employés?"
-),
-(
-    2, 33, "Pouvons-nous organiser des sessions d'orientation pour les parrains afin de les préparer à leur rôle?"
-),
-(
-    5, 33, "Comment évaluerons-nous l'efficacité du programme en termes d'intégration des nouveaux employés?"
-),
-(
-    8, 33, "Je suis partant pour être parrain. Comment pouvons-nous faire correspondre les compétences des parrains avec les besoins des nouveaux employés?"
-),
-(
-    11, 33, "C'est une excellente façon de faciliter l'intégration. Je suis enthousiaste à l'idée de contribuer!"
-),
-(
-    13, 34, "Organiser un hackathon interne est stimulant. Comment pouvons-nous encourager la participation de tous les départements?"
-),
-(
-    2, 34, "Pouvons-nous offrir des incitations spéciales pour les projets qui ont un potentiel concret d'implémentation?"
-),
-(
-    5, 34, "Je propose d'organiser des ateliers de préparation pour aider les équipes à affiner leurs idées avant le hackathon."
-),
-(
-    8, 34, "Comment pouvons-nous assurer une évaluation impartiale des projets pendant le hackathon?"
-),
-(
-    11, 34, "C'est une excellente initiative pour stimuler l'innovation. Je suis prêt à soutenir cette idée!"
-),
-(
-    12, 35, "Proposer un système de récompenses basé sur la productivité est une excellente idée. Comment pouvons-nous définir des critères équitables pour mesurer la productivité?"
-),
-(
-    2, 35, "Pouvons-nous inclure des récompenses flexibles pour s'adapter aux différents styles de travail des employés?"
-),
-(
-    5, 35, "Je propose d'organiser des ateliers sur l'efficacité au travail pour aider les employés à maximiser leur productivité."
-),
-(
-    8, 35, "Comment assurerons-nous la transparence dans le processus de sélection des employés méritants?"
-),
-(
-    11, 35, "C'est une excellente façon de valoriser la productivité. Je suis prêt à collaborer sur cette idée!"
-);
+    (
+        2, 5, "Le mentorat est crucial. Cela renforce également les liens entre les équipes."
+    ),
+    (
+        3, 5, "Je pense que cela contribuera grandement au développement des compétences."
+    ),
+    (
+        4, 6, "Réaménager les espaces de travail est une excellente idée. Ça améliorera l'environnement."
+    ),
+    (
+        5, 6, "Je suis d'accord. Un environnement de travail bien conçu impacte la productivité."
+    ),
+    (
+        6, 6, "On peut peut-être ajouter des zones de détente. Ça favorise la créativité."
+    ),
+    (
+        7, 6, "Belle initiative! L'ergonomie est importante pour le bien-être des employés."
+    ),
+    (
+        8, 6, "Je pense que cela contribuera à créer une atmosphère de travail plus agréable."
+    ),
+    (
+        9, 7, "Initier des formations inter-équipes est une excellente idée. Ça encourage le partage de connaissances."
+    ),
+    (
+        10, 7, "Je suis partant! On peut apprendre beaucoup les uns des autres."
+    ),
+    (
+        11, 7, "C'est une proposition intelligente. Ça renforcera les compétences de l'équipe."
+    ),
+    (
+        12, 7, "Belle initiative! Les formations peuvent stimuler l'efficacité opérationnelle."
+    ),
+    (
+        13, 7, "Les sessions de formation inter-équipes sont cruciales pour rester compétitifs."
+    ),
+    (
+        14, 8, "Une campagne de sensibilisation écologique est nécessaire. Ça montre notre responsabilité sociale."
+    ),
+    (
+        15, 8, "Je suis d'accord. Promouvoir des actions en faveur de l'environnement est essentiel."
+    ),
+    (
+        16, 8, "Belle proposition! Ça sensibilisera les employés aux problématiques environnementales."
+    ),
+    (
+        1, 8, "C'est une initiative louable. Ça renforce l'image de l'entreprise."
+    ),
+    (
+        2, 8, "La responsabilité sociale des entreprises est une priorité. Appuyé!"
+    ),
+    (
+        3, 9, "Un système de récompenses motivera les employés. Excellente proposition."
+    ),
+    (
+        4, 9, "Je suis totalement pour! Ça encourage la compétitivité de manière positive."
+    ),
+    (
+        5, 9, "Belle idée! Les récompenses sont un excellent moyen de reconnaître le travail."
+    ),
+    (
+        6, 9, "C'est une proposition intelligente. Ça stimulera l'engagement des employés."
+    ),
+    (
+        7, 9, "Les récompenses contribuent à une culture d'entreprise positive."
+    ),
+    (
+        8, 10, "Des événements sociaux réguliers renforceront la cohésion d'équipe. Super idée!"
+    ),
+    (
+        9, 10, "Je suis partant! Ça ajouterait du plaisir à la vie professionnelle."
+    ),
+    (
+        10, 10, "Belle proposition! Les événements sociaux sont importants pour le moral."
+    ),
+    (
+        11, 10, "C'est une excellente idée. On peut organiser des activités diverses."
+    ),
+    (
+        12, 10, "Les événements sociaux sont essentiels pour renforcer les relations professionnelles."
+    ),
+    (
+        13, 10, "J'apprécie l'idée d'organiser des événements réguliers. Ça crée une atmosphère positive."
+    ),
+    (
+        14, 10, "Cela contribuera à créer un environnement de travail convivial."
+    ),
+    (
+        15, 10, "On peut organiser des événements variés pour satisfaire les préférences de chacun."
+    ),
+    (
+        16, 10, "Une excellente initiative! Les événements sociaux renforcent les liens entre collègues."
+    ),
+    (
+        1, 11, "Développer une application interne est une excellente idée. Ça facilitera la communication."
+    ),
+    (
+        2, 11, "Je suis d'accord. Une application interne améliorera l'efficacité opérationnelle."
+    ),
+    (
+        3, 11, "C'est une proposition intelligente. Ça pourrait simplifier de nombreux processus."
+    ),
+    (
+        4, 11, "Belle initiative! Nous devrions explorer davantage cette possibilité."
+    ),
+    (
+        5, 11, "Une application interne pourrait vraiment renforcer la collaboration entre les équipes."
+    ),
+    (
+        6, 12, "Créer un programme de bien-être est une excellente initiative. La santé des employés est primordiale."
+    ),
+    (
+        7, 12, "Je suis partant! Ça contribuera au bien-être général des employés."
+    ),
+    (
+        8, 12, "Belle proposition! Un programme de bien-être améliorera la productivité."
+    ),
+    (
+        9, 12, "C'est une idée formidable. La santé mentale et physique des employés est cruciale."
+    ),
+    (
+        10, 12, "J'apprécie l'idée d'un programme de bien-être. Ça montre que l'entreprise se soucie de ses employés."
+    ),
+    (
+        11, 13, "Installer des équipements sportifs est une excellente idée. Ça encouragera l'activité physique."
+    ),
+    (
+        12, 13, "Je suis d'accord. Ça contribuera à un environnement de travail sain."
+    ),
+    (
+        13, 13, "Belle initiative! Les équipements sportifs sont bénéfiques pour la santé."
+    ),
+    (
+        14, 13, "C'est une excellente idée. Ça pourrait également renforcer l'esprit d'équipe."
+    ),
+    (
+        15, 13, "J'apprécie l'idée d'installer des équipements sportifs. Ça favorisera la détente au travail."
+    ),
+    (
+        16, 14, "Un événement d'intégration est une excellente idée pour les nouveaux employés."
+    ),
+    (
+        1, 14, "Je suis partant! Ça facilitera l'adaptation des nouveaux collègues."
+    ),
+    (
+        2, 14, "Belle proposition! Les événements d'intégration renforcent la cohésion."
+    ),
+    (
+        3, 14, "C'est une initiative louable. Ça montre que nous accueillons chaleureusement les nouveaux."
+    ),
+    (
+        4, 14, "J'apprécie l'idée d'organiser un événement d'intégration. Ça créerait un environnement accueillant."
+    ),
+    (
+        5, 15, "Proposer des suggestions pour améliorer les espaces de travail est une excellente idée."
+    ),
+    (
+        6, 15, "Je suis d'accord. Un environnement de travail bien conçu impacte la productivité."
+    ),
+    (
+        7, 15, "On peut peut-être ajouter des plantes pour une atmosphère plus agréable."
+    ),
+    (
+        8, 15, "Belle initiative! Cela favorisera la créativité et le bien-être."
+    ),
+    (
+        9, 15, "Je pense que cela contribuera à créer un espace de travail plus convivial."
+    ),
+    (
+        10, 31, "Un programme de parrainage pour les nouveaux employés est une excellente idée."
+    ),
+    (
+        11, 31, "Je suis partant! Ça facilitera l'intégration des nouveaux collègues."
+    ),
+    (
+        12, 31, "Belle proposition! Les programmes de parrainage renforcent la connexion entre les équipes."
+    ),
+    (
+        13, 31, "C'est une initiative louable. Ça montre que nous nous soutenons mutuellement."
+    ),
+    (
+        14, 31, "J'apprécie l'idée d'un programme de parrainage. Ça crée une culture d'entraide au sein de l'entreprise."
+    ),
+    (
+        15, 18, "Une journée sans réunion est une excellente idée! Ça favorisera la concentration."
+    ),
+    (
+        16, 18, "Je suis d'accord. On a parfois besoin de temps sans réunions pour être productif."
+    ),
+    (
+        1, 18, "Belle proposition! Cela permettra aux employés de se concentrer sur des tâches individuelles."
+    ),
+    (
+        2, 18, "C'est une excellente idée. Une journée sans réunion peut être très bénéfique."
+    ),
+    (
+        3, 18, "J'apprécie l'idée d'avoir une journée dédiée au travail individuel. Ça évite les interruptions."
+    ),
+    (
+        4, 19, "Créer une boîte à idées virtuelle est une excellente idée! Ça encourage l'innovation."
+    ),
+    (
+        5, 19, "Je suis d'accord. Cela permettra à chacun de contribuer à l'amélioration de l'entreprise."
+    ),
+    (
+        6, 19, "Belle proposition! Une boîte à idées virtuelle facilitera la collecte des suggestions."
+    ),
+    (
+        7, 19, "C'est une excellente initiative. Ça encourage la participation de tous."
+    ),
+    (
+        8, 19, "J'apprécie l'idée d'avoir une boîte à idées virtuelle. Ça favorise la transparence et l'inclusion."
+    ),
+    (
+        9, 20, "Un programme de flexibilité d'horaire est une excellente idée! Ça favorisera l'équilibre travail-vie."
+    ),
+    (
+        10, 20, "Je suis partant! La flexibilité d'horaire est importante pour le bien-être des employés."
+    ),
+    (
+        11, 20, "Belle proposition! Cela permettra aux employés de gérer leur temps de manière adaptée."
+    ),
+    (
+        12, 20, "C'est une excellente idée. La flexibilité d'horaire contribue à la satisfaction des employés."
+    ),
+    (
+        13, 20, "J'apprécie l'idée d'un programme de flexibilité d'horaire. Ça montre une compréhension des besoins individuels."
+    ),
+    (
+        14, 21, "Initier des initiatives de développement durable est une excellente idée! Ça montre notre engagement."
+    ),
+    (
+        15, 21, "Je suis d'accord. Les initiatives durables sont essentielles de nos jours."
+    ),
+    (
+        16, 21, "Belle proposition! Cela contribuera positivement à notre image de marque."
+    ),
+    (
+        1, 21, "C'est une excellente initiative. Ça peut également inspirer d'autres entreprises."
+    ),
+    (
+        2, 21, "J'apprécie l'idée de contribuer à un impact positif sur l'environnement. Ça motive."
+    ),
+    (
+        3, 22, "Organiser un concours d'innovation est une excellente idée! Ça stimulera la créativité."
+    ),
+    (
+        4, 22, "Je suis d'accord. Un concours d'innovation peut apporter des idées novatrices."
+    ),
+    (
+        5, 22, "Belle proposition! Ça motive les employés à penser en dehors des sentiers battus."
+    ),
+    (
+        6, 22, "C'est une excellente initiative. Ça peut également renforcer la culture d'innovation."
+    ),
+    (
+        7, 22, "J'apprécie l'idée de stimuler la créativité au sein de l'entreprise. Ça favorise la croissance."
+    ),
+    (
+        8, 23, "Encourager le volontariat d'entreprise est une excellente idée! Ça renforce notre engagement social."
+    ),
+    (
+        9, 23, "Je suis partant! Le volontariat est un moyen formidable de contribuer à la communauté."
+    ),
+    (
+        10, 23, "Belle proposition! Cela permettra aux employés de s'impliquer dans des projets significatifs."
+    ),
+    (
+        11, 23, "C'est une excellente initiative. Ça montre notre responsabilité envers la société."
+    ),
+    (
+        12, 23, "J'apprécie l'idée d'encourager le volontariat d'entreprise. Ça crée un impact positif."
+    ),
+    (
+        13, 24, "Proposer des idées pour optimiser les processus internes est une excellente idée! Ça améliorera l'efficacité."
+    ),
+    (
+        14, 24, "Je suis d'accord. L'optimisation des processus est essentielle pour la croissance."
+    ),
+    (
+        15, 24, "Belle proposition! Cela contribuera à une meilleure productivité."
+    ),
+    (
+        16, 24, "C'est une excellente initiative. Ça peut simplifier les opérations internes."
+    ),
+    (
+        1, 24, "J'apprécie l'idée d'optimiser nos processus internes. Ça pourrait économiser du temps et des ressources."
+    ),
+    (
+        2, 25, "Créer un programme de récompenses pour l'innovation est une excellente idée! Ça motive."
+    ),
+    (
+        3, 25, "Je suis d'accord. Les récompenses encouragent la créativité et l'effort."
+    ),
+    (
+        4, 25, "Belle proposition! Cela reconnaîtra les efforts des employés innovants."
+    ),
+    (
+        5, 25, "C'est une excellente initiative. Ça renforce une culture d'innovation."
+    ),
+    (
+        6, 25, "J'apprécie l'idée de récompenser l'innovation. Ça valorise le travail créatif."
+    ),
+    (
+        7, 26, "Proposer un programme de développement professionnel est une excellente idée! Ça favorisera la croissance."
+    ),
+    (
+        8, 26, "Je suis partant! Les formations spécialisées sont bénéfiques pour l'ensemble de l'équipe."
+    ),
+    (
+        9, 26, "Belle proposition! Cela contribuera à l'amélioration des compétences."
+    ),
+    (
+        10, 26, "C'est une excellente initiative. Ça montre notre engagement envers le développement professionnel."
+    ),
+    (
+        11, 26, "J'apprécie l'idée d'investir dans le développement professionnel. Ça renforce l'expertise de l'équipe."
+    ),
+    (
+        12, 26, "Une semaine de la diversité et de l'inclusion est une excellente idée! Ça favorisera la sensibilisation."
+    ),
+    (
+        13, 26, "Je suis d'accord. Cela renforcera notre engagement envers la diversité."
+    ),
+    (
+        14, 27, "Belle proposition! Cela encouragera le respect et l'inclusion au sein de l'entreprise."
+    ),
+    (
+        15, 27, "C'est une excellente initiative. Ça montre notre engagement envers l'égalité."
+    ),
+    (
+        16, 27, "J'apprécie l'idée d'une semaine dédiée à la diversité. Ça encourage la compréhension mutuelle."
+    ),
+    (
+        1, 28, "Lancer une campagne de sensibilisation à la cybersécurité est une excellente idée! Ça renforce la sécurité."
+    ),
+    (
+        2, 28, "Je suis d'accord. La cybersécurité est cruciale dans notre environnement numérique."
+    ),
+    (
+        3, 28, "Belle proposition! Cela sensibilisera les employés aux meilleures pratiques."
+    ),
+    (
+        4, 28, "C'est une excellente initiative. Ça contribuera à protéger nos données sensibles."
+    ),
+    (
+        5, 28, "J'apprécie l'idée de renforcer la sensibilisation à la cybersécurité. Ça protège l'entreprise et ses employés."
+    ),
+    (
+        6, 29, "Créer une bibliothèque de ressources numériques est une excellente idée! Ça favorisera l'apprentissage."
+    ),
+    (
+        7, 29, "Je suis d'accord. Les ressources numériques facilitent l'accès à l'information."
+    ),
+    (
+        8, 29, "Belle proposition! Cela encouragera la continuité de l'apprentissage."
+    ),
+    (
+        9, 29, "C'est une excellente initiative. Ça pourrait aider les employés dans leur développement."
+    ),
+    (
+        10, 29, "J'apprécie l'idée d'une bibliothèque numérique. Ça offre une source centralisée de connaissances."
+    ),
+    (
+        11, 30, "Recueillir des suggestions pour aménager des espaces collaboratifs est une excellente idée! Ça favorisera la créativité."
+    ),
+    (
+        12, 30, "Je suis d'accord. Les espaces collaboratifs sont essentiels pour le travail d'équipe."
+    ),
+    (
+        13, 30, "Belle proposition! Cela créera des environnements propices à la collaboration."
+    ),
+    (
+        14, 30, "C'est une excellente initiative. Ça pourrait améliorer la communication interne."
+    ),
+    (
+        15, 30, "J'apprécie l'idée d'améliorer nos espaces collaboratifs. Ça stimule l'innovation."
+    ),
+    (
+        16, 31, "Mettre en place un programme de parrainage pour les nouveaux employés est une excellente idée! Ça facilitera l'intégration."
+    ),
+    (
+        1, 31, "Je suis d'accord. Le parrainage crée une atmosphère accueillante."
+    ),
+    (
+        2, 31, "Belle proposition! Cela aidera les nouveaux à s'adapter plus rapidement."
+    ),
+    (
+        3, 30, "C'est une excellente initiative. Ça favorise la connexion entre les anciens et les nouveaux."
+    ),
+    (
+        4, 30, "J'apprécie l'idée d'un programme de parrainage. Ça montre notre soutien envers les nouveaux collaborateurs."
+    ),
+    (
+        5, 32, "Organiser un hackathon interne est une excellente idée! Ça stimulera l'innovation."
+    ),
+    (
+        6, 32, "Je suis d'accord. Les hackathons créent un environnement propice à la créativité."
+    ),
+    (
+        7, 32, "Belle proposition! Cela encouragera la collaboration entre les équipes."
+    ),
+    (
+        8, 32, "C'est une excellente initiative. Ça pourrait générer des idées novatrices."
+    ),
+    (
+        9, 32, "J'apprécie l'idée d'organiser un hackathon. Ça renforce notre culture d'innovation."
+    ),
+    (
+        10, 33, "Proposer un système de récompenses basé sur la productivité est une excellente idée! Ça motive."
+    ),
+    (
+        11, 33, "Je suis d'accord. Les récompenses liées à la productivité encouragent l'effort."
+    ),
+    (
+        12, 33, "Belle proposition! Cela reconnaîtra les performances exceptionnelles."
+    ),
+    (
+        13, 33, "C'est une excellente initiative. Ça stimulera la compétitivité positive."
+    ),
+    (
+        14, 33, "J'apprécie l'idée d'un système de récompenses pour la productivité. Ça valorise le travail acharné."
+    ),
+    (
+        15, 34, "Permettre aux employés de s'engager dans des activités de volontariat virtuelles est une excellente idée! Ça renforce notre impact social."
+    ),
+    (
+        16, 34, "Je suis d'accord. Le volontariat virtuel offre des opportunités flexibles d'engagement."
+    ),
+    (
+        1, 34, "Belle proposition! Cela permettra aux employés de contribuer à distance."
+    ),
+    (
+        2, 34, "C'est une excellente initiative. Ça montre notre volonté de faire une différence."
+    ),
+    (
+        3, 34, "J'apprécie l'idée de promouvoir le volontariat virtuel. Ça favorise l'engagement social."
+    ),
+    (
+        4, 35, "Créer un club de lecture d'entreprise est une excellente idée! Ça favorisera la culture et l'échange d'idées."
+    ),
+    (
+        5, 35, "Je suis d'accord. Un club de lecture peut renforcer la cohésion et la culture."
+    ),
+    (
+        6, 35, "Belle proposition! Cela encourage la diversité des lectures et des perspectives."
+    ),
+    (
+        7, 35, "C'est une excellente initiative. Ça favorise la curiosité intellectuelle."
+    ),
+    (
+        8, 35, "J'apprécie l'idée d'un club de lecture. Ça offre un espace pour partager nos découvertes."
+    ),
+    (
+        9, 15, "Proposer des suggestions pour améliorer l'ergonomie et la convivialité des espaces de travail est une excellente idée! Ça favorisera le bien-être."
+    ),
+    (
+        10, 15, "Je suis d'accord. L'amélioration des espaces de travail contribue à la satisfaction des employés."
+    ),
+    (
+        11, 15, "Belle proposition! Cela créera des environnements plus agréables."
+    ),
+    (
+        12, 15, "C'est une excellente initiative. Ça pourrait augmenter la productivité."
+    ),
+    (
+        13, 15, "J'apprécie l'idée d'améliorer nos espaces de travail. Ça montre notre souci du bien-être des employés."
+    );

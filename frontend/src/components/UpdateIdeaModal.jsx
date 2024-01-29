@@ -99,7 +99,11 @@ function UpdateIdeaModal({
           <img src="images/icon_cross.png" alt="cross" />
         </div>
         <h1>Votre idée</h1>
-        <div className="form-entire-container">
+        <div
+          className={`form-entire-container ${
+            theme === "dark" ? "dark" : "light"
+          }`}
+        >
           <div className="form-container">
             <form onSubmit={handleUpdateIdea}>
               <div className="form-title-container">
