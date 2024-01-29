@@ -432,36 +432,6 @@ VALUES (
         10, 2, "On devrait vraiment s'occuper de cela rapidement. Merci de soulever ce point."
     ),
     (
-        11, 30, "Une application interne serait vraiment utile pour améliorer la communication."
-    ),
-    (
-        12, 30, "J'apprécie l'idée d'une application interne. Ça simplifierait beaucoup de choses."
-    ),
-    (
-        13, 30, "C'est un excellent moyen d'optimiser les processus internes. Appuyé!"
-    ),
-    (
-        14, 30, "Je suis d'accord, une application interne pourrait améliorer l'efficacité."
-    ),
-    (
-        15, 30, "Je pense que cela facilitera la collaboration entre les équipes. Belle proposition."
-    ),
-    (
-        16, 34, "L'idée d'un club de lecture est fantastique! Ça encourage la culture au sein de l'entreprise."
-    ),
-    (
-        1, 34, "J'adore lire! Je suis partant pour le club de lecture."
-    ),
-    (
-        2, 34, "C'est une initiative formidable. J'ai déjà quelques livres en tête."
-    ),
-    (
-        3, 34, "Ça pourrait être une excellente opportunité d'échanger des idées de lecture."
-    ),
-    (
-        4, 34, "Un club de lecture sonne bien! On peut également discuter de livres liés à notre domaine."
-    ),
-    (
         5, 3, "Une télé dans la salle de pause serait génial! Ça détendra l'atmosphère."
     ),
     (
@@ -669,154 +639,154 @@ VALUES (
         9, 15, "Je pense que cela contribuera à créer un espace de travail plus convivial."
     ),
     (
-        10, 16, "Un programme de parrainage pour les nouveaux employés est une excellente idée."
+        10, 31, "Un programme de parrainage pour les nouveaux employés est une excellente idée."
     ),
     (
-        11, 16, "Je suis partant! Ça facilitera l'intégration des nouveaux collègues."
+        11, 31, "Je suis partant! Ça facilitera l'intégration des nouveaux collègues."
     ),
     (
-        12, 16, "Belle proposition! Les programmes de parrainage renforcent la connexion entre les équipes."
+        12, 31, "Belle proposition! Les programmes de parrainage renforcent la connexion entre les équipes."
     ),
     (
-        13, 16, "C'est une initiative louable. Ça montre que nous nous soutenons mutuellement."
+        13, 31, "C'est une initiative louable. Ça montre que nous nous soutenons mutuellement."
     ),
     (
-        14, 16, "J'apprécie l'idée d'un programme de parrainage. Ça crée une culture d'entraide au sein de l'entreprise."
+        14, 31, "J'apprécie l'idée d'un programme de parrainage. Ça crée une culture d'entraide au sein de l'entreprise."
     ),
     (
-        15, 17, "Une journée sans réunion est une excellente idée! Ça favorisera la concentration."
+        15, 18, "Une journée sans réunion est une excellente idée! Ça favorisera la concentration."
     ),
     (
-        16, 17, "Je suis d'accord. On a parfois besoin de temps sans réunions pour être productif."
+        16, 18, "Je suis d'accord. On a parfois besoin de temps sans réunions pour être productif."
     ),
     (
-        1, 17, "Belle proposition! Cela permettra aux employés de se concentrer sur des tâches individuelles."
+        1, 18, "Belle proposition! Cela permettra aux employés de se concentrer sur des tâches individuelles."
     ),
     (
-        2, 17, "C'est une excellente idée. Une journée sans réunion peut être très bénéfique."
+        2, 18, "C'est une excellente idée. Une journée sans réunion peut être très bénéfique."
     ),
     (
-        3, 17, "J'apprécie l'idée d'avoir une journée dédiée au travail individuel. Ça évite les interruptions."
+        3, 18, "J'apprécie l'idée d'avoir une journée dédiée au travail individuel. Ça évite les interruptions."
     ),
     (
-        4, 18, "Créer une boîte à idées virtuelle est une excellente idée! Ça encourage l'innovation."
+        4, 19, "Créer une boîte à idées virtuelle est une excellente idée! Ça encourage l'innovation."
     ),
     (
-        5, 18, "Je suis d'accord. Cela permettra à chacun de contribuer à l'amélioration de l'entreprise."
+        5, 19, "Je suis d'accord. Cela permettra à chacun de contribuer à l'amélioration de l'entreprise."
     ),
     (
-        6, 18, "Belle proposition! Une boîte à idées virtuelle facilitera la collecte des suggestions."
+        6, 19, "Belle proposition! Une boîte à idées virtuelle facilitera la collecte des suggestions."
     ),
     (
-        7, 18, "C'est une excellente initiative. Ça encourage la participation de tous."
+        7, 19, "C'est une excellente initiative. Ça encourage la participation de tous."
     ),
     (
-        8, 18, "J'apprécie l'idée d'avoir une boîte à idées virtuelle. Ça favorise la transparence et l'inclusion."
+        8, 19, "J'apprécie l'idée d'avoir une boîte à idées virtuelle. Ça favorise la transparence et l'inclusion."
     ),
     (
-        9, 19, "Un programme de flexibilité d'horaire est une excellente idée! Ça favorisera l'équilibre travail-vie."
+        9, 20, "Un programme de flexibilité d'horaire est une excellente idée! Ça favorisera l'équilibre travail-vie."
     ),
     (
-        10, 19, "Je suis partant! La flexibilité d'horaire est importante pour le bien-être des employés."
+        10, 20, "Je suis partant! La flexibilité d'horaire est importante pour le bien-être des employés."
     ),
     (
-        11, 19, "Belle proposition! Cela permettra aux employés de gérer leur temps de manière adaptée."
+        11, 20, "Belle proposition! Cela permettra aux employés de gérer leur temps de manière adaptée."
     ),
     (
-        12, 19, "C'est une excellente idée. La flexibilité d'horaire contribue à la satisfaction des employés."
+        12, 20, "C'est une excellente idée. La flexibilité d'horaire contribue à la satisfaction des employés."
     ),
     (
-        13, 19, "J'apprécie l'idée d'un programme de flexibilité d'horaire. Ça montre une compréhension des besoins individuels."
+        13, 20, "J'apprécie l'idée d'un programme de flexibilité d'horaire. Ça montre une compréhension des besoins individuels."
     ),
     (
-        14, 20, "Initier des initiatives de développement durable est une excellente idée! Ça montre notre engagement."
+        14, 21, "Initier des initiatives de développement durable est une excellente idée! Ça montre notre engagement."
     ),
     (
-        15, 20, "Je suis d'accord. Les initiatives durables sont essentielles de nos jours."
+        15, 21, "Je suis d'accord. Les initiatives durables sont essentielles de nos jours."
     ),
     (
-        16, 20, "Belle proposition! Cela contribuera positivement à notre image de marque."
+        16, 21, "Belle proposition! Cela contribuera positivement à notre image de marque."
     ),
     (
-        1, 20, "C'est une excellente initiative. Ça peut également inspirer d'autres entreprises."
+        1, 21, "C'est une excellente initiative. Ça peut également inspirer d'autres entreprises."
     ),
     (
-        2, 20, "J'apprécie l'idée de contribuer à un impact positif sur l'environnement. Ça motive."
+        2, 21, "J'apprécie l'idée de contribuer à un impact positif sur l'environnement. Ça motive."
     ),
     (
-        3, 21, "Organiser un concours d'innovation est une excellente idée! Ça stimulera la créativité."
+        3, 22, "Organiser un concours d'innovation est une excellente idée! Ça stimulera la créativité."
     ),
     (
-        4, 21, "Je suis d'accord. Un concours d'innovation peut apporter des idées novatrices."
+        4, 22, "Je suis d'accord. Un concours d'innovation peut apporter des idées novatrices."
     ),
     (
-        5, 21, "Belle proposition! Ça motive les employés à penser en dehors des sentiers battus."
+        5, 22, "Belle proposition! Ça motive les employés à penser en dehors des sentiers battus."
     ),
     (
-        6, 21, "C'est une excellente initiative. Ça peut également renforcer la culture d'innovation."
+        6, 22, "C'est une excellente initiative. Ça peut également renforcer la culture d'innovation."
     ),
     (
-        7, 21, "J'apprécie l'idée de stimuler la créativité au sein de l'entreprise. Ça favorise la croissance."
+        7, 22, "J'apprécie l'idée de stimuler la créativité au sein de l'entreprise. Ça favorise la croissance."
     ),
     (
-        8, 22, "Encourager le volontariat d'entreprise est une excellente idée! Ça renforce notre engagement social."
+        8, 23, "Encourager le volontariat d'entreprise est une excellente idée! Ça renforce notre engagement social."
     ),
     (
-        9, 22, "Je suis partant! Le volontariat est un moyen formidable de contribuer à la communauté."
+        9, 23, "Je suis partant! Le volontariat est un moyen formidable de contribuer à la communauté."
     ),
     (
-        10, 22, "Belle proposition! Cela permettra aux employés de s'impliquer dans des projets significatifs."
+        10, 23, "Belle proposition! Cela permettra aux employés de s'impliquer dans des projets significatifs."
     ),
     (
-        11, 22, "C'est une excellente initiative. Ça montre notre responsabilité envers la société."
+        11, 23, "C'est une excellente initiative. Ça montre notre responsabilité envers la société."
     ),
     (
-        12, 22, "J'apprécie l'idée d'encourager le volontariat d'entreprise. Ça crée un impact positif."
+        12, 23, "J'apprécie l'idée d'encourager le volontariat d'entreprise. Ça crée un impact positif."
     ),
     (
-        13, 23, "Proposer des idées pour optimiser les processus internes est une excellente idée! Ça améliorera l'efficacité."
+        13, 24, "Proposer des idées pour optimiser les processus internes est une excellente idée! Ça améliorera l'efficacité."
     ),
     (
-        14, 23, "Je suis d'accord. L'optimisation des processus est essentielle pour la croissance."
+        14, 24, "Je suis d'accord. L'optimisation des processus est essentielle pour la croissance."
     ),
     (
-        15, 23, "Belle proposition! Cela contribuera à une meilleure productivité."
+        15, 24, "Belle proposition! Cela contribuera à une meilleure productivité."
     ),
     (
-        16, 23, "C'est une excellente initiative. Ça peut simplifier les opérations internes."
+        16, 24, "C'est une excellente initiative. Ça peut simplifier les opérations internes."
     ),
     (
-        1, 23, "J'apprécie l'idée d'optimiser nos processus internes. Ça pourrait économiser du temps et des ressources."
+        1, 24, "J'apprécie l'idée d'optimiser nos processus internes. Ça pourrait économiser du temps et des ressources."
     ),
     (
-        2, 24, "Créer un programme de récompenses pour l'innovation est une excellente idée! Ça motive."
+        2, 25, "Créer un programme de récompenses pour l'innovation est une excellente idée! Ça motive."
     ),
     (
-        3, 24, "Je suis d'accord. Les récompenses encouragent la créativité et l'effort."
+        3, 25, "Je suis d'accord. Les récompenses encouragent la créativité et l'effort."
     ),
     (
-        4, 24, "Belle proposition! Cela reconnaîtra les efforts des employés innovants."
+        4, 25, "Belle proposition! Cela reconnaîtra les efforts des employés innovants."
     ),
     (
-        5, 24, "C'est une excellente initiative. Ça renforce une culture d'innovation."
+        5, 25, "C'est une excellente initiative. Ça renforce une culture d'innovation."
     ),
     (
-        6, 24, "J'apprécie l'idée de récompenser l'innovation. Ça valorise le travail créatif."
+        6, 25, "J'apprécie l'idée de récompenser l'innovation. Ça valorise le travail créatif."
     ),
     (
-        7, 25, "Proposer un programme de développement professionnel est une excellente idée! Ça favorisera la croissance."
+        7, 26, "Proposer un programme de développement professionnel est une excellente idée! Ça favorisera la croissance."
     ),
     (
-        8, 25, "Je suis partant! Les formations spécialisées sont bénéfiques pour l'ensemble de l'équipe."
+        8, 26, "Je suis partant! Les formations spécialisées sont bénéfiques pour l'ensemble de l'équipe."
     ),
     (
-        9, 25, "Belle proposition! Cela contribuera à l'amélioration des compétences."
+        9, 26, "Belle proposition! Cela contribuera à l'amélioration des compétences."
     ),
     (
-        10, 25, "C'est une excellente initiative. Ça montre notre engagement envers le développement professionnel."
+        10, 26, "C'est une excellente initiative. Ça montre notre engagement envers le développement professionnel."
     ),
     (
-        11, 25, "J'apprécie l'idée d'investir dans le développement professionnel. Ça renforce l'expertise de l'équipe."
+        11, 26, "J'apprécie l'idée d'investir dans le développement professionnel. Ça renforce l'expertise de l'équipe."
     ),
     (
         12, 26, "Une semaine de la diversité et de l'inclusion est une excellente idée! Ça favorisera la sensibilisation."
@@ -825,67 +795,67 @@ VALUES (
         13, 26, "Je suis d'accord. Cela renforcera notre engagement envers la diversité."
     ),
     (
-        14, 26, "Belle proposition! Cela encouragera le respect et l'inclusion au sein de l'entreprise."
+        14, 27, "Belle proposition! Cela encouragera le respect et l'inclusion au sein de l'entreprise."
     ),
     (
-        15, 26, "C'est une excellente initiative. Ça montre notre engagement envers l'égalité."
+        15, 27, "C'est une excellente initiative. Ça montre notre engagement envers l'égalité."
     ),
     (
-        16, 26, "J'apprécie l'idée d'une semaine dédiée à la diversité. Ça encourage la compréhension mutuelle."
+        16, 27, "J'apprécie l'idée d'une semaine dédiée à la diversité. Ça encourage la compréhension mutuelle."
     ),
     (
-        1, 27, "Lancer une campagne de sensibilisation à la cybersécurité est une excellente idée! Ça renforce la sécurité."
+        1, 28, "Lancer une campagne de sensibilisation à la cybersécurité est une excellente idée! Ça renforce la sécurité."
     ),
     (
-        2, 27, "Je suis d'accord. La cybersécurité est cruciale dans notre environnement numérique."
+        2, 28, "Je suis d'accord. La cybersécurité est cruciale dans notre environnement numérique."
     ),
     (
-        3, 27, "Belle proposition! Cela sensibilisera les employés aux meilleures pratiques."
+        3, 28, "Belle proposition! Cela sensibilisera les employés aux meilleures pratiques."
     ),
     (
-        4, 27, "C'est une excellente initiative. Ça contribuera à protéger nos données sensibles."
+        4, 28, "C'est une excellente initiative. Ça contribuera à protéger nos données sensibles."
     ),
     (
-        5, 27, "J'apprécie l'idée de renforcer la sensibilisation à la cybersécurité. Ça protège l'entreprise et ses employés."
+        5, 28, "J'apprécie l'idée de renforcer la sensibilisation à la cybersécurité. Ça protège l'entreprise et ses employés."
     ),
     (
-        6, 28, "Créer une bibliothèque de ressources numériques est une excellente idée! Ça favorisera l'apprentissage."
+        6, 29, "Créer une bibliothèque de ressources numériques est une excellente idée! Ça favorisera l'apprentissage."
     ),
     (
-        7, 28, "Je suis d'accord. Les ressources numériques facilitent l'accès à l'information."
+        7, 29, "Je suis d'accord. Les ressources numériques facilitent l'accès à l'information."
     ),
     (
-        8, 28, "Belle proposition! Cela encouragera la continuité de l'apprentissage."
+        8, 29, "Belle proposition! Cela encouragera la continuité de l'apprentissage."
     ),
     (
-        9, 28, "C'est une excellente initiative. Ça pourrait aider les employés dans leur développement."
+        9, 29, "C'est une excellente initiative. Ça pourrait aider les employés dans leur développement."
     ),
     (
-        10, 28, "J'apprécie l'idée d'une bibliothèque numérique. Ça offre une source centralisée de connaissances."
+        10, 29, "J'apprécie l'idée d'une bibliothèque numérique. Ça offre une source centralisée de connaissances."
     ),
     (
-        11, 29, "Recueillir des suggestions pour aménager des espaces collaboratifs est une excellente idée! Ça favorisera la créativité."
+        11, 30, "Recueillir des suggestions pour aménager des espaces collaboratifs est une excellente idée! Ça favorisera la créativité."
     ),
     (
-        12, 29, "Je suis d'accord. Les espaces collaboratifs sont essentiels pour le travail d'équipe."
+        12, 30, "Je suis d'accord. Les espaces collaboratifs sont essentiels pour le travail d'équipe."
     ),
     (
-        13, 29, "Belle proposition! Cela créera des environnements propices à la collaboration."
+        13, 30, "Belle proposition! Cela créera des environnements propices à la collaboration."
     ),
     (
-        14, 29, "C'est une excellente initiative. Ça pourrait améliorer la communication interne."
+        14, 30, "C'est une excellente initiative. Ça pourrait améliorer la communication interne."
     ),
     (
-        15, 29, "J'apprécie l'idée d'améliorer nos espaces collaboratifs. Ça stimule l'innovation."
+        15, 30, "J'apprécie l'idée d'améliorer nos espaces collaboratifs. Ça stimule l'innovation."
     ),
     (
-        16, 30, "Mettre en place un programme de parrainage pour les nouveaux employés est une excellente idée! Ça facilitera l'intégration."
+        16, 31, "Mettre en place un programme de parrainage pour les nouveaux employés est une excellente idée! Ça facilitera l'intégration."
     ),
     (
-        1, 30, "Je suis d'accord. Le parrainage crée une atmosphère accueillante."
+        1, 31, "Je suis d'accord. Le parrainage crée une atmosphère accueillante."
     ),
     (
-        2, 30, "Belle proposition! Cela aidera les nouveaux à s'adapter plus rapidement."
+        2, 31, "Belle proposition! Cela aidera les nouveaux à s'adapter plus rapidement."
     ),
     (
         3, 30, "C'est une excellente initiative. Ça favorise la connexion entre les anciens et les nouveaux."
@@ -894,77 +864,77 @@ VALUES (
         4, 30, "J'apprécie l'idée d'un programme de parrainage. Ça montre notre soutien envers les nouveaux collaborateurs."
     ),
     (
-        5, 31, "Organiser un hackathon interne est une excellente idée! Ça stimulera l'innovation."
+        5, 32, "Organiser un hackathon interne est une excellente idée! Ça stimulera l'innovation."
     ),
     (
-        6, 31, "Je suis d'accord. Les hackathons créent un environnement propice à la créativité."
+        6, 32, "Je suis d'accord. Les hackathons créent un environnement propice à la créativité."
     ),
     (
-        7, 31, "Belle proposition! Cela encouragera la collaboration entre les équipes."
+        7, 32, "Belle proposition! Cela encouragera la collaboration entre les équipes."
     ),
     (
-        8, 31, "C'est une excellente initiative. Ça pourrait générer des idées novatrices."
+        8, 32, "C'est une excellente initiative. Ça pourrait générer des idées novatrices."
     ),
     (
-        9, 31, "J'apprécie l'idée d'organiser un hackathon. Ça renforce notre culture d'innovation."
+        9, 32, "J'apprécie l'idée d'organiser un hackathon. Ça renforce notre culture d'innovation."
     ),
     (
-        10, 32, "Proposer un système de récompenses basé sur la productivité est une excellente idée! Ça motive."
+        10, 33, "Proposer un système de récompenses basé sur la productivité est une excellente idée! Ça motive."
     ),
     (
-        11, 32, "Je suis d'accord. Les récompenses liées à la productivité encouragent l'effort."
+        11, 33, "Je suis d'accord. Les récompenses liées à la productivité encouragent l'effort."
     ),
     (
-        12, 32, "Belle proposition! Cela reconnaîtra les performances exceptionnelles."
+        12, 33, "Belle proposition! Cela reconnaîtra les performances exceptionnelles."
     ),
     (
-        13, 32, "C'est une excellente initiative. Ça stimulera la compétitivité positive."
+        13, 33, "C'est une excellente initiative. Ça stimulera la compétitivité positive."
     ),
     (
-        14, 32, "J'apprécie l'idée d'un système de récompenses pour la productivité. Ça valorise le travail acharné."
+        14, 33, "J'apprécie l'idée d'un système de récompenses pour la productivité. Ça valorise le travail acharné."
     ),
     (
-        15, 33, "Permettre aux employés de s'engager dans des activités de volontariat virtuelles est une excellente idée! Ça renforce notre impact social."
+        15, 34, "Permettre aux employés de s'engager dans des activités de volontariat virtuelles est une excellente idée! Ça renforce notre impact social."
     ),
     (
-        16, 33, "Je suis d'accord. Le volontariat virtuel offre des opportunités flexibles d'engagement."
+        16, 34, "Je suis d'accord. Le volontariat virtuel offre des opportunités flexibles d'engagement."
     ),
     (
-        1, 33, "Belle proposition! Cela permettra aux employés de contribuer à distance."
+        1, 34, "Belle proposition! Cela permettra aux employés de contribuer à distance."
     ),
     (
-        2, 33, "C'est une excellente initiative. Ça montre notre volonté de faire une différence."
+        2, 34, "C'est une excellente initiative. Ça montre notre volonté de faire une différence."
     ),
     (
-        3, 33, "J'apprécie l'idée de promouvoir le volontariat virtuel. Ça favorise l'engagement social."
+        3, 34, "J'apprécie l'idée de promouvoir le volontariat virtuel. Ça favorise l'engagement social."
     ),
     (
-        4, 34, "Créer un club de lecture d'entreprise est une excellente idée! Ça favorisera la culture et l'échange d'idées."
+        4, 35, "Créer un club de lecture d'entreprise est une excellente idée! Ça favorisera la culture et l'échange d'idées."
     ),
     (
-        5, 34, "Je suis d'accord. Un club de lecture peut renforcer la cohésion et la culture."
+        5, 35, "Je suis d'accord. Un club de lecture peut renforcer la cohésion et la culture."
     ),
     (
-        6, 34, "Belle proposition! Cela encourage la diversité des lectures et des perspectives."
+        6, 35, "Belle proposition! Cela encourage la diversité des lectures et des perspectives."
     ),
     (
-        7, 34, "C'est une excellente initiative. Ça favorise la curiosité intellectuelle."
+        7, 35, "C'est une excellente initiative. Ça favorise la curiosité intellectuelle."
     ),
     (
-        8, 34, "J'apprécie l'idée d'un club de lecture. Ça offre un espace pour partager nos découvertes."
+        8, 35, "J'apprécie l'idée d'un club de lecture. Ça offre un espace pour partager nos découvertes."
     ),
     (
-        9, 35, "Proposer des suggestions pour améliorer l'ergonomie et la convivialité des espaces de travail est une excellente idée! Ça favorisera le bien-être."
+        9, 15, "Proposer des suggestions pour améliorer l'ergonomie et la convivialité des espaces de travail est une excellente idée! Ça favorisera le bien-être."
     ),
     (
-        10, 35, "Je suis d'accord. L'amélioration des espaces de travail contribue à la satisfaction des employés."
+        10, 15, "Je suis d'accord. L'amélioration des espaces de travail contribue à la satisfaction des employés."
     ),
     (
-        11, 35, "Belle proposition! Cela créera des environnements plus agréables."
+        11, 15, "Belle proposition! Cela créera des environnements plus agréables."
     ),
     (
-        12, 35, "C'est une excellente initiative. Ça pourrait augmenter la productivité."
+        12, 15, "C'est une excellente initiative. Ça pourrait augmenter la productivité."
     ),
     (
-        13, 35, "J'apprécie l'idée d'améliorer nos espaces de travail. Ça montre notre souci du bien-être des employés."
+        13, 15, "J'apprécie l'idée d'améliorer nos espaces de travail. Ça montre notre souci du bien-être des employés."
     );

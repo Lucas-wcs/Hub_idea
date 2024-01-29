@@ -71,6 +71,13 @@
       display: flex;
       justify-content: center;
       background-color: var(--senary-color);
+      &.dark {
+        background-color: var(--dark);
+
+        p {
+          color: white;
+        }
+      }
     }
 
     .form-container {
