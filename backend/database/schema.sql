@@ -134,73 +134,73 @@ VALUES (
         "Création d'un programme de bien-être", "Lancer un programme de bien-être pour soutenir la santé mentale et physique des employés.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Installation d'équipements sportifs", "Installer des équipements sportifs pour encourager l'activité physique et la détente au sein de l'entreprise.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Installation d'équipements sportifs", "Installer des équipements sportifs pour encourager l'activité physique et la détente au sein de l'entreprise.", "/images/equipement-sportif.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Événement d'Intégration", "Organiser un événement d'intégration pour les nouveaux employés. Les idées peuvent inclure des activités de team-building, des rencontres informelles, etc.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Événement d'Intégration", "Organiser un événement d'intégration pour les nouveaux employés. Les idées peuvent inclure des activités de team-building, des rencontres informelles, etc.", "/images/integration.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Amélioration des Espaces de Travail", "Proposer des suggestions pour améliorer l'ergonomie et la convivialité des espaces de travail. Cela peut inclure des idées pour la décoration, l'agencement des bureaux, etc.", "/images/espaces_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Amélioration des Espaces de Travail", "Proposer des suggestions pour améliorer l'ergonomie et la convivialité des espaces de travail. Cela peut inclure des idées pour la décoration, l'agencement des bureaux, etc.", "/images/travaux.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Projet de Responsabilité Sociale des Entreprises (RSE)", "Proposer des projets RSE qui permettront à l'entreprise de contribuer positivement à la communauté ou à l'environnement.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Projet de Responsabilité Sociale des Entreprises (RSE)", "Proposer des projets RSE qui permettront à l'entreprise de contribuer positivement à la communauté ou à l'environnement.", "/images/rse.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Programme de Mentorat", "Mettre en place un programme de mentorat pour favoriser le développement professionnel et personnel des employés.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Programme de Mentorat", "Mettre en place un programme de mentorat pour favoriser le développement professionnel et personnel des employés.", "/images/mentorat.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Journée sans Réunion", "Proposer une journée par mois sans réunions pour permettre aux employés de se concentrer sur des tâches individuelles sans interruption.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Journée sans Réunion", "Proposer une journée par mois sans réunions pour permettre aux employés de se concentrer sur des tâches individuelles sans interruption.", "/images/reunion.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Boîte à Idées Virtuelle", "Créer une boîte à idées virtuelle où les employés peuvent soumettre anonymement des suggestions d'amélioration ou d'innovation.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Boîte à Idées Virtuelle", "Créer une boîte à idées virtuelle où les employés peuvent soumettre anonymement des suggestions d'amélioration ou d'innovation.", "/images/boite-a-idee.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Programme de Flexibilité d'Horaire", "Proposer un programme de flexibilité d'horaire pour permettre aux employés de gérer leur temps de travail de manière plus adaptée à leurs besoins personnels.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Programme de Flexibilité d'Horaire", "Proposer un programme de flexibilité d'horaire pour permettre aux employés de gérer leur temps de travail de manière plus adaptée à leurs besoins personnels.", "/images/horaire.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Initiative de Développement Durable", "Mettre en place des initiatives visant à rendre l'entreprise plus respectueuse de l'environnement et à promouvoir le développement durable.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Initiative de Développement Durable", "Mettre en place des initiatives visant à rendre l'entreprise plus respectueuse de l'environnement et à promouvoir le développement durable.", "/images/developpement-durable.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Concours d'Innovation", "Organiser un concours d'innovation pour stimuler la créativité des employés et encourager la proposition de nouvelles idées pour l'entreprise.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Concours d'Innovation", "Organiser un concours d'innovation pour stimuler la créativité des employés et encourager la proposition de nouvelles idées pour l'entreprise.", "/images/innovation.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Projet de Volontariat d'Entreprise", "Encourager les employés à s'impliquer dans des projets de volontariat pour renforcer l'engagement social de l'entreprise.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Projet de Volontariat d'Entreprise", "Encourager les employés à s'impliquer dans des projets de volontariat pour renforcer l'engagement social de l'entreprise.", "/images/volontariat.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Amélioration des Processus Internes", "Proposer des idées pour optimiser les processus internes de l'entreprise afin d'augmenter l'efficacité opérationnelle.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Amélioration des Processus Internes", "Proposer des idées pour optimiser les processus internes de l'entreprise afin d'augmenter l'efficacité opérationnelle.", "/images/processus-interne.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Récompenses pour l'Innovation", "Créer un programme de récompenses pour encourager et reconnaître les employés qui proposent des idées innovantes bénéfiques à l'entreprise.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Récompenses pour l'Innovation", "Créer un programme de récompenses pour encourager et reconnaître les employés qui proposent des idées innovantes bénéfiques à l'entreprise.", "/images/innovation.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Programme de Développement Professionnel", "Proposer un programme visant à développer les compétences professionnelles des employés par le biais de formations spécialisées et de certifications.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Programme de Développement Professionnel", "Proposer un programme visant à développer les compétences professionnelles des employés par le biais de formations spécialisées et de certifications.", "/images/developpement-professionnel.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Semaine de la Diversité et de l'Inclusion", "Organiser une semaine dédiée à promouvoir la diversité et l'inclusion au sein de l'entreprise avec des événements, des ateliers, et des discussions.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Semaine de la Diversité et de l'Inclusion", "Organiser une semaine dédiée à promouvoir la diversité et l'inclusion au sein de l'entreprise avec des événements, des ateliers, et des discussions.", "/images/inclusion.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Campagne de Sensibilisation à la Cybersécurité", "Lancer une campagne de sensibilisation pour informer les employés sur les meilleures pratiques en matière de cybersécurité et renforcer la sécurité des données.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Campagne de Sensibilisation à la Cybersécurité", "Lancer une campagne de sensibilisation pour informer les employés sur les meilleures pratiques en matière de cybersécurité et renforcer la sécurité des données.", "/images/cybersecurite.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Bibliothèque de Ressources Numériques", "Créer une bibliothèque numérique interne avec des ressources utiles, telles que des livres électroniques, des articles, et des vidéos, pour favoriser l'apprentissage continu.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Bibliothèque de Ressources Numériques", "Créer une bibliothèque numérique interne avec des ressources utiles, telles que des livres électroniques, des articles, et des vidéos, pour favoriser l'apprentissage continu.", "/images/bibliotheque.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Aménagement d'Espaces Collaboratifs", "Recueillir des suggestions pour aménager des espaces collaboratifs favorisant l'échange d'idées et la créativité au sein de l'entreprise.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Aménagement d'Espaces Collaboratifs", "Recueillir des suggestions pour aménager des espaces collaboratifs favorisant l'échange d'idées et la créativité au sein de l'entreprise.", "/images/espace-collaboratif.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Programme de Parrainage pour Nouveaux Employés", "Mettre en place un programme de parrainage où les employés expérimentés accompagnent les nouveaux arrivants pour faciliter leur intégration.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Programme de Parrainage pour Nouveaux Employés", "Mettre en place un programme de parrainage où les employés expérimentés accompagnent les nouveaux arrivants pour faciliter leur intégration.", "/images/parrainage.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Hackathon Interne", "Organiser un hackathon interne pour stimuler l'innovation et encourager les employés à collaborer sur des projets créatifs.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Hackathon Interne", "Organiser un hackathon interne pour stimuler l'innovation et encourager les employés à collaborer sur des projets créatifs.", "/images/hackathon.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Système de Récompenses pour la Productivité", "Proposer un système de récompenses basé sur la productivité pour encourager et reconnaître les performances exceptionnelles des employés.", "/images/recompenses_productivite.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Système de Récompenses pour la Productivité", "Proposer un système de récompenses basé sur la productivité pour encourager et reconnaître les performances exceptionnelles des employés.", "/images/recompenses.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Programme de Volontariat d'Entreprise Virtuel", "Permettre aux employés de s'engager dans des activités de volontariat virtuelles pour soutenir des organisations caritatives et communautaires en ligne.", "/images/volontariat_virtuel.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Programme de Volontariat d'Entreprise Virtuel", "Permettre aux employés de s'engager dans des activités de volontariat virtuelles pour soutenir des organisations caritatives et communautaires en ligne.", "/images/volontariat-d'entreprise.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Club de Lecture d'Entreprise", "Créer un club de lecture où les employés peuvent partager et discuter de leurs lectures, favorisant ainsi la culture et l'échange d'idées.", "/images/club_lecture.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Club de Lecture d'Entreprise", "Créer un club de lecture où les employés peuvent partager et discuter de leurs lectures, favorisant ainsi la culture et l'échange d'idées.", "/images/lecture.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     );
 
 CREATE TABLE `Vote` (
