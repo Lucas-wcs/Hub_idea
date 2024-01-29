@@ -13,8 +13,8 @@
 
   .create-idea-container {
     width: 70vw;
-    height: 150%;
-    margin: 50px 100px 50px 100px;
+    // height: 100%;
+    margin: 15vh 100px 10vh 100px;
     background-color: var(--senary-color);
 
     &.dark {
@@ -70,6 +70,7 @@
     .form-entire-container {
       display: flex;
       justify-content: center;
+      background-color: var(--senary-color);
     }
 
     .form-container {
@@ -248,10 +249,10 @@
 
   // responsive:
   @media (max-width: 1024px) and (min-width: 769px) {
-    .update-idea-container {
+    .create-idea-container {
       width: 70vw;
-      height: 150%;
-      margin: 100px 100px 200px 100px;
+      // height: 120vh;
+      margin: 15vh 100px 10vh 100px;
 
       .form-container {
         .form-title-container {
@@ -290,17 +291,16 @@
     }
   }
 }
-
 // responsive:
 @media (max-width: 768px) {
   .update-modal-idea-container {
     .create-idea-container {
-      height: 120%;
-      margin: 90px 0 0 0;
+      height: 100vh;
+      margin: 10vh 0 0 0;
       width: 100%;
 
       .form-container {
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: center;
         .form-title-container {
@@ -313,6 +313,23 @@
             width: 60vw;
           }
         }
+        .form-impacted-person-container {
+          td {
+            font-size: 0.6rem;
+            padding: 0.5vh;
+          }
+
+          input {
+            height: 1vh;
+          }
+        }
+
+        .checkbox-avatar {
+          img {
+            height: 2vh;
+          }
+        }
+
         .modal-idea-container {
           width: 50%;
           .create-idea-container {
