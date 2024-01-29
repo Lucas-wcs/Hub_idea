@@ -116,22 +116,22 @@ VALUES (
         "Amélioration des espaces de travail", "Réaménager les espaces de travail pour favoriser la collaboration et le bien-être des employés.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Initier des formations inter-équipes", "Organiser des sessions de formation où différentes équipes peuvent partager leurs connaissances et compétences.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Initier des formations inter-équipes", "Organiser des sessions de formation où différentes équipes peuvent partager leurs connaissances et compétences.", "/images/equipe-compressed.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Campagne de sensibilisation écologique", "Promouvoir des actions en faveur de l'environnement et sensibiliser les employés à adopter des pratiques durables.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Campagne de sensibilisation écologique", "Promouvoir des actions en faveur de l'environnement et sensibiliser les employés à adopter des pratiques durables.", "/images/ecology-compressed.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Mise en place d'un système de récompenses", "Créer un système de récompenses pour reconnaître les employés méritants et encourager la productivité.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Mise en place d'un système de récompenses", "Créer un système de récompenses pour reconnaître les employés méritants et encourager la productivité.", "/images/reward-compressed.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Evénements sociaux réguliers", "Organiser des événements sociaux périodiques pour renforcer la cohésion d'équipe et le moral des employés.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Evénements sociaux réguliers", "Organiser des événements sociaux périodiques pour renforcer la cohésion d'équipe et le moral des employés.", "/images/event-compressed.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Développement d'une application interne", "Concevoir une application interne pour simplifier les processus de communication et de collaboration.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Développement d'une application interne", "Concevoir une application interne pour simplifier les processus de communication et de collaboration.", "/images/communication-compressed.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
-        "Création d'un programme de bien-être", "Lancer un programme de bien-être pour soutenir la santé mentale et physique des employés.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4
+        "Création d'un programme de bien-être", "Lancer un programme de bien-être pour soutenir la santé mentale et physique des employés.", "/images/yoga-compressed.jpg", CURRENT_TIMESTAMP, 0, 4, 4
     ),
     (
         "Installation d'équipements sportifs", "Installer des équipements sportifs pour encourager l'activité physique et la détente au sein de l'entreprise.", "/images/espace_travail.jpg", CURRENT_TIMESTAMP, 0, 4, 4

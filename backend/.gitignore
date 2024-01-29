@@ -1,8 +1,4 @@
 node_modules
 coverage
-<<<<<<< HEAD
-.env
-=======
 .env
 
->>>>>>> 7517fe33c22ac4bd81eddf45405501cd6e20dc2b
