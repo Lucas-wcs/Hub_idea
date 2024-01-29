@@ -1,6 +1,7 @@
 // Load the express module to create a web application
 
 const express = require("express");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,10 @@ app.use(
     ],
   })
 );
+
+app.use(express.static("./public"));
+
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 /* ************************************************************************* */
 
@@ -85,6 +90,8 @@ app.use(
 
 // Import the API routes from the router module
 const router = require("./router");
+
+app.use("/images", express.static("images"));
 
 // Mount the API routes under the "/api" endpoint
 app.use("/api", router);
@@ -141,6 +148,11 @@ app.use(logErrors);
 */
 
 /* ************************************************************************* */
+
+// Utilise le middleware express.static pour servir les fichiers statiques
+// à partir du dossier 'public'. Les fichiers statiques sont des fichiers
+// qui ne changent pas, comme les images, les fichiers CSS et les fichiers JavaScript.
+app.use(express.static("./public/"));
 
 const errorManager = require("./services/errorManager");
 

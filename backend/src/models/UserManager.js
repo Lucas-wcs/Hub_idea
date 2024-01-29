@@ -1,4 +1,5 @@
 const AbstractManager = require("./AbstractManager");
+const auth = require("../services/auth");
 
 class UserManager extends AbstractManager {
   constructor() {
@@ -13,9 +14,19 @@ class UserManager extends AbstractManager {
     is_administrator: isAdministrator,
     is_moderator: isModerator,
   }) {
+    const hashedDefault = await auth.hashAString("welcometohubidea");
+
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (firstname, lastname, email, image_profil, is_administrator, is_moderator) VALUES (?, ?, ?, ?, ?, ?)`,
-      [firstname, lastname, email, imageProfil, isAdministrator, isModerator]
+      `INSERT INTO ${this.table} (firstname, lastname, email, image_profil, password, is_administrator, is_moderator) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        firstname,
+        lastname,
+        email,
+        imageProfil,
+        hashedDefault,
+        isAdministrator,
+        isModerator,
+      ]
     );
     return result;
   }
@@ -46,6 +57,8 @@ class UserManager extends AbstractManager {
     is_administrator: isAdministrator,
     is_moderator: isModerator,
   }) {
+    const hashedNewPassword = await auth.hashAString(password);
+
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET firstname=?, lastname=?, email=?, image_profil=?, password=?, is_administrator=?, is_moderator=? WHERE id=?`,
       [
@@ -53,7 +66,7 @@ class UserManager extends AbstractManager {
         lastname,
         email,
         imageProfil,
-        password,
+        hashedNewPassword,
         isAdministrator,
         isModerator,
         id,
@@ -82,6 +95,14 @@ class UserManager extends AbstractManager {
     const [result] = await this.database.query(
       `UPDATE ${this.table} SET is_moderator=0 WHERE id=?`,
       [id]
+    );
+    return result;
+  }
+
+  async upload(id, imageProfil) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET image_profil=? WHERE id=?`,
+      [imageProfil, id]
     );
     return result;
   }

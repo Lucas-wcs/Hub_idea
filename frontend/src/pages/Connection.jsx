@@ -6,23 +6,33 @@ import Navbar from "../components/Navbar";
 import { UserContext } from "../context/UserContext";
 
 function Connection() {
+  // Using the UserContext to get the setUser function
   const { setUser } = useContext(UserContext);
 
+  // Using the ThemeContext to get the current theme
   const { theme } = useContext(ThemeContext);
+
+  // Using the useNavigate hook to get a function to navigate to different routes
   const navigate = useNavigate();
 
+  // Using useRef to create references for the email and password inputs
   const emailRef = useRef();
-
   const passwordRef = useRef();
-  const [showPopup, setShowPopup] = useState(false);
 
+  // Using useState to manage the state of the popup, password visibility and eye icon
+  const [showPopup, setShowPopup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
+
+  // Function to handle form submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+      // Getting the values of the email and password inputs
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
-
+      // Sending a POST request to the login API with the email and password
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND}/api/login`,
         {
@@ -30,17 +40,39 @@ function Connection() {
           password,
         }
       );
+      // If the response status is 200, set the user data and navigate to the home page
 
       if (res.status === 200) {
+        const { user } = res.data;
+        const { token } = res.data;
+
+        setUser(user);
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", user.id);
+
         setUser(res.data);
         navigate("/home");
       } else {
+        // If the response status is not 200, handle the error (not shown in this code snippet)
         setShowPopup(true);
       }
     } catch {
+      // If the request fails, handle the error (not shown in this code snippet)
       console.error(e);
       setShowPopup(true);
     }
+  };
+  // The handleShowPassword function is used to toggle the visibility of the password in the input field
+
+  const handleShowPassword = () => {
+    // The setShowPassword function is called with the current state of showPassword inverted
+    // If showPassword is currently true, it will become false, and vice versa
+    // This effectively toggles the visibility state of the password each time the function is called
+    setShowPassword(!showPassword);
+    // The setIsEyeOpen function is called with the current state of isEyeOpen inverted
+    // If isEyeOpen is currently true, it will become false, and vice versa
+    // This effectively toggles the state of the eye icon each time the function is called
+    setIsEyeOpen((current) => !current);
   };
 
   return (
@@ -49,11 +81,15 @@ function Connection() {
       <div className="connection">
         {showPopup && (
           <div className="popup">
-            <div className="popup-content">
+            <div
+              className={`popup-content ${theme === "dark" ? "dark" : "light"}`}
+            >
               <p>Votre mail ou mot de passe est invalide</p>
               <button
                 type="button"
-                className="popup-close-button"
+                className={`popup-close-button ${
+                  theme === "dark" ? "dark" : "light"
+                }`}
                 onClick={() => setShowPopup(false)}
               >
                 Fermer
@@ -71,15 +107,50 @@ function Connection() {
               ref={emailRef}
               required
             />
-            <input
-              className="input-button-style"
-              type="password"
-              placeholder="Mot de passe"
-              ref={passwordRef}
-              required
-            />
-            <button type="submit">
-              <span className="button_top"> Se connecter</span>
+            <div className="input-button-container">
+              <input
+                className="input-button-style-password"
+                // The type attribute determines the type of the input field
+                // If showPassword is true, the type is "text", which means the password is visible
+                // If showPassword is false, the type is "password", which means the password is hidden
+                type={showPassword ? "text" : "password"}
+                // The placeholder attribute provides a hint that describes the expected value of the input field
+
+                placeholder="Mot de passe"
+                ref={passwordRef}
+                required
+              />
+              <button
+                className="toggle-button-connection"
+                type="button"
+                onClick={() => handleShowPassword()}
+              >
+                {isEyeOpen ? (
+                  <img
+                    className="img-password-connection-open"
+                    src="/images/oeil-ouvert.png"
+                    alt="oeil ouvert"
+                  />
+                ) : (
+                  <img
+                    className="img-password-connection"
+                    src="/images/oeil-fermé.png"
+                    alt="oeil fermé"
+                  />
+                )}
+              </button>
+            </div>
+
+            <button
+              className={`button-connection ${
+                theme === "dark" ? "dark" : "light"
+              }`}
+              type="submit"
+            >
+              <p className={theme === "dark" ? "text-white" : "text-black"}>
+                {" "}
+                Se connecter
+              </p>
             </button>
           </div>
         </form>
@@ -130,8 +201,11 @@ function Connection() {
         </div>
         <div className="container-button-rules">
           <Link to="/rules">
-            <button type="button">
-              <span className="button_top"> Voir le réglement</span>
+            <button
+              className={`button-rules ${theme === "dark" ? "dark" : "light"}`}
+              type="button"
+            >
+              <p> Voir le réglement</p>
             </button>
           </Link>
         </div>

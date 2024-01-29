@@ -1,4 +1,4 @@
-.modal-idea-container {
+.create-modal-idea-container {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -7,15 +7,14 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  // color: var(--senary-color);
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   overflow: scroll;
 
   .create-idea-container {
     width: 70vw;
+    margin: 15vh 100px 10vh 100px;
     height: 130%;
-    margin: 50px 100px 50px 100px;
     background-color: var(--senary-color);
 
     &.dark {
@@ -71,6 +70,14 @@
     .form-entire-container {
       display: flex;
       justify-content: center;
+      background-color: var(--senary-color);
+      &.dark {
+        background-color: var(--dark);
+
+        p {
+          color: white;
+        }
+      }
     }
 
     .form-container {
@@ -108,6 +115,8 @@
       .form-image-container {
         img {
           width: 16vw;
+          max-height: 20vh;
+          object-fit: cover;
         }
         .image-input-container {
           padding-top: 10px;
@@ -147,6 +156,13 @@
           display: flex;
           justify-content: space-around;
           gap: 0.1vw;
+
+          .avatar {
+            object-fit: cover;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+          }
 
           input {
             transform: scale(1.6);
@@ -199,13 +215,51 @@
       }
     }
   }
+  .popup-idea-error {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .popup-content-idea-error {
+    background: var(--primary-color);
+    padding: 20px;
+    border-radius: 4px;
+    max-width: fit-content;
+    max-height: fit-content;
+
+    p {
+      font-family: var(--text-font);
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
+  .popup-close-button-idea-error {
+    cursor: pointer;
+    background-color: var(--senary-color);
+    height: 30px;
+    width: 100px;
+    font-size: 1rem;
+    font-family: var(--text-font);
+  }
 
   // responsive:
   @media (max-width: 1024px) and (min-width: 769px) {
     .create-idea-container {
       width: 70vw;
-      height: 150%;
-      margin: 100px 100px 200px 100px;
+      // height: 120vh;
+      margin: 15vh 100px 10vh 100px;
 
       .form-container {
         .form-title-container {
@@ -244,78 +298,51 @@
     }
   }
 }
-
 // responsive:
 @media (max-width: 768px) {
-  .modal-idea-container {
-    width: 100%;
+  .create-modal-idea-container {
     .create-idea-container {
-      width: 100vw;
-      height: 140%;
-      margin: 0;
+      height: 100vh;
+      margin: 10vh 0 0 0;
+      width: 100%;
 
       .form-container {
+        width: 90%;
+        display: flex;
+        justify-content: center;
         .form-title-container {
-          display: flex;
-          flex-direction: column;
-
           input {
-            height: 3vh;
             width: 80vw;
           }
         }
         .form-date-container {
-          label {
-            padding-right: 3vw;
-          }
           input {
-            width: 50vw;
-          }
-        }
-        .form-image-container {
-          img {
             width: 60vw;
-            padding-bottom: 3vh;
-          }
-          .image-input-container {
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
           }
         }
         .form-impacted-person-container {
-          overflow: scroll;
-          height: 20vh;
-          table {
-            width: 80vw;
-            background-color: white;
-            border-collapse: collapse;
-            border: 2px solid var(--quinary-color);
-            border-radius: 5px;
-            text-align: left;
+          td {
+            font-size: 0.6rem;
+            padding: 0.5vh;
           }
-          img {
-            height: 3vh;
-          }
-          .checkbox-avatar {
-            display: flex;
-            justify-content: space-around;
-            gap: 1.5vw;
 
-            input {
-              transform: scale(1.2);
-              margin: 0.4vw;
-              accent-color: #bae3e3;
-            }
+          input {
+            height: 1vh;
           }
         }
-        .form-description-container {
-          display: flex;
-          flex-direction: column;
 
-          textarea {
-            width: 80vw;
-            height: 15vh;
+        .checkbox-avatar {
+          img {
+            height: 2vh;
+          }
+        }
+
+        .modal-idea-container {
+          width: 50%;
+          .create-idea-container {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
           }
         }
       }

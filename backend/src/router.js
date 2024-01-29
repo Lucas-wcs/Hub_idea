@@ -1,4 +1,43 @@
 const express = require("express");
+const multer = require("multer");
+const { v4 } = require("uuid");
+
+const optionsAvatar = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads/avatars");
+  },
+  filename: (req, file, cb) => {
+    const name = `${v4()}-${file.originalname}`;
+    req.body.url = `/uploads/avatars/${name}`;
+    cb(null, name);
+  },
+  limits: {
+    fieldSize: 1024 * 5,
+  },
+});
+
+const uploadAvatar = multer({
+  storage: optionsAvatar,
+});
+
+const optionsIdea = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads/ideas");
+  },
+  filename: (req, file, cb) => {
+    const name = `${v4()}-${file.originalname}`;
+
+    req.body.ideaImg = `/uploads/ideas/${name}`;
+    cb(null, name);
+  },
+  limits: {
+    fieldSize: 1024 * 5,
+  },
+});
+
+const uploadIdea = multer({
+  storage: optionsIdea,
+});
 
 const router = express.Router();
 
@@ -11,12 +50,33 @@ const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers"); // test ok
 const statusIdeaControllers = require("./controllers/statusIdeaControllers"); // test ok
 const ideaControllers = require("./controllers/ideaControllers"); // test ok
-const notificationControllers = require("./controllers/notificationControllers"); // test ok
-const userNotificationControllers = require("./controllers/userNotificationControllers"); // test ok (no read)
 const voteControllers = require("./controllers/voteControllers"); // test ok
 const impactedUserControllers = require("./controllers/impactedUserControllers"); // test ok
 const commentControllers = require("./controllers/commentControllers"); // test ok
 const authControllers = require("./controllers/authControllers");
+const { verifyToken } = require("./services/auth");
+
+// Routes authentification
+router.post("/login", authControllers.login);
+router.post("/signin", authControllers.signin);
+
+// Authentification wall
+router.use(verifyToken);
+
+// Routes user controllers
+router.get("/users", userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.get("/users-by-token", userControllers.readByToken);
+router.post("/users", userControllers.add);
+router.put(
+  "/users/:id",
+  userControllers.verifyPasswordByToken,
+
+  userControllers.edit
+);
+router.delete("/users/:id", userControllers.destroy);
+router.put("/users/moderator/:id", userControllers.addModerator);
+router.put("/users/remove-moderator/:id", userControllers.deleteModerator);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -25,40 +85,24 @@ router.get("/items/:id", itemControllers.read);
 // Route to add a new item
 router.post("/items", itemControllers.add);
 
-// Routes user controllers
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.post("/users", userControllers.add);
-router.put("/users/:id", userControllers.edit);
-router.delete("/users/:id", userControllers.destroy);
-router.put("/users/moderator/:id", userControllers.addModerator);
-router.put("/users/remove-moderator/:id", userControllers.deleteModerator);
 // Routes status-idea controllers
 router.get("/status-idea", statusIdeaControllers.browse);
 router.get("/status-idea/:id", statusIdeaControllers.read);
 // Routes idea controllers
 router.get("/ideas", ideaControllers.browse);
 router.get("/ideas/:id", ideaControllers.read);
-router.post("/ideas", ideaControllers.add);
-router.put("/ideas/:id", ideaControllers.edit);
+router.post("/ideas", uploadIdea.single("ideaImage"), ideaControllers.add);
+router.put(
+  "/ideas/change-image/:id",
+  uploadIdea.single("ideaImage"),
+  ideaControllers.editMulter
+);
+router.put("/ideas/:id", uploadIdea.single("ideaImage"), ideaControllers.edit);
+router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
+router.put("/ideas/moderator/:id", ideaControllers.editByModerator);
 router.delete("/ideas/:id", ideaControllers.destroy);
-// Routes notification controllers
-router.get("/notifications", notificationControllers.browse);
-router.get("/notifications/:id", notificationControllers.read);
-router.post("/notifications", notificationControllers.add);
-router.delete("/notifications/:id", notificationControllers.destroy);
-// Routes userNotification controllers
-router.get("/user-notifications", userNotificationControllers.browse);
-router.get(
-  "/user-notifications/users/:id",
-  userNotificationControllers.readByUserId
-);
-router.get(
-  "/user-notifications/notifications/:id",
-  userNotificationControllers.readByNotificationId
-);
-router.post("/user-notifications", userNotificationControllers.add);
-router.delete("/user-notifications", userNotificationControllers.destroy);
+router.put("/ideas/admin-decision/:id", ideaControllers.editStatusIdByAdmin);
+
 // Routes vote controllers
 router.get("/votes", voteControllers.browse);
 router.get("/votes/users/:id", voteControllers.readByUserId);
@@ -71,9 +115,11 @@ router.get("/impacted-users", impactedUserControllers.browse);
 router.get("/impacted-users/users/:id", impactedUserControllers.readByUserId);
 router.get("/impacted-users/ideas/:id", impactedUserControllers.readByIdeaId);
 router.post("/impacted-users", impactedUserControllers.add);
+router.put("/impacted-users", impactedUserControllers.edit);
 router.delete("/impacted-users", impactedUserControllers.destroy);
 // Routes comment controllers
 router.get("/comments", commentControllers.browse);
+router.get("/comments-by-idea/:ideaId", commentControllers.getByIdeaId);
 router.get("/comments/:id", commentControllers.read);
 router.post("/comments", commentControllers.add);
 router.put("/comments/:id", commentControllers.edit);
@@ -82,5 +128,12 @@ router.delete("/comments/:id", commentControllers.destroy);
 // Routes authentification
 router.post("/login", authControllers.login);
 router.post("/signin", authControllers.signin);
+
+// Routes upload
+router.put(
+  "/upload/:id",
+  uploadAvatar.single("AvatarImage"),
+  userControllers.upload
+);
 
 module.exports = router;

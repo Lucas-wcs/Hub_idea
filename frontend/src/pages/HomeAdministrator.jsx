@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { useState } from "react";
 import axios from "axios";
-import { useLoaderData, useRevalidator } from "react-router-dom";
+import { useLoaderData, useRevalidator, Link, Outlet } from "react-router-dom";
 import AddMemberModal from "../components/AddMemberModal";
 import AddModeratorModal from "../components/AddModeratorModal";
 
@@ -22,7 +22,13 @@ function HomeAdministrator() {
 
   const handleDeleteModerator = (id) => {
     axios
-      .put(`${import.meta.env.VITE_BACKEND}/api/users/remove-moderator/${id}`)
+      .put(
+        `${import.meta.env.VITE_BACKEND}/api/users/remove-moderator/${id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
       .then(() => {
         revalidator.revalidate();
       })
@@ -31,7 +37,9 @@ function HomeAdministrator() {
 
   const handleDeleteMember = (id) => {
     axios
-      .delete(`${import.meta.env.VITE_BACKEND}/api/users/${id}`)
+      .delete(`${import.meta.env.VITE_BACKEND}/api/users/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
       .then(() => {
         revalidator.revalidate();
       })
@@ -40,43 +48,46 @@ function HomeAdministrator() {
 
   return (
     <div className="homeAdministrator">
-      <div
-        className={`homeAdmin-container ${
-          isOpenMemberModal && "container-flou-admin"
-        } ${isOpenModeratorModal && "container-flou-admin"}`}
-      >
+      <Outlet />
+      <div className="homeAdmin-container">
         <div className="homeAdmin-title">
           <div className="homeAdmin-logo-container">
             <img src="/images/icons_idea.png" alt="idea_logo" />
           </div>
           <h4>Idées proposées par les membres</h4>
         </div>
-        <div className="homeAdmin-content-container">
-          {ideas.map((idea) => {
-            return <p key={idea.id}>{idea.title}</p>;
-          })}
+        <div className="content-container">
+          {ideas
+            .filter((idea) => idea.status_id === 2)
+            .map((idea) => {
+              return (
+                <Link
+                  to={`/administrator/idea/${idea.id}`}
+                  className="bloc-ideas"
+                  key={idea.id}
+                >
+                  <p>{idea.title}</p>
+                </Link>
+              );
+            })}
         </div>
       </div>
 
-      <div
-        className={`homeAdmin-container ${
-          isOpenMemberModal && "container-flou-admin"
-        } ${isOpenModeratorModal && "container-flou-admin"}`}
-      >
+      <div className="homeAdmin-container">
         <div className="homeAdmin-title">
           <div className="homeAdmin-logo-container">
             <img src="/images/icons_admin.png" alt="admin_logo" />
           </div>
           <h4>Membres modérateurs</h4>
           <div
-            className="homeAdmin-logo-container button-add"
+            className="homeAdmin-logo-container"
             onClick={handleOpenModalAddModerator}
             role="presentation"
           >
             <img src="/images/icons_add.png" alt="add_logo" />
           </div>
         </div>
-        <div className="homeAdmin-content-container special">
+        <div className="content-container">
           {users
             // eslint-disable-next-line array-callback-return
             .filter((moderator) => {
@@ -86,54 +97,54 @@ function HomeAdministrator() {
             })
             .map((moderator) => {
               return (
-                <p key={moderator.id}>
-                  {moderator.firstname} {moderator.lastname}
+                <div key={moderator.id} className="bloc-moderators">
+                  <p>
+                    {moderator.firstname} {moderator.lastname}
+                  </p>
                   <div className="logo-delete-container">
                     <img
-                      src="/images/icons_delete.png"
+                      src="/images/icon_del.png"
                       alt="cross_logo"
                       onClick={() => handleDeleteModerator(moderator.id)}
                       role="presentation"
                     />
                   </div>
-                </p>
+                </div>
               );
             })}
         </div>
       </div>
 
-      <div
-        className={`homeAdmin-container ${
-          isOpenMemberModal && "container-flou-admin"
-        } ${isOpenModeratorModal && "container-flou-admin"}`}
-      >
+      <div className="homeAdmin-container">
         <div className="homeAdmin-title">
           <div className="homeAdmin-logo-container">
             <img src="/images/icons_members.png" alt="members_logo" />
           </div>
           <h4>Membres du groupe</h4>
           <div
-            className="homeAdmin-logo-container button-add"
+            className="homeAdmin-logo-container"
             onClick={handleOpenModalAddMember}
             role="presentation"
           >
             <img src="/images/icons_add.png" alt="add_logo" />
           </div>
         </div>
-        <div className="homeAdmin-content-container">
+        <div className="content-container">
           {users.map((user) => {
             return (
-              <p key={user.id}>
-                {user.firstname} {user.lastname}
+              <div key={user.id} className="bloc-users">
+                <p>
+                  {user.firstname} {user.lastname}
+                </p>
                 <div className="logo-delete-container">
                   <img
-                    src="/images/icons_delete.png"
+                    src="/images/icon_del.png"
                     alt="del_logo"
                     onClick={() => handleDeleteMember(user.id)}
                     role="presentation"
                   />
                 </div>
-              </p>
+              </div>
             );
           })}
         </div>
@@ -148,7 +159,10 @@ function HomeAdministrator() {
       )}
       {isOpenMemberModal && (
         <div className="addMember-modal">
-          <AddMemberModal handleOpenModalAddMember={handleOpenModalAddMember} />
+          <AddMemberModal
+            handleOpenModalAddMember={handleOpenModalAddMember}
+            setIsOpenMemberModal={setIsOpenMemberModal}
+          />
         </div>
       )}
     </div>
@@ -159,7 +173,9 @@ function HomeAdministrator() {
 export const loader = async () => {
   const loadIdeas = async () => {
     try {
-      const res = await axios.get("http://localhost:3310/api/ideas");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/ideas`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
       return res.data;
     } catch (e) {
       console.error(e);
@@ -169,7 +185,9 @@ export const loader = async () => {
 
   const loadUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3310/api/users");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND}/api/users`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
       return res.data;
     } catch (e) {
       console.error(e);

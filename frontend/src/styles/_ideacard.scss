@@ -1,10 +1,22 @@
+.ideaCardDraft {
+  opacity: 0.7;
+}
 .idea-card-container {
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+  box-shadow: 8px 8px 10px 0 rgba(213, 215, 212, 0.6);
   background-color: var(--cardidea-color);
   border-radius: 5px;
   width: 31%;
   margin-top: 1.5vh;
   margin-bottom: 3%;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
+  transition: transform 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+  }
 
   .status-image-container {
     position: relative;
@@ -24,7 +36,7 @@
       position: absolute;
       align-items: center;
       font-size: 16px;
-      padding: calc(var(--spacing) * 0.4) calc(var(--spacing) * 0.6);
+      padding: calc(var(--spacing) * 0.6) calc(var(--spacing) * 1);
       background-color: var(--cardidea-color);
       margin: 10px;
       border-radius: 10px;
@@ -33,12 +45,29 @@
     p {
       color: var(--text-color);
     }
+    button {
+      border-style: none;
+    }
+
+    .modify-draft {
+      padding-left: 6px;
+      height: 26px;
+    }
+
+    .modify-draft:hover {
+      cursor: pointer;
+    }
   }
   .text-container {
     padding: calc(var(--spacing) * 1.2) calc(var(--spacing) * 2);
+
     .idea-title {
       font-family: var(--title-font);
-      font-size: 22px;
+      font-size: 1.2rem;
+      max-width: 95%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     .progress-percentage-container {
       display: flex;
@@ -75,37 +104,63 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
 
-      button {
+      .button-green {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 20px 20px;
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease;
-        background: linear-gradient(
-          to bottom,
-          var(--primary-color) 5%,
-          var(--primary-color)
-        );
-        border: 1px solid var(--tertiary-color);
-        display: inline-block;
-        text-shadow: 0px 1px 0px var(--primary-color);
         text-decoration: none;
-        background-color: var(--primary-color);
-        padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2.2);
-        border-radius: calc(var(--search-border-radius) * 0.5);
-        font-size: 18px;
         border: none;
         border-radius: 10px;
         cursor: pointer;
+        background-color: var(--primary-color);
+        transition: transform 0.1s ease-in-out;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.02);
+        }
+        p {
+          font-size: 1rem;
+          color: var(--black-color);
+          // padding-top: 1.5vh;
+          width: 100%;
+          text-decoration: none;
+          font-family: var(--title-font);
+        }
       }
 
-      button:hover {
+      .disabled-button {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 20px 20px;
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease;
+        text-decoration: none;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: var(--primary-color);
+
+        p {
+          font-size: 1rem;
+          color: var(--black-color);
+          // padding-top: 1.5vh;
+          width: 100%;
+          text-decoration: none;
+          font-family: var(--title-font);
+        }
+      }
+
+      .button-green:hover {
         transform: scale(1.05);
-        background: linear-gradient(
-          to bottom,
-          var(--primary-color) 5%,
-          var(--primary-color) 100%
-        );
-        background-color: var(--tertiary-color);
         cursor: pointer;
       }
     }

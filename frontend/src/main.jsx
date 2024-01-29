@@ -6,13 +6,15 @@ import App from "./App";
 import "./styles/index.scss";
 
 import Connection from "./pages/Connection";
-import Home, { loaderIdeas } from "./pages/Home";
+import Home, { loaderHome } from "./pages/Home";
 import Rules from "./pages/Rules";
 import Profile from "./pages/Profile";
-import Idea from "./pages/Idea";
+import Idea, { loaders } from "./pages/Idea";
 import HomeAdministrator, { loader } from "./pages/HomeAdministrator";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdmindecisionModal from "./components/AdmindecisionModal";
 
+// Create a router with a protected route
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,15 +31,16 @@ const router = createBrowserRouter([
             <Home />
           </ProtectedRoute>
         ),
-        loader: loaderIdeas,
+        loader: loaderHome,
       },
       {
-        path: "/idea",
+        path: "/idea/:id",
         element: (
           <ProtectedRoute>
             <Idea />
           </ProtectedRoute>
         ),
+        loader: loaders,
       },
       {
         path: "/rules",
@@ -54,10 +57,17 @@ const router = createBrowserRouter([
       {
         path: "/administrator",
         element: (
-          // <ProtectedRoute>
-          <HomeAdministrator />
-          // </ProtectedRoute>
+          <ProtectedRoute>
+            <HomeAdministrator />
+          </ProtectedRoute>
         ),
+        id: "admin",
+        children: [
+          {
+            path: "/administrator/idea/:id",
+            element: <AdmindecisionModal />,
+          },
+        ],
         loader,
       },
     ],
@@ -71,15 +81,3 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-/* adding following root for test modal
-{
-  path: "/modalcreateidea",
-  element: <CreateIdeaModal />,
-},
-{
-  path: "/decisionmodal",
-  element: <DecisionModal />,
-},
-
-*/

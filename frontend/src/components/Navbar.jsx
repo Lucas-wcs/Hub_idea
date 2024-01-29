@@ -15,12 +15,30 @@ function Navbar() {
   const handleLogout = () => {
     setUser(null);
     navigate("/");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
   };
 
   return (
-    <div className="navbar-container">
+    <div className={`navbar-container ${theme === "dark" && "dark"}`}>
       <div className="logo-container">
-        <img src="/images/logo.png" alt="logo" />
+        {location.pathname !== "/" ? (
+          <NavLink to="/home">
+            <img
+              src={
+                theme === "dark" ? "/images/logo_dark.png" : "/images/logo.png"
+              }
+              alt="logo"
+            />{" "}
+          </NavLink>
+        ) : (
+          <img
+            src={
+              theme === "dark" ? "/images/logo_dark.png" : "/images/logo.png"
+            }
+            alt="logo"
+          />
+        )}
       </div>
       <div className="nav-right">
         <div className="image-container">
@@ -31,38 +49,47 @@ function Navbar() {
             className="theme-checkbox"
           />
         </div>
-
+        {user && user.is_administrator ? (
+          <NavLink to="/administrator/">
+            <div className="image-container">
+              <img
+                title="Profil-administrator"
+                src={
+                  theme === "dark"
+                    ? "/images/icons/administrateur-dark.png"
+                    : "/images/icons/administrateur.png"
+                }
+                alt="administrateur"
+              />
+            </div>
+          </NavLink>
+        ) : null}
         {user &&
           location.pathname !== "/profile" &&
           location.pathname !== "/rules" &&
           location.pathname !== "/" && (
             <NavLink to={`/profile/${user.id}`}>
               <div className="image-container">
-                <img
-                  title="Profil"
-                  src={
-                    theme === "dark"
-                      ? "/images/icons/avatar_icon_dark.png"
-                      : "/images/icons/avatar_icon.png"
-                  }
-                  alt="profile"
-                />
+                {user.image_profil ? (
+                  <img
+                    title="Profil"
+                    src={`${import.meta.env.VITE_BACKEND}${user.image_profil}`}
+                    alt="profile"
+                  />
+                ) : (
+                  <img
+                    title="Profil"
+                    src={
+                      theme === "dark"
+                        ? "/images/icons/avatar_icon_dark.png"
+                        : "/images/icons/avatar_icon.png"
+                    }
+                    alt="default profile"
+                  />
+                )}
               </div>
             </NavLink>
           )}
-        {location.pathname !== "/rules" && location.pathname !== "/" && (
-          <div className="image-container">
-            <img
-              title="Notifications"
-              src={
-                theme === "dark"
-                  ? "/images/icons/notification_icon_light.png"
-                  : "/images/icons/notification_icon.png"
-              }
-              alt="notification"
-            />
-          </div>
-        )}
         {location.pathname !== "/rules" && location.pathname !== "/" && (
           <button
             type="button"

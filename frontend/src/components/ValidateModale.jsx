@@ -6,19 +6,40 @@ import { ThemeContext } from "../context/ThemeContext";
 function ValidateModale({
   type,
   setTypeModal,
-  handleClickSubmitButton,
+  handleClickSubmitButton = null,
+  handleClickUpdateSubmitButton,
   handleClickIdeaCancelButton,
+  handleDecisionConfirmModal,
+  handleReturnToHome,
 }) {
   const navigate = useNavigate();
+  const button = 1;
 
   const handleButton = (event) => {
-    if (type === "modale1" && event.target.value === "button1") {
-      handleClickSubmitButton();
-    } else if (type === "modale2" && event.target.value === "button1") {
+    if (
+      type === "modale1" &&
+      event.target.value === "button1" &&
+      handleClickSubmitButton
+    ) {
+      handleClickSubmitButton(button);
+    } else if (
+      type === "modale2" &&
+      event.target.value === "button1" &&
+      handleClickSubmitButton
+    ) {
       navigate("/home");
       handleClickSubmitButton();
     } else if (type === "modale1" && event.target.value === "button2") {
       handleClickIdeaCancelButton();
+    } else if (type === "modale4" && event.target.value === "button1") {
+      navigate("/home");
+      handleDecisionConfirmModal();
+    } else if (type === "modale6" && event.target.value === "button1") {
+      navigate("/home");
+      handleReturnToHome();
+    } else if (type === "modale8" && event.target.value === "button1") {
+      navigate("/home");
+      handleClickUpdateSubmitButton();
     }
   };
 
@@ -45,12 +66,30 @@ function ValidateModale({
     modale4: {
       title: "",
       text: "Décision envoyée !",
-      logo: "/images/icons/confetti.png",
+      logo: "/images/icons/validation.png",
       textButton: "Accueil",
     },
     modale5: {
       title: "",
       text: "Décision envoyée !",
+      logo: "/images/icons/confetti.png",
+      textButton: "Accueil",
+    },
+    modale6: {
+      title: "",
+      text: "Modification enregistrée !",
+      logo: "/images/icons/validation.png",
+      textButton: "Accueil",
+    },
+    modal7: {
+      title: "",
+      text: "Decision enregistrée !",
+      logo: "/images/icons/validation.png",
+      textButton: "Page Administrateur",
+    },
+    modale8: {
+      title: "",
+      text: "Merci d'avoir soumis l'idée au vote!",
       logo: "/images/icons/confetti.png",
       textButton: "Accueil",
     },
@@ -115,8 +154,19 @@ function ValidateModale({
 ValidateModale.propTypes = {
   type: PropTypes.string.isRequired,
   setTypeModal: PropTypes.func.isRequired,
-  handleClickSubmitButton: PropTypes.func.isRequired,
-  handleClickIdeaCancelButton: PropTypes.func.isRequired,
+  handleClickSubmitButton: PropTypes.func,
+  handleClickIdeaCancelButton: PropTypes.func,
+  handleDecisionConfirmModal: PropTypes.func,
+  handleReturnToHome: PropTypes.func,
+  handleClickUpdateSubmitButton: PropTypes.func,
+};
+
+ValidateModale.defaultProps = {
+  handleClickSubmitButton: null,
+  handleClickIdeaCancelButton: null,
+  handleDecisionConfirmModal: null,
+  handleReturnToHome: null,
+  handleClickUpdateSubmitButton: null,
 };
 
 // importation modale dans pages <ValidateModale type="modale1" setTypeModal={() => console.log("")} />

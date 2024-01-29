@@ -1,3 +1,4 @@
+const argon2 = require("argon2");
 const tables = require("../tables");
 
 const browse = async (req, res, next) => {
@@ -22,6 +23,46 @@ const read = async (req, res, next) => {
   }
 };
 
+const readByToken = async (req, res, next) => {
+  try {
+    const user = await tables.User.read(req.auth.userId);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user[0]);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+// middleware pour vérifier le mot de passe
+const verifyPasswordByToken = async (req, res, next) => {
+  try {
+    const { userId } = req.auth;
+
+    const result = await tables.User.read(userId);
+
+    if (result && result[0]) {
+      const user = result[0];
+      const verified = await argon2.verify(
+        user.password,
+        req.body.currentPassword
+      );
+
+      if (verified || req.body.password === "") {
+        next();
+      } else {
+        res.status(400).send("Incorrect credentials");
+      }
+    } else {
+      res.status(500).send("Internal server error");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   const user = req.body;
 
@@ -35,30 +76,27 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const {
-    firstname,
-    lastname,
-    email,
-    image_profil: imageProfil,
-    password,
-    is_administrator: isAdministrator,
-    is_moderator: isModerator,
-  } = req.body;
-
-  const updatedUser = {
-    id: req.params.id,
-    firstname,
-    lastname,
-    email,
-    image_profil: imageProfil,
-    password,
-    is_administrator: isAdministrator,
-    is_moderator: isModerator,
-  };
-
   try {
-    await tables.User.update(updatedUser);
-    res.sendStatus(204);
+    const user = await tables.User.getByMail(req.body.email);
+
+    if (user.length > 0 && Number(user[0]?.id) !== Number(req.params.id)) {
+      res.status(400).send("Email already exists");
+    } else if (
+      user.length === 0 ||
+      (user.length > 0 && user[0]?.id === Number(req.params.id))
+    ) {
+      if (req.body.password === "") {
+        req.body.password = user[0]?.password;
+      }
+
+      const response = await tables.User.update(req.body);
+
+      if (response.affectedRows > 0) {
+        res.sendStatus(200);
+      } else {
+        res.sendStatus(500);
+      }
+    }
   } catch (err) {
     next(err);
   }
@@ -91,12 +129,33 @@ const deleteModerator = async (req, res, next) => {
   }
 };
 
+// upload image
+
+// On déclare une fonction asynchrone nommée 'upload'
+const upload = async (req, res, next) => {
+  try {
+    // On appelle la méthode 'upload' de l'objet 'User' de 'tables'
+    // On passe en paramètres l'id de l'utilisateur (récupéré depuis les paramètres de la requête)
+    // et l'URL de l'image (récupérée depuis le corps de la requête)
+    await tables.User.upload(req.params.id, req.body.url);
+    // Si tout se passe bien, on renvoie le statut 200 (OK) et l'URL de l'image
+
+    res.status(200).send(req.body.url);
+  } catch (err) {
+    // Si une erreur se produit, on passe l'erreur au gestionnaire d'erreurs suivant
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
   read,
+  readByToken,
   edit,
   add,
   destroy,
   addModerator,
   deleteModerator,
+  upload,
+  verifyPasswordByToken,
 };
