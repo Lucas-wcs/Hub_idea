@@ -2,7 +2,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const impactedUsers = await tables.Impacted_user.readAll();
+    const impactedUsers = await tables.impacted_user.readAll();
     res.json(impactedUsers);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const readByUserId = async (req, res, next) => {
   try {
-    const impactedUser = await tables.Impacted_user.readByUserId(req.params.id);
+    const impactedUser = await tables.impacted_user.readByUserId(req.params.id);
     if (impactedUser == null) {
       res.sendStatus(404);
     } else {
@@ -24,7 +24,7 @@ const readByUserId = async (req, res, next) => {
 
 const readByIdeaId = async (req, res, next) => {
   try {
-    const impactedUser = await tables.Impacted_user.readByIdeaId(req.params.id);
+    const impactedUser = await tables.impacted_user.readByIdeaId(req.params.id);
     if (impactedUser == null) {
       res.sendStatus(404);
     } else {
@@ -41,7 +41,7 @@ const add = async (req, res, next) => {
   const { usersAssociated } = req.body;
 
   try {
-    const response = await tables.Impacted_user.create(ideaId, usersAssociated);
+    const response = await tables.impacted_user.create(ideaId, usersAssociated);
 
     if (response.affectedRows > 0) {
       res.sendStatus(201);
@@ -56,7 +56,7 @@ const add = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.Impacted_user.delete(req.body);
+    await tables.impacted_user.delete(req.body);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -68,7 +68,7 @@ const edit = async (req, res, next) => {
   const { usersAssociated } = req.body;
 
   try {
-    const usersAssocietedCurrentRes = await tables.Impacted_user.readByIdeaId(
+    const usersAssocietedCurrentRes = await tables.impacted_user.readByIdeaId(
       ideaId
     );
     const usersAssocietedCurrent = usersAssocietedCurrentRes.map((user) => {
@@ -91,11 +91,11 @@ const edit = async (req, res, next) => {
     });
 
     if (forDelete.length > 0) {
-      await tables.Impacted_user.delete(ideaId, forDelete);
+      await tables.impacted_user.delete(ideaId, forDelete);
     }
 
     if (forAdd.length > 0) {
-      await tables.Impacted_user.create(ideaId, forAdd);
+      await tables.impacted_user.create(ideaId, forAdd);
     }
 
     res.sendStatus(204);

@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
 
   try {
     // If the request fails, handle the error (not shown in this code snippet)
-    const result = await tables.User.getByMail(email);
+    const result = await tables.user.getByMail(email);
 
     if (result && result[0]) {
       const user = result[0];
@@ -51,7 +51,7 @@ const signin = async (req, res, next) => {
 
   try {
     // Creating a new user
-    const result = await tables.User.create(email, password);
+    const result = await tables.user.create(email, password);
 
     // If the user is successfully created, sending a response with status 201 (Created)
     if (result.inertId) {

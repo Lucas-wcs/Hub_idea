@@ -3,7 +3,7 @@ const auth = require("../services/auth");
 
 class UserManager extends AbstractManager {
   constructor() {
-    super({ table: "User" });
+    super({ table: "user" });
   }
 
   async create({

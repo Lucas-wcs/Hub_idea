@@ -2,7 +2,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const comments = await tables.Comment.readAll();
+    const comments = await tables.comment.readAll();
     res.json(comments);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const comment = await tables.Comment.read(req.params.id);
+    const comment = await tables.comment.read(req.params.id);
     if (comment == null) {
       res.sendStatus(404);
     } else {
@@ -26,7 +26,7 @@ const add = async (req, res, next) => {
   const comment = req.body;
 
   try {
-    const insertId = await tables.Comment.create(comment);
+    const insertId = await tables.comment.create(comment);
 
     res.status(201).json({ insertId });
   } catch (err) {
@@ -38,7 +38,7 @@ const add = async (req, res, next) => {
 
 const getByIdeaId = async (req, res, next) => {
   try {
-    const comments = await tables.Comment.getByIdeaId(req.params.ideaId);
+    const comments = await tables.comment.getByIdeaId(req.params.ideaId);
     res.json(comments);
   } catch (err) {
     next(err);
@@ -54,7 +54,7 @@ const edit = async (req, res, next) => {
   };
 
   try {
-    await tables.Comment.update(updatedComment);
+    await tables.comment.update(updatedComment);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -63,7 +63,7 @@ const edit = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.Comment.delete(req.params.id);
+    await tables.comment.delete(req.params.id);
     res.sendStatus(204);
   } catch (err) {
     next(err);

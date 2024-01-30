@@ -2,7 +2,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const votes = await tables.Vote.readAll();
+    const votes = await tables.vote.readAll();
     res.json(votes);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const readByUserId = async (req, res, next) => {
   try {
-    const vote = await tables.Vote.read(req.params.id);
+    const vote = await tables.vote.read(req.params.id);
     if (vote == null) {
       res.sendStatus(404);
     } else {
@@ -24,7 +24,7 @@ const readByUserId = async (req, res, next) => {
 
 const readByIdeaId = async (req, res, next) => {
   try {
-    const vote = await tables.Vote.readByIdeaId(req.params.id);
+    const vote = await tables.vote.readByIdeaId(req.params.id);
     if (vote == null) {
       res.sendStatus(404);
     } else {
@@ -39,7 +39,7 @@ const add = async (req, res, next) => {
   const vote = req.body;
 
   try {
-    const insertId = await tables.Vote.create(vote);
+    const insertId = await tables.vote.create(vote);
 
     res.status(200).json({ insertId });
   } catch (err) {
@@ -48,16 +48,16 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const { is_vote: isVote, user_id: userId, idea_id: ideaId } = req.body;
+  const { is_vote: isvote, user_id: userId, idea_id: ideaId } = req.body;
 
-  const updatedVote = {
-    is_vote: isVote,
+  const updatedvote = {
+    is_vote: isvote,
     user_id: userId,
     idea_id: ideaId,
   };
 
   try {
-    await tables.Vote.update(updatedVote);
+    await tables.vote.update(updatedvote);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -66,7 +66,7 @@ const edit = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.Vote.delete(req.body);
+    await tables.vote.delete(req.body);
     res.sendStatus(204);
   } catch (err) {
     next(err);
