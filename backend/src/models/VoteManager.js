@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class UserManager extends AbstractManager {
   constructor() {
-    super({ table: "Vote" });
+    super({ table: "vote" });
   }
 
   async create({ user_id: userId, idea_id: ideaId, is_vote: isVote }) {

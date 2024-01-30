@@ -2,7 +2,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const ideas = await tables.Idea.readAllIdea();
+    const ideas = await tables.idea.readAllIdea();
     res.json(ideas);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const idea = await tables.Idea.read(req.params.id);
+    const idea = await tables.idea.read(req.params.id);
     if (idea == null) {
       res.sendStatus(404);
     } else {
@@ -29,7 +29,7 @@ const add = async (req, res, next) => {
     idea.ideaImg = "/uploads/ideas/default-image-bk.png";
   }
   try {
-    const insertId = await tables.Idea.create(idea);
+    const insertId = await tables.idea.create(idea);
     res.status(201).json({ insertId });
   } catch (err) {
     next(err);
@@ -55,7 +55,7 @@ const edit = async (req, res, next) => {
   };
 
   try {
-    await tables.Idea.update(updatedIdea);
+    await tables.idea.update(updatedIdea);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -83,7 +83,7 @@ const editMulter = async (req, res, next) => {
   };
 
   try {
-    await tables.Idea.updateMulter(updatedIdea);
+    await tables.idea.updateMulter(updatedIdea);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -99,7 +99,7 @@ const editStatusId = async (req, res, next) => {
   };
 
   try {
-    await tables.Idea.updateStatusId(statusUpdatedIdea);
+    await tables.idea.updateStatusId(statusUpdatedIdea);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -117,7 +117,7 @@ const editByModerator = async (req, res, next) => {
   };
 
   try {
-    await tables.Idea.updateByModerator(statusUpdatedIdea);
+    await tables.idea.updateByModerator(statusUpdatedIdea);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -126,7 +126,7 @@ const editByModerator = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.Idea.delete(req.params.id);
+    await tables.idea.delete(req.params.id);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -143,7 +143,7 @@ const editStatusIdByAdmin = async (req, res, next) => {
   };
 
   try {
-    await tables.Idea.updateStatusId(statusUpdatedIdea);
+    await tables.idea.updateStatusId(statusUpdatedIdea);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -153,10 +153,10 @@ const editStatusIdByAdmin = async (req, res, next) => {
 // On déclare une fonction asynchrone nommée 'upload'
 const upload = async (req, res, next) => {
   try {
-    // On appelle la méthode 'upload' de l'objet 'Idea' de 'tables'
+    // On appelle la méthode 'upload' de l'objet 'idea' de 'tables'
     // On passe en paramètres l'id de l'utilisateur (récupéré depuis les paramètres de la requête)
     // et l'URL de l'image (récupérée depuis le corps de la requête)
-    await tables.Idea.upload(req.params.id, req.body.url);
+    await tables.idea.upload(req.params.id, req.body.url);
     // Si tout se passe bien, on renvoie le statut 200 (OK) et l'URL de l'image
 
     res.status(200).send(req.body.url);
