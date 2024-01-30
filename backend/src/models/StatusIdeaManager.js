@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class StatusIdeaManager extends AbstractManager {
   constructor() {
-    super({ table: "Status_idea" });
+    super({ table: "status_idea" });
   }
 
   async read(id) {

@@ -2,7 +2,7 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const statuses = await tables.Status_idea.readAll();
+    const statuses = await tables.status_idea.readAll();
     res.json(statuses);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const status = await tables.Status_idea.read(req.params.id);
+    const status = await tables.status_idea.read(req.params.id);
     if (status == null) {
       res.sendStatus(404);
     } else {

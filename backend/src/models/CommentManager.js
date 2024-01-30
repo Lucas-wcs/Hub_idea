@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class CommentManager extends AbstractManager {
   constructor() {
-    super({ table: "Comment" });
+    super({ table: "comment" });
   }
 
   async create({ userId, ideaId, description }) {

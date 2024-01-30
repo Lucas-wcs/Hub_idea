@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class ImpactedUserManager extends AbstractManager {
   constructor() {
-    super({ table: "Impacted_user" });
+    super({ table: "impacted_user" });
   }
 
   async create(ideaId, usersAssociated) {
