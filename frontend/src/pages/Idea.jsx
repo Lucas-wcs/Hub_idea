@@ -344,18 +344,18 @@ function Idea() {
                   Modérateur
                 </button>
                 {user &&
-                (!votes.some(
+                !votes.some(
                   (item) =>
                     item.user_id === objectToFind1.user_id &&
                     item.idea_id === objectToFind1.idea_id &&
                     item.is_vote === objectToFind1.is_vote
-                ) ||
-                  votes.some(
-                    (item) =>
-                      item.user_id === objectToFind2.user_id &&
-                      item.idea_id === objectToFind2.idea_id &&
-                      item.is_vote === objectToFind2.is_vote
-                  )) ? (
+                ) &&
+                !votes.some(
+                  (item) =>
+                    item.user_id === objectToFind2.user_id &&
+                    item.idea_id === objectToFind2.idea_id &&
+                    item.is_vote === objectToFind2.is_vote
+                ) ? (
                   <>
                     <button
                       className={`button-vote vote-pour ${
