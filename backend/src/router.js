@@ -60,78 +60,116 @@ const { verifyToken } = require("./services/auth");
 router.post("/login", authControllers.login);
 router.post("/signin", authControllers.signin);
 
-// Authentification wall
-router.use(verifyToken);
-
 // Routes user controllers
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.get("/users-by-token", userControllers.readByToken);
-router.post("/users", userControllers.add);
+router.get("/users", verifyToken, userControllers.browse);
+router.get("/users/:id", verifyToken, userControllers.read);
+router.get("/users-by-token", verifyToken, userControllers.readByToken);
+router.post("/users", verifyToken, userControllers.add);
 router.put(
   "/users/:id",
+  verifyToken,
   userControllers.verifyPasswordByToken,
 
   userControllers.edit
 );
-router.delete("/users/:id", userControllers.destroy);
-router.put("/users/moderator/:id", userControllers.addModerator);
-router.put("/users/remove-moderator/:id", userControllers.deleteModerator);
+router.delete("/users/:id", verifyToken, userControllers.destroy);
+router.put("/users/moderator/:id", verifyToken, userControllers.addModerator);
+router.put(
+  "/users/remove-moderator/:id",
+  verifyToken,
+  userControllers.deleteModerator
+);
 
 // Route to get a list of items
-router.get("/items", itemControllers.browse);
+router.get("/items", verifyToken, itemControllers.browse);
 // Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
+router.get("/items/:id", verifyToken, itemControllers.read);
 // Route to add a new item
-router.post("/items", itemControllers.add);
+router.post("/items", verifyToken, itemControllers.add);
 
 // Routes status-idea controllers
-router.get("/status-idea", statusIdeaControllers.browse);
-router.get("/status-idea/:id", statusIdeaControllers.read);
+router.get("/status-idea", verifyToken, statusIdeaControllers.browse);
+router.get("/status-idea/:id", verifyToken, statusIdeaControllers.read);
 // Routes idea controllers
-router.get("/ideas", ideaControllers.browse);
-router.get("/ideas/:id", ideaControllers.read);
-router.post("/ideas", uploadIdea.single("ideaImage"), ideaControllers.add);
+router.get("/ideas", verifyToken, ideaControllers.browse);
+router.get("/ideas/:id", verifyToken, ideaControllers.read);
+router.post(
+  "/ideas",
+  verifyToken,
+  uploadIdea.single("ideaImage"),
+  ideaControllers.add
+);
 router.put(
   "/ideas/change-image/:id",
+  verifyToken,
   uploadIdea.single("ideaImage"),
   ideaControllers.editMulter
 );
-router.put("/ideas/:id", uploadIdea.single("ideaImage"), ideaControllers.edit);
-router.put("/ideas/change-status/:id", ideaControllers.editStatusId);
-router.put("/ideas/moderator/:id", ideaControllers.editByModerator);
-router.delete("/ideas/:id", ideaControllers.destroy);
-router.put("/ideas/admin-decision/:id", ideaControllers.editStatusIdByAdmin);
+router.put(
+  "/ideas/:id",
+  verifyToken,
+  uploadIdea.single("ideaImage"),
+  ideaControllers.edit
+);
+router.put(
+  "/ideas/change-status/:id",
+  verifyToken,
+  ideaControllers.editStatusId
+);
+router.put(
+  "/ideas/moderator/:id",
+  verifyToken,
+  ideaControllers.editByModerator
+);
+router.delete("/ideas/:id", verifyToken, ideaControllers.destroy);
+router.put(
+  "/ideas/admin-decision/:id",
+  verifyToken,
+  ideaControllers.editStatusIdByAdmin
+);
 
 // Routes vote controllers
-router.get("/votes", voteControllers.browse);
-router.get("/votes/users/:id", voteControllers.readByUserId);
-router.get("/votes/ideas/:id", voteControllers.readByIdeaId);
-router.post("/votes", voteControllers.add);
-router.put("/votes", voteControllers.edit);
-router.delete("/votes", voteControllers.destroy);
+router.get("/votes", verifyToken, voteControllers.browse);
+router.get("/votes/users/:id", verifyToken, voteControllers.readByUserId);
+router.get("/votes/ideas/:id", verifyToken, voteControllers.readByIdeaId);
+router.post("/votes", verifyToken, voteControllers.add);
+router.put("/votes", verifyToken, voteControllers.edit);
+router.delete("/votes", verifyToken, voteControllers.destroy);
 // Routes impacted user controllers
-router.get("/impacted-users", impactedUserControllers.browse);
-router.get("/impacted-users/users/:id", impactedUserControllers.readByUserId);
-router.get("/impacted-users/ideas/:id", impactedUserControllers.readByIdeaId);
-router.post("/impacted-users", impactedUserControllers.add);
-router.put("/impacted-users", impactedUserControllers.edit);
-router.delete("/impacted-users", impactedUserControllers.destroy);
+router.get("/impacted-users", verifyToken, impactedUserControllers.browse);
+router.get(
+  "/impacted-users/users/:id",
+  verifyToken,
+  impactedUserControllers.readByUserId
+);
+router.get(
+  "/impacted-users/ideas/:id",
+  verifyToken,
+  impactedUserControllers.readByIdeaId
+);
+router.post("/impacted-users", verifyToken, impactedUserControllers.add);
+router.put("/impacted-users", verifyToken, impactedUserControllers.edit);
+router.delete("/impacted-users", verifyToken, impactedUserControllers.destroy);
 // Routes comment controllers
-router.get("/comments", commentControllers.browse);
-router.get("/comments-by-idea/:ideaId", commentControllers.getByIdeaId);
-router.get("/comments/:id", commentControllers.read);
-router.post("/comments", commentControllers.add);
-router.put("/comments/:id", commentControllers.edit);
-router.delete("/comments/:id", commentControllers.destroy);
+router.get("/comments", verifyToken, commentControllers.browse);
+router.get(
+  "/comments-by-idea/:ideaId",
+  verifyToken,
+  commentControllers.getByIdeaId
+);
+router.get("/comments/:id", verifyToken, commentControllers.read);
+router.post("/comments", verifyToken, commentControllers.add);
+router.put("/comments/:id", verifyToken, commentControllers.edit);
+router.delete("/comments/:id", verifyToken, commentControllers.destroy);
 
 // Routes authentification
-router.post("/login", authControllers.login);
-router.post("/signin", authControllers.signin);
+router.post("/login", verifyToken, authControllers.login);
+router.post("/signin", verifyToken, authControllers.signin);
 
 // Routes upload
 router.put(
   "/upload/:id",
+  verifyToken,
   uploadAvatar.single("AvatarImage"),
   userControllers.upload
 );
