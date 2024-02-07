@@ -13,8 +13,8 @@ const generateValidToken = () => {
 };
 
 // Test suite for the GET /api/comments route
-// Test de la route "readAll" de la table "comment"
 
+// Test suite for the GET /api/comments/:id route
 describe("GET api/comments", () => {
   it("should get comments", async () => {
     const token = generateValidToken();
@@ -23,5 +23,46 @@ describe("GET api/comments", () => {
       .get("/api/comments")
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(200);
+  });
+});
+
+// Test suite for the GET /api/comments/:id route
+describe("GET api/comments/:id", () => {
+  it("should get a comment", async () => {
+    const token = generateValidToken();
+
+    const response = await request(app)
+      .get("/api/comments/1")
+      .set("Authorization", `Bearer ${token}`);
+    expect(response.status).toBe(200);
+  });
+});
+
+// Test suite for the POST /api/comments route
+describe("POST api/comments", () => {
+  it("should create a comment", async () => {
+    const token = generateValidToken();
+    const testComment = {
+      userId: 1,
+      ideaId: 3,
+      description: "Test comment",
+    };
+    const response = await request(app)
+      .post("/api/comments")
+      .set("Authorization", `Bearer ${token}`)
+      .send(testComment);
+    expect(response.status).toBe(201);
+  });
+});
+
+// Test suite for the DELETE /api/comments/:id route
+describe("DELETE api/comments/:id", () => {
+  it("should delete a comment", async () => {
+    const token = generateValidToken();
+
+    const response = await request(app)
+      .delete("/api/comments/1")
+      .set("Authorization", `Bearer ${token}`);
+    expect(response.status).toBe(204);
   });
 });

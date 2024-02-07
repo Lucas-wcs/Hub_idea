@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
-
+const path = require("path");
 // Load environment variables from .env file
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const request = require("supertest");
 

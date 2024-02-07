@@ -154,6 +154,11 @@ app.use(logErrors);
 // qui ne changent pas, comme les images, les fichiers CSS et les fichiers JavaScript.
 app.use(express.static("./public/"));
 
+// Permettre au refresh de fonctionner sur REACT
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
+});
+
 const errorManager = require("./services/errorManager");
 
 app.use(errorManager);
